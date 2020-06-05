@@ -33,5 +33,7 @@ nav:
 markdown_extensions:
     - toc:
         permalink: "#"
+    - admonition
+    - def_list
         
 copyright: Copyright &copy; 2020 the <a href="/about/cpycourse-contributors.md">cpycourse contributors</a>.
