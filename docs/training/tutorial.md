@@ -25,18 +25,19 @@
 
 ### None
 
+## Input and Output
 
-## Flow control
+## Flow Control
 
 ### Conditionals
 
-### Iteration and loops
+### Iteration and Loops
 
 
 ## Functions
 
 
-## Classes and instances
+## Classes and Instances
 
 
 ## Generators
@@ -52,6 +53,8 @@
 
 ### Syntax
 
-### Immutable and mutable types
+### Immutable and Mutable Tpes
 
-### Names and objects
+### Names and Objects
+
+### Everything is an Object
