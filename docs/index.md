@@ -1,8 +1,3 @@
-## some content
-and now for something really important
+# A Curious Python Course
 
-
-blablabla
-
-
-moooaaah
+Training material for your quest to become a [snake charmer](python/python.md).
