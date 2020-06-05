@@ -15,10 +15,11 @@ nav:
     - Home: index.md
     - Training:
         - Tutorial: training/tutorial.md
-        - Main Course: training/course.md
+        - Main Course: training/main-course.md
+        - Oddities: training/oddjob.md
         - Cheatsheet: training/cheatsheet.md
     - Lessons:
-        - Lesson 1: lessons/helloworld.md
+        - Lesson 1: lessons/hello-world.md
     - Python:
         - Python: python/python.md
         - Why Python?: python/why-python.md
