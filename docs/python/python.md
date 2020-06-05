@@ -17,7 +17,7 @@ See [why should I use Python](why-python.md).
 
 ### Where to get it
 
-Python is Free/Libre Open Source Software (F(L)OSS) and can be obtained here:www.python.org
+Python is Free/Libre Open Source Software (F(L)OSS) and can be obtained here: www.python.org
 
 There is "Python the lanuage" and "Python the implementation:
 
