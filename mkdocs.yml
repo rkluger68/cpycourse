@@ -4,7 +4,10 @@ site_author: 'Holger'
 docs_dir: docs/
 repo_name: 'hjoukl/test-gh-pages'
 repo_url: 'https://github.com/hjoukl/test-gh-pages'
-nav:
-    - Home: index.md
+
 theme:
   name: 'mkdocs'
+
+nav:
+    - Home: index.md
+    - About: about.md
