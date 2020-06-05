@@ -13,14 +13,20 @@ theme:
 
 nav:
     - Home: index.md
-    - User Guide:
-        - Writing Your Docs: user-guide/writing-your-docs.md
-        - Styling Your Docs: user-guide/styling-your-docs.md
-        - Configuration: user-guide/configuration.md
-        - Deploying Your Docs: user-guide/deploying-your-docs.md
-        - Custom Themes: user-guide/custom-themes.md
-        - Plugins: user-guide/plugins.md
+    - Training:
+        - Tutorial: training/tutorial.md
+        - Main Course: training/course.md
+        - Cheatsheet: training/cheatsheet.md
+    - Lessons:
+        - Lesson 1: lessons/helloworld.md
+    - Python:
+        - Python: python/python.md
+        - Why Python?: python/why-python.md
+        - A brief history of Python: python/python-history.md
     - About:
-        - Python: about/python.md
         - Curious Python Course: about/curious-python-course.md
         - License: about/license.md
+
+markdown_extensions:
+    - toc:
+        permalink: "#"
