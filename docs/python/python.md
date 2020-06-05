@@ -15,6 +15,12 @@ See [why should I use Python](why-python.md).
 
 ## A bit more in-depth information
 
+### Hello world in Python
+```python
+>>> print('Hello, World!')
+Hello, World!
+```
+
 ### Where to get it
 
 Python is Free/Libre Open Source Software (F(L)OSS) and can be obtained here: www.python.org
