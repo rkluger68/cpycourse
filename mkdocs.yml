@@ -16,6 +16,7 @@ nav:
     - Training:
         - Tutorial: training/tutorial.md
         - Main Course: training/main-course.md
+          - Chapter 1: training/main-course/chapter1.md
         - Oddities: training/oddjob.md
         - Cheatsheet: training/cheatsheet.md
     - Lessons:
