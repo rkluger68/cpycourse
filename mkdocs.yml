@@ -6,8 +6,21 @@ repo_name: 'hjoukl/test-gh-pages'
 repo_url: 'https://github.com/hjoukl/test-gh-pages'
 
 theme:
-  name: 'mkdocs'
+    name: mkdocs
+    highlightjs: true
+    hljs_languages:
+        - yaml
 
 nav:
     - Home: index.md
-    - About: about.md
+    - User Guide:
+        - Writing Your Docs: user-guide/writing-your-docs.md
+        - Styling Your Docs: user-guide/styling-your-docs.md
+        - Configuration: user-guide/configuration.md
+        - Deploying Your Docs: user-guide/deploying-your-docs.md
+        - Custom Themes: user-guide/custom-themes.md
+        - Plugins: user-guide/plugins.md
+    - About:
+        - Python: about/python.md
+        - Curious Python Course: about/curious-python-course.md
+        - License: about/license.md
