@@ -27,6 +27,7 @@ nav:
     - About:
         - Curious Python Course: about/curious-python-course.md
         - License: about/license.md
+        - Legal: about/legal.md
 
 markdown_extensions:
     - toc:
