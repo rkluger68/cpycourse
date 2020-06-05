@@ -47,12 +47,14 @@ Python 3.8.2 (default, Feb 26 2020, 02:56:10)
 According to https://de.wikipedia.org/wiki/Objektorientierte_Programmierung: 
 
 > Alan Kay, inventor of Smalltalk and the term „object oriented“, defined object-oriented in the context of Smalltalk as: 
+> > "
 > >  1. Everything is an object, 
 > >  2. Objects communicate by sending and receiving messages (in terms of objects), 
 > >  3. Objects have their own memory (in terms of objects), 
 > >  4. Every object is an instance of a class (which must be an object), 
 > >  5. The class holds the shared behavior for its instances (in the form of objects in a program list), 
 > >  6. To eval a program list, control is passed to the first object and the remainder is treated as its message
+> > "
 
 ### Python is multi-paradigm
 
@@ -61,3 +63,8 @@ According to https://de.wikipedia.org/wiki/Objektorientierte_Programmierung:
    * functional programming (but not pure)
    * imperative (+procedural) programming
 
+#### Example: Object oriented programming in Python
+
+#### Example: Functional programming in Python
+
+#### Example: Imperative programming in Python
