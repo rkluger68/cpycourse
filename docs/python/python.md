@@ -1,6 +1,6 @@
 # Python?
 
-Not the animal, not (quite) the Monty
+Not the animal, not (quite) the [Monty](https://docs.python.org/3/faq/general.html#why-is-it-called-python).
 
 From the Python homepage (www.python.org):
 
