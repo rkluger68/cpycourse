@@ -1,6 +1,6 @@
-site_name: Test docs
-site_description: 'A docs test'
-site_author: 'Holger'
+site_name: Curious Python Course
+site_description: 'Practical Python training material'
+site_author: 'Holger Joukl'
 docs_dir: docs/
 repo_name: 'hjoukl/test-gh-pages'
 repo_url: 'https://github.com/hjoukl/test-gh-pages'
