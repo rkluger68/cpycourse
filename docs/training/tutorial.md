@@ -43,7 +43,7 @@ But typically the code is placed into Python source files named <module-name>.py
 
 ### Comments
 
-### Variables
+### Variables and identifier
 
 ### Indentation
 
