@@ -45,6 +45,8 @@ But typically the code is placed into Python source files named <module-name>.py
 
 ### Variables
 
+### Indentation
+
 ### Statements
 
 ## Assignments and Expressions
