@@ -22,7 +22,9 @@ type in your 1.st Python statement and press the <enter>-key
 
 ## Running a Python program
 
-Running a Python Programm can be done by providing code as a command-string (i.e. a sequence of python-statements separated by semicolons) on commandline using the following command:
+Running a programm means executing a sequence of python-statements (i.e. the "programm code" or in short "code").
+
+Running a Python programm can be done by providing code as a command-string (i.e. a sequence of python-statements separated by semicolons) on commandline using the following command:
 
     $ python3 -c "print('Hello World')"
     Hello World
@@ -30,13 +32,20 @@ Running a Python Programm can be done by providing code as a command-string (i.e
 
 This is sufficient for short checks.
 
-But typically the code is placed into files named <module-name>.py (in our case helloworld.py)
+But typically the code is placed into Python source files named <module-name>.py (in our case helloworld.py)
   and the code can be executed running the following command:
 
     $ python3 helloworld.py
     Hello World
     $
  
+## Python program building blocks
+
+### Comments
+
+### Variables
+
+### Statements
 
 ## Assignments and Expressions
 
