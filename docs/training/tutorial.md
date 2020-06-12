@@ -1,5 +1,9 @@
 # CPC: Tutorial
 
+## Python Documentation ##
+
+The Python official documentation can be found here (https://docs.python.org/3/index.html)
+
 ## Starting the Python interpreter
 
 For an interactive session simply type `python` in a console/shell of your computer
@@ -84,6 +88,7 @@ Expressions are printable and assignable.
 A single statement is an executable instruction ending with a newline or semicolon. A statement changes the state of the program.
 
 Example 1 - expression statement
+
     python3
     Python 3.6.5 (default, Jun 28 2018, 16:00:48) 
     [GCC 4.8.5] on linux
@@ -93,6 +98,7 @@ Example 1 - expression statement
     >>> 
 
 Example 2 - assignement statement
+
     python3
     Python 3.6.5 (default, Jun 28 2018, 16:00:48) 
     [GCC 4.8.5] on linux
@@ -107,8 +113,12 @@ Example 2 - assignement statement
 Consecutive statements can be grouped together forming a code-blocks using ___indentation___. The level of idention marks the code-block
 a statement belongs.
 
+Grouping statement - i.e. building code blocks - is the basis for structuring the program. Organized in "higher-level" building blocks like functions, classes, modules and packages, they provide reusable code fragments.
+
 Other programming languages use different delimiter-symbols expressing the end of single-statement and grouped statements.
 E.g in Java or C the semicolon `;` is used as single-statement-delimiter, the curly braces `{` `}` are used for code-blocks.
+
+
 
 ## Variables, assignments and expressions
 
@@ -116,7 +126,7 @@ Variables are one of the the key-elements of programing languages. Allthough the
 Providing a named access to an area in memory holding data, which can be changed during program execution.
 
 In Python a variable is a name referencing such a memory area. The variable is bound to the memory location upon an assignment(-statement).
-Python-Variables are not tightly coupled to a memory location, the can be rebound to different memory locations by further assignments. At different point in time, the variable may refer to different locations in memory, storing different values and types of value. This makes Python a dynamic-typed language
+Python-Variables are not tightly coupled to a memory location, the can be rebound to different memory locations by further assignments. At different point in time, the variable may refer to different locations in memory, storing different values and types of value. This makes Python a dynamic-typed language.
 
     python3
     Python 3.6.5 (default, Jun 28 2018, 16:00:48) 
@@ -141,19 +151,259 @@ Python-Variables are not tightly coupled to a memory location, the can be reboun
 
 ## It's all about data: Python data structures
 
-### Strings
+Python provides a bunch of popular data types. ***simple types*** (also called primitive datatypes) can best be imagined as data containers, which held values of a dedicated type. In addition Python provides some ***compound types***, which are collection of data containers of equal or different type, serving a dedicated purpose.
 
-### Numeric datatypes
+Each of the Python data types provide a data type specific set of builtin-methods and operators which can be applied on that kind of type.
+For the complete list please refer to (https://docs.python.org/3/library/stdtypes.html).
 
-### Lists
+***Note 1***
+The type of a data-literal (or a variable referencing a data type holding that data-literal value) can be identified using the builtin `type()`-function. 
 
-### Tuples
+***Note 2***
+Python data types itself are Python classes
 
-### Dictionaries
+***Note 3***
+A type-test of a Python variable is done using buitlins `isinstance()`method
 
-### Sets
+    python3
+    Python 3.6.5 (default, Jun 28 2018, 16:00:48) 
+    [GCC 4.8.5] on linux
+    Type "help", "copyright", "credits" or "license" for more information.
+    >>> isinstance('foo', str)
+    True
+    >>>
 
-### None
+### Everything in Python is an object ###
+===> Should this be placed in the main course material ???
+
+### Strings - `str`
+
+Strings are data containers storing character-sequences (string-literals). For nesting purposes, Python ***string-literals*** can be typed in different ways:
+
+    python3
+    Python 3.6.5 (default, Jun 28 2018, 16:00:48) 
+    [GCC 4.8.5] on linux
+    Type "help", "copyright", "credits" or "license" for more information.   
+    >>> 'foo' # single quoted string
+    'foo'
+    >>> type('foo')
+    <class 'str'>
+    >>> "foo" # double quoted string
+    'foo'
+    >>> type("foo")
+    <class 'str'>
+    >>> '''foo''' # triple quoted string
+    'foo'
+    >>> type('''foo''')
+    <class 'str'>
+    >>> 'foo"bar"' # nested string
+    'foo"bar"'
+    >>> type('foo"bar"')
+    <class 'str'>
+    >>> 
+
+
+Example `str` builtin method and operator
+
+    python3
+    Python 3.6.5 (default, Jun 28 2018, 16:00:48) 
+    [GCC 4.8.5] on linux
+    Type "help", "copyright", "credits" or "license" for more information.
+    >>> ''.join( ('foo', 'bar'))  # string concatenating using builtin method 'join()'
+    'foobar'
+    >>> 'foo' + 'bar'             # string concatenating using '+' operator
+    'foobar'
+    >>>
+ 
+
+### Numeric datatypes - `int`, `float`
+
+Example `int`-literals
+    
+    python3
+    Python 3.6.5 (default, Jun 28 2018, 16:00:48) 
+    [GCC 4.8.5] on linux
+    Type "help", "copyright", "credits" or "license" for more information.
+    >>> 1 # int-literal
+    1
+    >>> type(1) # type of int-literal
+    <class 'int'>
+    >>> 1+2 # builtin'+'-operator for int-literal
+    3
+    >>> type(1+2) # result type
+    <class 'int'>
+    >>>
+
+Example `float`-literals
+
+    python3
+    Python 3.6.5 (default, Jun 28 2018, 16:00:48) 
+    [GCC 4.8.5] on linux
+    Type "help", "copyright", "credits" or "license" for more information.
+    >>> 1.2 # a float-literal
+    1.2
+    >>> type(1.2) # type of float-literal
+    <class 'float'>
+    >>> 1.2 + 3.7 # builtin '+'-operand
+    4.9
+    >>> type(1.2 + 3.7) # result type
+    <class 'float'>
+    >>>
+
+
+### Lists - `list`
+
+A Python list is an array of elements of probably different types. 
+
+    python3
+    Python 3.6.5 (default, Jun 28 2018, 16:00:48) 
+    [GCC 4.8.5] on linux
+    Type "help", "copyright", "credits" or "license" for more information.
+    >>> [1,'foo', 3.14] # list of 3 elements
+    [1, 'foo', 3.14]
+    >>> type([1,'foo', 3.14])
+    <class 'list'>
+    >>> [1,'foo', 3.14] + ['bar']
+    [1, 'foo', 3.14, 'bar']
+    >>> type([1,'foo', 3.14] + ['bar'])
+    <class 'list'>
+    >>>
+
+***list-indexing and length of a list***
+
+Accessing list-elements of a list `l`is done using the Python list-indexing operator `l[i]`. The start list-index is `0`
+
+    python3
+    Python 3.6.5 (default, Jun 28 2018, 16:00:48) 
+    [GCC 4.8.5] on linux
+    Type "help", "copyright", "credits" or "license" for more information.
+    >>> [1,'foo', 3.14][0] # acces 1.st element of a list (index:0)
+    1
+    >>> len([1,'foo', 3.14]) # get ength of a list
+    3
+    >>>
+
+
+***NOTE***
+The Python standard library also provides a `array`-type where the elements are restricted to be of th same type, see
+(https://docs.python.org/3/library/array.html)
+
+### Tuples - `tuple`
+
+Tuples are very similar to lists. They can store elements of differen type, nearly have the same operations - but opposed to Python lists, they are unchangeable, i.e elements can't be added or removed:
+
+    python3
+    Python 3.6.5 (default, Jun 28 2018, 16:00:48) 
+    [GCC 4.8.5] on linux
+    Type "help", "copyright", "credits" or "license" for more information.
+    >>> (1, 'foo', 3.14)
+    (1, 'foo', 3.14)
+    >>> type((1, 'foo', 3.14))
+    <class 'tuple'>
+    >>> 
+
+
+***tuple-indexing and length of a list***
+
+    python3
+    Python 3.6.5 (default, Jun 28 2018, 16:00:48) 
+    [GCC 4.8.5] on linux
+    Type "help", "copyright", "credits" or "license" for more information.
+    >>> (1, 'foo', 3.14)[0] # tuple-indexing
+    1
+    >>> len((1, 'foo', 3.14)) # lenth of a tuple
+    3
+    >>>
+
+***NOTE***
+
+You can't change tuples, but you alwas can generate a new tuple out of an existing tuple an a new tuple-element
+
+    python3
+    Python 3.6.5 (default, Jun 28 2018, 16:00:48) 
+    [GCC 4.8.5] on linux
+    Type "help", "copyright", "credits" or "license" for more information.
+    >>> (1, 'foo', 3.14) + ('bar',) # creating a new tuple out of 2 existing tuples
+    (1, 'foo', 3.14, 'bar')
+    >>>
+
+
+### Dictionaries - `dict`
+Python provides a mapping data type storing key-value pairs called dictionaries (`dict`).
+
+    python3
+    Python 3.6.5 (default, Jun 28 2018, 16:00:48) 
+    [GCC 4.8.5] on linux
+    Type "help", "copyright", "credits" or "license" for more information.
+    >>> {'name': 'Paul', 'age': 26, 'profession': 'Autho'}
+    {'name': 'Paul', 'age': 26, 'profession': 'Author'}
+    >>> type({'name': 'Paul', 'age': 26, 'profession': 'Author'})
+    <class 'dict'>
+    >>> 
+
+***dictionary-lookup***
+
+Accessing individual elements of a dictionary `m` is done using the dictionary key-indexing-operator `m.[key]`
+
+    python3
+    Python 3.6.5 (default, Jun 28 2018, 16:00:48) 
+    [GCC 4.8.5] on linux
+    Type "help", "copyright", "credits" or "license" for more information.
+    >>> {'name': 'Paul', 'age': 26, 'profession': 'Hacker'}['name']
+    'Paul'
+    >>> 
+
+
+### Sets - `set`
+
+The Python `set` is a datatype according to the mathematical set theory it therefore is a collection of unique elements, probably of different types and a set-operations like `union`, `intersection` and others
+
+    
+    python3
+    Python 3.6.5 (default, Jun 28 2018, 16:00:48) 
+    [GCC 4.8.5] on linux
+    Type "help", "copyright", "credits" or "license" for more information.
+    >>> set([1, 2,'foo'])   # simple set with uniqe elements
+    {1, 2, 'foo'}
+    >>> type(set([1, 2,'foo'])) # type of set
+    <class 'set'>
+    >>> set([1, 2,'foo', 'foo'])  # simple set with a non-uniqe element (getting dropped)
+    {1, 2, 'foo'}
+    >>> type(set([1, 2,'foo', 'foo']))
+    <class 'set'>
+    >>> set([1, 2,'foo']) & set([1,2]) # intersection of 2 sets
+    {1, 2}
+    >>> type(set([1, 2,'foo']) & set([1,2]))
+    <class 'set'>
+    >>> 
+
+  
+
+### None - `None`
+
+The Python `None` type is referred to as the `Null`-Object. It has a builtin contstant named `None`
+
+    python3
+    Python 3.6.5 (default, Jun 28 2018, 16:00:48) 
+    [GCC 4.8.5] on linux
+    Type "help", "copyright", "credits" or "license" for more information.
+    >>> None
+    >>> type(None)
+    <class 'NoneType'>
+    >>>
+
+
+### Boolean `bool`
+
+The Python `bool` type has a two builtin constants named `False` an `True`
+
+    python3
+    Python 3.6.5 (default, Jun 28 2018, 16:00:48) 
+    [GCC 4.8.5] on linux
+    Type "help", "copyright", "credits" or "license" for more information.
+    >>> type(True)
+    <class 'bool'>
+    >>> 
 
 ## Input and Output
 
