@@ -2,7 +2,7 @@
 
 ## Python Documentation ##
 
-The Python official documentation can be found here [https://docs.python.org/3/index.html]
+The Python official documentation can be found here <https://docs.python.org/3/index.html>
 
 ## Starting the Python interpreter
 
@@ -159,16 +159,16 @@ Python-Variables are not tightly coupled to a memory location, they can be rebou
 Python provides a bunch of popular data types. ***Simple types*** (also called primitive data-types) can best be imagined as data containers, which held values of a dedicated type. In addition Python provides some ***compound types***, which are collection of data containers of equal or different type, serving a dedicated purpose.
 
 Each of the Python data types provide a data type specific set of `builtin-methods` and `operators` which can be applied on that kind of type.
-For the complete list please refer to [https://docs.python.org/3/library/stdtypes.html].
+For the complete list please refer to <https://docs.python.org/3/library/stdtypes.html>.
 
 ***Note 1***:
 The type of a data-literal (or a variable referencing a data type holding that data-literal value) can be identified using the builtin `type()`-function. 
 
 ***Note 2***:
-Python builtin data types itself are Python classes. Instances of builtin data-types can be gererated in two different ways:
+Python builtin data types itself are Python classes. Instances of nearly all Python builtin data-types can be gererated in two different ways:
 
 1. implicit using a type-specific notation (literals) in the case of ***simple data-types*** or different kind of brackets `(`,  `)`, `[`, `]`, `{`, `} in the case of ***compound data-types*** 
-2. explict using the class-constructor.
+2. explict using the types class-constructor (provided as Python `builtin`-function)
 
 ***Note 3***:
 A type-test of a Python variable is done using buitlins `isinstance()` function
@@ -294,6 +294,7 @@ A Python list is an array of elements of probably different types.
     >>> list([1, 'foo', 3.14]) # explicit: 'list'-class constructor
 
 `list`- example
+
     $ python -q
     >>> [[1,'foo', 3.14] # list of 3 elements
     [1, 'foo', 3.14]
@@ -406,7 +407,7 @@ As opposed to the other Python builtin data types, `set`- type generation can on
     $ python -q
     >>> set([1,2, 'foo']) # explicit: 'set'- class constructor (1) using '[' ']' brackets
     {1,2,'foo'}
-    >>> set((1,2,'foo'))  # explicit: 'set'- class constructor using '(' ')' brackets
+    >>> set((1,2,'foo'))  # explicit: 'set'- class constructor (2) using '(' ')' brackets
     {1,2,'foo'}
 
 `set`-example
