@@ -569,9 +569,10 @@ A function is defined using the `def`-statement
     ...    # (2) function body
     ...    print(text)    # 1.st statement
     ...    return         # 2.nd statement
+    ...
     >>>
 
-A function definition consist of a function-header and a function body.
+A function definition consist of a (1) function-header and a (2) function body.
 The function header beginning with the `def` keyword followed by the function-name and a probably empty list of comma-separated input-parameters in parenthesis, followed by colons character `:`.
 The function body consists of an indented code-block of statements. In an interactive session the interpreters secondary prompt `...` shows the indentation level.
 
