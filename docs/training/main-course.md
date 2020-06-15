@@ -2,11 +2,11 @@
 
 ## Everything is an object ##
 
-In Python everything is an object. An object is an entity encompassinn the "data" and its acceptable operations. The Python data model <https://docs.python.org/dev/reference/datamodel.html> further describes:
+In Python everything is an object. An object is an entity encompassing the "data" and its acceptable operations. The Python data model <https://docs.python.org/dev/reference/datamodel.html> further describes:
 
-"Every object has an ***identity***, a ***type*** and a ***value***. An object’s identity never changes once it has been created; you may think of it as the object’s address in memory. The ‘is’ operator compares the identity of two objects; the id() function returns an integer representing its identity.
-"
-Python objects can also be generated from user-defined objects ("classes"). Moreover Python doesnt't restrict "data" to be simply data types, instead data can also be code, see the <https://docs.python.org/dev/reference/datamodel.html>
+"Every object has an ***identity***, a ***type*** and a ***value***. An object’s identity never changes once it has been created; you may think of it as the object’s address in memory. The ‘is’ operator compares the identity of two objects; the id() function returns an integer representing its identity."
+
+Python objects can also be generated from user-defined objects ("classes"). Moreover Python doesn't restrict "data" to be simply data types, instead data can also be code, see the <https://docs.python.org/dev/reference/datamodel.html>
 
 
 ***More characteristics on objects***
@@ -21,7 +21,7 @@ Python objects can also be generated from user-defined objects ("classes"). More
     - mutable types: `list`, `dict`, `set`, user-defined objects (classes)
 
 
-### object identity ###
+### Object Identity ###
 
     >>> # (1) create some objects
     >>> a = 1 # from builtin base-type 'int'
@@ -52,7 +52,7 @@ Memory adress of variable 'a' and variable 'b' are identical, ie. they point to 
     >>> 
 
 
-### object lifetime and object reference ###
+### Object Lifetime and Object Reference ###
 
 Every object which is created must be destroyed when it is no longer needed, otherwise we ran out-of-memory. In Python every objects carries the "still-in-use" information in a "reference count". This reference counter records the number of variables referencing this object. Remember, a variable is a name pointing to a memory location. An assignment(-expression) establishes a reference between the variable name and the memory location (i.e. the object) - during this step the reference count of the object is inreased. Conversely the object's reference count is decreased, when the variable is deleted (explicit using `del` or implicit by running out-of-scope) or re-assigned to another object.
 If the reference count of an objects is `0` the object is automatically destroyed by the garbage collector of the Python interpreter.
@@ -90,4 +90,4 @@ This can be demonstared as follows using the `getrefcount()`-function of the Pyt
 Checking the reference count will always increase the count itself during the check, because the `sys.getrefcount()`-function-call will also establish a reference to the object 'a' is pointing to. 
 
 
-### immutable/mutable objects ###
+### Immutable/mutable Objects ###
