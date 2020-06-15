@@ -188,7 +188,7 @@ Examples:
     a is b       # simple expression using 'is'-operator (check identity as with id()-builtin function)
 
 The evaluation (calculation) of an expression itself is triggered by an appropriate statement.
-Expressions are printable and assignable.
+Expressions are printable and assignable. Because expressions are assignable, they form the smallest unit of reusable code.
 
 
 ### Statements
@@ -557,6 +557,34 @@ The Python `bool` type has a two builtin constants named `False` an `True`
 
 
 ## Functions
+
+Functions are ***named code blocks*** providing a dedicated task (procedure) or calculation (function). Functions can have input parameters and return values, i.e. result values returnd to the caller.
+
+***function definition***
+A function is defined using the `def`-statement
+
+    python -q
+    >>> # function definition
+    >>> def echo(text):   # (1) function header
+    ...    # (2) function body
+    ...    print(text)    # 1.st statement
+    ...    return         # 2.nd statement
+    ...
+    >>>
+
+A function definition consist of a (1) function-header and a (2) function body.
+The function header beginning with the `def` keyword followed by the function-name and a probably empty list of comma-separated input-parameters in parenthesis, followed by colons character `:`.
+The function body consists of an indented code-block of statements. In an interactive session the interpreters secondary prompt `...` shows the indentation level.
+
+***function call***
+A function is called simply using it's function name followed by a list of comma-separated call-parameters in parenthesis:
+
+    >>> # function call
+    >>> echo("Hello World")
+    Hello World
+    >>>
+
+Functions can be called repeatedly and therefore are a major building block of reusable-code in imperative programinmg languages.
 
 
 ## Classes and Instances
