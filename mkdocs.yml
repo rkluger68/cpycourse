@@ -18,6 +18,7 @@ nav:
         - Main Course:
             - "A Curious Python: Main Course": training/main-course/main-course.md
             - "Chapter 1: Functions": training/main-course/functions.md
+            - "Chapter N: Python Objects": training/main-course/objects.md
         - Oddities: training/oddjob.md
         - Cheatsheet: training/cheatsheet.md
     - Lessons:
