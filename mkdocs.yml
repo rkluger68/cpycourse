@@ -15,7 +15,10 @@ nav:
     - Home: index.md
     - Training:
         - Tutorial: training/tutorial.md
-        - Main Course: training/main-course.md
+        - Main Course:
+            - "A Curious Python: Main Course": training/main-course/main-course.md
+            - "Chapter 1: Functions": training/main-course/functions.md
+            - "Chapter N: Python Objects": training/main-course/objects.md
         - Oddities: training/oddjob.md
         - Cheatsheet: training/cheatsheet.md
     - Lessons:
@@ -28,6 +31,7 @@ nav:
         - Curious Python Course: about/curious-python-course.md
         - License: about/license.md
         - Legal: about/legal.md
+        - Contributors: about/cpycourse-contributors.md
 
 markdown_extensions:
     - toc:
