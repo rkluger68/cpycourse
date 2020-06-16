@@ -282,4 +282,5 @@ Python function call semantics instead are controlled by the mutability/immutabi
     139752035393824
     >>> 
 
-
+***Note***
+  function-calls with mutable objects may have site-effect to the callee
