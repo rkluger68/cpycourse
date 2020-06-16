@@ -42,7 +42,7 @@ Python objects can also be generated from user-defined types ("classes"). Moreov
 4. an objects is **mutable** if its *value* can be changed, **immutable** otherwise
 
 
-### Immutable/mutable Objects ###
+## Immutable/mutable Objects ##
 
 The mutability/immutability of object-values is defined by its type:
 
@@ -112,7 +112,7 @@ Example mutable type `list`
     >>> 
 
 
-### Object Lifetime and Object Reference ###
+## Object Lifetime and Object Reference ##
 
 Every object which is created must be destroyed when it is no longer needed, otherwise we ran out-of-memory. In Python every objects carries the "still-in-use" information in a "reference count". This reference counter records the number of variables referencing this object. Remember, a variable is a name pointing to a memory location. An assignment(-expression) establishes a reference between the variable name and the memory location (i.e. the object) - during this step the reference count of the object is inreased. Conversely the object's reference count is decreased, when the variable is deleted (explicit using `del` or implicit by running out-of-scope) or re-assigned to another object.
 If the reference count of an objects is `0` the object is automatically destroyed by the garbage collector of the Python interpreter.
