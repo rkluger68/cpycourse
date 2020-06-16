@@ -1,3 +1,5 @@
 # A Curious Python Course
 
-## A Course outline ##
+## A Course Outline ##
+
+
