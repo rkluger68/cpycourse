@@ -677,7 +677,7 @@ The Python `for-statement` can be viewed as a representative of what Wikipedia c
 
 ***while-statement***
 
-The Python `while-statement` can be viewed as a representative of what Wikipedia calls a [condition-controlled-loop] (https://en.wikipedia.org/wiki/Control_flow#Condition-controlled_loops). In a `while`-loop a condition-variable is set before and changed within the `while`-loop. 
+The Python `while-statement` can be viewed as a representative of what Wikipedia calls a [condition-controlled-loop](https://en.wikipedia.org/wiki/Control_flow#Condition-controlled_loops). In a `while`-loop a condition-variable is set before and changed within the `while`-loop. 
 
 `while`-loop example
 
