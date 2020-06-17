@@ -605,11 +605,92 @@ In Python there are builtin-functions (`input()`, `print()`) performing that tas
     Hallo Donald
     >>>
 
-## Flow Control
+## Control Flow
 
-### Conditionals
+[Wikipedia](https://en.wikipedia.org/wiki/Control_flow) describes control flow as follows:
 
-### Iteration and Loops
+"In computer science, control flow (or flow of control) is the order in which individual statements, instructions or function calls of an imperative program are executed or evaluated. The emphasis on explicit control flow distinguishes an imperative programming language from a declarative programming language."
+
+Python provides two kinds of 'explicit controls' affecting the order of execution:
+
+1. Choices
+2. Loops
+
+### Choices
+
+Choices are conditional-controls, affectiong the order of execution according to a boolean-condition.
+
+***if-statements***
+
+`if`-statements need a previously defined condition-variable. Python provides different variations of `if`-statements
+
+`if` - example
+
+    >>> a = 1
+    >>> if a == 1:
+    ...     print('a is 1')
+    ... 
+    a is 1
+    >>> 
+
+`if-elif` - example
+
+    >>> a = 2
+    >>> if a == 1:
+    ...     print('a is 1')
+    ... elif a == 2:
+    ...     print('a is 2')
+    ... 
+    a is 2
+    >>>
+
+`if-elif-else` - example
+
+    >>> a = 3
+    >>> if a == 1:
+    ...     print('a is 1')
+    ... elif a == 2:
+    ...     print('a is 2')
+    ... else:
+    ...     print('a is neither 1 nor 2')
+    ... 
+    a is neither 1 nor 2
+    >>>
+
+### Loops
+
+Loops are repetitive-controls, affecting the number of iterations a code-sequence is executed.
+
+***for-statement***
+
+The Python `for-statement` can be viewed as a representative of what Wikipedia calls a [count-controlled-loop](https://en.wikipedia.org/wiki/Control_flow#Count-controlled_loops). The number of repetitions in a `for`-loop is defined by the number elements of a (probably dynamically generated) sequence.
+
+`for`-loop example
+
+    >>> for elem in [1,2,3]:  # number of elements in the list defines the number of repetitions
+    ...     print(elem)
+    ... 
+    1
+    2
+    3
+    >>>
+
+***while-statement***
+
+The Python `while-statement` can be viewed as a representative of what Wikipedia calls a [condition-controlled-loop] (https://en.wikipedia.org/wiki/Control_flow#Condition-controlled_loops). In a `while`-loop a condition-variable is set before and changed within the `while`-loop. 
+
+`while`-loop example
+
+    >>> a = 1
+    >>> while a < 4:
+    ...     print(a)
+    ...     a += 1   # change the control-variable
+    ... 
+    1
+    2
+    3
+    >>>
+
 
 
 ## Functions
@@ -643,8 +724,15 @@ A function is called simply using it's function name followed by a list of comma
 Functions can be called repeatedly and therefore are a major building block of reusable-code in imperative programinmg languages.
 
 
-## Classes and Instances
+## Classes and Instances [WIP]
 
+Python allows user-defined data-types called ***classes***. Classes are type-definitions which include data - so called ***attributes*** - and ***methods*** - functions that define the type-specific behaviour. ***Instances*** are objects created from classes.
+
+Python provides most of the object-oriented concepts/features like
+
+1. (Data-) Encapsulation) 
+2. Inheritance (Abstraction, Specialization)
+2. Overriding
 
 ## Generators
 
