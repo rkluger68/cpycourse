@@ -158,38 +158,29 @@ But typically the code is placed into Python source files named \<module-name\>.
  
 ## Python program building blocks
 
-As mentioned above a program is build as a sequence of statetements. This is very rough and needs to be breakdown to more basic building blocks of the programming language. A brief, incomplete overview
+As mentioned above a program is build as a sequence of statements. This is very rough and needs to be breakdown to more basic building blocks of the programming language. A brief (incomplete) top-down view of a program is build up:
 
+Program
 1. Comments
-2. Expressions
-3. Statements
-4. Variables
+2. Statements
+3. Expressions
+4. Operands and Operators
 
+which means:
+  - a program is a sequence of comments and statements
+  - a statement is either an 'executable instruction' (***do-something***) or an 'evaluable expression' (***compute-something***)
+  - an expression is build up from operands and operators
+
+### Program execution
+
+Running a program therefore can be described as a top-down process of execution of statements and evaluation of expressions.
 
 ### Comments
 
 Comments are used for inplace documenting the code. In Python the '#'-delimiter starts a comment.
-A comment ends at the end of a line.
+A comment ends at the end of a line. The Python interpreters ignores comments.
 
     # This is a single line comment
-
-
-### Expressions
-
-An expression is sequence of operands and operators evaluating to a single value. Operands itself can be expressions.
-Examples:
-
-    "foo"        # string literal
-    3.14         # float literal
-    True         # boolean literal
-    a + b        # simple expression using add-operator
-    x == y       # simple expression using equal-comparison operator
-    id(x)        # simple expression using 'id()'-builtin function getting the memory address the variable 'x' refers to
-    a is b       # simple expression using 'is'-operator (check identity as with id()-builtin function)
-
-The evaluation (calculation) of an expression itself is triggered by an appropriate statement.
-Expressions are printable and assignable. Because expressions are assignable, they form the smallest unit of reusable code.
-
 
 ### Statements
 
@@ -211,17 +202,43 @@ Example 2 - assignement statement
     8
     >>> 
     
-
 ***Grouping statements***:
 Consecutive statements can be grouped together forming a code-blocks using ___indentation___. The level of idention marks the code-block
 a statement belongs.
 
-Grouping statement - i.e. building code blocks - is the basis for structuring the program. Organized in "higher-level" building blocks like functions, classes, modules and packages, they provide reusable code fragments.
+Grouping statement - i.e. building code blocks - is the basis for structuring the program. Organized in "higher-level" building blocks like functions, classes, modules and packages, they provide reusable code fragments. 
 
+A meaningful "programm organization" is crucial creating
+  - understandable
+  - maintainable
+  - extendible
+  - testable
+code.
+
+***Note***
 Other programming languages use different delimiter-symbols expressing the end of single-statement and grouped statements.
 E.g in Java or C the semicolon `;` is used as single-statement-delimiter, the curly braces `{` `}` are used for code-blocks.
 
+### Expressions
 
+An expression is sequence of ***operands*** and ***operators*** evaluating to a single value. Operands itself can be expressions.
+Examples:
+
+    "foo"        # string literal
+    3.14         # float literal
+    True         # boolean literal
+    a            # simple identifier
+    a + b        # simple expression using add-operator
+    x == y       # simple expression using equal-comparison operator
+    id(x)        # simple expression using 'id()'-builtin function getting the memory address the variable 'x' refers to
+    a is b       # simple expression using 'is'-operator (check identity as with id()-builtin function)
+
+The evaluation (calculation) of an expression itself is triggered by an appropriate statement - in an interactive interpreter session this means you need to finish your entered expression with a carriage return (newline), this will make an expression statement out of an expression.
+Expressions are printable and assignable. Because expressions are assignable, they form the smallest unit of reusable code.
+
+### Operands and Operators
+
+Operands are literals, identifiers (variable names) or functions returning a single value. Operators are (meaningful) links between operands.
 
 ## Variables, assignments and expressions
 
