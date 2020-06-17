@@ -6,10 +6,24 @@ repo_name: 'hjoukl/cpycourse'
 repo_url: 'https://github.com/hjoukl/cpycourse'
 
 theme:
-    name: mkdocs
-    highlightjs: true
-    hljs_languages:
-        - yaml
+    #name: mkdocs
+    #name: darkly
+    # disable highlightjs code rendering to not interfere with material
+    # theme's use of genshi
+    highlightjs: false
+    #hljs_languages:
+    #    - yaml
+    name: material
+    # material theme customizations
+    # disable google fonts cdn
+    font: false
+    palette:
+        #scheme: preference
+        #scheme: slate # dark mode
+        primary: teal
+        accent: teal
+    features:
+        - tabs
 
 nav:
     - Home: index.md
@@ -38,5 +52,25 @@ markdown_extensions:
         permalink: "#"
     - admonition
     - def_list
-        
+    - codehilite:
+        guess_lang: false
+    - pymdownx.arithmatex
+    - pymdownx.betterem:
+        smart_enable: none
+    - pymdownx.caret
+    - pymdownx.critic
+    - pymdownx.details
+    - pymdownx.emoji:
+        emoji_index: !!python/name:materialx.emoji.twemoji
+        emoji_generator: !!python/name:materialx.emoji.to_svg
+    - pymdownx.inlinehilite
+    - pymdownx.magiclink
+    - pymdownx.mark
+    - pymdownx.smartsymbols
+    - pymdownx.superfences
+    - pymdownx.tasklist:
+        custom_checkbox: true
+    - pymdownx.tabbed
+    - pymdownx.tilde
+
 copyright: Copyright &copy; 2020 the <a href="/about/cpycourse-contributors.md">cpycourse contributors</a>.
