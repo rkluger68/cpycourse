@@ -10,6 +10,7 @@ The Python official documentation can be found here <https://docs.python.org/3/i
 
 For an ***interactive session*** simply type `python` or `python3` in a console/shell of your computer (`$` - shell-prompt)
 
+    :::python
     $ python
     Python 3.6.5 (default, Jun 28 2018, 16:00:48) 
     [GCC 4.8.5] on linux
@@ -31,6 +32,7 @@ From now on this tutorial uses the `python -q` for interactive sessions, avoid i
 Type in your 1.st Python statement. After pressing the \<enter\>-key the interpreter will execute the statement, and in this
 case will show the result.
 
+    :::python
     >>> print ("Hello World")
     Hello World
     >>>
