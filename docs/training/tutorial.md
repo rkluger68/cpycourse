@@ -160,9 +160,8 @@ But typically the code is placed into Python source files named \<module-name\>.
  
 ## Python program building blocks
 
-As mentioned above a program is build as a sequence of statements. This is very rough and needs to be breakdown to more basic building blocks of the programming language. A brief (incomplete) top-down view of a program is build up:
+As mentioned above a program is build as a sequence of statements. This is very rough and needs to be breakdown to more basic building blocks of the programming language. A brief (incomplete) top-down view of a ***program*** is build up from:
 
-Program
 1. Comments
 2. Statements
 3. Expressions
@@ -242,7 +241,7 @@ Expressions are printable and assignable. Because expressions are assignable, th
 
 Operands are literals, identifiers (variable names) or functions returning a single value. Operators are (meaningful) links between operands.
 
-## Variables, assignments and expressions
+## Variables and assignments
 
 Variables are one of the the key-elements of programing languages. Allthough the implementation may differ, the key-concept is equal:
 Providing a named access to an area in memory holding data, which can be changed during program execution.
@@ -251,7 +250,7 @@ In Python a variable is a name referencing such a memory area. The variable is b
 
     >>> a = 5
 
-Python-Variables are not tightly coupled to a memory location, they can be rebound to different memory locations by further assignments. At different point in time, the variable may refer to different locations in memory, storing different values and types of value. This makes Python a dynamic-typed language.
+Python variables are not tightly coupled to a memory location, they can be rebound to different memory locations by further assignments. At different point in time, the variable may refer to different locations in memory, storing different values and types of value. This makes Python a dynamic-typed language.
 
     $ python -q
     >>> a = 5 # create variable 'a' which is bound to a memory location, which stores an integer value 5
@@ -272,11 +271,11 @@ Python-Variables are not tightly coupled to a memory location, they can be rebou
     >>> 
 
 
-## It's all about data: Python data structures
+## It's all about data: Python data types and Python objects
 
-Python provides a bunch of popular data types. ***Simple types*** (also called primitive data-types) can best be imagined as data containers, which held values of a dedicated type. In addition Python provides some ***compound types***, which are collection of data containers of equal or different type, serving a dedicated purpose.
+Python provides a bunch of popular data types. ***Simple types*** (also called primitive data-types) can best be imagined as data containers, which held values (__data__) of a dedicated type. In addition Python provides some ***compound types***, which are collection of data containers of equal or different type, serving a dedicated purpose.
 
-Each of the Python data types provide a data type specific set of `builtin-methods` and `operators` which can be applied on that kind of type.
+Each of the Python data types provide a data type specific set of `builtin-methods` and `operators` which can be applied on the data represented by that kind of data type - as such they describe the behaviour. This ensemble of __data__ and defined __behaviour__ is in Python called an ***object***. Having this in mind we rather say Python ***variables point to objects*** in memory.
 For the complete list please refer to <https://docs.python.org/3/library/stdtypes.html>.
 
 ***Note 1***:
@@ -285,7 +284,7 @@ The type of a data-literal (or a variable referencing a data type holding that d
 ***Note 2***:
 Python builtin data types itself are Python classes. Instances of nearly all Python builtin data-types can be gererated in two different ways:
 
-1. implicit using a type-specific notation (literals) in the case of ***simple data-types*** or different kind of brackets `(`,  `)`, `[`, `]`, `{`, `} in the case of ***compound data-types*** 
+1. implicit using a type-specific notation (literals) in the case of ***simple data-types*** or different kind of brackets `(`,  `)`, `[`, `]`, `{`, `}` in the case of ***compound data-types*** 
 2. explict using the types class-constructor (provided as Python `builtin`-function)
 
 ***Note 3***:
@@ -297,20 +296,19 @@ A type-test of a Python variable is done using buitlins `isinstance()` function
     >>>
 
 ***Note 4***:
-To keep things short we use simple expression-statements instead of assignment-statements in the following subsections, i.e
+To keep things short we use simple expression-statements were possible instead of assignment-statements in the following subsections, i.e
 
     python -q
     >>> 1 # expression-statement
     1
-    
+ 
+ instead of 
+ 
     python -q
     >>> a = 1 # assignment-statement
     >>> a     # expression-statement
     >>> 1
 
-
-### Everything in Python is an object ###
-===> Should this be placed in the main course material ???
 
 ### Strings - `str`
 
@@ -402,7 +400,7 @@ Example `float`-literals and `float`-operation
 
 ### Lists - `list`
 
-A Python list is an array of elements of probably different types.
+A Python list is an array of unnamed objects of probably different types.
 
 `list`- types generation
 
@@ -437,12 +435,12 @@ Accessing list-elements of a list `l`is done using the Python list-indexing oper
 
 
 ***NOTE***
-The Python standard library also provides a `array`-type where the elements are restricted to be of th same type, see
+The Python standard library also provides a `array`-type where the objects are restricted to be of th same type, see
 (https://docs.python.org/3/library/array.html)
 
 ### Tuples - `tuple`
 
-Tuples are very similar to lists. They can store elements of differen type, nearly have the same operations - but opposed to Python lists, they are unchangeable, i.e elements can't be added or removed.
+Tuples are very similar to lists. They can store unnamed objects of different type, nearly have the same operations - but opposed to Python lists, they are unchangeable, i.e elements can't be added or removed.
 
 `tuple`- types generation
 
@@ -516,7 +514,7 @@ Accessing individual elements of a dictionary `m` is done using the dictionary k
 
 ### Sets - `set`
 
-The Python `set` is a datatype according to the mathematical set theory it therefore is a collection of unique elements, probably of different types, and a set-operations like `union`, `intersection` and others.
+The Python `set` is a datatype according to the mathematical set theory it therefore is a collection of unique unnamed objects, probably of different types, and a set-operations like `union`, `intersection` and others.
 
 As opposed to the other Python builtin data types, `set`- type generation can only be done explicitly
 
@@ -568,11 +566,131 @@ The Python `bool` type has a two builtin constants named `False` an `True`
 
 ## Input and Output
 
-## Flow Control
+Programs serve a purpose, they follow the IPO-model: Input - Processing - Output
 
-### Conditionals
+Programs consume information (input), do some work (based on that input) and produces information (output). 
+On the input-side information can be 'raw data' or 'commands' (which tell the program what to do with the data).
+On the output-side information can be 'computed data' or simple 'status information' describing the state of (individual) processing steps.
 
-### Iteration and Loops
+Programs can consume and produce information from and to different channels. One kind of these channels is referred to as 'standard-input'/'standard-output' enabling a user interactively to provide input to and retrieve output from a program.
+In Python there are builtin-functions (`input()`, `print()`) performing that tasks.
+
+
+***Input-Example***
+
+    >>> # just echo the input
+    >>> input('Please enter your name: ')
+    Please enter your name: Donald
+    'Donald'
+    >>>
+  
+  or:
+  
+    >>> # store the input
+    >>> name = input('Please enter your name: ')
+    Please enter your name: Donald
+    >>> 
+
+***Output-Example***
+
+    >>> # print the stored input
+    >>> print('Hallo %s' % name)
+    Hallo Donald
+    >>> 
+    
+***Combined Input/Output Example***
+
+    >>> print('Hallo %s' % input('Please enter your name: '))
+    Please enter your name: Donald
+    Hallo Donald
+    >>>
+
+## Control Flow
+
+[Wikipedia](https://en.wikipedia.org/wiki/Control_flow) describes control flow as follows:
+
+"In computer science, control flow (or flow of control) is the order in which individual statements, instructions or function calls of an imperative program are executed or evaluated. The emphasis on explicit control flow distinguishes an imperative programming language from a declarative programming language."
+
+Python provides two kinds of 'explicit controls' affecting the order of execution:
+
+1. Choices
+2. Loops
+
+### Choices
+
+Choices are conditional-controls, affectiong the order of execution according to a boolean-condition.
+
+***if-statements***
+
+`if`-statements need a previously defined condition-variable. Python provides different variations of `if`-statements
+
+`if` - example
+
+    >>> a = 1
+    >>> if a == 1:
+    ...     print('a is 1')
+    ... 
+    a is 1
+    >>> 
+
+`if-elif` - example
+
+    >>> a = 2
+    >>> if a == 1:
+    ...     print('a is 1')
+    ... elif a == 2:
+    ...     print('a is 2')
+    ... 
+    a is 2
+    >>>
+
+`if-elif-else` - example
+
+    >>> a = 3
+    >>> if a == 1:
+    ...     print('a is 1')
+    ... elif a == 2:
+    ...     print('a is 2')
+    ... else:
+    ...     print('a is neither 1 nor 2')
+    ... 
+    a is neither 1 nor 2
+    >>>
+
+### Loops
+
+Loops are repetitive-controls, affecting the number of iterations a code-sequence is executed.
+
+***for-statement***
+
+The Python `for-statement` can be viewed as a representative of what Wikipedia calls a [count-controlled-loop](https://en.wikipedia.org/wiki/Control_flow#Count-controlled_loops). The number of repetitions in a `for`-loop is defined by the number elements of a (probably dynamically generated) sequence.
+
+`for`-loop example
+
+    >>> for elem in [1,2,3]:  # number of elements in the list defines the number of repetitions
+    ...     print(elem)
+    ... 
+    1
+    2
+    3
+    >>>
+
+***while-statement***
+
+The Python `while-statement` can be viewed as a representative of what Wikipedia calls a [condition-controlled-loop](https://en.wikipedia.org/wiki/Control_flow#Condition-controlled_loops). In a `while`-loop a condition-variable is set before and changed within the `while`-loop. 
+
+`while`-loop example
+
+    >>> a = 1
+    >>> while a < 4:
+    ...     print(a)
+    ...     a += 1   # change the control-variable
+    ... 
+    1
+    2
+    3
+    >>>
+
 
 
 ## Functions
@@ -606,8 +724,15 @@ A function is called simply using it's function name followed by a list of comma
 Functions can be called repeatedly and therefore are a major building block of reusable-code in imperative programinmg languages.
 
 
-## Classes and Instances
+## Classes and Instances [WIP]
 
+Python allows user-defined data-types called ***classes***. Classes are type-definitions which include data - so called ***attributes*** - and ***methods*** - functions that define the type-specific behaviour. ***Instances*** are objects created from classes.
+
+Python provides most of the object-oriented concepts/features like
+
+1. (Data-) Encapsulation) 
+2. Inheritance (Abstraction, Specialization)
+2. Overriding
 
 ## Generators
 

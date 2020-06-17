@@ -1,6 +1,10 @@
 # Python?
 
-Not the animal, not (quite) the [Monty](https://docs.python.org/3/faq/general.html#why-is-it-called-python).
+The programming language - not the animal, not (quite) the
+[Monty](https://docs.python.org/3/faq/general.html#why-is-it-called-python).
+But these days it uses a cute little
+["two snakes" logo](https://www.python.org/community/logos/), anyway.
+
 
 ## What is Python?
 From the Python homepage (www.python.org):
@@ -16,6 +20,20 @@ Hello, World!
 ```
 
 ### Python is interpreted
+
+An interpreter is a computer program that directly/immediately executes
+programming language instructions. I.e. there's no such thing as an explicit
+separate compilation (to
+[machine code](https://en.wikipedia.org/wiki/Machine_code) step before program
+instructions can be run.[^interpreter]
+
+[^interpreter]:
+    As often, the lines are blurred though. Interpreters often implicitly
+    "compile" to some form of intermediate "bytecode" or use ["just-in-time
+    compilation"](https://en.wikipedia.org/wiki/Just-in-time_compilation)
+    to compile (parts of) the code, e.g. for performance reasons. 
+
+
 
 ### Python is interactive
 Python has a so-called "**R**ead-**E**val-**P**rint-**L**oop"
@@ -42,6 +60,31 @@ According to https://de.wikipedia.org/wiki/Objektorientierte_Programmierung:
 > >  5. The class holds the shared behavior for its instances (in the form of objects in a program list), 
 > >  6. To eval a program list, control is passed to the first object and the remainder is treated as its message
 > > "
+
+### Python is also dynamic
+
+The term "dynamic" isn't actually defined all too clearly. With regard to Python one could describe it with these capabilities:
+
+ - you can evaluate source code (e.g. from text strings) at runtime
+ - you can create new types or extend existing types (and use them) at runtime
+ - you can inspect (or "introspect") objects at runtime, i.e. get information 
+   about their type, data, operations and metadata
+ - Python is dynamically typed, not statically typed
+     - but strongly typed:
+         ``` python
+         >>> "3" + 5
+         Traceback (most recent call last):
+           File "<stdin>", line 1, in <module>
+           TypeError: can only concatenate str (not "int") to str
+        ```
+
+The dynamic nature of Python makes it very flexible.[^python-dynamic]
+
+[^python-dynamic]:
+    But comes at a price: reasoning about Python code before runtime i.e. 
+    execution is hard which makes it difficult to apply optimizations like
+    just-in-time compilation or transpile to less dynamic languages.
+
 
 ### Python is multi-paradigm
 

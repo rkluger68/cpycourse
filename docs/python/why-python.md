@@ -31,8 +31,8 @@ or summary contain a given string such as "spam", type "modules spam".
 help> 
 ```
 
-Scale from simple, one-off scripts or even command line one-liners to
-world-class applications:
+**Scale** from simple, one-off scripts or even command line one-liners to
+**world-class applications**:
 
 ``` python
 python -c 'import math; print(math.sqrt(2))'
@@ -41,7 +41,7 @@ python -c 'import math; print(math.sqrt(2))'
 
 Amongst many others, Dropbox, Google, Instagram, Spotify and YouTube [have been
 known to run parts of their stack with Python](https://codeinstitute.net/blog/7-popular-software-programs-written-in-python/),
-sometimes primarily using Python.
+sometimes *primarily* using Python.
 
 Python also played an important role in [getting the 1st ever black hole
 image](https://www.blog.pythonlibrary.org/2019/04/11/python-used-to-take-photo-of-black-hole/)
@@ -51,9 +51,13 @@ in 2019.
 Python is
 
 - useful in many domains, from simple scripts to building web applications to
-  number crunching and data science
+  image processing, number crunching and data science (and many many more)
 - an excellent "glue language":
-  - easy integration of C/C++ code (or Rust, Go, Fortran,...)
+  - easy integration of C/C++ code (or Rust, Go, Fortran, ...)
+- a great rapid prototyping language:
+  - succinct
+  - no lengthy compilation
+  - a lot of "batteries included" (i.e. extensive standard library)
 - extensible, i.e. in the need for speed you can write performance critical
   code as e.g. a C extension (but more often than not Python is just fast 
   enough, anyway)
@@ -63,6 +67,7 @@ Python is
 
 Simply take at look at https://docs.python.org/ and
 https://www.python.org/community/.
+
 
 ## It is widely used & usage is growing rapidly
 
@@ -75,14 +80,16 @@ https://www.python.org/community/.
     - machine learning
     - AI
     - statistical computing
-- known to e.g. replace R and Matlab due to being
+- known to e.g. replace R and Matlab applications due to being
     - user friendly and easy to learn,
     - more flexible, extensible & general-purpose (i.e. apart from the data
       science-specific necessities the huge Python ecosystem of standard
       library and 3rd party libraries is at your hands)
+    - used by a large and growing community
 - may soon be the primary language of choice in the data science field (if it
   isn't already)
- 
+
+
 ## It is (arguably) the most readable programming language (for many)
 (Take this with more than a grain of salt - beauty is all in the eye of the
 beholder :wink:)
@@ -110,7 +117,12 @@ Readability is key:
         else:
             print("negative or 0")
         ```
-       
+ - Python uses significant whitespace (indentation) for grouping code blocks
+   (rather than {} braces), which makes it very readable for most 
+   people[^python-whitespace]
+
+[^python-whitespace]: Though there's die-hard non-believers that will always hate this :wink:
+
 
 ### Some "Hello, world!" examples
 

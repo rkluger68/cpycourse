@@ -31,8 +31,19 @@ nav:
         - Tutorial: training/tutorial.md
         - Main Course:
             - "A Curious Python: Main Course": training/main-course/main-course.md
-            - "Chapter 1: Functions": training/main-course/functions.md
-            - "Chapter N: Python Objects": training/main-course/objects.md
+            - "Chapter 0: Installing Python":  training/main-course/installation.md
+            - "Chapter 1: Important things for grasping Python":  training/main-course/grasping-python.md
+            - "Chapter 2: Python Objects": training/main-course/objects.md
+            - "Chapter 4: Built-in Types": training/main-course/builtin-types.md
+            - "Chapter 3: Functions": training/main-course/functions.md
+            - "Chapter 4: Classes & Instances": training/main-course/classes-instances.md
+            - "Chapter 5: Flow Control":  training/main-course/flow-control.md
+            - "Chapter 6: Exceptions": training/main-course/exceptions.md
+            - "Chapter 7: (File) Input & Output": training/main-course/io.md
+            - "Chapter 8: Modules & Packages": training/main-course/modules-packages.md
+            - "Chapter 9: Decorators": training/main-course/decorators.md
+            - "Chapter 10: Python Standard Library": training/main-course/stdlib-tour.md
+            - "Chapter 11: Python environments & Package installation": training/main-course/venvs-packages-installation.md
         - Oddities: training/oddjob.md
         - Cheatsheet: training/cheatsheet.md
     - Lessons:
@@ -52,6 +63,7 @@ markdown_extensions:
         permalink: "#"
     - admonition
     - def_list
+    - footnotes
     - codehilite:
         guess_lang: false
     - pymdownx.arithmatex
