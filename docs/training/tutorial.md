@@ -10,7 +10,6 @@ The Python official documentation can be found here <https://docs.python.org/3/i
 
 For an ***interactive session*** simply type `python` or `python3` in a console/shell of your computer (`$` - shell-prompt)
 
-    :::python
     $ python
     Python 3.6.5 (default, Jun 28 2018, 16:00:48) 
     [GCC 4.8.5] on linux
@@ -32,7 +31,7 @@ From now on this tutorial uses the `python -q` for interactive sessions, avoid i
 Type in your 1.st Python statement. After pressing the \<enter\>-key the interpreter will execute the statement, and in this
 case will show the result.
 
-    :::python
+    python -q
     >>> print ("Hello World")
     Hello World
     >>>
@@ -168,9 +167,10 @@ As mentioned above a program is build as a sequence of statements. This is very 
 4. Operands and Operators
 
 which means:
-  - a program is a sequence of comments and statements
-  - a statement is either an 'executable instruction' (***do-something***) or an 'evaluable expression' (***compute-something***)
-  - an expression is build up from operands and operators
+
+  - a program is a sequence of comments and statements  
+  - a statement is either an 'executable instruction' (***do-something***) or an 'evaluable expression' (***compute-something***)  
+  - an expression is build up from operands and operators  
 
 ### Program execution
 
@@ -209,11 +209,11 @@ a statement belongs.
 
 Grouping statement - i.e. building code blocks - is the basis for structuring the program. Organized in "higher-level" building blocks like functions, classes, modules and packages, they provide reusable code fragments. 
 
-A meaningful "programm organization" is crucial creating
-  - understandable
-  - maintainable
-  - extendible
-  - testable
+A meaningful "programm organization" is crucial creating  
+  - understandable  
+  - maintainable  
+  - extendible  
+  - testable  
 code.
 
 ***Note***
@@ -724,15 +724,34 @@ A function is called simply using it's function name followed by a list of comma
 Functions can be called repeatedly and therefore are a major building block of reusable-code in imperative programinmg languages.
 
 
-## Classes and Instances [WIP]
+## Classes and Instances
 
 Python allows user-defined data-types called ***classes***. Classes are type-definitions which include data - so called ***attributes*** - and ***methods*** - functions that define the type-specific behaviour. ***Instances*** are objects created from classes.
 
-Python provides most of the object-oriented concepts/features like
+The following example demonstrates a simple `class`-definition, class-instantiations and common operations on class-instances like attribute- and method-access using the `.`-dot operator
 
-1. (Data-) Encapsulation) 
-2. Inheritance (Abstraction, Specialization)
-2. Overriding
+***class definition***
+
+    >>> class MyDog:
+    ...     def __init__(self, name, gender):    # class constructor
+    ...         self.name = name                 # instance-attribute
+    ...         self.gender = gender             # instance-attribute
+    ...     def getGender(self):                 # instance-method
+    ...         return self.gender
+    ...
+    >>>
+
+    
+***class instances***
+
+
+    >>> mydog = MyDog('Django', 'male')          # create class instance
+    >>> mydog.name                               # access instance-attribute using '.'-dot operator
+    'Django'
+    >>> mydog.getGender()                        # access instance-method using '.'-dot operator
+    'male'
+    >>>
+
 
 ## Generators
 
@@ -751,4 +770,3 @@ Python provides most of the object-oriented concepts/features like
 
 ### Names and Objects
 
-### Everything is an Object
