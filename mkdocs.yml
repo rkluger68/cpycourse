@@ -32,7 +32,7 @@ nav:
         - Main Course:
             - "A Curious Python: Main Course": training/main-course/main-course.md
             - "Chapter 0: Installing Python":  training/main-course/installation.md
-            - "Chapter 1: Important things for grasping Python":  training/main-course/grasping-python.md
+            - "Chapter 1: Grasping Python":  training/main-course/grasping-python.md
             - "Chapter 2: Python Objects": training/main-course/objects.md
             - "Chapter 4: Built-in Types": training/main-course/builtin-types.md
             - "Chapter 3: Functions": training/main-course/functions.md
