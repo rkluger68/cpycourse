@@ -728,48 +728,30 @@ Functions can be called repeatedly and therefore are a major building block of r
 
 Python allows user-defined data-types called ***classes***. Classes are type-definitions which include data - so called ***attributes*** - and ***methods*** - functions that define the type-specific behaviour. ***Instances*** are objects created from classes.
 
-The following example demonstrates a `class`-definition, class-instantiations and common operations on class-instances like attribute- and method-access using the `.`-dot operator
+The following example demonstrates a simple `class`-definition, class-instantiations and common operations on class-instances like attribute- and method-access using the `.`-dot operator
 
 ***class definition***
 
-    >>> class Customer:
-    ...     ''' this is a user defined type (class) "Customer" '''
-    ...     # class-wide attributes - common to all class instances
-    ...     number_of_customers = 0
-    ...     # class constructor
-    ...     def __init__(self, name, email):
-    ...         # instance attributes
-    ...         self.name = name
-    ...         self.email = email
-    ...         # access class attribute
-    ...         Customer.number_of_customers += 1       # Note the access of class attributes from inside the class
-    ...     # instance-method
-    ...     def change_email(self, email):
-    ...         self.email = email
-    ... 
+    >>> class MyDog:
+    ...     def __init__(self, name, gender):    # class constructor
+    ...         self.name = name                 # instance-attribute
+    ...         self.gender = gender             # instance-attribute
+    ...     def getGender(self):                 # instance-method
+    ...         return self.gender
+    ...
     >>>
 
+    
 ***class instances***
 
-    >>> customerA = Customer('Tom', 'tom@foo.com')       # (1) create class-instance
-    >>> customerA.number_of_customers                    # (2) access class-attribute using '.'-dot operator 
-    1
-    >>> customerA.name                                   # (3) access instance-attribute using '.'-dot operator
-    'Tom'
-    >>> customerA.email
-    'tom@foo.com'
-    >>> customerA.change_email('tom@bar.com')            # (4) instance-method access using '.'-dot operator
-    >>> customerA.email
-    'tom@bar.com'
-    >>> customerB = Customer('Peter', 'peter@foo.com')   # (5) create another class-instance
-    >>> customerB.number_of_customers                    # (6) access class-attribute
-    2
-    >>> customerB.name
-    'Peter' 
-    >>> customerA.number_of_customers)                   # (7) check affect of class-attributes
-    2
+
+    >>> mydog = MyDog('Django', 'male')          # create class instance
+    >>> mydog.name                               # access instance-attribute using '.'-dot operator
+    'Django'
+    >>> mydog.getGender()                        # access instance-method using '.'-dot operator
+    'male'
     >>>
-    
+
 
 ## Generators
 

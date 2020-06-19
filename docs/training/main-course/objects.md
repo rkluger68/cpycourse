@@ -63,6 +63,26 @@ Python objects can be created e.g. by
  - defining functions
  - defining anonymous functions
  
+### Objects are First-Class
+This means that all (named) objects are equal in the sense that they can be
+treated equally: a function object can be an argument to another function,
+a module object can be a list item, a class can be a dictionary value (or even
+a dictionary key), ...
+
+This allows for writing powerful constructs:
+``` python
+>> data = [42, 5.0, "some examples are more intelligent than others"]
+>>> dispatcher = {                                
+...     str: lambda x: x.strip(),  # we want strings stripped
+...     int: lambda x: str(x**2),  # we want ints squared 
+...     float: lambda x: str(-x)   # we want inverted floats
+...     }
+>>> print('|'.join(
+...     dispatcher[type(d)](d) for d in data)
+...     )
+1764|-5.0|some examples are more intelligent than others
+>>> 
+```
 
 ### More characteristics of objects
 
