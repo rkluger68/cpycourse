@@ -7,9 +7,9 @@ Just the basic rules to be able to understand Python code, informally.
 
 ### Indentation
 
-Python uses indentation to denote blocks of code (as opposed to e.g. {} braces
-in many other languages). Many love it, some don't care all that much, a few
-hate it. We believe that this is one reason why Python is so inherently 
+Python uses **indentation** to denote blocks of code (as opposed to e.g. {}
+braces in many other languages). Many love it, some don't care all that much,
+a few hate it. We believe that this is one reason why Python is so inherently 
 readable.
 
 Indentation must be consistent:
@@ -48,7 +48,7 @@ something
 123.45
 >>> 1 + 3j  # complex number with real and imaginary part
 (1+3j)
->>> 1.1 + 3.1J  # complex number with real and imaginary part
+>>> 1.1 + 3.1J  # another complex number with real and imaginary part
 (1.1+3.1j)
 ```
 

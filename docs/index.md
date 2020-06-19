@@ -1,9 +1,16 @@
 # A Curious Python Course
 
-Training material for your quest to become a [snake charmer](python/python.md).
-
 !!! warning
     Work in progress - this site is under construction and unfinished business.
+
+Training material for your quest to become a [snake charmer](python/python.md).
+
+Deals with the 3.x generation of the species
+[only](https://pythonclock.org/).[^py3-only]
+
+[^py3-only]:
+    Well, apart from the occasional nostalgic comment or reference, that is.
+
 
 ```
 >>> import this
