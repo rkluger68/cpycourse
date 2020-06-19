@@ -1,6 +1,6 @@
 # Be classy: Python Classes and Instances
 
-Classes are the Python building block creating user-defined types in an object-oriented manner. Classes encapsulate data ('attributes') and appropriate functions ('methods'), which define the bahaviour of class-instances (i.e. objects of that class). Python supports composition ("has-a"-relation) and (multiple-) inheritance ("is-a"-relation) between classes/instances. In combination with method-overriding and a special kind of polymorphism (***Duck-Typing***), Python offers most of bunch of object-oriented features (Most of because Python doesn't really class privacy as explained below).
+Classes are the Python building block creating user-defined types in an object-oriented manner. Classes encapsulate data ('attributes') and appropriate functions ('methods'), which define the bahaviour of class-instances (i.e. objects of that class). Python supports composition ("has-a"-relation) and (multiple-) inheritance ("is-a"-relation) between classes/instances. In combination with method-overriding and a special kind of polymorphism (***Duck-Typing***), Python offers most of bunch of object-oriented features (Most, because Python doesn't really supports class privacy as explained below).
 
 ## Simple class
 
@@ -36,7 +36,18 @@ Simple classe typically have instance-attributes and instance-methods.
 >>>    
 ```
 
-### Class Privacy - private Attributes
+## Note on `self`-parameter 
+
+
+
+1. Python `self`: Explicit 1.st parameter in every instance-method
+2. C++ `this`-pointer: keyword holding a pointer to the current object implicit parameter to all member functions
+3. Java `this`-keyword: reference to the current object
+
+*Note*
+The name `self` is a convention , and could be changed, but it shouldn't because
+
+## Class Privacy - private Attributes
 
 Python doesen't provide any kind of 'access-specifiers' like e.g. C++ (public, private, protected) to control access to
 attributes or methods. I.e. attributes and methods are 'public' accessible.
@@ -62,6 +73,7 @@ As can be seen the following example this 'protections' can be bypassed:
 ...         return self.__name
 ...
 >>>
+```
 
 ***usage***
 
@@ -112,7 +124,6 @@ As mentioned above Python doesn't provide any real mechanism for class privacy, 
 >>> 
 ```
 
-
 ***class instantiation***
 
 ``` python
@@ -127,6 +138,56 @@ As mentioned above Python doesn't provide any real mechanism for class privacy, 
 100
 >>>
 ```
+
+## Multiple Inheritance
+
+Python also support multiple inheritance
+
+***class definition*** 
+
+``` python
+>>> class A:
+...     def __init__(self, name):
+...         self.name = name
+...     def getName(self):
+...         return self.name
+... 
+>>>
+>>> class Z:
+...     def __init__(self, another_name):
+...         self.another_name = another_name
+...     def getAnotherName(self):
+...         return self.another_name
+... 
+>>>
+>>> class B(A,Z):   # multiple inheritance 
+...     def __init__(self, name, another_name, number):
+...         A.__init__(self, name)           # call base-class constructor class 'A'
+...         Z.__init__(self, another_name)   # call base-class constructor class 'Z'
+...         self.number = number
+...     def getNumber(self):
+...         return self.number
+...
+>>>
+```
+
+***class instantiation*** 
+
+```python
+>>> b = B('BaseClass_A', 'BaseClass_Z', 100)
+>>> b.getNumber()
+100
+>>> b.getName()
+'BaseClass_A'
+>>> b.getAnotherName()
+'BaseClass_Z'
+>>> dir(b)
+['__class__', '__delattr__', '__dict__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__gt__', '__hash__', '__init__', '__init_subclass__', '__le__', '__lt__', '__module__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__sizeof__', '__str__', '__subclasshook__', '__weakref__', 'another_name', 'getAnotherName', 'getName', 'getNumber', 'name', 'number']
+>>>
+```
+
+*Note*
+The `dir(<object>`)- builin function list all names of the given object
 
 ## Composition ("has-a"-relation)
 
@@ -193,9 +254,181 @@ As opposed to 'instance'-attributes 'class'-attributes are common to all class i
 ```
 
 
-### Class Poperties
+## Class Poperties [WIP]
 
-With class properties (decorator `@roperties `) methods can be accessed like ordinary attributes. As such they form dynmically computed attributes.
+
+With class properties (decorator `@roperties`) methods can be accessed like ordinary attributes. As such they form dynmically computed attributes.
+
+Python support two different ways of implementing properties:
+
+1. 'lower-level' using `property()` builtin  function
+2. 'higher-level' using  `@propery()`-decorator
+
+The Python docs provide a good [property-example](https://docs.python.org/3/library/functions.html#property), which is copied here simply for convenience.
+
+*** example using builtin `property()` function ***
+
+``` python
+class C:
+    def __init__(self):
+        self._x = None
+
+    def getx(self):
+        return self._x
+
+    def setx(self, value):
+        self._x = value
+
+    def delx(self):
+        del self._x
+
+    x = property(getx, setx, delx, "I'm the 'x' property.")
+```
+
+usage
+
+``` python
+>>> p1 = C()
+>>> p1.x = 1
+>>> p1.x
+1
+>>> del p1.x
+>>> p1.x = 11
+>>> p1.x
+11
+```
+
+*** example using builtin `@propery()` decorator ***
+``` python
+class C:
+    def __init__(self):
+        self._x = None
+
+    @property
+    def x(self):
+        """I'm the 'x' property."""
+        return self._x
+
+    @x.setter
+    def x(self, value):
+        self._x = value
+
+    @x.deleter
+    def x(self):
+        del self._x
+```
+
+usage
+
+``` python
+>>> p1 = D()
+>>> p1.x = 9
+>>> p1.x
+9
+>>> del p1.x
+>>> p1.x = 99
+>>> p1.x
+99
+>>>
+```
+
+## Duck Typing [WIP]
+
+Pythons polymorphism
+
+Virtual functions
+
+
+## Special Methods
+
+### class methods
+
+As opposed to instance-methods, class-methods operate on the class-object.
+
+*use-case*: Python doesn't support method overloading like C++ or Java. Therefore multiple methods with the same name within a single class is not supported. As a consequence only a single class constructor (`__init__()`-method). With Python `@classmethod` it
+
+*`@classicmethod`-example*
+
+``` python
+>>> class ByteStringStore:
+...     encoding = 'utf-8'
+...     def __init__(self, bytestring):
+...         self.bytestring = bytestring
+...     @classmethod
+...     def from_unicode(cls, unicodestring):
+...         return cls(unicodestring.encode(cls.encoding)
+... 
+... )
+... 
+>>> a = ByteStringStore(b'abc')
+>>> b= ByteStringStore.from_unicode('äöü')
+>>> type(a)
+<class '__main__.ByteStringStore'>
+>>> type(b)
+<class '__main__.ByteStringStore'>
+>>> 
+
+```
+
+### Static Methods
+
+Python static-methods neither work on class-instance-objects nor on class-objects (that's the task of instance-method and class-methods). Python staticmethods can best be compared to module-functions, defined in the namespace of a class, instead of a modules-namespace.
+
+*Usecase*: Python staticmethods can be used for (utility-)function that logical link to a class
+
+Python staticmethods are defined using the `@staticmethod`-decorator preceeding to the method-definition
+
+*`@staticmethod`-example*
+
+```python
+>>> class A:
+...     @staticmethod
+...     def mystaticmethod():
+...         print('this is a staticmethod')
+... 
+>>> A.mystaticmethod()
+this is a staticmethod
+>>>
+```
+
+Python `@staticmethods` are the correspondents to C++ and Java staticmethods, see the Python docs for [`classmethod`](https://docs.python.org/3/library/functions.html#classmethod)
+
+## Class Testing [WIP]
+
+Python provides 2 builtin-function for test on class-instance-types
+
+1. `types()`: Identifies the class of the class-instance
+2. `isinstance()`: Testing the
+
+```python
+>>> class A(): pass
+... 
+>>> class B(A): pass
+... 
+>>> class C(): pass
+... 
+>>> a = A()
+>>> b = B()
+>>> c = C()
+>>> type(a)
+<class '__main__.A'>
+>>> type(b)
+<class '__main__.B'>
+>>> type(c)
+<class '__main__.C'>
+>>> isinstance(a, A))
+  File "<stdin>", line 1
+    isinstance(a, A))
+                    ^
+SyntaxError: invalid syntax
+>>> isinstance(a, A)
+True
+>>> isinstance(b, A)
+True
+
+
+```
+
 
 
 
