@@ -10,11 +10,13 @@ The Python official documentation can be found here <https://docs.python.org/3/i
 
 For an ***interactive session*** simply type `python` or `python3` in a console/shell of your computer (`$` - shell-prompt)
 
-    $ python
-    Python 3.6.5 (default, Jun 28 2018, 16:00:48) 
-    [GCC 4.8.5] on linux
-    Type "help", "copyright", "credits" or "license" for more information.
-    >>>
+``` bash
+$ python
+Python 3.6.5 (default, Jun 28 2018, 16:00:48) 
+[GCC 4.8.5] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+>>>
+```
 
 The first lines shows the interpreter-version, some information about the build-environment of the interpreter (compiler version and platform) and the copyright information.
 
@@ -22,8 +24,10 @@ The Python prompt `>>>` is signaling that the interpreter awaits user input.
 
 The version and copyright information on startup can be suppressed using the quiet-option `-q`
 
-    $ python -q
-    >>>
+``` bash    
+$ python -q
+>>>
+```
 
 ***Note*** 
 From now on this tutorial uses the `python -q` for interactive sessions, avoid inflating the output and focussing on the relevant code and output.
@@ -31,110 +35,72 @@ From now on this tutorial uses the `python -q` for interactive sessions, avoid i
 Type in your 1.st Python statement. After pressing the \<enter\>-key the interpreter will execute the statement, and in this
 case will show the result.
 
-    python -q
-    >>> print ("Hello World")
-    Hello World
-    >>>
+  ``` python
+ >>> print ("Hello World")
+ Hello World
+ >>>
+ ```
 
 After finishing the execution of the statement, the interpreter comes back to the prompt, awaiting the next input.
 
 The interactive session can be stopped pressing \<Ctrl\>-D (Linux) or \<Ctrl\>-Z (Windows).
 
-A ***summary*** of the Python interpreter's ***commandline options*** can be listed with it's help-option `-h`. This will display the ***usage***, the available commandline options and ***environment variables*** controlling the interpreter:
+A ***summary*** of the Python interpreter's ***commandline options*** can be listed with it's help-option `-h`. This will display the ***usage***, the available commandline options and ***environment variables*** controlling the interpreter, here the output of Python3 interpreter on Linux:
 
-    $ python -h
-    usage: python [option] ... [-c cmd | -m mod | file | -] [arg] ...
-    Options and arguments (and corresponding environment variables):
-    -b     : issue warnings about str(bytes_instance), str(bytearray_instance)
-             and comparing bytes/bytearray with str. (-bb: issue errors)
-    -B     : don't write .pyc files on import; also PYTHONDONTWRITEBYTECODE=x
-    -c cmd : program passed in as string (terminates option list)
-    -d     : debug output from parser; also PYTHONDEBUG=x
-    -E     : ignore PYTHON* environment variables (such as PYTHONPATH)
-    -h     : print this help message and exit (also --help)
-    -i     : inspect interactively after running script; forces a prompt even
-             if stdin does not appear to be a terminal; also PYTHONINSPECT=x
-    -I     : isolate Python from the user's environment (implies -E and -s)
-    -m mod : run library module as a script (terminates option list)
-    -O     : remove assert and __debug__-dependent statements; add .opt-1 before
-             .pyc extension; also PYTHONOPTIMIZE=x
-    -OO    : do -O changes and also discard docstrings; add .opt-2 before
-             .pyc extension
-    -q     : don't print version and copyright messages on interactive startup
-    -s     : don't add user site directory to sys.path; also PYTHONNOUSERSITE
-    -S     : don't imply 'import site' on initialization
-    -u     : force the stdout and stderr streams to be unbuffered;
-             this option has no effect on stdin; also PYTHONUNBUFFERED=x
-    -v     : verbose (trace import statements); also PYTHONVERBOSE=x
-             can be supplied multiple times to increase verbosity
-    -V     : print the Python version number and exit (also --version)
-             when given twice, print more information about the build
-    -W arg : warning control; arg is action:message:category:module:lineno
-             also PYTHONWARNINGS=arg
-    -x     : skip first line of source, allowing use of non-Unix forms of #!cmd
-    -X opt : set implementation-specific option. The following options are available:
+``` bash
+$python3 -h
+usage: python3 [option] ... [-c cmd | -m mod | file | -] [arg] ...
+Options and arguments (and corresponding environment variables):
+-b     : issue warnings about str(bytes_instance), str(bytearray_instance)
+         and comparing bytes/bytearray with str. (-bb: issue errors)
+-B     : don't write .pyc files on import; also PYTHONDONTWRITEBYTECODE=x
+-c cmd : program passed in as string (terminates option list)
+-d     : debug output from parser; also PYTHONDEBUG=x
+-E     : ignore PYTHON* environment variables (such as PYTHONPATH)
+-h     : print this help message and exit (also --help)
+-i     : inspect interactively after running script; forces a prompt even
+         if stdin does not appear to be a terminal; also PYTHONINSPECT=x
+-I     : isolate Python from the user's environment (implies -E and -s)
+-m mod : run library module as a script (terminates option list)
+-O     : remove assert and __debug__-dependent statements; add .opt-1 before
+         .pyc extension; also PYTHONOPTIMIZE=x
+-OO    : do -O changes and also discard docstrings; add .opt-2 before
+         .pyc extension
+-q     : don't print version and copyright messages on interactive startup
+-s     : don't add user site directory to sys.path; also PYTHONNOUSERSITE
+-S     : don't imply 'import site' on initialization
+-u     : force the binary I/O layers of stdout and stderr to be unbuffered;
+         stdin is always buffered; text I/O layer will be line-buffered;
+         also PYTHONUNBUFFERED=x
+-v     : verbose (trace import statements); also PYTHONVERBOSE=x
+         can be supplied multiple times to increase verbosity
+-V     : print the Python version number and exit (also --version)
+         when given twice, print more information about the build
+-W arg : warning control; arg is action:message:category:module:lineno
+         also PYTHONWARNINGS=arg
+-x     : skip first line of source, allowing use of non-Unix forms of #!cmd
+-X opt : set implementation-specific option
+file   : program read from script file
+-      : program read from stdin (default; interactive mode if a tty)
+arg ...: arguments passed to program in sys.argv[1:]
 
-         -X faulthandler: enable faulthandler
-         -X showrefcount: output the total reference count and number of used
-             memory blocks when the program finishes or after each statement in the
-             interactive interpreter. This only works on debug builds
-         -X tracemalloc: start tracing Python memory allocations using the
-             tracemalloc module. By default, only the most recent frame is stored in a
-             traceback of a trace. Use -X tracemalloc=NFRAME to start tracing with a
-             traceback limit of NFRAME frames
-         -X showalloccount: output the total count of allocated objects for each
-             type when the program finishes. This only works when Python was built with
-             COUNT_ALLOCS defined
-         -X importtime: show how long each import takes. It shows module name,
-             cumulative time (including nested imports) and self time (excluding
-             nested imports). Note that its output may be broken in multi-threaded
-             application. Typical usage is python3 -X importtime -c 'import asyncio'
-         -X dev: enable CPythonâ?Ts â?odevelopment modeâ??, introducing additional runtime
-             checks which are too expensive to be enabled by default. Effect of the
-             developer mode:
-                * Add default warning filter, as -W default
-                * Install debug hooks on memory allocators: see the PyMem_SetupDebugHooks() C function
-                * Enable the faulthandler module to dump the Python traceback on a crash
-                * Enable asyncio debug mode
-                * Set the dev_mode attribute of sys.flags to True
-                * io.IOBase destructor logs close() exceptions
-         -X utf8: enable UTF-8 mode for operating system interfaces, overriding the default
-             locale-aware mode. -X utf8=0 explicitly disables UTF-8 mode (even when it would
-             otherwise activate automatically)
-         -X pycache_prefix=PATH: enable writing .pyc files to a parallel tree rooted at the
-             given directory instead of to the code tree
-
-    --check-hash-based-pycs always|default|never:
-        control how Python invalidates hash-based .pyc files
-    file   : program read from script file
-    -      : program read from stdin (default; interactive mode if a tty)
-    arg ...: arguments passed to program in sys.argv[1:]
-
-    Other environment variables:
-    PYTHONSTARTUP: file executed on interactive startup (no default)
-    PYTHONPATH   : ';'-separated list of directories prefixed to the
+Other environment variables:
+PYTHONSTARTUP: file executed on interactive startup (no default)
+PYTHONPATH   : ':'-separated list of directories prefixed to the
                default module search path.  The result is sys.path.
-    PYTHONHOME   : alternate <prefix> directory (or <prefix>;<exec_prefix>).
-               The default module search path uses <prefix>\python{major}{minor}.
-    PYTHONCASEOK : ignore case in 'import' statements (Windows).
-    PYTHONUTF8: if set to 1, enable the UTF-8 mode.
-    PYTHONIOENCODING: Encoding[:errors] used for stdin/stdout/stderr.
-    PYTHONFAULTHANDLER: dump the Python traceback on fatal errors.
-    PYTHONHASHSEED: if this variable is set to 'random', a random value is used
-       to seed the hashes of str and bytes objects.  It can also be set to an
-       integer in the range [0,4294967295] to get hash values with a
-       predictable seed.
-    PYTHONMALLOC: set the Python memory allocators and/or install debug hooks
-       on Python memory allocators. Use PYTHONMALLOC=debug to install debug
-       hooks.
-    PYTHONCOERCECLOCALE: if this variable is set to 0, it disables the locale
-       coercion behavior. Use PYTHONCOERCECLOCALE=warn to request display of
-       locale coercion and locale compatibility warnings on stderr.
-    PYTHONBREAKPOINT: if this variable is set to 0, it disables the default
-       debugger. It can be set to the callable of your debugger of choice.
-    PYTHONDEVMODE: enable the development mode.
-    PYTHONPYCACHEPREFIX: root directory for bytecode cache (pyc) files.
-
+PYTHONHOME   : alternate <prefix> directory (or <prefix>:<exec_prefix>).
+               The default module search path uses <prefix>/lib/pythonX.X.
+PYTHONCASEOK : ignore case in 'import' statements (Windows).
+PYTHONIOENCODING: Encoding[:errors] used for stdin/stdout/stderr.
+PYTHONFAULTHANDLER: dump the Python traceback on fatal errors.
+PYTHONHASHSEED: if this variable is set to 'random', a random value is used
+   to seed the hashes of str, bytes and datetime objects.  It can also be
+   set to an integer in the range [0,4294967295] to get hash values with a
+   predictable seed.
+PYTHONMALLOC: set the Python memory allocators and/or install debug hooks
+   on Python memory allocators. Use PYTHONMALLOC=debug to install debug
+   hooks.
+```
 
 
 
@@ -142,20 +108,24 @@ A ***summary*** of the Python interpreter's ***commandline options*** can be lis
 
 A programm is built-up of a **sequence of python-statements** (i.e. the "programm code" or in short "code"). This code can be provideed explicit as a command-string on commandline as shown here, where the individual statements are separated by semicolons ';' :
 
-    $ python -c "print('Hello'); print('World')"
-    Hello
-    World
-    $
+``` bash
+$ python -c "print('Hello'); print('World')"
+Hello
+World
+$
+```    
 
 This is sufficient for simple, short ad-hoc checks.
 
 But typically the code is placed into Python source files named \<module-name\>.py (in our case helloworld.py),
   and the code can be executed running the following command:
 
-    $ python helloworld.py
-    Hello
-    World
-    $
+``` bash
+$ python helloworld.py
+Hello
+World
+$
+```
  
 ## Python program building blocks
 
@@ -181,7 +151,9 @@ Running a program therefore can be described as a top-down process of execution 
 Comments are used for inplace documenting the code. In Python the '#'-delimiter starts a comment.
 A comment ends at the end of a line. The Python interpreters ignores comments.
 
-    # This is a single line comment
+``` python
+>>> # This is a single line comment
+``` 
 
 ### Statements
 
@@ -190,18 +162,20 @@ A single statement is an executable instruction ending with a newline or semicol
 
 Example 1 - expression statement
 
-    $ python -q
-    >>> 5+3 # expression-statement
-    8
-    >>> 
+``` python
+>>> 5+3 # expression-statement
+8
+>>>
+```
 
 Example 2 - assignement statement
 
-    $ python -q
-    >>> a = 5+3 # assignement-statement
-    >>> a       # expression-statement
-    8
-    >>> 
+``` python
+>>> a = 5+3 # assignement-statement
+>>> a       # expression-statement
+8
+>>>
+```
     
 ***Grouping statements***:
 Consecutive statements can be grouped together forming a code-blocks using ___indentation___. The level of idention marks the code-block
@@ -248,27 +222,30 @@ Providing a named access to an area in memory holding data, which can be changed
 
 In Python a variable is a name referencing such a memory area. The variable is bound to the memory location upon an assignment(-statement). A Python ***variable is introduced*** by an assignment-statement, e.g.:
 
-    >>> a = 5
+``` python
+>>> a = 5
+```
 
 Python variables are not tightly coupled to a memory location, they can be rebound to different memory locations by further assignments. At different point in time, the variable may refer to different locations in memory, storing different values and types of value. This makes Python a dynamic-typed language.
 
-    $ python -q
-    >>> a = 5 # create variable 'a' which is bound to a memory location, which stores an integer value 5
-    >>> a     # named access to value in memory, the variable refers to
-    5
-    >>> id(a) # show the memory adress the variable 'a' points to
-    139915719974400
-    >>> type(a) # the value variable 'a' is of type 'int'
-    <class 'int'>
-    >>> a = 'foo' # rebound the variable to a different location in memory
-    >>> a
-    'foo'
-    >>> id(a) #  show the memory adress the variable 'a' points to
-    139915720973312
-    >>> 
-    >>> type(a) # the value variable 'a' now is of type 'str'
-    <class 'str'>
-    >>> 
+``` python
+>>> a = 5 # create variable 'a' which is bound to a memory location, which stores an integer value 5
+>>> a     # named access to value in memory, the variable refers to
+5
+>>> id(a) # show the memory adress the variable 'a' points to
+139915719974400
+>>> type(a) # the value variable 'a' is of type 'int'
+<class 'int'>
+>>> a = 'foo' # rebound the variable to a different location in memory
+>>> a
+'foo'
+>>> id(a) #  show the memory adress the variable 'a' points to
+139915720973312
+>>> 
+>>> type(a) # the value variable 'a' now is of type 'str'
+<class 'str'>
+>>>
+ ```
 
 
 ## It's all about data: Python data types and Python objects
@@ -298,16 +275,18 @@ A type-test of a Python variable is done using buitlins `isinstance()` function
 ***Note 4***:
 To keep things short we use simple expression-statements were possible instead of assignment-statements in the following subsections, i.e
 
-    python -q
-    >>> 1 # expression-statement
-    1
+``` python
+>>> 1 # expression-statement
+1
+```
  
- instead of 
+instead of 
  
-    python -q
-    >>> a = 1 # assignment-statement
-    >>> a     # expression-statement
-    >>> 1
+``` python
+>>> a = 1 # assignment-statement
+>>> a     # expression-statement
+>>> 1
+``` 
 
 
 ### Strings - `str`
@@ -316,86 +295,92 @@ Strings are data containers storing character-sequences (string-literals). The c
 
 `str`-types generation:
 
-    $ python -q
-    >>> 'foo'      # implicit: generate instance of 'str'- datatype using string-literal notation
-    foo
-    >>> str('foo') # explicit: using 'str'-class constructor
+``` python
+>>> 'foo'      # implicit: generate instance of 'str'- datatype using string-literal notation
+foo
+>>> str('foo') # explicit: using 'str'-class constructor
+```
     
 For nesting purposes, Python ***string-literals*** can be typed in different ways.
 
-    $ python -q
-    >>> 'foo' # single quoted string
-    'foo'
-    >>> type('foo')
-    <class 'str'>
-    >>> "foo" # double quoted string
-    'foo'
-    >>> type("foo")
-    <class 'str'>
-    >>> '''foo''' # triple quoted string
-    'foo'
-    >>> type('''foo''')
-    <class 'str'>
-    >>> 'foo"bar"' # nested string
-    'foo"bar"'
-    >>> type('foo"bar"')
-    <class 'str'>
-    >>> 
-
+``` python
+>>> 'foo' # single quoted string
+'foo'
+>>> type('foo')
+<class 'str'>
+>>> "foo" # double quoted string
+'foo'
+>>> type("foo")
+<class 'str'>
+>>> '''foo''' # triple quoted string
+'foo'
+>>> type('''foo''')
+<class 'str'>
+>>> 'foo"bar"' # nested string
+'foo"bar"'
+>>> type('foo"bar"')
+<class 'str'>
+>>> 
+```
 
 Example `str` builtin method and operator
 
-    $ python -q
-    >>> ''.join( ('foo', 'bar'))  # string concatenating using builtin method 'join()'
-    'foobar'
-    >>> 'foo' + 'bar'             # string concatenating using '+' operator
-    'foobar'
-    >>>
+``` python
+>>> ''.join( ('foo', 'bar'))  # string concatenating using builtin method 'join()'
+'foobar'
+>>> 'foo' + 'bar'             # string concatenating using '+' operator
+'foobar'
+>>>
+```
  
 
 ### Numeric datatypes - `int`, `float`
 
 `int`-types generation:
 
-    $ python -h
-    >>> 1      # implicit: 'int'-literal
-    1
-    >>> int(1) # explicit: 'int'-class constructor
-    >>>
+``` python
+>>> 1          # implicit: 'int'-literal
+1
+>>> int(1)     # explicit: 'int'-class constructor
+>>>
+```
 
 Example `int`-literals and `int`-operation
     
-    $ python -q
-    >>> 1       # 'int'-literal
-    1
-    >>> type(1) # type of int-literal
-    <class 'int'>
-    >>> 1+2 # builtin'+'-operator for int-literal
-    3
-    >>> type(1+2) # result type
-    <class 'int'>
-    >>>
+``` python
+>>> 1          # 'int'-literal
+1
+>>> type(1)    # type of int-literal
+<class 'int'>
+>>> 1+2        # builtin'+'-operator for int-literal
+3
+>>> type(1+2)  # result type
+<class 'int'>
+>>>
+```
 
 `float`- types generation:
 
-    $ python -h
-    >>> 1.2        # implicit: 'float'-literal
-    1.2
-    >>> float(1.2) # explicit: 'float'-class constructor
+``` python
+>>> 1.2        # implicit: 'float'-literal
+1.2
+>>> float(1.2) # explicit: 'float'-class constructor
+```
     
 
 Example `float`-literals and `float`-operation
 
-    $ python -q
-    >>> 1.2 # a float-literal
-    1.2
-    >>> type(1.2) # type of float-literal
-    <class 'float'>
-    >>> 1.2 + 3.7 # builtin '+'-operand
-    4.9
-    >>> type(1.2 + 3.7) # result type
-    <class 'float'>
-    >>>
+``` python
+>>> 1.2 # a float-literal
+1.2
+>>> type(1.2) # type of float-literal
+<class 'float'>
+>>> 1.2 + 3.7 # builtin '+'-operand
+4.9
+>>> type(1.2 + 3.7) # result type
+<class 'float'>
+>>>
+```
 
 
 ### Lists - `list`
@@ -404,39 +389,41 @@ A Python list is an array of unnamed objects of probably different types.
 
 `list`- types generation
 
-    $ python -h
-    >>> [1, 'foo', 3.14]       # implicti: list brackets '[' ']'
-    [1, 'foo', 3.14]
-    >>> list([1, 'foo', 3.14]) # explicit: 'list'-class constructor
+``` python
+>>> [1, 'foo', 3.14]       # implicit: list brackets '[' ']'
+[1, 'foo', 3.14]
+>>> list([1, 'foo', 3.14]) # explicit: 'list'-class constructor
+```
 
 `list`- example
 
-    $ python -q
-    >>> [[1,'foo', 3.14] # list of 3 elements
-    [1, 'foo', 3.14]
-    >>> type([1,'foo', 3.14])
-    <class 'list'>
-    >>> [1,'foo', 3.14] + ['bar']
-    [1, 'foo', 3.14, 'bar']
-    >>> type([1,'foo', 3.14] + ['bar'])
-    <class 'list'>
-    >>>
-
+``` python
+>>> [[1,'foo', 3.14] # list of 3 elements
+[1, 'foo', 3.14]
+>>> type([1,'foo', 3.14])
+<class 'list'>
+>>> [1,'foo', 3.14] + ['bar']
+[1, 'foo', 3.14, 'bar']
+>>> type([1,'foo', 3.14] + ['bar'])
+<class 'list'>
+>>>
+```
 ***list-indexing and length of a list***
 
 Accessing list-elements of a list `l`is done using the Python list-indexing operator `l[i]`. The start list-index is `0`
 
-    $ python -q
-    >>> [1,'foo', 3.14][0]   # access 1.st element of a list (index:0)
-    1
-    >>> len([1,'foo', 3.14]) # get length of a list
-    3
-    >>>
+``` python
+>>> [1,'foo', 3.14][0]   # access 1.st element of a list (index:0)
+1
+>>> len([1,'foo', 3.14]) # get length of a list
+3
+>>>
+```
 
 
 ***NOTE***
-The Python standard library also provides a `array`-type where the objects are restricted to be of th same type, see
-(https://docs.python.org/3/library/array.html)
+The Python standard library also provides a `array`-type where the objects are restricted to be of the same type, see
+[Python Arrays](https://docs.python.org/3/library/array.html)
 
 ### Tuples - `tuple`
 
@@ -444,42 +431,46 @@ Tuples are very similar to lists. They can store unnamed objects of different ty
 
 `tuple`- types generation
 
-    $ python -h
-    >>> (1, 'foo', 3.14)        # implictit: using 'tuple'-brackets '(' ')'
-    (1, 'foo', 3.14)
-    >>> tuple((1, 'foo', 3.14)) # explicit:  'tuple'-class constructor (1) using 'tuple'-brackets '(' ')'
-    (1, 'foo', 3.14)
-    >>>
-    >>> tuple([1, 'foo', 3.14)] # explicit:  'tuple'-class constructor (2) using 'list'-brackets '[' ']'
-    (1, 'foo', 3.14)
+``` python
+>>> (1, 'foo', 3.14)        # implicit: using 'tuple'-brackets '(' ')'
+(1, 'foo', 3.14)
+>>> tuple((1, 'foo', 3.14)) # explicit: 'tuple'-class constructor (1) using 'tuple'-brackets '(' ')'
+(1, 'foo', 3.14)
+>>>
+>>> tuple([1, 'foo', 3.14)] # explicit: 'tuple'-class constructor (2) using 'list'-brackets '[' ']'
+(1, 'foo', 3.14)
+```
 
 `tuple`-example
 
-    $ python -q
-    >>> (1, 'foo', 3.14)
-    (1, 'foo', 3.14)
-    >>> type((1, 'foo', 3.14))
-    <class 'tuple'>
-    >>> 
+``` python
+>>> (1, 'foo', 3.14)
+(1, 'foo', 3.14)
+>>> type((1, 'foo', 3.14))
+<class 'tuple'>
+>>> 
+```
 
 
 ***tuple-indexing and length of a tuple***
 
-    $ python -q
-    >>> (1, 'foo', 3.14)[0] # tuple-indexing
-    1
-    >>> len((1, 'foo', 3.14)) # lenth of a tuple
-    3
-    >>>
+``` python
+>>> (1, 'foo', 3.14)[0] # tuple-indexing
+1
+>>> len((1, 'foo', 3.14)) # lenth of a tuple
+3
+>>>
+```
 
 ***NOTE***
 
 You can't change tuples, but you always can generate a new tuple out of an existing tuple an a new tuple-element
 
-    $ python -q
-    >>> (1, 'foo', 3.14) + ('bar',) # creating a new tuple out of 2 existing tuples
-    (1, 'foo', 3.14, 'bar')
-    >>>
+``` python
+>>> (1, 'foo', 3.14) + ('bar',) # creating a new tuple out of 2 existing tuples
+(1, 'foo', 3.14, 'bar')
+>>>
+```
 
 
 ### Dictionaries - `dict`
@@ -487,30 +478,33 @@ Python provides a mapping data type storing key-value pairs called dictionaries 
 
 `dict`- types generation
 
-    $ python -h
-    >>> {'name': 'Paul', 'age': 26, 'profession': 'author'}       # implicit: using curly braces '{' '}'
-    {'name': 'Paul', 'age': 26, 'profession': 'author'}
-    >>> dict({'name': 'Paul', 'age': 26, 'profession': 'author})  # explicit: 'dict'-class constructor
-    {'name': 'Paul', 'age': 26, 'profession': 'author}
+``` python
+>>> {'name': 'Paul', 'age': 26, 'profession': 'author'}       # implicit: using curly braces '{' '}'
+{'name': 'Paul', 'age': 26, 'profession': 'author'}
+>>> dict({'name': 'Paul', 'age': 26, 'profession': 'author})  # explicit: 'dict'-class constructor
+{'name': 'Paul', 'age': 26, 'profession': 'author}
+>>>
+```
 
 `dict` example
 
-    $ python -q
-    >>> {'name': 'Paul', 'age': 26, 'profession': 'author'}
-    {'name': 'Paul', 'age': 26, 'profession': 'author'}
-    >>> type({'name': 'Paul', 'age': 26, 'profession': 'author'})
-    <class 'dict'>
-    >>> 
+``` python
+>>> {'name': 'Paul', 'age': 26, 'profession': 'author'}
+{'name': 'Paul', 'age': 26, 'profession': 'author'}
+>>> type({'name': 'Paul', 'age': 26, 'profession': 'author'})
+<class 'dict'>
+>>> 
+```
 
 ***dictionary-lookup***
 
 Accessing individual elements of a dictionary `m` is done using the dictionary key-indexing-operator `m.[key]`
 
-    $ python -q
-    >>> {'name': 'Paul', 'age': 26, 'profession': 'author'}['name']
-    'Paul'
-    >>> 
-
+``` python
+>>> {'name': 'Paul', 'age': 26, 'profession': 'author'}['name']
+'Paul'
+>>> 
+```
 
 ### Sets - `set`
 
@@ -520,49 +514,54 @@ As opposed to the other Python builtin data types, `set`- type generation can on
 
 `set`- types generation
 
-    $ python -q
-    >>> set([1,2, 'foo']) # explicit: 'set'- class constructor (1) using '[' ']' brackets
-    {1,2,'foo'}
-    >>> set((1,2,'foo'))  # explicit: 'set'- class constructor (2) using '(' ')' brackets
-    {1,2,'foo'}
+``` python
+>>> set([1,2, 'foo']) # explicit: 'set'- class constructor (1) using '[' ']' brackets
+{1,2,'foo'}
+>>> set((1,2,'foo'))  # explicit: 'set'- class constructor (2) using '(' ')' brackets
+{1,2,'foo'}
+```
 
 `set`-example
 
-    $ python -q
-    >>> set([1, 2,'foo'])   # simple set with uniqe elements
-    {1, 2, 'foo'}
-    >>> type(set([1, 2,'foo'])) # type of set
-    <class 'set'>
-    >>> set([1, 2,'foo', 'foo'])  # simple set with a non-uniqe element (getting dropped)
-    {1, 2, 'foo'}
-    >>> type(set([1, 2,'foo', 'foo']))
-    <class 'set'>
-    >>> set([1, 2,'foo']) & set([1,2]) # intersection of 2 sets
-    {1, 2}
-    >>> type(set([1, 2,'foo']) & set([1,2]))
-    <class 'set'>
-    >>> 
-
+``` python
+>>> set([1, 2,'foo'])   # simple set with uniqe elements
+{1, 2, 'foo'}
+>>> type(set([1, 2,'foo'])) # type of set
+<class 'set'>
+>>> set([1, 2,'foo', 'foo'])  # simple set with a non-uniqe element (getting dropped)
+{1, 2, 'foo'}
+>>> type(set([1, 2,'foo', 'foo']))
+<class 'set'>
+>>> set([1, 2,'foo']) & set([1,2]) # intersection of 2 sets
+{1, 2}
+>>> type(set([1, 2,'foo']) & set([1,2]))
+<class 'set'>
+>>> 
+```
   
 
 ### None - `None`
 
 The Python `None` type is referred to as the `Null`-Object. It has a builtin contstant named `None`
 
-    $ python -q
-    >>> None
-    >>> type(None)
-    <class 'NoneType'>
-    >>>
+``` python
+>>> None
+>>> type(None)
+<class 'NoneType'>
+>>>
+```
 
 ### Boolean `bool`
 
 The Python `bool` type has a two builtin constants named `False` an `True`
 
-    $ python -q
-    >>> type(True)
-    <class 'bool'>
-    >>> 
+``` python
+>>> True
+True
+>>> type(True)
+>>> <class 'bool'>
+>>> 
+```
 
 ## Input and Output
 
@@ -578,32 +577,39 @@ In Python there are builtin-functions (`input()`, `print()`) performing that tas
 
 ***Input-Example***
 
-    >>> # just echo the input
-    >>> input('Please enter your name: ')
-    Please enter your name: Donald
-    'Donald'
-    >>>
-  
+``` python
+>>> # just echo the input
+>>> input('Please enter your name: ')
+Please enter your name: Donald
+'Donald'
+>>>
+```  
   or:
-  
-    >>> # store the input
-    >>> name = input('Please enter your name: ')
-    Please enter your name: Donald
-    >>> 
+
+``` python
+>>> # store the input
+>>> name = input('Please enter your name: ')
+Please enter your name: Donald
+>>> 
+```
 
 ***Output-Example***
 
-    >>> # print the stored input
-    >>> print('Hallo %s' % name)
-    Hallo Donald
-    >>> 
+``` python
+>>> # print the stored input
+>>> print('Hallo %s' % name)
+Hallo Donald
+>>> 
+```
     
 ***Combined Input/Output Example***
 
-    >>> print('Hallo %s' % input('Please enter your name: '))
-    Please enter your name: Donald
-    Hallo Donald
-    >>>
+``` python
+>>> print('Hallo %s' % input('Please enter your name: '))
+Please enter your name: Donald
+Hallo Donald
+>>>
+```
 
 ## Control Flow
 
@@ -626,36 +632,43 @@ Choices are conditional-controls, affectiong the order of execution according to
 
 `if` - example
 
-    >>> a = 1
-    >>> if a == 1:
-    ...     print('a is 1')
-    ... 
-    a is 1
-    >>> 
+``` python
+>>> a = 1
+>>> if a == 1:
+...     print('a is 1')
+... 
+a is 1
+>>> 
+```
+
 
 `if-elif` - example
 
-    >>> a = 2
-    >>> if a == 1:
-    ...     print('a is 1')
-    ... elif a == 2:
-    ...     print('a is 2')
-    ... 
-    a is 2
-    >>>
+``` python
+>>> a = 2
+>>> if a == 1:
+...     print('a is 1')
+... elif a == 2:
+...     print('a is 2')
+... 
+a is 2
+>>>
+```
 
 `if-elif-else` - example
 
-    >>> a = 3
-    >>> if a == 1:
-    ...     print('a is 1')
-    ... elif a == 2:
-    ...     print('a is 2')
-    ... else:
-    ...     print('a is neither 1 nor 2')
-    ... 
-    a is neither 1 nor 2
-    >>>
+``` python
+>>> a = 3
+>>> if a == 1:
+...     print('a is 1')
+... elif a == 2:
+...     print('a is 2')
+... else:
+...     print('a is neither 1 nor 2')
+... 
+a is neither 1 nor 2
+>>>
+```
 
 ### Loops
 
@@ -667,13 +680,15 @@ The Python `for-statement` can be viewed as a representative of what Wikipedia c
 
 `for`-loop example
 
-    >>> for elem in [1,2,3]:  # number of elements in the list defines the number of repetitions
-    ...     print(elem)
-    ... 
-    1
-    2
-    3
-    >>>
+``` python
+>>> for elem in [1,2,3]:  # number of elements in the list defines the number of repetitions
+...     print(elem)
+... 
+1
+2
+3
+>>>
+``` 
 
 ***while-statement***
 
@@ -681,16 +696,17 @@ The Python `while-statement` can be viewed as a representative of what Wikipedia
 
 `while`-loop example
 
-    >>> a = 1
-    >>> while a < 4:
-    ...     print(a)
-    ...     a += 1   # change the control-variable
-    ... 
-    1
-    2
-    3
-    >>>
-
+``` python
+>>> a = 1
+>>> while a < 4:
+...     print(a)
+...     a += 1   # change the control-variable
+... 
+1
+2
+3
+>>>
+```
 
 
 ## Functions
@@ -700,14 +716,15 @@ Functions are ***named code blocks*** providing a dedicated task (procedure) or 
 ***function definition***
 A function is defined using the `def`-statement
 
-    python -q
-    >>> # function definition
-    >>> def echo(text):   # (1) function header
-    ...    # (2) function body
-    ...    print(text)    # 1.st statement
-    ...    return         # 2.nd statement
-    ...
-    >>>
+``` python
+>>> # function definition
+>>> def echo(text):   # (1) function header
+...    # (2) function body
+...    print(text)    # 1.st statement
+...    return         # 2.nd statement
+...
+>>>
+```
 
 A function definition consist of a (1) function-header and a (2) function body.
 The function header beginning with the `def` keyword followed by the function-name and a probably empty list of comma-separated input-parameters in parenthesis, followed by colons character `:`.
@@ -716,10 +733,12 @@ The function body consists of an indented code-block of statements. In an intera
 ***function call***
 A function is called simply using it's function name followed by a list of comma-separated call-parameters in parenthesis:
 
-    >>> # function call
-    >>> echo("Hello World")
-    Hello World
-    >>>
+``` python
+>>> # function call
+>>> echo("Hello World")
+Hello World
+>>>
+```
 
 Functions can be called repeatedly and therefore are a major building block of reusable-code in imperative programinmg languages.
 
@@ -728,30 +747,30 @@ Functions can be called repeatedly and therefore are a major building block of r
 
 Python allows user-defined data-types called ***classes***. Classes are type-definitions which include data - so called ***attributes*** - and ***methods*** - functions that define the type-specific behaviour. ***Instances*** are objects created from classes.
 
-The following example demonstrates a simple `class`-definition, class-instantiations and common operations on class-instances like attribute- and method-access using the `.`-dot operator
+The following example demonstrates a simple `class`-definition, class-instantiations and common operations on class-instances like attribute-access and method-call using the `.`-dot operator
 
 ***class definition***
 
-    >>> class MyDog:
-    ...     def __init__(self, name, gender):    # class constructor
-    ...         self.name = name                 # instance-attribute
-    ...         self.gender = gender             # instance-attribute
-    ...     def getGender(self):                 # instance-method
-    ...         return self.gender
-    ...
-    >>>
-
+``` python
+>>> class MyDog:
+...     def __init__(self, name):    # class constructor
+...         self.name = name         # instance-attribute
+...     def bark(self):              # instance-method returning nothing
+...         print("wuff")
+...
+>>>
+```
     
 ***class instances***
 
-
-    >>> mydog = MyDog('Django', 'male')          # create class instance
-    >>> mydog.name                               # access instance-attribute using '.'-dot operator
-    'Django'
-    >>> mydog.getGender()                        # access instance-method using '.'-dot operator
-    'male'
-    >>>
-
+``` python
+>>> mydog = MyDog("Django")         # create class instance
+>>> mydog.name                      # access instance-attribute using '.'-dot operator
+'Django'
+>>> mydog.bark()                    # call instance-method using '.'-dot operator
+wuff
+>>>
+```
 
 ## Generators
 
