@@ -199,14 +199,16 @@ E.g in Java or C the semicolon `;` is used as single-statement-delimiter, the cu
 An expression is sequence of ***operands*** and ***operators*** evaluating to a single value. Operands itself can be expressions.
 Examples:
 
-    "foo"        # string literal
-    3.14         # float literal
-    True         # boolean literal
-    a            # simple identifier
-    a + b        # simple expression using add-operator
-    x == y       # simple expression using equal-comparison operator
-    id(x)        # simple expression using 'id()'-builtin function getting the memory address the variable 'x' refers to
-    a is b       # simple expression using 'is'-operator (check identity as with id()-builtin function)
+``` python
+"foo"        # string literal
+3.14         # float literal
+True         # boolean literal
+a            # simple identifier
+a + b        # simple expression using add-operator
+x == y       # simple expression using equal-comparison operator
+id(x)        # simple expression using 'id()'-builtin function getting the memory address the variable 'x' refers to
+a is b       # simple expression using 'is'-operator (check identity as with id()-builtin function)
+```
 
 The evaluation (calculation) of an expression itself is triggered by an appropriate statement - in an interactive interpreter session this means you need to finish your entered expression with a carriage return (newline), this will make an expression statement out of an expression.
 Expressions are printable and assignable. Because expressions are assignable, they form the smallest unit of reusable code.
@@ -297,11 +299,13 @@ Strings are data containers storing character-sequences (string-literals). The c
 
 ``` python
 >>> 'foo'      # implicit: generate instance of 'str'- datatype using string-literal notation
-foo
+'foo'
 >>> str('foo') # explicit: using 'str'-class constructor
+'foo'
+>>>
 ```
     
-For nesting purposes, Python ***string-literals*** can be typed in different ways.
+For nesting purposes, Python ***string-literals*** can be typed using different quotations.
 
 ``` python
 >>> 'foo' # single quoted string
@@ -365,6 +369,8 @@ Example `int`-literals and `int`-operation
 >>> 1.2        # implicit: 'float'-literal
 1.2
 >>> float(1.2) # explicit: 'float'-class constructor
+1.2
+>>>
 ```
     
 
@@ -393,6 +399,8 @@ A Python list is an array of unnamed objects of probably different types.
 >>> [1, 'foo', 3.14]       # implicit: list brackets '[' ']'
 [1, 'foo', 3.14]
 >>> list([1, 'foo', 3.14]) # explicit: 'list'-class constructor
+[1, 'foo', 3.14]
+>>>
 ```
 
 `list`- example
@@ -437,8 +445,9 @@ Tuples are very similar to lists. They can store unnamed objects of different ty
 >>> tuple((1, 'foo', 3.14)) # explicit: 'tuple'-class constructor (1) using 'tuple'-brackets '(' ')'
 (1, 'foo', 3.14)
 >>>
->>> tuple([1, 'foo', 3.14)] # explicit: 'tuple'-class constructor (2) using 'list'-brackets '[' ']'
+>>> tuple([1, 'foo', 3.14]) # explicit: 'tuple'-class constructor (2) using 'list'-brackets '[' ']'
 (1, 'foo', 3.14)
+>>>
 ```
 
 `tuple`-example
@@ -457,7 +466,7 @@ Tuples are very similar to lists. They can store unnamed objects of different ty
 ``` python
 >>> (1, 'foo', 3.14)[0] # tuple-indexing
 1
->>> len((1, 'foo', 3.14)) # lenth of a tuple
+>>> len((1, 'foo', 3.14)) # length of a tuple
 3
 >>>
 ```
@@ -481,8 +490,8 @@ Python provides a mapping data type storing key-value pairs called dictionaries 
 ``` python
 >>> {'name': 'Paul', 'age': 26, 'profession': 'author'}       # implicit: using curly braces '{' '}'
 {'name': 'Paul', 'age': 26, 'profession': 'author'}
->>> dict({'name': 'Paul', 'age': 26, 'profession': 'author})  # explicit: 'dict'-class constructor
-{'name': 'Paul', 'age': 26, 'profession': 'author}
+>>> dict({'name': 'Paul', 'age': 26, 'profession': 'author'})  # explicit: 'dict'-class constructor
+{'name': 'Paul', 'age': 26, 'profession': 'author'}
 >>>
 ```
 
@@ -532,7 +541,7 @@ As opposed to the other Python builtin data types, `set`- type generation can on
 {1, 2, 'foo'}
 >>> type(set([1, 2,'foo', 'foo']))
 <class 'set'>
->>> set([1, 2,'foo']) & set([1,2]) # intersection of 2 sets
+>>> set([1, 2,'foo']) & set([1,2]) # intersection of 2 sets using '&'-operator
 {1, 2}
 >>> type(set([1, 2,'foo']) & set([1,2]))
 <class 'set'>
@@ -711,7 +720,7 @@ The Python `while-statement` can be viewed as a representative of what Wikipedia
 
 ## Functions
 
-Functions are ***named code blocks*** providing a dedicated task (procedure) or calculation (function). Functions can have input parameters and return values, i.e. result values returnd to the caller.
+Functions are ***named code blocks*** providing a dedicated task (procedure) or calculation (function). Functions *can* have input parameters and return values, i.e. result values returnd to the caller.
 
 ***function definition***
 A function is defined using the `def`-statement
