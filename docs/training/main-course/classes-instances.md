@@ -1,6 +1,9 @@
 # Be classy: Python Classes and Instances
 
 Classes are the Python building block creating user-defined types in an object-oriented manner. Classes encapsulate data ('attributes') and appropriate functions ('methods'), which define the bahaviour of class-instances (i.e. objects of that class). Python supports composition ("has-a"-relation) and (multiple-) inheritance ("is-a"-relation) between classes/instances. In combination with method-overriding and a special kind of polymorphism (***Duck-Typing***), Python offers most of bunch of object-oriented features (Most, because Python doesn't really supports class privacy as explained below).
+Classes iself are objects, as such define a state (e.g. the `__name__` atttrinute) and a behaviour (a set of methods) - the most common is the class-costructor, which creates instances of a class.
+
+Let's start with a simple class.
 
 ## Simple class
 
@@ -488,7 +491,9 @@ False
 
 ## Class Decorators [WIP]
 
+## Further readings on classes
 
+ Please refer to the Python docs about [Classes](https://docs.python.org/3/tutorial/classes.html).
 
 
 
