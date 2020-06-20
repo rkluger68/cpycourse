@@ -6,15 +6,30 @@ In Python everything is an object:
 
 Functions are objects, classes are objects, instances are objects, types are
 objects, modules are objects, you name it: everything's an object. Even code
-is an object.
+is an object:
+
+``` python
+>>> source = "lambda: 'Hello!'"
+>>> code = compile(source, '', 'eval')
+>>> type(code)
+<class 'code'>
+>>> isinstance(code, object)
+True
+>>> f = eval(code)
+>>> f()
+'Hello!'
+>>>
+```
+
 
 An object is an entity encompassing the "data" and its acceptable operations.
-The Python data model (<https://docs.python.org/dev/reference/datamodel.html>)
-further describes:
+The Python data model documentation
+(<https://docs.python.org/dev/reference/datamodel.html>) describes:
 
 "Every object has an ***identity***, a ***type*** and a ***value***. An object’s identity never changes once it has been created; you may think of it as the object’s address in memory. The ‘is’ operator compares the identity of two objects; the id() function returns an integer representing its identity."
 
-Often, Python objects are created and *named* immediately with an assignment. Assigments introduce a *name* to refer to the object but don't create the
+Often, Python objects are created and *named* immediately with an assignment.
+Assigments introduce a *name* to refer to the object but don't create the
 object:[^float-identity]
 
     :::python
@@ -62,7 +77,14 @@ Python objects can be created e.g. by
  - defining classes
  - defining functions
  - defining anonymous functions
- 
+
+You can create an instance of the most basic type `object` like this:
+
+``` python
+>>> object()
+<object object at 0x7f33e1b9b0d0>
+```
+
 ### Objects are First-Class
 This means that all (named) objects are equal in the sense that they can be
 treated equally: a function object can be an argument to another function,
@@ -86,10 +108,12 @@ This allows for writing powerful constructs:
 
 ### More characteristics of objects
 
-1. the *identity* of an object never changes after creation (see above)
-2. the *type* of an object never changes after creation
-3. the *type* of the object defines the allowed values and the acceptable operations
-4. an objects is **mutable** if its *value* can be changed, **immutable** otherwise
+1. The *identity* of an object never changes after creation (see above).
+2. The *type* of an object never changes after creation.
+3. The *type* of the object defines the allowed values and the acceptable
+operations.
+4. An objects is **mutable** if its *value* can be changed, **immutable**
+otherwise.
 
 
 ## Immutable/mutable Objects
@@ -104,36 +128,41 @@ Changing the value of variable pointing to an immutable type causes a copy of th
 Changing the value of a variable pointing to a mutable type just changes that value.
 
 
+### Examples: immutable types
 
-Example: immutable type `int`
+Immutable type `int`:
 
     :::python
     >>> a = 1
-    >>> id(a)    # 
+    >>> id(a)
     140026581642624
-    >>> a = 2    # (1) Changing the value of 'a' causes the creation of a new
+    >>> a = 2       # assign name 'a' to a new object
     >>> id(a)
     140026581642656
-    >>> 
+    >>> a += 1
+    >>> a
+    3
+    >>> id(a)       # a is now a name for another new object: immutable object 2 hasn't changed in-place
+    140357021310400
 
-Example: immutable type `float`
+Immutable type `float`:
 
     :::python
     >>> f1 = 1.2 
     >>> f2 = 1.2
-    >>> f3 = f1     # (1) f3 is a reference to the same object f1 points to
+    >>> f3 = f1     # (1) f3 is another name for the object named f1
     >>> id(f1)
     140026583519544
     >>> id(f2)
     140026583519592
     >>> id(f3)
     140026583519544
-    >>> f1 = 1.3    # (2) change the value of f1 cause a copy-on-write
+    >>> f1 = 1.3    # (2) the name f1 is now given to another object
     >>> f1
     1.3
     >>> f2
     1.2
-    >>> f3          # (3) f3 still points to origin objects of f1 (1), so the change (2) doesn't affect f3
+    >>> f3          # (3) f3 is unaffected: it is still a name for the original object (1)
     1.2
     >>> id(f1)
     140026583519352
@@ -144,11 +173,13 @@ Example: immutable type `float`
     >>> 
 
 
-Example mutable type `list`
+### Examples: mutable types
+
+Mutable type `list`:
 
     :::python
-    >>> l1 = [1,2,3]
-    >>> l2 = l1      # (1) l2 is a reference to the same object l1 points to
+    >>> l1 = [1, 2, 3]
+    >>> l2 = l1      # (1) l2 is another name for the object named l1
     >>> id(l1)
     140026582652168
     >>> id(l2)
@@ -163,42 +194,81 @@ Example mutable type `list`
     >>> id(l2)
     140026582652168
     >>> 
+    >>> l1 =  [1, 2, 3]
+    >>> l2 = l1
+    >>> l1 += [4]  # extend mutable object
+    >>> l1
+    [1, 2, 3, 4]
+    >>> l2
+    [1, 2, 3, 4]
+    >>> l1 is l2
+    True
+    >>> 
 
+
+Mutable type `dict`:
+
+    :::python
+    >>> d1 = {1: 'one', 2: 'two'}
+    >>> d2 = d1
+    >>> d2[1] = 'three'  # create some confusion
+    >>> d2
+    {1: 'three', 2: 'two'}
+    >>> d1
+    {1: 'three', 2: 'two'}
+    >>> 
 
 ## Object Lifetime and Object Reference
 
-Every object which is created must be destroyed when it is no longer needed, otherwise we ran out-of-memory. In Python every objects carries the "still-in-use" information in a "reference count". This reference counter records the number of variables referencing this object. Remember, a variable is a name pointing to a memory location. An assignment(-expression) establishes a reference between the variable name and the memory location (i.e. the object) - during this step the reference count of the object is inreased. Conversely the object's reference count is decreased, when the variable is deleted (explicit using `del` or implicit by running out-of-scope) or re-assigned to another object.
-If the reference count of an objects is `0` the object is automatically destroyed by the garbage collector of the Python interpreter.
+Every object that is created must be destroyed when it is no longer needed,
+otherwise we run out of memory eventually. In Python objects aren't explicitly
+destroyed but may be garbage-collected by the interpreter when they become
+unreachable, i.e. they aren't referenced any more (by name or by other objects).
 
-This can be demonstared as follows using the `getrefcount()`-function of the Python standard library module `sys`
+CPython implementation detail: CPython uses *reference counting*. Every object
+carries the "in-use" information in a "reference count" which records the
+number of references to this object. Remember, a variable is a name referencing
+an object. An assignment of a name to an object establishes this reference -
+during this step the reference count of the object is increased.
+
+Conversely the object's reference count is decreased when the variable is
+deleted (explicit using `del` or implicit by running out of scope) or
+re-assigned to another object.
+
+If the reference count of an objects is `0` the object is automatically destroyed by the garbage collector of the Python interpreter (not necessarily
+immediately, so don't rely on it!).
+
+You can watch these mechanisms using the `getrefcount()`-function of the Python
+standard library module `sys`:
 
     :::python
-    >>> import sys                     # import sys-module
-    >>> a = 'foo'                      # (1) define a variable 'a' - a new object is created
-    >>> sys.getrefcount(a)             # check reference-count of the object 'a' points to (*)
+    >>> import sys
+    >>> l1 = ['cpython', 'does', 'refcounting']  # create named new list
+    >>> sys.getrefcount(l1)
     2
-    >>> id(a)                          # check memory adress
-    140574134795264
-    >>> b = a                          # (2) establish additional reference to the object
-    >>> id(b)                          # check memory adress ==> ok it point to the same object
-    140574134795264
-    >>> sys.getrefcount(a)             # check reference count
+    >>> id(l1)
+    39141600
+    >>> l2 = l1             # new name for existing object
+    >>> id(l2)              # yes, it's the same object indeed
+    39141600
+    >>> sys.getrefcount(l1) # ==> refcount increased
     3
-    >>> c = a                          # (3) establish additiona reference
-    >>> id(c)                          # check memory adress
-    140574134795264
-    >>> sys.getrefcount(a)             # check reference count
+    >>> sys.getrefcount(l2)
+    3
+    >>> l3 = l1  # yet another new name for (=reference to) existing object
+    >>> sys.getrefcount(l1)
     4
-    >>> del c  # delete variable 'c'   # (4) remove reference by deleting the variable
-    >>> sys.getrefcount(a)             # check reference count
+    >>> del l3               # delete name l3
+    >>> sys.getrefcount(l1)  # ==> refcount of list object decreased
     3
-    >>> b = 1                          # (5) re-assign variable 'b'
-    >>> id(b)                          # check memory adress
-    140574133796224
-    >>> sys.getrefcount(a)             # check reference count (*)
+    >>> l2 = object()        # assign name l2 to another object
+    >>> sys.getrefcount(l1)  # ==> refcount of list object decreased
     2
-    >>>
+    >>> 
 
+**Remark:**
+As you may have noted the reference count is higher than you might expect.
+This is due to the fact that the `sys.getrefcount()`-function call also 
+increases the object's reference count, as it needs to hold a reference to the 
+object, too, while it is running.
 
-**Note:**
-Checking the reference count will always increase the count itself during the check, because the `sys.getrefcount()`-function-call will also establish a reference to the object 'a' is pointing to. 
