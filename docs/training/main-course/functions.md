@@ -2,7 +2,7 @@
 
 Providing repeating tasks or calculation in functions is an effective way of code-reuse ("write-once-use-many").
 This is a brief introduction of Python functions, not covering all possible variations of function-definitions. More on this can be found in the official Python docs <https://docs.python.org/3/tutorial/controlflow.html#more-on-defining-functions>.
-Function itself are Python objects, as such they can e.g be assigned and returned, more on that later.
+Function itself are Python objects, as such they can e.g be assigned, passed as parameters to or returned from functions, more on that later.
 
 ## Function Definition ##
 
