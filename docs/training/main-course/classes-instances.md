@@ -349,7 +349,7 @@ usage
 
 Statically typed languages like C++ use virtual function for runtime polymorphism. Derived classes therefore override base-class functions retaining their signature. When base-class objects which held a derived class reference call their base-class function the runtime will virtual dispatch the derived-class function.
 This allows programing on a abstract base-class level. But this is only possible with class-objects inheritance
-Pythons polymorphism is based on 'duck typing'. 
+Pythons polymorphism is based on 'duck typing', where the polymorphism is not based on common types, instead it is based on common behaviour (methods) and attributes of the objects itself. See Wikipedia article on [Duck typing](https://en.wikipedia.org/wiki/Duck_typing): "If it walks like a duch and it quacks like a duck, then it must be a duck" 
 
 This enable more architecural freedom on the program/class-design, because class-hierarchies can be breaked down and allow lmore loosely couped program-design, as David M. Beazley writess in his Book "Python Essential Reference Fourth Edition"
 
