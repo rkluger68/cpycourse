@@ -495,9 +495,56 @@ False
 
 ## Class Decorators [WIP]
 
-Generally speaking, decorators are 'wrapper' about objects. Decorators are explained in more detail [here](decorators.md)
-Decorating adds additional functionality 
-In contex of Python classes decorator are wrappers arround class definitions. Wrapper
+Decorators are explained in detail [here](decorators.md). Here we just have brief overview concerning decorating in the context of classes.
+
+Generally speaking a decorator is a 'wrappers' around functions or classes with the purpose of adding some functionality.
+Wrappers are callable object (i.e. functions or classes, which are callable by defining a special instance-method named `__call__`). 
+
+So there are two parties in the decorating process:
+
+1. the decorator
+2. the object to be decorated
+
+### Using a class as a decorator
+
+In the following example we define a class as a decorator and define a function which is decorated with  this class decorator
+
+***Class Decorator definition and function decoration***
+
+``` python
+>>> class MyDecorator:
+...     def __init__(self, func):
+...         self.func = func
+...     def __call__(self, *args):
+...         print('==> START calling %s' % self.func.__name__)
+...         self.func(*args)
+...         print('<== END calling %s' % self.func.__name__)
+... 
+>>> @MyDecorator
+... def myfunc(x):
+...     print('>>> INSIDE decorated function: %s<<<' % x)
+... 
+>>>
+```
+
+***function call***
+
+``` python
+>>> myfunc('decorator-example')
+==> START calling myfunc
+>>> INSIDE decorated function: decorator-example<<<
+<== END calling myfunc
+>>> 
+```
+
+### Decorating a class [WIP]
+
+ 
+
+
+## MetaClasses
+
+It should be mentioned that Python also supports techniques for meta-programming for example to create metaclasses. But this subject to advanced courses.
 
 ## Further readings on classes
 
