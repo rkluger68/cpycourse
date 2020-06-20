@@ -278,6 +278,9 @@ As opposed to 'instance'-attributes 'class'-attributes are common to all class i
 
 Ordinary Python instance-attributes are by default 'readable', 'writable' and 'deletable'. Python class properties ('property-attributes') are attributes with 'access-control', i.e. they can be designed to be 'readable', 'writeable' and 'deletable'. Python properties therefore are managed attributes. This is done with special `getter`-, `setter`- and `deleter`- methods which enables the properties to be accessed as ordinary atttributes (instead of a method-call).
 
+*Usecase*:
+Properties are a way of data encapusulation. Hiding ordinary attributes behind a 'property-interface/facade' introduces a level of indirection to the origin attribute. The origin attribute may change behind the scenes in keeping the user interface with the property-facade. The property can be seen as the user-interface, while the origin attribute is an implementation detail which is a subject to change. 
+
 Python support two different ways of implementing properties:
 
 1. 'lower-level' using `property()` builtin function
