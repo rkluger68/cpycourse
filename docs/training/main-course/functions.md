@@ -33,13 +33,13 @@ Function define their own scope. Only locally defined variables are acessible an
 
 Python allows different ways of function-definitions as described in the following subsections.
 
-***Note***
+***Note:***
 Often the term "argument" and "parameter" are used interchangeable, but this is a little bit diffuse. More precise are the terms "actual parameter" for "argument" for variables or values in function-calls and "formal parameter" for parameter-names in function-definitions. Here the term "argument" is used for the variable/values in function-calls, the term "parameter is used for parameter-names in function-definitions. 
 
 
 ## Function with simple parameters ##
 
-function-definition example
+***function-definition example***
 
 ``` python
 >>> def increment(a,stride):  # function-header
@@ -53,7 +53,7 @@ function-definition example
 
 A function-call is done simply writing the function-name following a `tuple` of positional call-arguments
 
-function-call example
+***function-call example***
 
 ``` python
 >>> result = increment(1,2)
@@ -62,7 +62,7 @@ function-call example
 >>>
 ```
 
-***Note***
+***Note:***
 The number of parameters equal the number of call-arguments
 Also the order of the call-parameter must match the order of function-paramaters: During the function-call the 1.st call-argument is mapped to the 1.st function-parameter, the 2.nd call-argument is mapped to the 2.nd function-parameter, i.e a position-based mapping from the call-arguments to the function-parameters (call-arguments are ***positional arguments***)
 
@@ -82,7 +82,7 @@ Optional parameters are parameters with assigned default values in the function-
 >>>
 ```
 
-***function-call example (1) - omitting optional parameter****
+***function-call example (1) - omitting optional parameter***
   
 ``` python  
 >>> result = increment(1)
@@ -93,17 +93,17 @@ Optional parameters are parameters with assigned default values in the function-
   
 ***function-call example (2) - overwriting default-value of optional-parameter***
  
- ``` python
+``` python
 >>> result = increment(1,5)
 >>> print(result)
 6
 >>> 
 ```
   
-***Note 1***
+***Note 1:***
 Function-call can be made using only with arguments for parameters, where no default-agument are defined
   
-***Note 2***
+***Note 2:***
 Optional-parameters must be defined at the end of the function-parameter-list. Otherhwise a SyntaxError is raised, e.g.
 
 ``` python
@@ -160,7 +160,7 @@ Toe
 In the above sections the functions are called with ***positional arguments***, see ***Note*** above.
 In addition function can also be called using named arguments (keyword arguments).
 
-To demonstarte this we use the `increment`-function-definition from above
+To demonstarte this, we use the `increment`-function-definition from above.
 
 ***function-definition ***
   
@@ -277,14 +277,14 @@ y
 >>>
 ```
 
-*Note*
-As can be seen, functions are like oridnary Python objects an can be returned and assign
+***Note:***
+As can be seen, functions are like ordinary Python objects that can be returned and assigned.
 
 ## Pythons Function Call Semantics ##
 
 Function-call arguments are variables in the scope of the caller.
 
-Traditional function call semantics are
+Traditional function call semantics are:
 
 1. call-by-value: 
   - the value of the argument-variable is copied to the call-parameter of the function
@@ -294,7 +294,7 @@ Traditional function call semantics are
   - as a consequence, changes to variable inside the function will affect the callers variable (side-effect from callee back to the caller) 
   - alongside the function return value, this provides additional communication-channels between caller and callee
 
-Python function call semantics instead are controlled by the mutability/immutability of the Python objects of the caller function-call arguments.
+Python function call semantics instead are controlled by the mutability/immutability of the Python objects of the caller's function-call arguments.
 
 1. argument variable refering an immutable object: Will work without side-effects to the callee even, when the functions is changing the value, this is due to the copy-on-write behaviour 
 2. argument variable refering a mutable object may have side-effects to the callee, when the variable is changed inside the function
@@ -321,7 +321,7 @@ Python function call semantics instead are controlled by the mutability/immutabi
 >>>
 ```
 
-***Note***
+***Note:***
 Immutable objects of the caller are not effected by changes in the callee
   
 ***function-call with mmutable call-argument***
@@ -350,7 +350,7 @@ Immutable objects of the caller are not effected by changes in the callee
 >>> 
 ```
 
-***Note***
-  function-calls with mutable objects may have site-effect to the callee
+***Note:***
+Function-calls with mutable objects may have site-effect to the callee
   
 
