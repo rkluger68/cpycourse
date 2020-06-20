@@ -11,7 +11,10 @@ Simple classe typically have instance-attributes and instance-methods.
     - instance-attributes are accessd using the `.`-dot operator:  Pseudo-syntax `<class-instance>.<instance-attribute>`
 2. instance-methods: 
     - must be called with a class-instance
-    - instance-methoda are accessed using the `.`-dot operator: Pseudo-syntax `<class-instance>.<instance-attribute>(<params>)`
+    - instance-methods are accessed using the `.`-dot operator: Pseudo-syntax `<class-instance>.<instance-attribute>(<params>)`
+    - the class constructor is named `__init__()`. The `__init__()`-method is not mandatory to create class-instances (that's the task of the [`__new__()`-method](https://docs.python.org/3/reference/datamodel.html?highlight=__init#object.__new__), which is implicitly there. But practically the `__init__()`-method is always necessary to initialize the instance-attributes
+    - a class can define a destructor-mehod called `__del__()`, to explicitly do some finalizer tasks e.g. close ressources opened by the class-instance. The destructor is never called explicitly by user-code, instead its is called by the interpreters garbage collector, when the reference count (see [Object Lifetime and Object Reference](objects.md)) of the class instance reaches 0. For more details see [__del__()](https://docs.python.org/3/reference/datamodel.html?highlight=__del#object.__del__).
+    - every instance-method need an explicit *1.st*-parameter named `self`
 
 ***class definition***  
 
@@ -38,7 +41,17 @@ Simple classe typically have instance-attributes and instance-methods.
 
 ## Note on `self`-parameter 
 
+During a instance-method call the python interpreter implicity converts (pseudocode)
 
+    <class-instance-object>.<instance-method>(<param-1>, ... <param-n>)
+
+into
+
+    <class-object><instance-method>(<class-instance-object>, <param-1>, ... <param-n>)
+
+The `self`-argument is the class-instance-object iself. See also the section [Instance methods](https://docs.python.org/3/reference/datamodel.html?highlight=__del#the-standard-type-hierarchy).
+
+The `self`-parameter is therfore similar to the `this`-pointer of C++ and Java:
 
 1. Python `self`: Explicit 1.st parameter in every instance-method
 2. C++ `this`-pointer: keyword holding a pointer to the current object implicit parameter to all member functions
@@ -187,7 +200,7 @@ Python also support multiple inheritance
 ```
 
 *Note*
-The `dir(<object>`)- builin function list all names of the given object
+The `dir(<object>`)- builin function list all names in the namespace of the given object
 
 ## Composition ("has-a"-relation)
 
@@ -334,7 +347,11 @@ usage
 
 ## Duck Typing [WIP]
 
-Pythons polymorphism
+Statically typed languages like C++ use virtual function for runtime polymorphism. Derived classes therefore override base-class functions retaining their signature. When base-class objects which held a derived class reference call their base-class function the runtime will virtual dispatch the derived-class function.
+This allows programing on a abstract base-class level. But this is only possible with class-objects inheritance
+Pythons polymorphism is based on 'duck typing'. 
+
+This enable more architecural freedom on the program/class-design, because class-hierarchies can be breaked down and allow lmore loosely couped
 
 Virtual functions
 
@@ -393,9 +410,9 @@ this is a staticmethod
 
 Python `@staticmethods` are the correspondents to C++ and Java staticmethods, see the Python docs for [`classmethod`](https://docs.python.org/3/library/functions.html#classmethod)
 
-## Class Testing [WIP]
+## Class Testing
 
-Python provides 2 builtin-function for test on class-instance-types
+Python provides 2 builtin-function to identify/test of the membership on class-instance-types
 
 1. `types()`: Identifies the class of the class-instance
 2. `isinstance()`: Testing the
@@ -416,16 +433,12 @@ Python provides 2 builtin-function for test on class-instance-types
 <class '__main__.B'>
 >>> type(c)
 <class '__main__.C'>
->>> isinstance(a, A))
-  File "<stdin>", line 1
-    isinstance(a, A))
-                    ^
-SyntaxError: invalid syntax
 >>> isinstance(a, A)
 True
->>> isinstance(b, A)
+>>> isinstance(b, A)          # check along the inheritance-hierarchy
 True
-
+>>> isinstance(c, B)
+False
 
 ```
 
