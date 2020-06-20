@@ -49,20 +49,20 @@ into
 
     <class-object><instance-method>(<class-instance-object>, <param-1>, ... <param-n>)
 
-The `self`-argument is the class-instance-object iself. See also the section [Instance methods](https://docs.python.org/3/reference/datamodel.html?highlight=__del#the-standard-type-hierarchy).
+The `self`-argument is the class-instance-object iself. See also the section [Instance methods](https://docs.python.org/3/reference/datamodel.html?highlight=__del#the-standard-type-hierarchy) auf the Python docs.
 
-The `self`-parameter is therfore similar to the `this`-pointer of C++ and Java:
+The `self`-parameter is therefore similar to the `this`-pointer of C++ and Java:
 
 1. Python `self`: Explicit 1.st parameter in every instance-method
-2. C++ `this`-pointer: keyword holding a pointer to the current object implicit parameter to all member functions
-3. Java `this`-keyword: reference to the current object
+2. C++ `this`-pointer: Implicit parameter to all member functions. It's a keyword holding a pointer to the current object 
+3. Java `this`-reference: Implicit parameter of all member functions. It's a keyword holdung a reference to the current object
 
 *Note*
-The name `self` is a convention , and could be changed, but it shouldn't because
+The name `self` is a convention , and could be changed, but it shouldn't, because it keeps's the code understandable.
 
 ## Class Privacy - private Attributes
 
-Python doesen't provide any kind of 'access-specifiers' like e.g. C++ (public, private, protected) to control access to
+Python doesen't provide any kind of 'access-specifiers' like e.g. C++ (`public`, `private`, `protected`) to control access to
 attributes or methods. I.e. attributes and methods are 'public' accessible.
 
 Python provides 2 weak forms of data-hiding (but no real protection by access-control)
@@ -122,7 +122,8 @@ For more details please refer to [Private Variables](https://docs.python.org/3/t
 ## Inheritance ("is-a"-relation)
 
 *Note: class privacy*  
-As mentioned above Python doesn't provide any real mechanism for class privacy, neither 'data-protection' nor 'data-hiding'. This alos applies to class-inheritance. Because all attributes/methods are public, derived classes inherit all attributes/methodes defined in the base-class.
+As mentioned above, Python doesn't provide any real mechanism for class privacy, neither 'data-protection' nor 'data-hiding'. This also applies to class-inheritance. Inheritance is public by default, as a consequence all of the base-class attributes and methods are inherited by the derived-class
+
 
 ***class definition***  
 
@@ -154,7 +155,7 @@ As mentioned above Python doesn't provide any real mechanism for class privacy, 
 
 ## Multiple Inheritance
 
-Python also support multiple inheritance
+Python also supports multiple inheritance
 
 ***class definition*** 
 
@@ -200,9 +201,11 @@ Python also support multiple inheritance
 ```
 
 *Note*
-The `dir(<object>`)- builin function list all names in the namespace of the given object
+The `dir(<object>`)- builtin function lists all names in the namespace of the given object. As can be seen above all defined names of all base-class are in the namespace of the derived class.
 
 ## Composition ("has-a"-relation)
+
+Composition is alsoPython also 
 
 ***class definitions***  
 
@@ -215,7 +218,7 @@ The `dir(<object>`)- builin function list all names in the namespace of the give
 ... 
 >>> class B:
 ...     def __init__(self, name, number):
-...         self.a = A(name)
+...         self.a = A(name)               # class 'B' "has-a" an instance-attribute of class 'A'
 ...         self.number = number
 ...     def getNumber(self):
 ...         return self.number
@@ -229,7 +232,11 @@ The `dir(<object>`)- builin function list all names in the namespace of the give
 
 ``` python
 >>> b = B('Composition', 100)
->>> b.getName()
+>>> b.getName()     # (1): indirect access to instance-variable 'a'
+'Composition'
+>>> b.a.getName()   # (2): direct access to instance-variable 'a'
+'Composition'
+>>> b.a.name        # (3): direct access to instance-variable 'a'
 'Composition'
 >>> b.getNumber()
 100
@@ -267,19 +274,18 @@ As opposed to 'instance'-attributes 'class'-attributes are common to all class i
 ```
 
 
-## Class Poperties [WIP]
+## Class Poperties
 
-
-With class properties (decorator `@roperties`) methods can be accessed like ordinary attributes. As such they form dynmically computed attributes.
+Ordinary Python instance-attributes are by default 'readable', 'writable' and 'deletable'. Python class properties ('property-attributes') are attributes with 'access-control', i.e. they can be designed to be 'readable', 'writeable' and 'deletable'. Python properties therefore are managed attributes. This is done with special `getter`-, `setter`- and `deleter`- methods which enables the properties to be accessed as ordinary atttributes (instead of a method-call).
 
 Python support two different ways of implementing properties:
 
-1. 'lower-level' using `property()` builtin  function
+1. 'lower-level' using `property()` builtin function
 2. 'higher-level' using  `@propery()`-decorator
 
-The Python docs provide a good [property-example](https://docs.python.org/3/library/functions.html#property), which is copied here simply for convenience.
+The Python docs provide a good [property-example](https://docs.python.org/3/library/functions.html#property), with read-, write- and delete-access. For convenience this is sipmly copied here. 
 
-*** example using builtin `property()` function ***
+***example using `property()`-builtin function***
 
 ``` python
 class C:
@@ -302,16 +308,16 @@ usage
 
 ``` python
 >>> p1 = C()
->>> p1.x = 1
->>> p1.x
+>>> p1.x = 1       # (1) set property value
+>>> p1.x           # (2) get property value
 1
->>> del p1.x
->>> p1.x = 11
+>>> del p1.x       # (3) delete property
+>>> p1.x = 11      # (4) re-create property
 >>> p1.x
 11
 ```
 
-*** example using builtin `@propery()` decorator ***
+***example using the `@propery()`builtin decorator***
 ``` python
 class C:
     def __init__(self):
@@ -334,16 +340,52 @@ class C:
 usage
 
 ``` python
->>> p1 = D()
->>> p1.x = 9
->>> p1.x
+>>> p1 = C()
+>>> p1.x = 9       # (1) set property value
+>>> p1.x           # (2) get property value
 9
->>> del p1.x
->>> p1.x = 99
+>>> del p1.x       # (3) delete property
+>>> p1.x = 99      # (4) re-create property
 >>> p1.x
 99
 >>>
 ```
+
+**'readonly property example **
+
+The above example stripped-down to be read-only
+
+``` python
+>>> class C:
+...     def __init__(self, x):
+...         self._x = x
+...     @property
+...     def x(self):
+...         return self._x
+... 
+>>>
+```
+
+usage
+
+```python
+>>> a = C('foo')
+>>> a.x                                   # (1) read access
+'foo'
+>>> a.x = 'bar'                           # (2) write access
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+AttributeError: can't set attribute
+>>> del a.x                              # (3) delete access
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+AttributeError: can't delete attribute
+>>>  
+```
+
+*Note*
+Property 'x' is read-only, write- and delet-access fail.
+
 
 ## Duck Typing
 
