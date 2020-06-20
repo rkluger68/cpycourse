@@ -50,7 +50,7 @@ During a instance-method call the python interpreter implicity converts (pseudoc
 
 into
 
-    <class-object><instance-method>(<class-instance-object>, <param-1>, ... <param-n>)
+    <class-object><instance-method>(<class-instance-object>, <param-1>, ..., <param-n>)
 
 The `self`-argument is the class-instance-object iself. See also the section [Instance methods](https://docs.python.org/3/reference/datamodel.html?highlight=__del#the-standard-type-hierarchy) auf the Python docs.
 
@@ -60,7 +60,7 @@ The `self`-parameter is therefore similar to the `this`-pointer of C++ and Java:
 2. C++ `this`-pointer: Implicit parameter to all member functions. It's a keyword holding a pointer to the current object 
 3. Java `this`-reference: Implicit parameter of all member functions. It's a keyword holdung a reference to the current object
 
-*Note*
+***Note:***
 The name `self` is a convention , and could be changed, but it shouldn't, because it keeps's the code understandable.
 
 ## Class Privacy - private Attributes
@@ -124,7 +124,7 @@ For more details please refer to [Private Variables](https://docs.python.org/3/t
 
 ## Inheritance ("is-a"-relation)
 
-*Note: class privacy*  
+***Note on class privacy:***
 As mentioned above, Python doesn't provide any real mechanism for class privacy, neither 'data-protection' nor 'data-hiding'. This also applies to class-inheritance. Inheritance is public by default, as a consequence all of the base-class attributes and methods are inherited by the derived-class
 
 
@@ -203,12 +203,12 @@ Python also supports multiple inheritance
 >>>
 ```
 
-*Note*
+***Note:***
 The `dir(<object>`)- builtin function lists all names in the namespace of the given object. As can be seen above all defined names of all base-class are in the namespace of the derived class.
 
 ## Composition ("has-a"-relation)
 
-Composition is alsoPython also 
+Python also support composition, i.e. a class 'B' has an instance-attribute pointing to an instance-attribute of class 'A'
 
 ***class definitions***  
 
@@ -281,7 +281,7 @@ As opposed to 'instance'-attributes 'class'-attributes are common to all class i
 
 Ordinary Python instance-attributes are by default 'readable', 'writable' and 'deletable'. Python class properties ('property-attributes') are attributes with 'access-control', i.e. they can be designed to be 'readable', 'writeable' and 'deletable'. Python properties therefore are managed attributes. This is done with special `getter`-, `setter`- and `deleter`- methods which enables the properties to be accessed as ordinary atttributes (instead of a method-call).
 
-*Usecase*:
+***Usecase:***
 Properties are a way of data encapusulation. Hiding ordinary attributes behind a 'property-interface/facade' introduces a level of indirection to the origin attribute. The origin attribute may change behind the scenes in keeping the user interface with the property-facade. The property can be seen as the user-interface, while the origin attribute is an implementation detail which is a subject to change. 
 
 Python support two different ways of implementing properties:
@@ -289,7 +289,7 @@ Python support two different ways of implementing properties:
 1. 'lower-level' using `property()` builtin function
 2. 'higher-level' using  `@propery()`-decorator
 
-The Python docs provide a good [property-example](https://docs.python.org/3/library/functions.html#property), with read-, write- and delete-access. For convenience this is sipmly copied here. 
+The Python docs provide a good [property-example](https://docs.python.org/3/library/functions.html#property), with read-, write- and delete-access. For convenience this is simply copied here. 
 
 ***example using `property()`-builtin function***
 
@@ -357,9 +357,9 @@ usage
 >>>
 ```
 
-**'readonly property example **
+***'readonly property example ***
 
-The above example stripped-down to be read-only
+The above example stripped-down to be read-only:
 
 ``` python
 >>> class C:
@@ -389,17 +389,18 @@ AttributeError: can't delete attribute
 >>>  
 ```
 
-*Note*
-Property 'x' is read-only, write- and delet-access fail.
+***Note:***
+Property 'x' is read-only, write- and delete-access fail.
 
 
 ## Duck Typing
 
-Statically typed languages like C++ use virtual function for runtime polymorphism. Derived classes therefore override base-class functions retaining their signature. When base-class objects which held a derived class reference call their base-class function the runtime will virtual dispatch the derived-class function.
-This allows programing on a abstract base-class level. But this is only possible with class-objects inheritance
-Pythons polymorphism is based on 'duck typing', where the polymorphism is not based on common types, instead it is based on common behaviour (methods) and attributes of the objects itself. See Wikipedia article on [Duck typing](https://en.wikipedia.org/wiki/Duck_typing): "If it walks like a duch and it quacks like a duck, then it must be a duck" 
+Statically typed languages like C++ use virtual function for runtime polymorphism. Derived classes therefore override base-class functions retaining their signature. When base-class objects, which hold a derived class reference, call their base-class function, the runtime will virtual dispatch the derived-class function.
+This allows programing on a abstract base-class level. But this is restricted to class-objects having an inheritance relationship.
 
-This enable more architecural freedom on the program/class-design, because class-hierarchies can be breaked down and allow lmore loosely couped program-design, as David M. Beazley writess in his Book "Python Essential Reference Fourth Edition"
+Pythons polymorphism is based on 'duck typing', where the polymorphism is not based on common types, instead it is based on common behaviour (methods) and attributes of the objects itself. See Wikipedia article on [Duck typing](https://en.wikipedia.org/wiki/Duck_typing): "If it walks like a duck and it quacks like a duck, then it must be a duck" 
+
+This enable more architecural freedom on the program/class-design, because class-hierarchies can be breaked down and allow more loosely coupled program-design, as David M. Beazley writes in his Book "Python Essential Reference (Fourth Edition)".
 
 
 ## Special Methods
@@ -408,9 +409,12 @@ This enable more architecural freedom on the program/class-design, because class
 
 As opposed to instance-methods, class-methods operate on the class-object.
 
-*use-case*: Python doesn't support method overloading like C++ or Java. Therefore multiple methods with the same name within a single class is not supported. As a consequence only a single class constructor (`__init__()`-method). With Python `@classmethod` it
+***Usecase:*** 
+Python doesn't support method overloading like C++ or Java. Therefore multiple methods with the same name within a single class is not supported. As a consequence only a single class constructor (`__init__()`-method) can be defined. With 'class-method's it's possible to overcome this.
 
-*`@classicmethod`-example*
+Python 'classc-methods' are defined using the `@sclassmethod`-decorator preceeding to the method-definition
+
+*`@classmethod`-example*
 
 ``` python
 >>> class ByteStringStore:
@@ -435,11 +439,11 @@ As opposed to instance-methods, class-methods operate on the class-object.
 
 ### Static Methods
 
-Python static-methods neither work on class-instance-objects nor on class-objects (that's the task of instance-method and class-methods). Python staticmethods can best be compared to module-functions, defined in the namespace of a class, instead of a modules-namespace.
+Python static-methods neither work on class-instance-objects nor on class-objects (that's the task of 'instance-method' and 'class-methods'). Python 'static-methods' can best be compared to module-functions, defined in the namespace of a class, instead of a modules-namespace.
 
-*Usecase*: Python staticmethods can be used for (utility-)function that logical link to a class
+***Usecase:*** Python 'static-methods' can be used for (utility-)functions that logical link to a class, but do not work on the class or their instaances itself
 
-Python staticmethods are defined using the `@staticmethod`-decorator preceeding to the method-definition
+Python 'static-methods' are defined using the `@staticmethod`-decorator preceeding to the method-definition
 
 *`@staticmethod`-example*
 
