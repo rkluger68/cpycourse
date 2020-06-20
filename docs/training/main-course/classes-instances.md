@@ -491,6 +491,10 @@ False
 
 ## Class Decorators [WIP]
 
+Generally speaking, decorators are 'wrapper' about objects. Decorators are explained in more detail [here](decorators.md)
+Decorating adds additional functionality 
+In contex of Python classes decorator are wrappers arround class definitions. Wrapper
+
 ## Further readings on classes
 
  Please refer to the Python docs about [Classes](https://docs.python.org/3/tutorial/classes.html).
