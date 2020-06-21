@@ -539,7 +539,18 @@ In the following example we define a class as a decorator and define a function 
 
 ### Decorating a class [WIP]
 
+ ``` python
+ >>> def mydecoratorfunc(cls):
+...     print('>>> A new class was born: %s' % cls)
+...     return cls
+... 
+>>> @mydecoratorfunc
+... class A: pass
+... 
+>>> A new class was born: <class '__main__.A'>
+>>> 
  
+ ```
 
 
 ## MetaClasses
