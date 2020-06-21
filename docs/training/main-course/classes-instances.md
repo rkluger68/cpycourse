@@ -469,8 +469,8 @@ Callable classes are classes where the class-instances can simply be called as a
  
  ***Definition of a callable class***
  
- ``` python
- >>> class CallableClass:
+``` python
+>>> class CallableClass:
 ...     name = None
 ...     def __init__(self, name):
 ...         CallableClass.name = name
@@ -482,7 +482,7 @@ Callable classes are classes where the class-instances can simply be called as a
 ...         return CallableClass.name
 ... 
 >>>
- ```
+```
 
 ***Usage of a callable instance*** 
 
