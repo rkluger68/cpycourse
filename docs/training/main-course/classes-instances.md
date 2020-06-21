@@ -465,7 +465,7 @@ Python `@staticmethods` are the correspondents to C++ and Java staticmethods, se
 Callable classes are classes where the class-instances can simply be called as a function. Giving the class a callable-interface, their instances are callable. A class is made callable by defining a the special instance-method named `__call__()`).
  
  ***Usecase:***
- If different classes provide different instance-method names for the same functionality (e.g. A.geName() and B.getMyName()), the usage for the programmers is cumbersome. If they want to get the name from the objects on the one hand they have to call `a.getName()`and on the other hand `b.getMyName()`. Making the classes callable, gives them a unifomr interface, the name for both class-instance can be fetched in the same manner, simply using the object-name following parenthesis: `a()` and `b()`
+ If different classes provide different instance-method names for the same functionality (e.g. `A.geName()` and `B.getMyName()`), the usage for the programmers is cumbersome. If they want to get the name from the objects on the one hand they have to call `a.getName()`and on the other hand `b.getMyName()`. Making the classes callable, gives them a unifomr interface, the name for both class-instance can be fetched in the same manner, simply using the object-name following parenthesis: `a()` and `b()`
  
  ***Definition of a callable class***
  
