@@ -503,7 +503,7 @@ Decorators are explained in detail [here](decorators.md). Here we just give a br
 
 ***Usecase***
 Generally speaking a decorator is a 'wrappers' around functions or classes with the purpose of adding some functionality.
-Wrappers are callable object, see [callable-class](## Callable Classes).
+Wrappers are callable object, see [callable-class](#callable-classes).
 
 So there are two parties in the decorating process:
 
@@ -551,10 +551,10 @@ Here the class-decorator was used to provide some additional output, when the 'd
 In the following example we define a ***function*** as a decorator and define a ***class*** which is decorated with this 'function-decorator'.
 
 ***Note:***
-Here the decorator works on class-definition level, providing some additional funtionality around the class-definition.F or sure a rather infrequent usecase which can be classified in some sense as meta-programming.
+Here the decorator works on class-definition level, providing some additional funtionality around the class-definition. For sure a rather infrequent usecase which can be classified in some sense as meta-programming.
 
- ``` python
- >>> def mydecoratorfunc(cls):
+``` python
+>>> def mydecoratorfunc(cls):
 ...     print('>>> A new class was born: %s' % cls)
 ...     return cls
 ... 
