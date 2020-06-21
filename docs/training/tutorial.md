@@ -247,8 +247,7 @@ Python variables are not tightly coupled to a memory location, they can be rebou
 >>> type(a) # the value variable 'a' now is of type 'str'
 <class 'str'>
 >>>
- ```
-
+```
 
 ## It's all about data: Python data types and Python objects
 
@@ -269,10 +268,12 @@ Python builtin data types itself are Python classes. Instances of nearly all Pyt
 ***Note 3***:
 A type-test of a Python variable is done using buitlins `isinstance()` function
 
-    python -q
-    >>> isinstance('foo', str)
-    True
-    >>>
+
+``` python
+>>> isinstance('foo', str)
+True
+>>>
+```
 
 ***Note 4***:
 To keep things short we use simple expression-statements were possible instead of assignment-statements in the following subsections, i.e
@@ -372,7 +373,6 @@ Example `int`-literals and `int`-operation
 1.2
 >>>
 ```
-    
 
 Example `float`-literals and `float`-operation
 
@@ -416,6 +416,7 @@ A Python list is an array of unnamed objects of probably different types.
 <class 'list'>
 >>>
 ```
+
 ***list-indexing and length of a list***
 
 Accessing list-elements of a list `l`is done using the Python list-indexing operator `l[i]`. The start list-index is `0`
@@ -427,7 +428,6 @@ Accessing list-elements of a list `l`is done using the Python list-indexing oper
 3
 >>>
 ```
-
 
 ***NOTE***
 The Python standard library also provides a `array`-type where the objects are restricted to be of the same type, see
@@ -459,7 +459,6 @@ Tuples are very similar to lists. They can store unnamed objects of different ty
 <class 'tuple'>
 >>> 
 ```
-
 
 ***tuple-indexing and length of a tuple***
 
@@ -547,7 +546,6 @@ As opposed to the other Python builtin data types, `set`- type generation can on
 <class 'set'>
 >>> 
 ```
-  
 
 ### None - `None`
 
@@ -649,7 +647,6 @@ Choices are conditional-controls, affectiong the order of execution according to
 a is 1
 >>> 
 ```
-
 
 `if-elif` - example
 
@@ -781,20 +778,20 @@ wuff
 >>>
 ```
 
-## Generators
+## Generators [OPEN]
 
 
-## Exceptions
+## Exceptions [OPEN]
 
 
-## Modules & Packages
+## Modules & Packages [OPEN]
 
 
-## Important for grasping Python
+## Important for grasping Python [OPEN]
 
-### Syntax
+### Syntax [OPEN]
 
-### Immutable and Mutable Tpes
+### Immutable and Mutable Tpes [OPEN]
 
-### Names and Objects
+### Names and Objects [OPEN]
 
