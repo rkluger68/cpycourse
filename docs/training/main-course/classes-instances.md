@@ -551,9 +551,9 @@ Here the class-decorator was used to provide some additional output, when the 'd
 In the following example we define a ***function*** as a decorator and define a ***class*** which is decorated with this 'function-decorator'.
 
 ***Note:***
-Here the decorator works on class-definition level, providing some additional funtionality around the class-definition.F or sure a rather infrequent usecase which can be classified in some sense as meta-programming.
+Here the decorator works on class-definition level, providing some additional funtionality around the class-definition. For sure a rather infrequent usecase which can be classified in some sense as meta-programming.
 
- ``` python
+``` python
 >>> def mydecoratorfunc(cls):
 ...     print('>>> A new class was born: %s' % cls)
 ...     return cls
