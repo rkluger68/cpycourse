@@ -460,12 +460,117 @@ this is a staticmethod
 
 Python `@staticmethods` are the correspondents to C++ and Java staticmethods, see the Python docs for [`classmethod`](https://docs.python.org/3/library/functions.html#classmethod)
 
+## Callable Classes
+
+Callable classes are classes where the class-instances can simply be called as a function. Giving the class a callable-interface, their instances are callable. A class is made callable by defining a the special instance-method named `__call__()`).
+ 
+ ***Usecase:***
+ If different classes provide different instance-method names for the same functionality (e.g. A.geName() and B.getMyName()), the usage for the programmers is cumbersome. If they want to get the name from the objects on the one hand they have to call `a.getName()`and on the other hand `b.getMyName()`. Making the classes callable, gives them a unifomr interface, the name for both class-instance can be fetched in the same manner, simply using the object-name following parenthesis: `a()` and `b()`
+ 
+ ***Definition of a callable class***
+ 
+ ``` python
+ >>> class CallableClass:
+...     name = None
+...     def __init__(self, name):
+...         CallableClass.name = name
+...     def getName(self):
+...         print('>>> calling normal instance-method: %s() <<<' % self.getName.__name__)
+...         return CallableClass.name
+...     def __call__(self):
+...         print('>>> calling special instance-method: %s() <<<' % self.__call__.__name__)
+...         return CallableClass.name
+... 
+>>>
+ ```
+
+***Usage of a callable instance*** 
+
+``` python
+>>> foo = CallableClass('foo')                        # (1) Create an instance of the callable class
+>>> print('name = %s' % foo.getName())                # (2) use the 'standard'-class-interface instance-method 'getName()'
+>>> calling normal instance-method: getName() <<<
+name = foo
+>>> print('name = %s' % foo())                        # (3) use the 'callable'-class-interface instance-method '__call__()'
+>>> calling special instance-method: __call__() <<<
+name = foo
+>>> 
+```
+
+## Class Decorators
+
+Decorators are explained in detail [here](decorators.md). Here we just give a brief overview concerning decorating in the context of classes.
+
+***Usecase***
+Generally speaking a decorator is a 'wrappers' around functions or classes with the purpose of adding some functionality.
+Wrappers are callable object, see [callable-class](## Callable Classes).
+
+So there are two parties in the decorating process:
+
+1. the decorator
+2. the object to be decorated
+
+### Using a class as a decorator
+
+In the following example we define a ***class*** as a decorator and define a ***function*** which is decorated with this 'class-decorator'.
+
+***Class Decorator definition and function decoration***
+
+``` python
+>>> class MyDecorator:
+...     def __init__(self, func):
+...         self.func = func
+...     def __call__(self, *args):
+...         # put the additional functionalty here around the function
+...         print('==> START calling %s()' % self.func.__name__)  # some output before the wrapped function is called
+...         self.func(*args)                                      # call the wrapped-function
+...         print('<== END calling %s()' % self.func.__name__)    # some output after the wrapped function is called
+... 
+>>> @MyDecorator
+... def myfunc(x):
+...     print('>>> INSIDE decorated function: %s<<<' % x)
+... 
+>>>
+```
+
+***function call***
+
+``` python
+>>> myfunc('decorator-example')
+==> START calling myfunc()
+>>> INSIDE decorated function: decorator-example<<<
+<== END calling myfunc()
+>>> 
+```
+
+***Note:***
+Here the class-decorator was used to provide some additional output, when the 'decorated' function is called.
+
+### Decorating a class
+
+In the following example we define a ***function*** as a decorator and define a ***class*** which is decorated with this 'function-decorator'.
+
+***Note:***
+Here the decorator works on class-definition level, providing some additional funtionality around the class-definition.F or sure a rather infrequent usecase which can be classified in some sense as meta-programming.
+
+ ``` python
+ >>> def mydecoratorfunc(cls):
+...     print('>>> A new class was born: %s' % cls)
+...     return cls
+... 
+>>> @mydecoratorfunc
+... class A: pass
+... 
+>>> A new class was born: <class '__main__.A'>
+>>> 
+```
+
 ## Class Testing
 
-Python provides 2 builtin-function to identify/test of the membership on class-instance-types
+Python provides 2 builtin-function to identify/test the membership on class-instance-types.
 
-1. `types()`: Identifies the class of the class-instance
-2. `isinstance()`: Testing the
+1. `types()`: Identifies the concrete class of the class-instance
+2. `isinstance()`: Testing the belonging to a certain type (along the class-hierarchy!)
 
 ```python
 >>> class A(): pass
@@ -492,59 +597,9 @@ False
 
 ```
 
-
-## Class Decorators [WIP]
-
-Decorators are explained in detail [here](decorators.md). Here we just have brief overview concerning decorating in the context of classes.
-
-Generally speaking a decorator is a 'wrappers' around functions or classes with the purpose of adding some functionality.
-Wrappers are callable object (i.e. functions or classes, which are callable by defining a special instance-method named `__call__`). 
-
-So there are two parties in the decorating process:
-
-1. the decorator
-2. the object to be decorated
-
-### Using a class as a decorator
-
-In the following example we define a class as a decorator and define a function which is decorated with  this class decorator
-
-***Class Decorator definition and function decoration***
-
-``` python
->>> class MyDecorator:
-...     def __init__(self, func):
-...         self.func = func
-...     def __call__(self, *args):
-...         print('==> START calling %s' % self.func.__name__)
-...         self.func(*args)
-...         print('<== END calling %s' % self.func.__name__)
-... 
->>> @MyDecorator
-... def myfunc(x):
-...     print('>>> INSIDE decorated function: %s<<<' % x)
-... 
->>>
-```
-
-***function call***
-
-``` python
->>> myfunc('decorator-example')
-==> START calling myfunc
->>> INSIDE decorated function: decorator-example<<<
-<== END calling myfunc
->>> 
-```
-
-### Decorating a class [WIP]
-
- 
-
-
 ## MetaClasses
 
-It should be mentioned that Python also supports techniques for meta-programming for example to create metaclasses. But this subject to advanced courses.
+It should be mentioned that Python also supports techniques for meta-programming, for example to create metaclasses. But this is subject to advanced courses.
 
 ## Further readings on classes
 
