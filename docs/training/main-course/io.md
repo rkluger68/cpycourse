@@ -92,7 +92,7 @@ There is no explictit function to create a file. A file is implicitly created us
 
 Assume the file 'foo.txt' contains the following 2-lines
 
-```bash
+``` bash
 cat foo.txt
 abc
 def
@@ -217,8 +217,8 @@ Flushing the buffer enforces writing the content to the buffer into the file.
 
 You can check the written file
 
-```bash
-at bar.txt 
+``` bash
+cat bar.txt 
 abc
 def
 ```
