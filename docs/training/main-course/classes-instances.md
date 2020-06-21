@@ -503,7 +503,7 @@ Decorators are explained in detail [here](decorators.md). Here we just give a br
 
 ***Usecase***
 Generally speaking a decorator is a 'wrappers' around functions or classes with the purpose of adding some functionality.
-Wrappers are callable object, see [callable-class](## Callable Classes).
+Wrappers are callable object, see [callable-class](#callable-classes).
 
 So there are two parties in the decorating process:
 
