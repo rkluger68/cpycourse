@@ -554,7 +554,7 @@ In the following example we define a ***function*** as a decorator and define a 
 Here the decorator works on class-definition level, providing some additional funtionality around the class-definition.F or sure a rather infrequent usecase which can be classified in some sense as meta-programming.
 
  ``` python
- >>> def mydecoratorfunc(cls):
+>>> def mydecoratorfunc(cls):
 ...     print('>>> A new class was born: %s' % cls)
 ...     return cls
 ... 
