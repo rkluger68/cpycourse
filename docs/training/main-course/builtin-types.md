@@ -1,6 +1,61 @@
 # A practical Overview of Python Built-in Types
 
-This chapter describes important properities of Python's built-in types.
+This chapter describes important properties of Python's built-in types.
+
+Python provides a bunch of popular data types. **Simple types** (also called
+primitive data types) as well as **compound types**, which are collections or
+containers of data of equal or different type.
+
+Each of the Python data types provide a data type-specific set of *methods*
+and *operators* that determine the data type's behaviour. This ensemble of __data__ and __behaviour__ defines the properties of all Python objects.
+For the complete list please refer to <https://docs.python.org/3/library/stdtypes.html>.
+
+Python builtin data types are Python classes themselves. Instances of nearly all Python builtin data-types can be created in two different ways:
+
+ - using a type-specific notation: literals in the case of **simple data types** or different kind of brackets `(`,  `)`, `[`, `]`, `{`, `}` in the case of **compound data-types** 
+ - using the data type's class constructor
+
+
+The type of a data-literal (or a variable referencing a data type holding that data-literal value) can be identified using the builtin `type()`-function. 
+
+A type-test of a Python variable is done using buitlins `isinstance()` function
+
+## Numeric datatypes
+
+### Integers - `int`
+
+Example usage:
+``` python
+>>> 1
+1
+>>> int()
+0
+>>> type(1)  # type of int
+<class 'int'>
+>>> 1 + 2  # built-in '+'-operator for int
+3
+>>> type(1 + 2)  # result type
+<class 'int'>
+>>>
+```
+
+### Floating Point Values - `float`
+
+Example usage:
+``` python
+>>> 1.2
+1.2
+>>> float()
+0.0
+>>> type(1.2)  # type of float-literal
+<class 'float'>
+>>> 1.2 + 3.7  # built-in '+'-operator
+4.9
+>>> type(1.2 + 3.7)  # result type
+<class 'float'>
+>>>
+```
+
 
 ## Sequences
 
