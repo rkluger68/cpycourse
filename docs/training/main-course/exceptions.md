@@ -102,7 +102,51 @@ The next example uses the optional `else`- and `finally`-clauses of a 'tyr-excep
   - will be executed no matter if the `try`-block succeeds or an error is raised
    - detailed descriptions plaese read [Defining Clean-Up Actions](https://docs.python.org/3/tutorial/errors.html#defining-clean-up-actions)
 
+
+## Raising Exceptions
+
+Raising an exception is simple done using the `raise`-statement (C++:`throw`-keyword, Java: `throw`-statement)
+
+*** `raise`-example***
+
+``` python
+>>> raise TypeError('Argument has wrong type')
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: Argument has wrong type
+>>> 
+```
+
 ## User-defined Exceptions
 
-`raise` (C++ `throw` Java
+Python programms provide a bunch of builtrin-exceptions (see [Exception Hierarchy]
+(https://docs.python.org/3/library/exceptions.html#exception-hierarchy).
+But sometimes it's necessary to prived more spceialized exceptions. 
+
+***User-defined Exception***
+
+```python
+>>> class MyException(Exception):
+...     def __init__(self, value):
+...         self.value = value
+... 
+>>> type(MyException)
+<class 'type'>
+>>> 
+```
+
+***Usage***
+
+```python
+>>> try:
+...     raise MyException('MyException-ERROR')
+... except MyException as e:
+...     print(str(e))
+... 
+MyException-ERROR
+>>>
+```
+
+
+
 
