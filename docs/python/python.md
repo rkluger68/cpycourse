@@ -71,12 +71,13 @@ The term "dynamic" isn't actually defined all too clearly. With regard to Python
    about their type, data, operations and metadata
  - Python is dynamically typed, not statically typed
      - but strongly typed:
+
          ``` python
          >>> "3" + 5
          Traceback (most recent call last):
            File "<stdin>", line 1, in <module>
            TypeError: can only concatenate str (not "int") to str
-        ```
+         ```
 
 The dynamic nature of Python makes it very flexible.[^python-dynamic]
 
@@ -88,16 +89,24 @@ The dynamic nature of Python makes it very flexible.[^python-dynamic]
 
 ### Python is multi-paradigm
 
- * supports multiple programming paradigms
-   * object oriented programming
-   * functional programming (but not pure)
-   * imperative (+procedural) programming
+Python supports multiple programming paradigms:
 
-#### Example: Object oriented programming in Python
+#### Imperative (+ procedural) programming in Python
 
-#### Example: Functional programming in Python
+Programs are lists of instructions for the computer for processing the
+program's input (and alter program state) to achieve a program's goal;
+reusable units are defined as procedures.
 
-#### Example: Imperative programming in Python
+#### Object oriented programming
+The program is modelled as objects that bundle data and possible operations
+(methods) on that data (that alter object and program state).
+
+#### Functional programming
+Functions that take input and produce output are combined to solve a program's
+goal. Ideally, such functions do not maintain internal state or manipulate
+outer state; in pure(ly) functional languages (which Python is not!) the
+language enforces this no-side-effects approach.
+
 
 ## Who invented it?
 See [a brief history of Python](python-history.md).
@@ -112,12 +121,14 @@ Python is Free/Libre Open Source Software (F(L)OSS) and can be obtained here: ww
 There is "Python the lanuage" and "Python the implementation:
 
 Aside from the predominant reference implementation dubbed "CPython" several other implementations of Python the language exist, with varying degrees of version compatibility and adoption:
- * PyPy
- * Jython
- * IronPython
-   * ...: Numba, Cython, ...
- 
-Furthermore, several Python distributions bundle Python, Python packages and external dependencies:
-   * e.g. Anaconda
+ * [PyPy](https://www.pypy.org/)
+ * [Jython](https://www.jython.org/)
+ * [IronPython](https://ironpython.net/)
+ * ...and probably others
+
+Furthermore, several Python distributions bundle Python, Python packages,
+external dependencies and additional tooling. A very prominent one is 
+[Anaconda](https://www.anaconda.com/), with major adoption in the data science
+world.
 
 
