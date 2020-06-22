@@ -46,7 +46,8 @@ TypeError: must be str, not int
 
 ## Handling Exceptions
 
-Similar to C++ `try-catch`- and Java's `try-catch` statements, Python provides a `try-except-finally`-statement
+Similar to C++ `try-catch`- and Java's `try-catch` statements, Python provides a `try-except-finally`-statement.
+The complete description can be founf in the Python docs [Handling Exceptions](https://docs.python.org/3/tutorial/errors.html#handling-exceptions)
 
 ***A simple example***
 An example showing the general usage
@@ -94,10 +95,12 @@ The next example uses the optional `else`- and `finally`-clauses of a 'tyr-excep
 ```
 
 *Note:*
-- the `else`-block will only be executed if the `try`-blocks succeeds, i.e. it is executed after a successfull `try`-block
-- the `finally`-block will executed no matter if the `try`-block succeeds or an error is raised:
-  - the `finally`-blocks is processed ***after** `try`-block is successful
-  - the `finally`-blocks is processed ***before**
+- the `else`-block:
+  - if present must folow the `except`-clauses
+  - will only be executed if the `try`-blocks succeeds, i.e. it is executed after a successfull `try`-block
+- the `finally`-clause:
+  - will be executed no matter if the `try`-block succeeds or an error is raised
+   - detailed descriptions plaese read [Defining Clean-Up Actions](https://docs.python.org/3/tutorial/errors.html#defining-clean-up-actions)
 
 ## User-defined Exceptions
 
