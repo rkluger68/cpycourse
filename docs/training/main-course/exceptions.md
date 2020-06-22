@@ -119,9 +119,10 @@ TypeError: Argument has wrong type
 
 ## User-defined Exceptions
 
-Python programms provide a bunch of builtrin-exceptions (see [Exception Hierarchy]
-(https://docs.python.org/3/library/exceptions.html#exception-hierarchy).
-But sometimes it's necessary to prived more spceialized exceptions. 
+Python programms provide a bunch of builtin-exceptions, see [Exception Hierarchy](https://docs.python.org/3/library/exceptions.html#exception-hierarchy).
+But sometimes it's necessary to provide more spceialized exceptions. Python exceptions are classes.  A 'user-defined' excection
+is therfore simply writing a new class inheritung from one of the classes in the exception-hierarchy.
+
 
 ***User-defined Exception***
 
