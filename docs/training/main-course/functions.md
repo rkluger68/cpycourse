@@ -280,9 +280,40 @@ y
 ***Note:***
 As can be seen, functions are like ordinary Python objects that can be returned and assigned.
 
+## Functions Annotations
+
+[Function Annotations](https://docs.python.org/3/tutorial/controlflow.html#function-annotations) allow programmers to associate meta-information to a function-header. One kind of interesting mata-information are so called 'type-hints', which can provide 'type-information' about the function-paramertes and return-value.
+
+Function annotations are stored in the `__annotations__` attribute of a function object.
+
+***Function Annotation example***
+
+``` python
+>>> def concatenate(string_1: str, string_2: str) -> str:
+...     return string_1 + string_2
+... 
+>>> concate('foo', 'bar')
+'foobar'
+>>> concate.__annotations__
+{'string_1': <class 'str'>, 'string_2': <class 'str'>, 'return': <class 'str'>}
+>>> 
+````
+
+For a more detailed inforamtions please refer to [PEP 3107 -- Function Annotations](https://www.python.org/dev/peps/pep-3107/) and [PEP 484 -- Type Hints ](https://www.python.org/dev/peps/pep-0484/)
+
+***Note 1:***
+Function annotations are optional, they are just informations. They are neither evaluated nor their compliance is enforced by the interpreter itself. It's provided in the language, helping other libraries do some type-checking.
+
+***Note 2:***
+'Type Hints'-support is implemented in the Python standard library [`typing`](https://docs.python.org/3/library/typing.html).
+
+***Note 3:***
+PEP - Python Enhancement Proposal - is the official process of suggesting enhancements to the Python language, please read [PEP 001 -- PEP Purpose and Guidelines](https://www.python.org/dev/peps/pep-0001/).
+
+
 ## Pythons Function Call Semantics ##
 
-Function-call arguments are variables in the scope of the caller.
+Function-call arguments are suggested in PEP variables in the scope of the caller.
 
 Traditional function call semantics are:
 
