@@ -44,9 +44,62 @@ TypeError: must be str, not int
 ```
 
 
-
-
 ## Handling Exceptions
 
+Similar to C++ `try-catch`- and Java's `try-catch` statements, Python provides a `try-except-finally`-statement
+
+***A simple example***
+An example showing the general usage
+
+``` python
+>>> try:
+...     # statements in the try-block
+...     pass
+... except FileNotFoundError as e:             # catch two different exceptions in one 'except'-block
+...     # handle 'FileNotFoundError'
+... except TypeError as e:
+...     # handle 'TypeError'
+...     pass
+... except (ImportError, NameError) as e:      # catch two different exceptions in one 'except'-block
+...     # Handle 'ImportError' and 'KeyError'
+...     pass
+>>>
+```
+In this example excpetions of type 'FileNotFoundError', 'ImportError','NameError' will be catched. Every other
+exception will be provided to the surrounding code-block and has to be catzched and processed there.
+
+***A more complex example***
+
+The next example uses the optional `else`- and `finally`-clauses of a 'tyr-except`-statement
+
+``` python
+>>> try:
+...     # statements in the try-block
+...     pass
+... except FileNotFoundError as e:
+...     # handle 'FileNotFoundError'
+...     pass
+... except TypeError as e:
+...     # handle 'TypeError'
+...     pass
+... except (ImportError, NameError)
+...     # Handle ImportError and KeyError
+... else: # optional
+...     # do some additional works, in the case the 'try'-block succeeds
+...     pass
+... finally: # optional
+...     # cleanup/free some ressource, this code block is executed no matter if te try succeeds or an error occurs
+...     pass
+>>>
+```
+
+*Note:*
+- the `else`-block will only be executed if the `try`-blocks succeeds, i.e. it is executed after a successfull `try`-block
+- the `finally`-block will executed no matter if the `try`-block succeeds or an error is raised:
+  - the `finally`-blocks is processed ***after** `try`-block is successful
+  - the `finally`-blocks is processed ***before**
+
 ## User-defined Exceptions
+
+`raise` (C++ `throw` Java
 
