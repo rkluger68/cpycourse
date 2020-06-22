@@ -799,6 +799,12 @@ of returning values:
 ...         for val in range(limit):
 ...             yield val
 ... 
->>> [i for i in gen(5)]
-[0, 1, 2, 3, 4]
+>>> for i in gen(5):
+...     print(i)
+... 
+0
+1
+2
+3
+4
 ```
