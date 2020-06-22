@@ -26,7 +26,7 @@ The `if`-statement provides condtional-execution of code-blocks, see also Python
 
 ## `for`-statement
 
-The `for`-statement is a count-based loop-control, i.e. the number of repitions is based upon the number of elements of a 'sequence'. All sequence-types provide a `len()`-method, returning the number of elements of the object.
+The `for`-statement is a count-based loop-control, i.e. the number of repetitions is based upon the number of elements of a 'sequence'. All sequence-types provide a `len()`-method, returning the number of elements of the object.
 
 A 'sequence' can be (class construction in paranthesis)
 
@@ -52,6 +52,8 @@ class range(object)
 
 ***for-loop using a `list`-object (1)***
 
+In this example create a sequence as an implicit unnamed counter variable
+
 ```python
 >>> for elem in list([0,1,2]):
 ...     print(elem)
@@ -64,7 +66,7 @@ class range(object)
 
 ***for-loop using a `list`-object (1)***
 
-Normally you provide a list-counter-variable to the for-loop-statement
+Normally you provide an explicit list-counter-variable to the for-loop-statement
 
 ```python
 >>> a
@@ -80,7 +82,7 @@ Normally you provide a list-counter-variable to the for-loop-statement
 >>>
 ```
 ***Note:***
-Better use immutable 'tuple`-object
+Better use immutable 'tuple`-object to avoid side-effects
 
 
 ***for-loop using a `range`-objects (1)***
@@ -115,7 +117,6 @@ Example using only 'stop'-parameter
 
 Example using only 'start'-, stop'- and 'step'-parameter
 
-
 ``` python
 >>> for elem in range(0,9,3):
 ...     print (elem)
@@ -132,7 +133,6 @@ The `while`-statement is a condition-based loop-control, i.e the number of repet
 
 In a while-loop a 'condition-variable' is set *before* and changed *within* the while-loop. 
 
-
 ### simple `while`-statement
 
 ```python
@@ -147,10 +147,77 @@ In a while-loop a 'condition-variable' is set *before* and changed *within* the 
 >>
 ```
 
-
 ## `break`-statement
 
+With `break`-statement loops can quit prematurely
+
+Usage: Stop iteration at '1.st-occurence-of'
+
+***Using `break`-statement in a `for`-loop (1)***
+
+```python
+>>> s = "text"
+>>> for elem in s:
+...     if elem == 'x':
+...         break
+...     print(elem)
+... 
+t
+e
+>>>
+```
+
+***Using `break`-statement in a `while`-loop
+
+```python
+>>> s = "text"
+>>> for elem in s:
+...     if elem == 'x':
+...         break
+...     print(elem)
+... 
+t
+e
+>>>
+
+```
+
 ## `continue`-statement
+
+With a `continue`-statement loops skip the current iteration
+
+Usage: 'skip-on-condition'
+
+***Using `break`-statement in a `while`-loop
+
+```python
+>>> for elem in s:
+...     if elem == 'x':
+...         continue
+...     print(elem)
+... 
+t
+e
+t
+>>>
+```
+
+***Using `continue`-statement in a `while`-loop
+
+```python
+>> a = 0
+>>> while a < len(s):
+...     if s[a] == 'x':
+...         a += 1
+...         continue
+...     print(s[a])
+...     a += 1
+... 
+t
+e
+t
+>>>
+```
 
 ## `else`-clause
 
