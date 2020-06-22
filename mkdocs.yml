@@ -6,8 +6,6 @@ repo_name: 'hjoukl/cpycourse'
 repo_url: 'https://github.com/hjoukl/cpycourse'
 
 theme:
-    #name: mkdocs
-    #name: darkly
     # disable highlightjs code rendering to not interfere with material
     # theme's use of genshi
     highlightjs: false
@@ -15,7 +13,7 @@ theme:
     #    - yaml
     name: material
     # material theme customizations
-    # disable google fonts cdn
+    # disable google fonts cdn to avoid potential google tracking
     font: false
     palette:
         #scheme: preference
@@ -24,6 +22,7 @@ theme:
         accent: teal
     features:
         - tabs
+    #logo: images/python-powered-w.svg
 
 nav:
     - Home: index.md

@@ -5,6 +5,10 @@
 
 Training material for your quest to become a [snake charmer](python/python.md).
 
+This course intends to get you acquainted with Python's essentials. You should
+be able to read & understand a good part of Python code & write your own with
+the information provided here.
+
 Deals with the 3.x generation of the species
 [only](https://pythonclock.org/).[^py3-only]
 
@@ -36,3 +40,5 @@ If the implementation is hard to explain, it's a bad idea.
 If the implementation is easy to explain, it may be a good idea.
 Namespaces are one honking great idea -- let's do more of those!
 ```
+
+It's probably best to start with the [tutorial](training/tutorial.md).

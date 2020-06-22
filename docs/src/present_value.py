@@ -3,7 +3,7 @@
 
 cashflows = [-100, -2, 3, 6, 8, 110]
 rate = 0.03  # interest rate
-q = 1 + rate
+q = 1 + rate # discount factor
 
 present_value = 0
 for (i, cf) in enumerate(cashflows):

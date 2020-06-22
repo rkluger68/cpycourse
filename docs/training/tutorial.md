@@ -11,6 +11,10 @@ If you need information way beyond what we can show you here, the (great!)
 official Python documentation can be found here:
 https://docs.python.org/3/index.html
 
+## Getting a Python
+
+See here for hints on [Python installation](main-course/installation.md).
+
 ## Starting the Python interpreter
 
 For an **interactive session** simply type `python` or `python3` in a console/shell of your computer (`$`-shell prompt on \*nix-based systems):
@@ -53,8 +57,8 @@ Hello, world!
 After finishing the execution of the statement, the interpreter comes back to the prompt, awaiting the next input.
 
 If you enter a simple expression at the prompt (e.g. an integer or string 
-[literal](main-course/grasping-python.md/literals) and press Enter a *string
-representation* of the result is printed:
+[literal](main-course/grasping-python.md/literals) and press `<Enter>` a
+*string representation* of the result gets printed:
 
 ``` python
 >>> "Hello, world!"
@@ -65,7 +69,7 @@ representation* of the result is printed:
 ```
 
 
-The interactive session can be stopped by pressing `<Ctrl>-D` (Linux) or `<Ctrl>-Z` (Windows).
+An interactive session can be stopped by pressing `<Ctrl>-D` (Linux) or `<Ctrl>-Z` (Windows).
 
 A **summary of the Python interpreter's commandline options** can be listed with its help option `-h`. This will display the **usage**, the available commandline options and **environment variables** controlling the interpreter. Here's
 the output of a Python 3 interpreter on Linux:
@@ -127,7 +131,8 @@ PYTHONMALLOC: set the Python memory allocators and/or install debug hooks
 
 ## Running a Python program
 
-A program is built up of a **sequence of python statements** (i.e. the "programcode" or "code"). This code can be 
+A program is built up of a **sequence of python statements** (i.e. the "program
+code" or "code"). This code can be 
 
  - entered at the Python prompt, in interactive mode,
  - provided as a command line argument or
@@ -145,7 +150,8 @@ $
 
 As shown you can use the semicolon to separate multiple statements.
 
-But typically the code is placed into Python source files named `<module name>.py`, in our case [helloworld.py](../src/helloworld.py):
+But typically, code is placed into Python source files named `<module name>.py`
+, in our case [helloworld.py](../src/helloworld.py):
 
 ``` python
 --8<--
@@ -163,7 +169,7 @@ $
 ### A Sample Python Program
 
 This is a simple Python program that calculates the present value of
-a series of cashflows
+a series of cashflows:
 ``` python
 --8<--
 src/present_value.py
@@ -176,6 +182,8 @@ $ python3 src/present_value.py
 Present value for [-100, -2, 3, 6, 8, 110] and interest rate 0.03:
     pv = 8.371752776288233
 ```
+
+This program exhibits the main *building blocks* of a Python program.
 
 ### Python Program Building Blocks
 
@@ -219,12 +227,12 @@ and types of value. This makes Python a dynamically typed language.
 >>> a = 5 # create variable 'a' which is bound to integer object 5
 >>> a     # named access to object
 5
->>> type(a) # the value variable 'a' is of type 'int'
+>>> type(a) # the object named 'a' is of type 'int'
 <class 'int'>
 >>> a = 'foo' # rebind the variable to a different object
 >>> a
 'foo'
->>> type(a) # the value variable 'a' now is of type 'str'
+>>> type(a) # 'a' is now the name for an object of type 'str'
 <class 'str'>
 >>>
 ```
@@ -264,18 +272,18 @@ Strings are essential for handling text data:
 
 Strings conveniently support many useful operations:
 ``` python
->>> ''.join(('foo', 'bar'))  # string concatenating using builtin method 'join()'
+>>> ''.join(('foo', 'bar'))  # string concatenation using builtin method 'join()'
 'foobar'
->>> 'foo' + 'bar'             # string concatenating using '+' operator
+>>> 'foo' + 'bar'            # string concatenation using '+' operator
 'foobar'
->>> 'foobar'.upper()
+>>> 'foobar'.upper()         # copy of string in all-uppercase letters
 'FOOBAR'
->>> 'foo bar'.title()
+>>> 'foo bar'.title()        # copy of string in "title case"
 'Foo Bar'
 ```
 
 ``` python
-Strings are sequence of characters indexed by integer values. You can use the
+Strings are sequences of characters indexed by integer values. You can use the
 indexes to access the individual characters:
 
 >>> 'foo bar'[0]  # 1st character
@@ -342,6 +350,25 @@ As you'll have noticed `float` is
 If you need more accuracy than `float`  arithmetic supports the Python
 standard library also features a
 [Decimal data type](https://docs.python.org/3/library/decimal.html).
+
+Since Python 3.0 Python uses "true division". That means that integer division
+will result in float values:
+
+``` python
+>>> 4 / 2
+2.0
+>>> 3 / 2
+1.5
+```
+
+Depending on your needs you can also use "floor" division:
+``` python
+>>> 4 // 2
+2
+>>> 3 // 2
+1
+>>> 
+```
 
 ### Lists - `list`
 
@@ -631,6 +658,18 @@ a is neither 1 nor 2
 >>>
 ```
 
+#### Conditional Expressions
+Python also supports
+[Conditional expressions](https://docs.python.org/3/reference/expressions.html#conditional-expressions):
+
+``` python
+>>> 1 if True else 0
+1
+>>> 
+```
+
+
+
 ### Loops
 
 Loops are repetitive controls, affecting the number of iterations a code
@@ -763,8 +802,19 @@ caught [Errno 2] No such file or directory: 'myfile.txt'
 
 ## Modules & Packages
 
-You can modularize your code using modules (files) and packages (directories
-of module files):
+In addition to Python's built-ins, standard library and 3rd party libraries
+can be used through Python's import mechanism:
+
+``` python
+>>> import os
+>>> os.listdir()
+['README.md', '.git', '.gitignore', 'LICENSE', 'mkdocs.yml', 'docs', '.github',
+'site']
+>>> 
+```
+
+You can modularize your own code using modules (files) and packages
+(directories of module files):
 
 ``` python
 --8<--
@@ -807,4 +857,52 @@ of returning values:
 2
 3
 4
+```
+
+For memory efficiency, these generated values are created on demand, in each
+iteration step, as opposed to pre-populating e.g. a large list.
+
+
+## Comprehensions and Generator Expressions
+
+### List Comprehensions
+**List comprehensions** are an elegant and  powerful feature to populate lists
+using a syntax that very much feels like a mathematical set notation:
+
+
+``` python
+>>> import os
+>>> dirs = [entry for entry in os.listdir() if os.path.isdir(entry)]
+>>> dirs
+['.git', 'docs', '.github', 'site']
+>>> 
+```
+
+### Generator Expressions
+
+Similarly, one can use **generator expressions** that do not pre-populate a
+data structure but yield elements on demand:
+
+``` python
+>>> generate_dirs = (entry for entry in os.listdir() if os.path.isdir(entry))
+>>> generate_dirs
+<generator object <genexpr> at 0x7fc61861de60>
+>>> list(generate_dirs)
+['.git', 'docs', '.github', 'site']
+>>> list(generate_dirs)  # watch out: the generator has been "exhausted"
+[]
+```
+
+### Dict comprehensions
+A **dict comprehension** can be used to create a dictionary:
+
+``` python
+>>> {entry: 'dir' if os.path.isdir(entry) else
+...         'file' if os.path.isfile(entry) else
+...         'link' if os.path.islink(entry) else
+...         'other'
+...  for entry in os.listdir()}
+{'README.md': 'file', '.git': 'dir', '.gitignore': 'file', 'LICENSE': 'file',
+'mkdocs.yml': 'file', 'docs': 'dir', '.github': 'dir', 'site': 'dir'}
+>>> 
 ```

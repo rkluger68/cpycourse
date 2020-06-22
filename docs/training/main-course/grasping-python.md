@@ -121,7 +121,7 @@ A comment starts with a "#" and ends at the end of a line:
 something
 ```
 
-The Python interpreters ignores comments.
+The Python interpreter ignores comments.
 
 ### Literals
 
@@ -423,9 +423,10 @@ Deleting a name doesn't affect object existence:
 >>> y
 1
 ```
-(as long as there is still a name *referencing* that object)
+(as long as there is still a name (or another object) *referencing* that
+object)
 
-Further reading: A great in-depth explanation can be found
+**Further reading**: A great in-depth explanation can be found
 [here](https://nedbatchelder.com/text/names1.html).
 
 
