@@ -37,7 +37,7 @@ A 'sequence' can be (class construction in paranthesis)
 
 ***Note:***
 The `range()`-builtin function creates object of type `range`, which produces a sequence of integers,
-see (Range)[https://docs.python.org/3/library/stdtypes.html#ranges] or `help(range)`:
+see [Range](https://docs.python.org/3/library/stdtypes.html#ranges) or `help(range)`:
 ```python
 >>> help(range)
 Help on class range in module builtins:
@@ -153,7 +153,7 @@ With `break`-statement loops can quit prematurely
 
 Usage: Stop iteration at '1.st-occurence-of'
 
-***Using `break`-statement in a `for`-loop (1)***
+***Using `break`-statement in a `for`-loop***
 
 ```python
 >>> s = "text"
@@ -167,19 +167,20 @@ e
 >>>
 ```
 
-***Using `break`-statement in a `while`-loop
+***Using `break`-statement in a `while`-loop***
 
 ```python
 >>> s = "text"
->>> for elem in s:
-...     if elem == 'x':
+>>> a = 0
+>>> while a < len(s):
+...     if s[a] == 'x':
 ...         break
-...     print(elem)
+...     print(s[a])
+...     a += 1
 ... 
 t
 e
 >>>
-
 ```
 
 ## `continue`-statement
@@ -188,7 +189,7 @@ With a `continue`-statement loops skip the current iteration
 
 Usage: 'skip-on-condition'
 
-***Using `break`-statement in a `while`-loop
+***Using `continue`-statement in a `for`-loop***
 
 ```python
 >>> for elem in s:
@@ -202,7 +203,7 @@ t
 >>>
 ```
 
-***Using `continue`-statement in a `while`-loop
+***Using `continue`-statement in a `while`-loop***
 
 ```python
 >> a = 0
@@ -221,6 +222,68 @@ t
 
 ## `else`-clause
 
+As from the Python docs about the purpose of `else`-clause and when it is executed (see [`else`-clause](https://docs.python.org/3/tutorial/controlflow.html#break-and-continue-statements-and-else-clauses-on-loops)):
+
+"Loop statements may have an else clause; it is executed when the loop terminates through exhaustion of the iterable (with for) or when the condition becomes false (with while), but not when the loop is terminated by a break statement"
+
+So the `else`-clause can be seen as 'finalizer'-block of statements which are processed ath the end of a loop during normal operations.
+
+***Using `else`-clause in a `for`-loop***
+
+``` python
+>>> s = "text"
+>>> for elem in s:
+...     print(elem)
+... else:
+...     print('End of normal processing')
+... 
+t
+e
+x
+t
+End of normal processing
+>>> 
+```
+
+
+
+***Using `else`-clause in a `while`-loop***
+
+``` python
+>>> s = "text"
+>>> a = 0
+>>> while a < len(s):
+...     print(s[a])
+...     a = a+1
+... else:
+...     print('End of normal processing')
+... 
+t
+e
+x
+t
+End of normal processing
+>>>
+```
+
+***Note:***
+Don't mix up with the `else`-clause of the `if`-statement which is part of a choice-control
+
 ## `pass`-statement
+
+The `pass`- statement is a `noop`´-statement , meaning no-operation, as it does nothing:
+
+Usage: As from the Python Docs[`pass`-statement](https://docs.python.org/3/tutorial/controlflow.html#pass-statements) 
+"It can be used when a statement is required syntactically but the program requires no action"
+
+*** Example `pass`-statement*- demonstrating a class-definition**
+
+```python
+>>> class A: pass
+... 
+>>> type(A)
+<class 'type'>
+>>>
+```
 
 
