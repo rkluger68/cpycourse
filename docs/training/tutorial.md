@@ -1,14 +1,19 @@
-# CPC: Tutorial
+# A Curious Python Course: Tutorial
 
-This tutorial refers to Python Version 3.
+A little introduction to the language mainly by example, to show (some of)
+Python's main features.
+
+This tutorial refers to Python version 3.
 
 ## Python Documentation ##
 
-The Python official documentation can be found here <https://docs.python.org/3/index.html>
+If you need information way beyond what we can show you here, the (great!)
+official Python documentation can be found here:
+https://docs.python.org/3/index.html
 
 ## Starting the Python interpreter
 
-For an ***interactive session*** simply type `python` or `python3` in a console/shell of your computer (`$` - shell-prompt)
+For an **interactive session** simply type `python` or `python3` in a console/shell of your computer (`$`-shell prompt on \*nix-based systems):
 
 ``` bash
 $ python
@@ -18,36 +23,54 @@ Type "help", "copyright", "credits" or "license" for more information.
 >>>
 ```
 
-The first lines shows the interpreter-version, some information about the build-environment of the interpreter (compiler version and platform) and the copyright information.
+The first lines show the interpreter version, some information about the build
+environment of the interpreter (compiler version and platform) and the
+copyright information.
 
-The Python prompt `>>>` is signaling that the interpreter awaits user input.
+The Python *prompt* `>>>` is signaling that the interpreter awaits user input.
 
-The version and copyright information on startup can be suppressed using the quiet-option `-q`
+The version and copyright information on startup can be suppressed using the
+quiet-option `-q`.
 
 ``` bash    
 $ python -q
 >>>
 ```
 
-***Note*** 
-From now on this tutorial uses the `python -q` for interactive sessions, avoid inflating the output and focussing on the relevant code and output.
+**Note:**
+From now on, whenever you see `>>> ...`-lines this means an example in an 
+interactive Python session.
 
-Type in your 1.st Python statement. After pressing the \<enter\>-key the interpreter will execute the statement, and in this
-case will show the result.
+Type in your 1.st Python statement. After pressing the `<Enter>`-key the
+interpreter will execute the statement, and in this case will show the result.
 
-  ``` python
- >>> print ("Hello World")
- Hello World
- >>>
- ```
+``` python
+>>> print("Hello, world!")
+Hello, world!
+>>>
+```
 
 After finishing the execution of the statement, the interpreter comes back to the prompt, awaiting the next input.
 
-The interactive session can be stopped pressing \<Ctrl\>-D (Linux) or \<Ctrl\>-Z (Windows).
+If you enter a simple expression at the prompt (e.g. an integer or string 
+[literal](main-course/grasping-python.md/literals) and press Enter a *string
+representation* of the result is printed:
 
-A ***summary*** of the Python interpreter's ***commandline options*** can be listed with it's help-option `-h`. This will display the ***usage***, the available commandline options and ***environment variables*** controlling the interpreter, here the output of Python3 interpreter on Linux:
+``` python
+>>> "Hello, world!"
+'Hello, world!'
+>>> 42
+42
+>>> 
+```
 
-``` bash
+
+The interactive session can be stopped by pressing `<Ctrl>-D` (Linux) or `<Ctrl>-Z` (Windows).
+
+A **summary of the Python interpreter's commandline options** can be listed with its help option `-h`. This will display the **usage**, the available commandline options and **environment variables** controlling the interpreter. Here's
+the output of a Python 3 interpreter on Linux:
+
+``` 
 $python3 -h
 usage: python3 [option] ... [-c cmd | -m mod | file | -] [arg] ...
 Options and arguments (and corresponding environment variables):
@@ -102,11 +125,16 @@ PYTHONMALLOC: set the Python memory allocators and/or install debug hooks
    hooks.
 ```
 
-
-
 ## Running a Python program
 
-A programm is built-up of a **sequence of python-statements** (i.e. the "programm code" or in short "code"). This code can be provideed explicit as a command-string on commandline as shown here, where the individual statements are separated by semicolons ';' :
+A program is built up of a **sequence of python statements** (i.e. the "programcode" or "code"). This code can be 
+
+ - entered at the Python prompt, in interactive mode,
+ - provided as a command line argument or
+ - stored in module files with the `.py`-extension.
+
+For simple, short ad-hoc one-liners it can be very handy to use command line
+string arguments:
 
 ``` bash
 $ python -c "print('Hello'); print('World')"
@@ -115,435 +143,362 @@ World
 $
 ```    
 
-This is sufficient for simple, short ad-hoc checks.
+As shown you can use the semicolon to separate multiple statements.
 
-But typically the code is placed into Python source files named \<module-name\>.py (in our case helloworld.py),
-  and the code can be executed running the following command:
+But typically the code is placed into Python source files named `<module name>.py`, in our case [helloworld.py](../src/helloworld.py):
+
+``` python
+--8<--
+src/helloworld.py
+--8<--
+```
+The code can then be executed running the following command:
 
 ``` bash
 $ python helloworld.py
-Hello
-World
+Hello, world!
 $
 ```
- 
-## Python program building blocks
 
-As mentioned above a program is build as a sequence of statements. This is very rough and needs to be breakdown to more basic building blocks of the programming language. A brief (incomplete) top-down view of a ***program*** is build up from:
+### A Sample Python Program
 
-1. Comments
-2. Statements
-3. Expressions
-4. Operands and Operators
+This is a simple Python program that calculates the present value of
+a series of cashflows
+``` python
+--8<--
+src/present_value.py
+--8<--
+```
 
-which means:
+Running this program yields the following output:
+```
+$ python3 src/present_value.py 
+Present value for [-100, -2, 3, 6, 8, 110] and interest rate 0.03:
+    pv = 8.371752776288233
+```
+
+### Python Program Building Blocks
+
+A program is built as a sequence of instructions. The basic building blocks of 
+a Python program are:
+
+1. [Expressions](main-course/grasping-python.md#expressions)
+1. [Operands and Operators](main-course/grasping-python.md#operands-and-operators)
+1. [Statements](main-course/grasping-python.md#statements)
+1. [Comments](main-course/grasping-python.md#comments)
+
+So
 
   - a program is a sequence of comments and statements  
-  - a statement is either an 'executable instruction' (***do-something***) or an 'evaluable expression' (***compute-something***)  
-  - an expression is build up from operands and operators  
+  - a statement is either an 'executable instruction' (**do-something**) or an 'evaluable expression' (**compute-something**)  
+  - an expression is built up from operands and operators  
 
-### Program execution
+### Program Execution
 
-Running a program therefore can be described as a top-down process of execution of statements and evaluation of expressions.
+Running a program can be described as a top-down line-by-line processing:
+evaluation of expressions and execution of statements.
 
-### Comments
+## Variables and Assignments
 
-Comments are used for inplace documenting the code. In Python the '#'-delimiter starts a comment.
-A comment ends at the end of a line. The Python interpreters ignores comments.
+Variables are one of the the key elements of programming languages. Allthough
+the implementation may differ, the key concept is the same:
+Providing named access to an area in memory holding data, which can be changed during program execution.
 
-``` python
->>> # This is a single line comment
-``` 
-
-### Statements
-
-***Single statement***:
-A single statement is an executable instruction ending with a newline or semicolon. A statement changes the state of the program.
-
-Example 1 - expression statement
-
-``` python
->>> 5+3 # expression-statement
-8
->>>
-```
-
-Example 2 - assignement statement
-
-``` python
->>> a = 5+3 # assignement-statement
->>> a       # expression-statement
-8
->>>
-```
-    
-***Grouping statements***:
-Consecutive statements can be grouped together forming a code-blocks using ___indentation___. The level of idention marks the code-block
-a statement belongs.
-
-Grouping statement - i.e. building code blocks - is the basis for structuring the program. Organized in "higher-level" building blocks like functions, classes, modules and packages, they provide reusable code fragments. 
-
-A meaningful "programm organization" is crucial creating  
-  - understandable  
-  - maintainable  
-  - extendible  
-  - testable  
-code.
-
-***Note***
-Other programming languages use different delimiter-symbols expressing the end of single-statement and grouped statements.
-E.g in Java or C the semicolon `;` is used as single-statement-delimiter, the curly braces `{` `}` are used for code-blocks.
-
-### Expressions
-
-An expression is sequence of ***operands*** and ***operators*** evaluating to a single value. Operands itself can be expressions.
-Examples:
-
-``` python
-"foo"        # string literal
-3.14         # float literal
-True         # boolean literal
-a            # simple identifier
-a + b        # simple expression using add-operator
-x == y       # simple expression using equal-comparison operator
-id(x)        # simple expression using 'id()'-builtin function getting the memory address the variable 'x' refers to
-a is b       # simple expression using 'is'-operator (check identity as with id()-builtin function)
-```
-
-The evaluation (calculation) of an expression itself is triggered by an appropriate statement - in an interactive interpreter session this means you need to finish your entered expression with a carriage return (newline), this will make an expression statement out of an expression.
-Expressions are printable and assignable. Because expressions are assignable, they form the smallest unit of reusable code.
-
-### Operands and Operators
-
-Operands are literals, identifiers (variable names) or functions returning a single value. Operators are (meaningful) links between operands.
-
-## Variables and assignments
-
-Variables are one of the the key-elements of programing languages. Allthough the implementation may differ, the key-concept is equal:
-Providing a named access to an area in memory holding data, which can be changed during program execution.
-
-In Python a variable is a name referencing such a memory area. The variable is bound to the memory location upon an assignment(-statement). A Python ***variable is introduced*** by an assignment-statement, e.g.:
+In Python a variable is a name referencing an object in memory. You can create
+a variable with an assignment-statement:
 
 ``` python
 >>> a = 5
 ```
 
-Python variables are not tightly coupled to a memory location, they can be rebound to different memory locations by further assignments. At different point in time, the variable may refer to different locations in memory, storing different values and types of value. This makes Python a dynamic-typed language.
+Python variables can be rebound by further assignments.  At different points
+in time, the variable may refer to different objects, with different values
+and types of value. This makes Python a dynamically typed language.
 
 ``` python
->>> a = 5 # create variable 'a' which is bound to a memory location, which stores an integer value 5
->>> a     # named access to value in memory, the variable refers to
+>>> a = 5 # create variable 'a' which is bound to integer object 5
+>>> a     # named access to object
 5
->>> id(a) # show the memory adress the variable 'a' points to
-139915719974400
 >>> type(a) # the value variable 'a' is of type 'int'
 <class 'int'>
->>> a = 'foo' # rebound the variable to a different location in memory
+>>> a = 'foo' # rebind the variable to a different object
 >>> a
 'foo'
->>> id(a) #  show the memory adress the variable 'a' points to
-139915720973312
->>> 
 >>> type(a) # the value variable 'a' now is of type 'str'
 <class 'str'>
 >>>
 ```
 
-## It's all about data: Python data types and Python objects
+## It's all about data: Python Data Types and Python Objects
 
-Python provides a bunch of popular data types. ***Simple types*** (also called primitive data-types) can best be imagined as data containers, which held values (__data__) of a dedicated type. In addition Python provides some ***compound types***, which are collection of data containers of equal or different type, serving a dedicated purpose.
+[Python provides a bunch of popular data types.](main-course/builtin-types.md)
 
-Each of the Python data types provide a data type specific set of `builtin-methods` and `operators` which can be applied on the data represented by that kind of data type - as such they describe the behaviour. This ensemble of __data__ and defined __behaviour__ is in Python called an ***object***. Having this in mind we rather say Python ***variables point to objects*** in memory.
-For the complete list please refer to <https://docs.python.org/3/library/stdtypes.html>.
-
-***Note 1***:
-The type of a data-literal (or a variable referencing a data type holding that data-literal value) can be identified using the builtin `type()`-function. 
-
-***Note 2***:
-Python builtin data types itself are Python classes. Instances of nearly all Python builtin data-types can be gererated in two different ways:
-
-1. implicit using a type-specific notation (literals) in the case of ***simple data-types*** or different kind of brackets `(`,  `)`, `[`, `]`, `{`, `}` in the case of ***compound data-types*** 
-2. explict using the types class-constructor (provided as Python `builtin`-function)
-
-***Note 3***:
-A type-test of a Python variable is done using buitlins `isinstance()` function
-
-
+All data is represented as an object and has a type:
 ``` python
->>> isinstance('foo', str)
+>>> 'foo'
+'foo'
+>>> type('foo')  # type built-in function returns an object's type
+<class 'str'>
+>>> isinstance('foo', str)  # isinstance tests if an object is of a certain type
 True
 >>>
 ```
 
-***Note 4***:
-To keep things short we use simple expression-statements were possible instead of assignment-statements in the following subsections, i.e
-
-``` python
->>> 1 # expression-statement
-1
-```
- 
-instead of 
- 
-``` python
->>> a = 1 # assignment-statement
->>> a     # expression-statement
->>> 1
-``` 
-
-
 ### Strings - `str`
 
-Strings are data containers storing character-sequences (string-literals). The character-sequence is embeded in a pair of quote.
-
-`str`-types generation:
+Strings are essential for handling text data:
 
 ``` python
->>> 'foo'      # implicit: generate instance of 'str'- datatype using string-literal notation
-'foo'
->>> str('foo') # explicit: using 'str'-class constructor
-'foo'
->>>
-```
-    
-For nesting purposes, Python ***string-literals*** can be typed using different quotations.
-
-``` python
->>> 'foo' # single quoted string
-'foo'
->>> type('foo')
-<class 'str'>
->>> "foo" # double quoted string
-'foo'
->>> type("foo")
-<class 'str'>
->>> '''foo''' # triple quoted string
-'foo'
->>> type('''foo''')
-<class 'str'>
->>> 'foo"bar"' # nested string
-'foo"bar"'
->>> type('foo"bar"')
-<class 'str'>
+>>> 'Python knows text'
+'Python knows text'
+>>> "Python knows text"  # double-quoted is also allowed
+'Python knows text'
+>>> # triple quoted text can span lines
+>>> """Python
+... knows
+... text"""
+'Python\nknows\ntext'
 >>> 
 ```
+    
 
-Example `str` builtin method and operator
-
+Strings conveniently support many useful operations:
 ``` python
->>> ''.join( ('foo', 'bar'))  # string concatenating using builtin method 'join()'
+>>> ''.join(('foo', 'bar'))  # string concatenating using builtin method 'join()'
 'foobar'
 >>> 'foo' + 'bar'             # string concatenating using '+' operator
 'foobar'
->>>
-```
- 
-
-### Numeric datatypes - `int`, `float`
-
-`int`-types generation:
-
-``` python
->>> 1          # implicit: 'int'-literal
-1
->>> int(1)     # explicit: 'int'-class constructor
->>>
+>>> 'foobar'.upper()
+'FOOBAR'
+>>> 'foo bar'.title()
+'Foo Bar'
 ```
 
-Example `int`-literals and `int`-operation
-    
 ``` python
->>> 1          # 'int'-literal
+Strings are sequence of characters indexed by integer values. You can use the
+indexes to access the individual characters:
+
+>>> 'foo bar'[0]  # 1st character
+'f'
+>>> 'foo bar'[-1]  # last character
+'r'
+>>> 'foo bar'[2:5]  # slice of characters
+'o b'
+>>> 
+```
+
+
+### Numeric Data Types
+
+Numeric data types represent numeric values. Python has the built-in numeric
+data types `int` and `float` that support the usual arithmetic operations.
+
+`int` is used for integers or "whole" numbers:
+
+``` python
+>>> 1
 1
->>> type(1)    # type of int-literal
+>>> type(1)
 <class 'int'>
->>> 1+2        # builtin'+'-operator for int-literal
+```
+
+Some basic integer operations:
+
+``` python
+>>> 1 + 2
 3
->>> type(1+2)  # result type
-<class 'int'>
->>>
+>>> (1 + 2) * 3
+9
+>>> 2**5
+32
+>>> 
 ```
 
-`float`- types generation:
+Fractional numbers are represented by `float`:
 
 ``` python
->>> 1.2        # implicit: 'float'-literal
+>>> 1.2
 1.2
->>> float(1.2) # explicit: 'float'-class constructor
-1.2
->>>
+>>> type(1.2)
+<class 'float'>
 ```
 
-Example `float`-literals and `float`-operation
+Example `float` operations:
 
 ``` python
->>> 1.2 # a float-literal
-1.2
->>> type(1.2) # type of float-literal
-<class 'float'>
->>> 1.2 + 3.7 # builtin '+'-operand
-4.9
->>> type(1.2 + 3.7) # result type
-<class 'float'>
->>>
+>>> 1.1 + 1.2
+2.3
+>>> (1.1 + 1.2) * 3.0
+6.8999999999999995
+>>> 1.1**2
+1.2100000000000002
+>>> 
 ```
 
+As you'll have noticed `float` is
+[not an exact data type](https://docs.python.org/3/tutorial/floatingpoint.html)
+.
+
+If you need more accuracy than `float`  arithmetic supports the Python
+standard library also features a
+[Decimal data type](https://docs.python.org/3/library/decimal.html).
 
 ### Lists - `list`
 
-A Python list is an array of unnamed objects of probably different types.
-
-`list`- types generation
+A Python list is an array of unnamed objects of (potentially) different types.
 
 ``` python
->>> [1, 'foo', 3.14]       # implicit: list brackets '[' ']'
-[1, 'foo', 3.14]
->>> list([1, 'foo', 3.14]) # explicit: 'list'-class constructor
-[1, 'foo', 3.14]
->>>
-```
-
-`list`- example
-
-``` python
->>> [[1,'foo', 3.14] # list of 3 elements
+>>> [1, 'foo', 3.14]
 [1, 'foo', 3.14]
 >>> type([1,'foo', 3.14])
 <class 'list'>
+```
+
+Similar to `str` list supports many useful sequence operations:
+
+``` python
+>>> [1,'foo', 3.14] # list of 3 elements
+[1, 'foo', 3.14]
 >>> [1,'foo', 3.14] + ['bar']
 [1, 'foo', 3.14, 'bar']
 >>> type([1,'foo', 3.14] + ['bar'])
 <class 'list'>
->>>
-```
-
-***list-indexing and length of a list***
-
-Accessing list-elements of a list `l`is done using the Python list-indexing operator `l[i]`. The start list-index is `0`
-
-``` python
->>> [1,'foo', 3.14][0]   # access 1.st element of a list (index:0)
-1
->>> len([1,'foo', 3.14]) # get length of a list
+>>> len([1, 'foo', 3.14]) # get length of a list
 3
->>>
+>>> l = [1,'foo', 3.14]
+>>> l[0]
+1
+>>> l[-1]
+3.14
+>>> l[0:1]
+[1]
+>>> l[0:2]
+[1, 'foo']
+>>> l[1:]
+['foo', 3.14]
+>>> l.insert(2, 'bar')
+>>> l
+[1, 'foo', 'bar', 3.14]
+>>> l.pop()
+3.14
+>>> l.index('foo')
+1
+>>> del l[0]
+>>> l
+['foo', 'bar']
+>>> l[0] = 'bea'
+>>> l
+['bea', 'bar']
+>>> 
 ```
-
-***NOTE***
-The Python standard library also provides a `array`-type where the objects are restricted to be of the same type, see
-[Python Arrays](https://docs.python.org/3/library/array.html)
 
 ### Tuples - `tuple`
 
-Tuples are very similar to lists. They can store unnamed objects of different type, nearly have the same operations - but opposed to Python lists, they are unchangeable, i.e elements can't be added or removed.
-
-`tuple`- types generation
-
-``` python
->>> (1, 'foo', 3.14)        # implicit: using 'tuple'-brackets '(' ')'
-(1, 'foo', 3.14)
->>> tuple((1, 'foo', 3.14)) # explicit: 'tuple'-class constructor (1) using 'tuple'-brackets '(' ')'
-(1, 'foo', 3.14)
->>>
->>> tuple([1, 'foo', 3.14]) # explicit: 'tuple'-class constructor (2) using 'list'-brackets '[' ']'
-(1, 'foo', 3.14)
->>>
-```
-
-`tuple`-example
+Tuples pretty similar to lists. They can store unnamed objects of different
+type but opposed to Python lists, they are unchangeable, i.e elements can't be
+inserted, substituted or removed:
 
 ``` python
 >>> (1, 'foo', 3.14)
 (1, 'foo', 3.14)
 >>> type((1, 'foo', 3.14))
 <class 'tuple'>
+```
+
+Example tuple operations:
+
+``` python
+>>> len((1, 'foo', 3.14)) # length of a tuple
+3
+>>> l = (1, 'foo', 3.14)
+>>> l[0]
+1
+>>> l[-1]
+3.14
+>>> l[0:2]
+(1, 'foo')
+>>> l + (42, )  # create a new extended tuple by concatenation
+(1, 'foo', 3.14, 42)
+>>> del l[0]
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: 'tuple' object doesn't support item deletion
+>>> l[0] = 'more'
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  TypeError: 'tuple' object does not support item assignment
 >>> 
 ```
 
-***tuple-indexing and length of a tuple***
-
-``` python
->>> (1, 'foo', 3.14)[0] # tuple-indexing
-1
->>> len((1, 'foo', 3.14)) # length of a tuple
-3
->>>
-```
-
-***NOTE***
-
-You can't change tuples, but you always can generate a new tuple out of an existing tuple an a new tuple-element
-
-``` python
->>> (1, 'foo', 3.14) + ('bar',) # creating a new tuple out of 2 existing tuples
-(1, 'foo', 3.14, 'bar')
->>>
-```
-
-
 ### Dictionaries - `dict`
-Python provides a mapping data type storing key-value pairs called dictionaries (`dict`). Typically used storing a collection of named-objects.
 
-`dict`- types generation
-
-``` python
->>> {'name': 'Paul', 'age': 26, 'profession': 'author'}       # implicit: using curly braces '{' '}'
-{'name': 'Paul', 'age': 26, 'profession': 'author'}
->>> dict({'name': 'Paul', 'age': 26, 'profession': 'author'})  # explicit: 'dict'-class constructor
-{'name': 'Paul', 'age': 26, 'profession': 'author'}
->>>
-```
-
-`dict` example
+Dictionaries are a nearly ubiquituous data type in Python. Dictionaries are a
+"mapping" data type storing key-value data:
 
 ``` python
 >>> {'name': 'Paul', 'age': 26, 'profession': 'author'}
 {'name': 'Paul', 'age': 26, 'profession': 'author'}
 >>> type({'name': 'Paul', 'age': 26, 'profession': 'author'})
 <class 'dict'>
->>> 
+>>>
 ```
 
-***dictionary-lookup***
-
-Accessing individual elements of a dictionary `m` is done using the dictionary key-indexing-operator `m.[key]`
+Example `dict` operations:
 
 ``` python
->>> {'name': 'Paul', 'age': 26, 'profession': 'author'}['name']
+>>> d = {'name': 'Paul', 'age': 26, 'profession': 'author'}
+>>> d['name']
 'Paul'
+>>> d['age'] = 27
+>>> list(d.items())
+[('name', 'Paul'), ('age', 27), ('profession', 'author')]
+>>> list(d.keys())
+['name', 'age', 'profession']
+>>> list(d.values())
+['Paul', 27, 'author']
+>>> del d['age']
+>>> d
+{'name': 'Paul', 'profession': 'author'}
+>>> d.popitem()
+('profession', 'author')
+>>> d
+{'name': 'Paul'}
 >>> 
+
 ```
 
 ### Sets - `set`
 
-The Python `set` is a datatype according to the mathematical set theory it therefore is a collection of unique unnamed objects, probably of different types, and a set-operations like `union`, `intersection` and others.
-
-As opposed to the other Python builtin data types, `set`- type generation can only be done explicitly
-
-`set`- types generation
+The Python `set` is a datatype similar to a mathematical set. It's a collection
+of unique objects, (potentially) of different types, and supports set
+operations like `union`, `intersection` and others.
 
 ``` python
->>> set([1,2, 'foo']) # explicit: 'set'- class constructor (1) using '[' ']' brackets
-{1,2,'foo'}
->>> set((1,2,'foo'))  # explicit: 'set'- class constructor (2) using '(' ')' brackets
-{1,2,'foo'}
+>>> {1, 2, 'foo'}
+{1, 2, 'foo'}
+>>> set([1, 2, 'foo'])  # create set from a list
+{1, 2, 'foo'}
+>>> set((1, 2,'foo'))  # create set from a tuple
+{1, 2, 'foo'}
+>>> type({1, 2, 'foo'})
+<class 'set'>
+>>> 
 ```
 
 `set`-example
 
 ``` python
->>> set([1, 2,'foo'])   # simple set with uniqe elements
+>>> set([1, 2, 'foo', 'foo'])  # set from a list with a duplicate element
 {1, 2, 'foo'}
->>> type(set([1, 2,'foo'])) # type of set
-<class 'set'>
->>> set([1, 2,'foo', 'foo'])  # simple set with a non-uniqe element (getting dropped)
-{1, 2, 'foo'}
->>> type(set([1, 2,'foo', 'foo']))
-<class 'set'>
->>> set([1, 2,'foo']) & set([1,2]) # intersection of 2 sets using '&'-operator
+>>> set([1, 2,'foo']) & set([1, 2]) # intersection of 2 sets using '&'-operator
 {1, 2}
->>> type(set([1, 2,'foo']) & set([1,2]))
-<class 'set'>
+>>>
+>>> {1, 2, 3}.difference({1, 2})
+{3}
+>>> {1, 2, 3}.union({1, 2, 4})
+{1, 2, 3, 4}
+>>> {1, 2, 3}.intersection({1, 2, 4})
+{1, 2}
 >>> 
 ```
 
@@ -582,7 +537,7 @@ Programs can consume and produce information from and to different channels. One
 In Python there are builtin-functions (`input()`, `print()`) performing that tasks.
 
 
-***Input-Example***
+**Input-Example**
 
 ``` python
 >>> # just echo the input
@@ -600,7 +555,7 @@ Please enter your name: Donald
 >>> 
 ```
 
-***Output-Example***
+**Output-Example**
 
 ``` python
 >>> # print the stored input
@@ -609,7 +564,7 @@ Hallo Donald
 >>> 
 ```
     
-***Combined Input/Output Example***
+**Combined Input/Output Example**
 
 ``` python
 >>> print('Hallo %s' % input('Please enter your name: '))
@@ -633,11 +588,11 @@ Python provides two kinds of 'explicit controls' affecting the order of executio
 
 Choices are conditional-controls, affectiong the order of execution according to a boolean-condition.
 
-***if-statements***
+#### if-statements
 
-`if`-statements need a previously defined condition-variable. Python provides different variations of `if`-statements
+Python provides different variations of `if`-statements:
 
-`if` - example
+Simple `if` - example:
 
 ``` python
 >>> a = 1
@@ -648,7 +603,7 @@ a is 1
 >>> 
 ```
 
-`if-elif` - example
+`if-elif` - example:
 
 ``` python
 >>> a = 2
@@ -661,7 +616,7 @@ a is 2
 >>>
 ```
 
-`if-elif-else` - example
+`if-elif-else` - example:
 
 ``` python
 >>> a = 3
@@ -678,16 +633,17 @@ a is neither 1 nor 2
 
 ### Loops
 
-Loops are repetitive-controls, affecting the number of iterations a code-sequence is executed.
+Loops are repetitive controls, affecting the number of iterations a code
+block is executed.
 
-***for-statement***
+### for-statement
 
 The Python `for-statement` can be viewed as a representative of what Wikipedia calls a [count-controlled-loop](https://en.wikipedia.org/wiki/Control_flow#Count-controlled_loops). The number of repetitions in a `for`-loop is defined by the number elements of a (probably dynamically generated) sequence.
 
-`for`-loop example
+`for`-loop example:
 
 ``` python
->>> for elem in [1,2,3]:  # number of elements in the list defines the number of repetitions
+>>> for elem in [1, 2, 3]:  # number of elements in the list defines the number of repetitions
 ...     print(elem)
 ... 
 1
@@ -696,7 +652,9 @@ The Python `for-statement` can be viewed as a representative of what Wikipedia c
 >>>
 ``` 
 
-***while-statement***
+`for`-loops operate on *iterables*.
+
+### while-statement
 
 The Python `while-statement` can be viewed as a representative of what Wikipedia calls a [condition-controlled-loop](https://en.wikipedia.org/wiki/Control_flow#Condition-controlled_loops). In a `while`-loop a condition-variable is set before and changed within the `while`-loop. 
 
@@ -706,7 +664,7 @@ The Python `while-statement` can be viewed as a representative of what Wikipedia
 >>> a = 1
 >>> while a < 4:
 ...     print(a)
-...     a += 1   # change the control-variable
+...     a += 1   # change the condition-variable
 ... 
 1
 2
@@ -717,9 +675,9 @@ The Python `while-statement` can be viewed as a representative of what Wikipedia
 
 ## Functions
 
-Functions are ***named code blocks*** providing a dedicated task (procedure) or calculation (function). Functions *can* have input parameters and return values, i.e. result values returnd to the caller.
+Functions are **named code blocks** providing a dedicated task (procedure) or calculation (function). Functions *can* have input parameters and return values, i.e. result values returnd to the caller.
 
-***function definition***
+**function definition**
 A function is defined using the `def`-statement
 
 ``` python
@@ -736,7 +694,7 @@ A function definition consist of a (1) function-header and a (2) function body.
 The function header beginning with the `def` keyword followed by the function-name and a probably empty list of comma-separated input-parameters in parenthesis, followed by colons character `:`.
 The function body consists of an indented code-block of statements. In an interactive session the interpreters secondary prompt `...` shows the indentation level.
 
-***function call***
+**function call**
 A function is called simply using it's function name followed by a list of comma-separated call-parameters in parenthesis:
 
 ``` python
@@ -751,11 +709,11 @@ Functions can be called repeatedly and therefore are a major building block of r
 
 ## Classes and Instances
 
-Python allows user-defined data-types called ***classes***. Classes are type-definitions which include data - so called ***attributes*** - and ***methods*** - functions that define the type-specific behaviour. ***Instances*** are objects created from classes.
+Python allows user-defined data-types called **classes**. Classes are type-definitions which include data - so called **attributes** - and **methods** - functions that define the type-specific behaviour. **Instances** are objects created from classes.
 
 The following example demonstrates a simple `class`-definition, class-instantiations and common operations on class-instances like attribute-access and method-call using the `.`-dot operator
 
-***class definition***
+**class definition**
 
 ``` python
 >>> class MyDog:
@@ -767,7 +725,7 @@ The following example demonstrates a simple `class`-definition, class-instantiat
 >>>
 ```
     
-***class instances***
+**class instances**
 
 ``` python
 >>> mydog = MyDog("Django")         # create class instance
@@ -778,20 +736,75 @@ wuff
 >>>
 ```
 
-## Generators [OPEN]
+## Exceptions
 
+Python uses exceptions to communicate invalid (or impossible) operations aka
+runtime errors:
 
-## Exceptions [OPEN]
+``` python
+>>> 1 + "1"
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: unsupported operand type(s) for +: 'int' and 'str'
+```
 
+Such exceptions can be caught and handled:
 
-## Modules & Packages [OPEN]
+``` python
+>>> try:
+...     myfile = open('myfile.txt', 'r')
+... except FileNotFoundError as exc:
+...     print('caught', exc)
+...     # ... (do some sensible handling of this situation here)
+... 
+caught [Errno 2] No such file or directory: 'myfile.txt'
+>>> 
+```
 
+## Modules & Packages
 
-## Important for grasping Python [OPEN]
+You can modularize your code using modules (files) and packages (directories
+of module files):
 
-### Syntax [OPEN]
+``` python
+--8<--
+src/mymodule.py
+--8<--
+```
 
-### Immutable and Mutable Tpes [OPEN]
+Now you can **reuse** this functionality:
 
-### Names and Objects [OPEN]
+``` python
+>>> import mymodule
+>>> mymodule.myfunc("I just called")
+I just called
+42
+>>> 
+```
 
+## Generators
+
+A callable that doesn't return a single value but generates - possibly
+unlimited - values is called a generator. Generators *yield* values instead
+of returning values:
+
+``` python
+>>> def gen(limit=-1):
+...     if limit < 0:
+...         val = 0
+...         while True:
+...             yield val
+...             val += 1
+...     else:
+...         for val in range(limit):
+...             yield val
+... 
+>>> for i in gen(5):
+...     print(i)
+... 
+0
+1
+2
+3
+4
+```

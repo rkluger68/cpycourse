@@ -4,13 +4,95 @@
 
 Just the basic rules to be able to understand Python code, informally.
 
+### Statements
 
-### Indentation
+**Single statement**:
+A single statement is an executable instruction ending with a newline or
+semicolon. A statement changes the state of the program.
+
+#### Expressions
+
+An expression is a sequence of **operands** and **operators** evaluating to a
+single value. Operands can be expressions themselves.
+
+Examples:
+
+``` python
+"foo"        # string literal
+3.14         # float literal
+True         # boolean literal
+a            # simple identifier
+a + b        # simple expression using add-operator
+x == y       # simple expression using equal-comparison operator
+id(x)        # simple expression using id()-builtin function getting the
+             # object id of the object the variable 'x' refers to
+a is b       # simple expression using 'is'-operator
+             # (check identity as with id()-builtin function)
+```
+
+The evaluation (calculation) of an expression itself is triggered by an
+appropriate statement - in an interactive interpreter session this means you
+need to finish your entered expression with a carriage return (newline), this
+will make an expression statement out of an expression.  Expressions are
+printable and assignable. Because expressions are assignable, they form the
+smallest unit of reusable code. 
+
+Example 1 - expression statement:
+
+``` python
+>>> 5 + 3 # expression-statement
+8
+>>>
+```
+
+#### Operands and Operators
+
+Operands are literals, identifiers (variable names) or functions returning a single value. Operators are (meaningful) links between operands.
+
+
+#### Assignments
+
+Example 2 - assignment statement
+
+``` python
+>>> a = 5 + 3 # assignment-statement
+>>> a         # expression-statement
+8
+>>>
+```
+ 
+#### Indentation
+
+Grouping statements - i.e. building code blocks - is the basis for structuring
+a program. Organized in "higher-level" building blocks like functions, classes,
+modules and packages, they provide reusable code fragments. 
+
+A sensible "program organization" is crucial for creating  
+  - understandable  
+  - maintainable  
+  - extendible  
+  - testable  
+code.
 
 Python uses **indentation** to denote blocks of code (as opposed to e.g. {}
-braces in many other languages). Many love it, some don't care all that much,
+braces in many other languages).[^braces-blocks] Many love it, some don't care all that much,
 a few hate it. We believe that this is one reason why Python is so inherently 
 readable.
+
+[^braces-blocks]:
+    E.g in Java or C, the semicolon `;` is used as single-statement-delimiter,
+    the curly braces `{` `}` are used for code blocks.
+
+Consecutive statements can be grouped together forming a code block using the
+same indentation level:
+
+
+``` python
+>>> if need_cake:
+>>>     make_dough()    # three
+>>>     add_toppings()  #       steps
+>>>     bake()          #             in the same code block
+```
 
 Indentation must be consistent:
 ``` python
@@ -27,9 +109,11 @@ Always use 4 spaces for one level of indentation.[^indentation]
 
 [^indentation]: While this is not mandatory and enforced just do it :wink:.
 
-### Comments
+#### Comments
 
-A comment starts with a "#":
+Comments are used for documenting the code in-place. 
+
+A comment starts with a "#" and ends at the end of a line:
 
 ``` python
 >>> # a comment
@@ -37,9 +121,11 @@ A comment starts with a "#":
 something
 ```
 
+The Python interpreters ignores comments.
+
 ### Literals
 
-#### Numeric literals
+#### Numeric Literals
 
 ``` python
 >>> 12345  # integer
@@ -60,7 +146,7 @@ You can optionally separate big numbers for easier human reading:
 ```
 
 
-#### String literals
+#### String Literals
 
 All these are valid string literals i.e. text or "sequences of characters":
 
@@ -155,7 +241,7 @@ $ python3 -q
 >>> 
 ```
 
-### Valid Identifiers & Reserved words
+### Valid Identifiers & Reserved Words
 
 Identifiers are the names you are allowed to use e.g. for variable, function or
 class names.
