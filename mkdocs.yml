@@ -34,16 +34,16 @@ nav:
             - "Chapter 0: Installing Python":  training/main-course/installation.md
             - "Chapter 1: Grasping Python":  training/main-course/grasping-python.md
             - "Chapter 2: Python Objects": training/main-course/objects.md
-            - "Chapter 4: Built-in Types": training/main-course/builtin-types.md
-            - "Chapter 3: Functions": training/main-course/functions.md
-            - "Chapter 4: Classes & Instances": training/main-course/classes-instances.md
-            - "Chapter 5: Flow Control":  training/main-course/flow-control.md
-            - "Chapter 6: Exceptions": training/main-course/exceptions.md
-            - "Chapter 7: (File) Input & Output": training/main-course/io.md
-            - "Chapter 8: Modules & Packages": training/main-course/modules-packages.md
-            - "Chapter 9: Decorators": training/main-course/decorators.md
-            - "Chapter 10: Python Standard Library": training/main-course/stdlib-tour.md
-            - "Chapter 11: Python environments & Package installation": training/main-course/venvs-packages-installation.md
+            - "Chapter 3: Built-in Types": training/main-course/builtin-types.md
+            - "Chapter 4: Functions": training/main-course/functions.md
+            - "Chapter 5: Classes & Instances": training/main-course/classes-instances.md
+            - "Chapter 6: Flow Control":  training/main-course/flow-control.md
+            - "Chapter 7: Exceptions": training/main-course/exceptions.md
+            - "Chapter 8: (File) Input & Output": training/main-course/io.md
+            - "Chapter 9: Modules & Packages": training/main-course/modules-packages.md
+            - "Chapter 10: Decorators": training/main-course/decorators.md
+            - "Chapter 11: Python Standard Library": training/main-course/stdlib-tour.md
+            - "Chapter 12: Python environments & Package installation": training/main-course/venvs-packages-installation.md
         - Oddities: training/oddjob.md
         - Cheatsheet: training/cheatsheet.md
     - Lessons:
