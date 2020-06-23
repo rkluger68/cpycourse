@@ -7,7 +7,7 @@ repo_url: 'https://github.com/hjoukl/cpycourse'
 
 theme:
     # disable highlightjs code rendering to not interfere with material
-    # theme's use of genshi
+    # theme's use of pygments
     highlightjs: false
     #hljs_languages:
     #    - yaml
@@ -29,7 +29,7 @@ nav:
     - Training:
         - Tutorial: training/tutorial.md
         - Main Course:
-            - "A Curious Python: Main Course": training/main-course/main-course.md
+            - "A Curious Python Main Course": training/main-course/main-course.md
             - "Chapter 0: Installing Python":  training/main-course/installation.md
             - "Chapter 1: Grasping Python":  training/main-course/grasping-python.md
             - "Chapter 2: Python Objects": training/main-course/objects.md

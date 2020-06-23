@@ -3,6 +3,10 @@
 
 All original content of this website is governed by its [license](license.md).
 
+Snippets from Python documentation output e.g. in examples from interactive
+interpreter sessions represented here are subject to
+[Python's license](https://docs.python.org/3/license.html).
+
 Python and PyCon are trademarks or registered trademarks of the [Python Software Foundation](https://www.python.org/psf).
 
 All other trademarks mentioned on this website are the property of their respective owners.

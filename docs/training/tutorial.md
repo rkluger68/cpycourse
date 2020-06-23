@@ -185,6 +185,10 @@ Present value for [-100, -2, 3, 6, 8, 110] and interest rate 0.03:
 
 This program exhibits the main *building blocks* of a Python program.
 
+--8<--
+lessons/cmdline-calc.md
+--8<--
+
 ### Python Program Building Blocks
 
 A program is built as a sequence of instructions. The basic building blocks of 
@@ -295,6 +299,36 @@ indexes to access the individual characters:
 >>> 
 ```
 
+Strings have powerful formatting support:
+
+Using `str.format`:
+
+``` python
+>>> '{} says {}'.format('Peter', 'hi')
+'Peter says hi'
+>>> '{person} says {statement}'.format(person='Mary', statement='hey')
+'Mary says hey'
+>>>
+```
+
+A bit more oldschool:
+
+``` python
+>>> '%s says %s' % ('Paul', 'ho')
+'Paul says ho'
+```
+
+"f-strings" allow embedding expressions that get replaced with their values:
+``` python
+>>> name, says = 'Patti', 'yo'
+>>> f'{name} says {says}'
+'Patti says yo'
+>>> 
+```
+
+--8<--
+lessons/hello-world.md
+--8<--
 
 ### Numeric Data Types
 
@@ -384,15 +418,15 @@ A Python list is an array of unnamed objects of (potentially) different types.
 Similar to `str` list supports many useful sequence operations:
 
 ``` python
->>> [1,'foo', 3.14] # list of 3 elements
+>>> [1, 'foo', 3.14] # list of 3 elements
 [1, 'foo', 3.14]
->>> [1,'foo', 3.14] + ['bar']
+>>> [1, 'foo', 3.14] + ['bar']
 [1, 'foo', 3.14, 'bar']
->>> type([1,'foo', 3.14] + ['bar'])
+>>> type([1, 'foo', 3.14] + ['bar'])
 <class 'list'>
 >>> len([1, 'foo', 3.14]) # get length of a list
 3
->>> l = [1,'foo', 3.14]
+>>> l = [1, 'foo', 3.14]
 >>> l[0]
 1
 >>> l[-1]
@@ -419,9 +453,13 @@ Similar to `str` list supports many useful sequence operations:
 >>> 
 ```
 
+--8<--
+lessons/list-modify.md
+--8<--
+
 ### Tuples - `tuple`
 
-Tuples pretty similar to lists. They can store unnamed objects of different
+Tuples are pretty similar to lists. They can store unnamed objects of different
 type but opposed to Python lists, they are unchangeable, i.e elements can't be
 inserted, substituted or removed:
 
@@ -531,7 +569,10 @@ operations like `union`, `intersection` and others.
 
 ### None - `None`
 
-The Python `None` type is referred to as the `Null`-Object. It has a builtin contstant named `None`
+The Python `None` type is a built-in constant and frequently used as a
+"null"-object to denote the absence of a value.
+
+A very common use is as a default function argument.
 
 ``` python
 >>> None
@@ -542,7 +583,7 @@ The Python `None` type is referred to as the `Null`-Object. It has a builtin con
 
 ### Boolean `bool`
 
-The Python `bool` type has a two builtin constants named `False` an `True`
+The Python `bool` type has two built-in constants named `False` and `True`:
 
 ``` python
 >>> True
@@ -552,16 +593,32 @@ True
 >>> 
 ```
 
+Historically, `bool` is derived from int:
+
+``` python
+>>> True + 1
+2
+>>>
+```
+
 ## Input and Output
 
 Programs serve a purpose, they follow the IPO-model: Input - Processing - Output
 
-Programs consume information (input), do some work (based on that input) and produces information (output). 
-On the input-side information can be 'raw data' or 'commands' (which tell the program what to do with the data).
-On the output-side information can be 'computed data' or simple 'status information' describing the state of (individual) processing steps.
+Programs consume information (input), do some work (based on that input) and
+produce information (output). 
+The input-side information can be 'raw data' or 'commands' (which tell the
+program what to do with the data).
+The output-side information can be 'computed data' or simple 'status
+information' describing the state of (individual) processing steps.
 
-Programs can consume and produce information from and to different channels. One kind of these channels is referred to as 'standard-input'/'standard-output' enabling a user interactively to provide input to and retrieve output from a program.
-In Python there are builtin-functions (`input()`, `print()`) performing that tasks.
+Programs can consume and produce information from and to different channels.
+One kind of these channels is referred to as 'standard-input'/'standard-output'
+enabling a user to interactively provide input to and retrieve output from a
+program.
+
+In Python the builtin-functions `input()` and `print()` perform these basic
+tasks.
 
 
 **Input-Example**
@@ -586,17 +643,17 @@ Please enter your name: Donald
 
 ``` python
 >>> # print the stored input
->>> print('Hallo %s' % name)
-Hallo Donald
+>>> print('Hello %s' % name)
+Hello Donald
 >>> 
 ```
     
 **Combined Input/Output Example**
 
 ``` python
->>> print('Hallo %s' % input('Please enter your name: '))
+>>> print('Hello %s' % input('Please enter your name: '))
 Please enter your name: Donald
-Hallo Donald
+Hello Donald
 >>>
 ```
 
@@ -613,7 +670,8 @@ Python provides two kinds of 'explicit controls' affecting the order of executio
 
 ### Choices
 
-Choices are conditional-controls, affectiong the order of execution according to a boolean-condition.
+Choices are conditional controls, affecting the branches of execution according
+to a boolean condition.
 
 #### if-statements
 
@@ -669,7 +727,6 @@ Python also supports
 ```
 
 
-
 ### Loops
 
 Loops are repetitive controls, affecting the number of iterations a code
@@ -714,10 +771,11 @@ The Python `while-statement` can be viewed as a representative of what Wikipedia
 
 ## Functions
 
-Functions are **named code blocks** providing a dedicated task (procedure) or calculation (function). Functions *can* have input parameters and return values, i.e. result values returnd to the caller.
+Functions are **named code blocks** providing a dedicated task (procedure) or
+"calculation" (function). Functions *can* have input parameters and return
+values, i.e. result values returned to the caller.
 
-**function definition**
-A function is defined using the `def`-statement
+A function is defined using the `def`-statement:
 
 ``` python
 >>> # function definition
@@ -729,12 +787,17 @@ A function is defined using the `def`-statement
 >>>
 ```
 
-A function definition consist of a (1) function-header and a (2) function body.
-The function header beginning with the `def` keyword followed by the function-name and a probably empty list of comma-separated input-parameters in parenthesis, followed by colons character `:`.
-The function body consists of an indented code-block of statements. In an interactive session the interpreters secondary prompt `...` shows the indentation level.
+A function definition consists of a (1) function-header and a (2) function body.
+The function header beginning with the `def` keyword followed by the function
+name and a (potentially empty) list of comma-separated input parameters in
+parentheses, followed by a colon `:`.
 
-**function call**
-A function is called simply using it's function name followed by a list of comma-separated call-parameters in parenthesis:
+The function body consists of an indented code-block of statements. In an
+interactive session the `...` ellipsis show that a (multi-line) code block is
+ongoing.
+
+A function is called simply using its function name followed by a list of
+comma-separated call parameters in parentheses:
 
 ``` python
 >>> # function call
@@ -743,16 +806,29 @@ Hello World
 >>>
 ```
 
-Functions can be called repeatedly and therefore are a major building block of reusable-code in imperative programinmg languages.
+Functions can also be called using **name parameters**:
+``` python
+>>> # function call
+>>> echo(text="Hello World")
+Hello World
+>>>
+```
+
+Functions can be called repeatedly and therefore are a major building block of reusable code in imperative programinmg languages.
 
 
 ## Classes and Instances
 
-Python allows user-defined data-types called **classes**. Classes are type-definitions which include data - so called **attributes** - and **methods** - functions that define the type-specific behaviour. **Instances** are objects created from classes.
+Python allows user-defined data types called **classes**. Classes are type
+definitions which include data - so called **attributes** - and **methods** -
+functions that define the type-specific behaviour. **Instances** are objects
+created from classes.
 
-The following example demonstrates a simple `class`-definition, class-instantiations and common operations on class-instances like attribute-access and method-call using the `.`-dot operator
+The following example demonstrates a simple `class`-definition,
+class-instantiations and common operations on class instances like attribute
+access and method call using the `.`-dot operator.
 
-**class definition**
+**class definition**:
 
 ``` python
 >>> class MyDog:
@@ -764,7 +840,7 @@ The following example demonstrates a simple `class`-definition, class-instantiat
 >>>
 ```
     
-**class instances**
+**class instances and attribute/method access**:
 
 ``` python
 >>> mydog = MyDog("Django")         # create class instance
@@ -862,6 +938,9 @@ of returning values:
 For memory efficiency, these generated values are created on demand, in each
 iteration step, as opposed to pre-populating e.g. a large list.
 
+--8<--
+lessons/gen-even-odd.md
+--8<--
 
 ## Comprehensions and Generator Expressions
 
@@ -871,7 +950,7 @@ using a syntax that very much feels like a mathematical set notation:
 
 
 ``` python
->>> import os
+>>> import os  # operating system (OS) routines
 >>> dirs = [entry for entry in os.listdir() if os.path.isdir(entry)]
 >>> dirs
 ['.git', 'docs', '.github', 'site']
@@ -884,6 +963,7 @@ Similarly, one can use **generator expressions** that do not pre-populate a
 data structure but yield elements on demand:
 
 ``` python
+>>> import os
 >>> generate_dirs = (entry for entry in os.listdir() if os.path.isdir(entry))
 >>> generate_dirs
 <generator object <genexpr> at 0x7fc61861de60>
@@ -897,6 +977,7 @@ data structure but yield elements on demand:
 A **dict comprehension** can be used to create a dictionary:
 
 ``` python
+>>> import os
 >>> {entry: 'dir' if os.path.isdir(entry) else
 ...         'file' if os.path.isfile(entry) else
 ...         'link' if os.path.islink(entry) else
@@ -906,3 +987,7 @@ A **dict comprehension** can be used to create a dictionary:
 'mkdocs.yml': 'file', 'docs': 'dir', '.github': 'dir', 'site': 'dir'}
 >>> 
 ```
+
+--8<--
+lessons/rewrite-dict-comp.md
+--8<--
