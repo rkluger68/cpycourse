@@ -43,10 +43,16 @@ nav:
             - "Chapter 10: Decorators": training/main-course/decorators.md
             - "Chapter 11: Python Standard Library": training/main-course/stdlib-tour.md
             - "Chapter 12: Python environments & Package installation": training/main-course/venvs-packages-installation.md
-        - Oddities: training/oddjob.md
+        - Oddjob: training/oddjob.md
         - Cheatsheet: training/cheatsheet.md
     - Lessons:
-        - Lesson 1: lessons/hello-world.md
+        - Command Line Calculation: lessons/cmdline-calc.md
+        - Hello World: lessons/hello-world.md
+        - List Modification: lessons/list-modify.md
+        - Generate (Un)Even Numbers: lessons/gen-even-odd.md
+        - Rewrite Dict Comprehension: lessons/rewrite-dict-comp.md
+        - Check User Input Evenness: lessons/check-user-input-even.md
+        - Reverse Word Order: lessons/reverse-words.md
     - Python:
         - Python: python/python.md
         - Why Python?: python/why-python.md
