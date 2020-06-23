@@ -9,27 +9,6 @@ Function itself are Python objects, as such they can e.g be assigned, passed as 
 In Python user-defined functions are defined using the `def`-statement. A function definition is made up
 a function-header (defining the function-name and the call-signature)  and a function-body (the implementation of the task/calculation as a sequence of code statements ending up with an optional return-statement).
 
-## Function Scope [WIP]##
-
-Function define their own scope. Only locally defined variables are acessible and assignable
-
-``` python
->>> dir()
-['__annotations__', '__builtins__', '__doc__', '__loader__', '__name__', '__package__', '__spec__']
->>> b = 1
->>> dir()
-['__annotations__', '__builtins__', '__doc__', '__loader__', '__name__', '__package__', '__spec__', 'b']
->>> def foo(x):
-...     print(dir())
-...     y = 1
-...     print(dir())
-... 
->>> c = foo(b)
-['x']
-['x', 'y']
->>>
-```
-
 
 Python allows different ways of function-definitions as described in the following subsections.
 
@@ -297,7 +276,7 @@ Function annotations are stored in the `__annotations__` attribute of a function
 >>> concate.__annotations__
 {'string_1': <class 'str'>, 'string_2': <class 'str'>, 'return': <class 'str'>}
 >>> 
-````
+```
 
 For a more detailed inforamtions please refer to [PEP 3107 -- Function Annotations](https://www.python.org/dev/peps/pep-3107/) and [PEP 484 -- Type Hints ](https://www.python.org/dev/peps/pep-0484/)
 
