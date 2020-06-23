@@ -318,6 +318,8 @@ A bit more oldschool:
 'Paul says ho'
 ```
 
+See https://pyformat.info/ for concise information on these topics.
+
 "f-strings" allow embedding expressions that get replaced with their values:
 ``` python
 >>> name, says = 'Patti', 'yo'
