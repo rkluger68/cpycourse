@@ -46,7 +46,11 @@ nav:
         - Oddities: training/oddjob.md
         - Cheatsheet: training/cheatsheet.md
     - Lessons:
-        - Lesson 1: lessons/hello-world.md
+        - Command Line Calculation: lessons/cmdline-calc.md
+        - Hello World: lessons/hello-world.md
+        - List Modification: lessons/list-modify.md
+        - Generate (Un)Even Numbers: lessons/gen-even-odd.md
+        - Rewrite Dict Comprehension: lessons/rewrite-dict-comp.md
     - Python:
         - Python: python/python.md
         - Why Python?: python/why-python.md

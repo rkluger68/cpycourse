@@ -121,10 +121,11 @@ Python is Free/Libre Open Source Software (F(L)OSS) and can be obtained here: ww
 There is "Python the lanuage" and "Python the implementation:
 
 Aside from the predominant reference implementation dubbed "CPython" several other implementations of Python the language exist, with varying degrees of version compatibility and adoption:
- * [PyPy](https://www.pypy.org/)
- * [Jython](https://www.jython.org/)
- * [IronPython](https://ironpython.net/)
- * ...and probably others
+
+ - [PyPy](https://www.pypy.org/)
+ - [Jython](https://www.jython.org/)
+ - [IronPython](https://ironpython.net/)
+ - ...and probably others
 
 Furthermore, several Python distributions bundle Python, Python packages,
 external dependencies and additional tooling. A very prominent one is 
