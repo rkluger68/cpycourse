@@ -53,6 +53,7 @@ nav:
         - Rewrite Dict Comprehension: lessons/rewrite-dict-comp.md
         - Check User Input Evenness: lessons/check-user-input-even.md
         - Reverse Word Order: lessons/reverse-words.md
+        - Check Palindroms: lessons/palindroms.md
     - Python:
         - Python: python/python.md
         - Why Python?: python/why-python.md
