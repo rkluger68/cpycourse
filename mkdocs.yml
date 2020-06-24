@@ -44,7 +44,7 @@ nav:
             - "Chapter 11: Python Standard Library": training/main-course/stdlib-tour.md
             - "Chapter 12: Python environments & Package installation": training/main-course/venvs-packages-installation.md
         - Oddjob: training/oddjob.md
-        - Cheatsheet: training/cheatsheet.md
+        #- Cheatsheet: training/cheatsheet.md
     - Lessons:
         - Command Line Calculation: lessons/cmdline-calc.md
         - Hello World: lessons/hello-world.md
