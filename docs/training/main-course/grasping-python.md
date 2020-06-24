@@ -573,6 +573,8 @@ LEGB-Rule:
  1. **B**uiltin
 
 ``` python
+>>> global_x = "I'm global"
+>>> 
 >>> def f():  # functions define scope
 ...     print(global_x)  # lookup in local scope (nothing), then in global
 scope
@@ -612,4 +614,3 @@ While "pythonic" can understandably not be a very well-defined term the
 [Zen of Python](https://www.python.org/dev/peps/pep-0020/) is a collection of
 Python's language design guiding principles which can also be put to good use
 in your quest to write "pythonic" code.
-
