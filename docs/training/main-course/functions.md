@@ -9,27 +9,6 @@ Function itself are Python objects, as such they can e.g be assigned, passed as 
 In Python user-defined functions are defined using the `def`-statement. A function definition is made up
 a function-header (defining the function-name and the call-signature)  and a function-body (the implementation of the task/calculation as a sequence of code statements ending up with an optional return-statement).
 
-## Function Scope [WIP]##
-
-Function define their own scope. Only locally defined variables are acessible and assignable
-
-``` python
->>> dir()
-['__annotations__', '__builtins__', '__doc__', '__loader__', '__name__', '__package__', '__spec__']
->>> b = 1
->>> dir()
-['__annotations__', '__builtins__', '__doc__', '__loader__', '__name__', '__package__', '__spec__', 'b']
->>> def foo(x):
-...     print(dir())
-...     y = 1
-...     print(dir())
-... 
->>> c = foo(b)
-['x']
-['x', 'y']
->>>
-```
-
 
 Python allows different ways of function-definitions as described in the following subsections.
 
@@ -65,6 +44,12 @@ A function-call is done simply writing the function-name following a `tuple` of 
 ***Note:***
 The number of parameters equal the number of call-arguments
 Also the order of the call-parameter must match the order of function-paramaters: During the function-call the 1.st call-argument is mapped to the 1.st function-parameter, the 2.nd call-argument is mapped to the 2.nd function-parameter, i.e a position-based mapping from the call-arguments to the function-parameters (call-arguments are ***positional arguments***)
+
+Let's give it a try
+
+--8<--
+lessons/palindroms.md
+--8<--
 
 ## Function with optional parameters ##
 
@@ -297,7 +282,7 @@ Function annotations are stored in the `__annotations__` attribute of a function
 >>> concate.__annotations__
 {'string_1': <class 'str'>, 'string_2': <class 'str'>, 'return': <class 'str'>}
 >>> 
-````
+```
 
 For a more detailed inforamtions please refer to [PEP 3107 -- Function Annotations](https://www.python.org/dev/peps/pep-3107/) and [PEP 484 -- Type Hints ](https://www.python.org/dev/peps/pep-0484/)
 
