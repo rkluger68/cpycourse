@@ -21,5 +21,9 @@
       - instance-method: 'geWholesaleName' (returning private instance-attribute '__retailname')
       - instance-method: 'getType' (returning private class_attribute '__type')
       
+   1.) Create a list of Customers of different types ('Retail'-customers and 'Wholesale'-customers)
+        
+   2.) Iterate the list and output 'name', 'type', 'id' and 'employees' of each customer
       
-    Hint: provide a callable interface `__call__()`
+      
+   Hint: provide a callable interface `__call__()`
