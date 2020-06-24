@@ -562,6 +562,42 @@ object)
 **Further reading**: A great in-depth explanation can be found
 [here](https://nedbatchelder.com/text/names1.html).
 
+## Python Scoping
+
+A scope defines the visibility of names. The lookup of names in Python the
+LEGB-Rule:
+
+ 1. **L**ocal
+ 1. **E**nclosing
+ 1. **G**lobal
+ 1. **B**uiltin
+
+``` python
+>>> def f():  # functions define scope
+...     print(global_x)  # lookup in local scope (nothing), then in global
+scope
+...     
+...     def inner():
+...         local_z = "I'm local"  # a name in inner local scope
+...         print(local_z)
+...         print(enclosing_y)     # local (nothing), enclosing -> enclosing_y
+...         print(global_x)        # local (nothing), enclosing (nothing), 
+...                                # global -> global_x
+...         print('print() is a built-in!')
+...     
+...     # variable in local scope of f == enclosing scope of inner    
+...     enclosing_y = "I'm enclosing (for inner), local for f"
+...     # run inner function
+...     inner()
+... 
+>>> f()       
+I'm global
+I'm local
+I'm enclosing (for inner), local for f
+I'm global
+print() is a built-in!
+>>> 
+```
 
 ## Style guide
 
