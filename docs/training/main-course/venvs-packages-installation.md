@@ -117,11 +117,11 @@ See here for more detailed
 If you don't want to install to the system Python (which is probably a good
 idea) you can isolate your app and its dependencies in a Python "virtual
 environment" or "venv". Virtual environments are installation directories that
-basically contain a Python installation layout that "links" to the system
+basically contain a Python installation layout that links to the system
 installation. In effect all the system Python installation stuff
-(standard library etc.) is retrieved from this installation while your app and
-its dependencies are installed into the `site-packages` directory of the
-virtual environment.
+(standard library etc.) is retrieved from this system installation while your
+application and its dependencies are installed into the `site-packages`
+directory of the virtual environment.
 
 A virtual env can simply be created with 
 
@@ -130,12 +130,14 @@ python3 -m venv /path/to/new/virtual-env
 ```
 
 To use the virtual environment you can either
+
  - explitly use the executable path(s) of this virtual env:
 
      ```
      /path/to/new/virtual-env/bin/python  # interpreter
      /path/to/new/virtual-env/bin/pip     # package installer
      ```
+
  - or you can *activate* this environment:
 
      ```
