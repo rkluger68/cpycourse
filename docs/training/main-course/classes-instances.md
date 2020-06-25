@@ -14,8 +14,8 @@ Simple classe typically have instance-attributes and instance-methods.
     - instance-attributes are accessd using the `.`-dot operator:  Pseudo-syntax `<class-instance>.<instance-attribute>`
 2. instance-methods: 
     - must be called with a class-instance
-    - instance-methods are accessed using the `.`-dot operator: Pseudo-syntax `<class-instance>.<instance-attribute>(<params>)`
-    - the class constructor is named `__init__()`. The `__init__()`-method is not mandatory to create class-instances (that's the task of the [`__new__()`-method](https://docs.python.org/3/reference/datamodel.html?highlight=__init#object.__new__), which is implicitly there. But practically the `__init__()`-method is always necessary to initialize the instance-attributes
+    - instance-methods are accessed using the `.`-dot operator: Pseudo-syntax `<class-instance>.<instance-method>(<params>)`
+    - the 'class constructor' is named `__init__()`. The `__init__()`-method is not mandatory to create class-instances (that's the task of the [`__new__()`-method](https://docs.python.org/3/reference/datamodel.html?highlight=__init#object.__new__), which is implicitly there. But practically the `__init__()`-method is always necessary to initialize the instance-attributes. To be more precisely: A class-instatiation is a 2-step process 1. creating the class (`__new__()`)and 2. initialisation (`__init__()`). During a class-instantiation these 2-steps are implicitly performed by the interpreter.
     - a class can define a destructor-mehod called `__del__()`, to explicitly do some finalizer tasks e.g. close ressources opened by the class-instance. The destructor is never called explicitly by user-code, instead its is called by the interpreters garbage collector, when the reference count (see [Object Lifetime and Object Reference](objects.md)) of the class instance reaches 0. For more details see [__del__()](https://docs.python.org/3/reference/datamodel.html?highlight=__del#object.__del__).
     - every instance-method need an explicit *1.st*-parameter named `self`
 
@@ -51,7 +51,7 @@ Simple classe typically have instance-attributes and instance-methods.
 ***class instantiation - attribute and method access***
 
 ``` python
->>> a1 = ('A')
+>>> a1 = A('A')
 >>> a1.name                # attribute-access using class-instance and '.'-dot operator
 'A'
 >>> a1.getName()           # method-access  using class-instance and '.'-dot operator
@@ -69,7 +69,7 @@ During a instance-method call the python interpreter implicity converts (pseudoc
 
 into
 
-    <class-object><instance-method>(<class-instance-object>, <param-1>, ..., <param-n>)
+    <class-object>.<instance-method>(<class-instance-object>, <param-1>, ..., <param-n>)
 
 The `self`-argument is the class-instance-object iself. See also the section [Instance methods](https://docs.python.org/3/reference/datamodel.html?highlight=__del#the-standard-type-hierarchy) auf the Python docs.
 
@@ -152,7 +152,7 @@ As mentioned above, Python doesn't provide any real mechanism for class privacy,
 ``` python
 >>> class B(A):                            # class 'B' inherhits from class 'A'
 ...     def __init__(self, name, number):  # class constructor
-...         A.__init__(self, name)         # call base-class constructor
+...         A.__init__(self, name)         # call base-class initialisation-method
 ...         self.number = number           # instance variable
 ...     def getNumber(self):               # instance methode
 ...         return self.number
@@ -198,8 +198,8 @@ Python also supports multiple inheritance
 >>>
 >>> class B(A,Z):   # multiple inheritance 
 ...     def __init__(self, name, another_name, number):
-...         A.__init__(self, name)           # call base-class constructor class 'A'
-...         Z.__init__(self, another_name)   # call base-class constructor class 'Z'
+...         A.__init__(self, name)           # call base-class initialisation-method of class 'A'
+...         Z.__init__(self, another_name)   # call base-class initialisation-method of class 'Z'
 ...         self.number = number
 ...     def getNumber(self):
 ...         return self.number
@@ -240,7 +240,7 @@ Python also support composition, i.e. a class 'B' has an instance-attribute poin
 ... 
 >>> class B:
 ...     def __init__(self, name, number):
-...         self.a = A(name)               # class 'B' "has-a" an instance-attribute of class 'A'
+...         self.a = A(name)               # create a class 'A' (calling the constructor of class 'A') instance and old a reference to it (class 'B' "has-a" an instance-attribute of class 'A'
 ...         self.number = number
 ...     def getNumber(self):
 ...         return self.number
@@ -301,7 +301,7 @@ As opposed to 'instance'-attributes 'class'-attributes are common to all class i
 ```
 
 
-## Class Poperties
+## Class Properties
 
 Ordinary Python instance-attributes are by default 'readable', 'writable' and 'deletable'. Python class properties ('property-attributes') are attributes with 'access-control', i.e. they can be designed to be 'readable', 'writeable' and 'deletable'. Python properties therefore are managed attributes. This is done with special `getter`-, `setter`- and `deleter`- methods which enables the properties to be accessed as ordinary atttributes (instead of a method-call).
 
