@@ -2,10 +2,11 @@
 
 ## The Python's Nest
 
-A typical system Python installation (on a Linux system) will look something 
-like this:
+A typical system (C)Python installation will look something like this:
 
 ```
+# Linux system essential Python paths
+ 
 /usr/bin/python -> python3.6
 /usr/bin/python3 -> python3.6
 /usr/bin/python3.6
