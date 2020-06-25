@@ -1,7 +1,7 @@
 # Be classy: Python Classes and Instances
 
-Classes are the Python building block creating user-defined types in an object-oriented manner. Classes encapsulate data ('attributes') and appropriate functions ('methods'), which define the bahaviour of class-instances (i.e. objects of that class). Python supports composition ("has-a"-relation) and (multiple-) inheritance ("is-a"-relation) between classes/instances. In combination with method-overriding and a special kind of polymorphism (***Duck-Typing***), Python offers most of bunch of object-oriented features (Most, because Python doesn't really supports class privacy as explained below).
-Classes iself are objects, as such define a state (e.g. the `__name__` atttrinute) and a behaviour (a set of methods) - the most common is the class-costructor, which creates instances of a class.
+Classes are the Python building block creating user-defined types in an object-oriented manner. Classes encapsulate data ('attributes') and appropriate functions ('methods'), which define the bahaviour of class-instances (i.e. objects of that class). Python supports 'composition' ("has-a"-relation) and (multiple-) 'inheritance' ("is-a"-relation) between classes/instances. In combination with 'method-overriding' and a special kind of 'polymorphism' (***Duck-Typing***), Python offers most of bunch of object-oriented features (Most, because Python doesn't really supports class privacy as explained below).
+Classes itself are objects, as such define a state (e.g. the `__name__` attribute) and a behaviour (a set of methods) - the most common is the class-costructor, which creates instances of a class.
 
 Let's start with a simple class.
 
@@ -19,7 +19,24 @@ Simple classe typically have instance-attributes and instance-methods.
     - a class can define a destructor-mehod called `__del__()`, to explicitly do some finalizer tasks e.g. close ressources opened by the class-instance. The destructor is never called explicitly by user-code, instead its is called by the interpreters garbage collector, when the reference count (see [Object Lifetime and Object Reference](objects.md)) of the class instance reaches 0. For more details see [__del__()](https://docs.python.org/3/reference/datamodel.html?highlight=__del#object.__del__).
     - every instance-method need an explicit *1.st*-parameter named `self`
 
-***class definition***  
+***class definition example (1)***
+
+``` python
+>>> class A:pass
+...
+>>>
+```
+
+***class `__name__`- attribute***
+
+```python
+>>> A.__name__
+'A'
+>>>
+```
+
+
+***class definition (2)***  
 
 ``` python
 >>> class A:
@@ -35,11 +52,13 @@ Simple classe typically have instance-attributes and instance-methods.
 
 ``` python
 >>> a1 = ('A')
->>> a1.name          # attribute-access using class-instance and '.'-dot operator
+>>> a1.name                # attribute-access using class-instance and '.'-dot operator
 'A'
->>> a1.getName()     # method-access  using class-instance and '.'-dot operator
+>>> a1.getName()           # method-access  using class-instance and '.'-dot operator
 'A'
->>>    
+>>>  a.__class__.__name__  # class-attribute 
+'A'
+>>>
 ```
 
 ## Note on `self`-parameter 
@@ -109,7 +128,7 @@ AttributeError: 'A' object has no attribute '__name'
 'ClassPrivacy'
 >>> a._getName()       # (5) private-by-convention ==> still accessible/callable
 'ClassPrivacy'
->>> a.__getName()      # (6) private-by-lecical-convention ==> not accessible because it is not found
+>>> a.__getName()      # (6) private-by-lexical-convention ==> not accessible because it is not found
 Traceback (most recent call last):
   File "<stdin>", line 1, in <module>
 AttributeError: 'A' object has no attribute '__getName'
@@ -274,6 +293,11 @@ As opposed to 'instance'-attributes 'class'-attributes are common to all class i
 >>> a1.count        # Note: both instances share the same attribute
 2
 >>>
+>>> id(a1.count)
+140201179340160
+>>> id(a2.count)
+140201179340160
+>>>
 ```
 
 
@@ -287,7 +311,7 @@ Properties are a way of data encapusulation. Hiding ordinary attributes behind a
 Python support two different ways of implementing properties:
 
 1. 'lower-level' using `property()` builtin function
-2. 'higher-level' using  `@propery()`-decorator
+2. 'higher-level' using  `@propery`-decorator
 
 The Python docs provide a good [property-example](https://docs.python.org/3/library/functions.html#property), with read-, write- and delete-access. For convenience this is simply copied here. 
 
@@ -323,7 +347,7 @@ usage
 11
 ```
 
-***example using the `@propery()`builtin decorator***
+***example using the `@propery`-builtin decorator***
 ``` python
 class C:
     def __init__(self):
