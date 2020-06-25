@@ -293,6 +293,11 @@ As opposed to 'instance'-attributes 'class'-attributes are common to all class i
 >>> a1.count        # Note: both instances share the same attribute
 2
 >>>
+>>> id(a1.count)
+140201179340160
+>>> id(a2.count)
+140201179340160
+>>>
 ```
 
 
