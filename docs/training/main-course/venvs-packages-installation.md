@@ -1,4 +1,4 @@
-# Python environments and (3rd party) package installation
+# Python Environments and (3rd party) Package Installation
 
 ## The Python's Nest
 
@@ -57,23 +57,35 @@ Usually such packages are retrieved from the official
     To avoid unintentional installation of malicious packages **always** make
     sure you 
     
-     - know exactly what your installing (ideally having reviewed the code) and
-     - use the **correct spelling** of the package you intend to install.
+     - **know what you're installing** (ideally having reviewed the code),
+     - use a **trusted packages source**[^securing-pypi] and
+     - use the **correct spelling** of the package you intend to
+       install.[^avoid-typosquatting]
 
-    There have been
-    [attempts in the past](https://www.zdnet.com/article/two-malicious-python-libraries-removed-from-pypi/)
-    to put malicious code on PyPI; these used the
-    [typosquatting technique](https://en.wikipedia.org/wiki/Typosquatting) and 
-    mimicked popular libraries by using a similar package name.[^securing-pypi]
+    Unfortunately this is not too easy because anybody can upload their
+    packages to PyPI. As your dependency will probably depend on other packages
+    itself (and so on), the dependency tree can quickly become quite large.
 
-    Unfortunately this is often not that easy because your dependency will
-    probably depend on other packages itself (and so on), so the dependency
-    tree can quickly become quite large...
+    On the plus-side well-known projects are usually developed in the open
+    (e.g. on
+    [GitHub](https://www.github.com)/[GitLab](https://gitlab.com)/
+    [Bitbucket](https://bitbucket.org))
+    and reviewed by many eyes.
+    
+    So just be aware.
 
 [^securing-pypi]:
     There are
     [ongoing efforts to improve PyPI security](https://www.python.org/dev/peps/pep-0458/)
     and guard against evil-doers.
+
+[^avoid-typosquatting]:
+    There have been 
+    [attempts in the past](https://www.zdnet.com/article/two-malicious-python-libraries-removed-from-pypi/)
+    to put malicious code on PyPI; these used the
+    [typosquatting technique](https://en.wikipedia.org/wiki/Typosquatting) and 
+    mimicked popular libraries by using a similar package name.
+
 
 Using the popular [`requests` library]() as an example:
 
@@ -107,6 +119,11 @@ pip install "requests~=2.19.0"
 If the package to install is properly set up, `pip` resolves *its* dependencies
 and automatically installs these "prerequisites", i.e. the dependencies of your
 dependencies.
+
+You can control the "package index" where the packages are retrieved from by
+`pip`, with the default being [PyPI](https://pypi.org/); packages can also be
+installed from local filesystem paths and directly from (remote) version 
+control repositories.
 
 See here for more detailed
 [tutorial instructions on installing packages](https://packaging.python.org/tutorials/installing-packages/).
