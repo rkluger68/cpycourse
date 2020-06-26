@@ -47,11 +47,11 @@ manager protocol methods:
 ``` python
 class MyContextManager:
     def __enter__(self):
-        # resource acquisition goes here
+        # context initialization goes here (e.g. resource acquisition)
         # ...
 
     def __exit__(self, exc_type, exc_value, traceback):
-        # resource closing/cleanup goes here
+        # context finalization goes here (e.g. resource closing/cleanup)
         # ...
 
 ```
