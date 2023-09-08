@@ -61,6 +61,8 @@ nav:
         - Python: python/python.md
         - Why Python?: python/why-python.md
         - A brief history of Python: python/python-history.md
+    - Excursions:
+        - Shells: excursions/shells.md
     - About:
         - Curious Python Course: about/curious-python-course.md
         - License: about/license.md
