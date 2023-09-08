@@ -45,9 +45,12 @@ sometimes *primarily* using Python.
 
 Python also played an important role in [getting the 1st ever black hole
 image](https://www.blog.pythonlibrary.org/2019/04/11/python-used-to-take-photo-of-black-hole/)
-in 2019.
+in 2019 and [NASA's 2021 Mars
+mission](https://discuss.python.org/t/python-is-running-on-mars/8312/1).
+
 
 ## It has many applications
+
 Python is
 
  - useful in many domains, from simple scripts to building web applications to
@@ -72,9 +75,11 @@ https://www.python.org/community/.
 ## It is widely used & usage is growing rapidly
 
 - Currently the fastest growing / dominant language? Python
-    - ranks no. 1 on the [PYPL PopularitY of Programming Language](http://pypl.github.io/PYPL.html) index (06/2020)
-    - ranks no. 2 (behind JavaScript) on the [Redmonk Programming Language Rankings](https://redmonk.com/sogrady/2020/02/28/language-rankings-1-20/?utm_source=rss&utm_medium=rss&utm_campaign=language-rankings-1-20) (01/2020)
-    - ranks no. 2 (behind JavaScript) in the [GitHub octoverse report top languages](https://octoverse.github.com/#top-languages) (2019)
+    - ranks no. 1 on the [TIOBE Index](https://www.tiobe.com/tiobe-index/)
+      (08/2023)
+    - ranks no. 1 on the [PYPL PopularitY of Programming Language](http://pypl.github.io/PYPL.html) index (09/2023)
+    - ranks no. 2 (behind JavaScript) on the [Redmonk Programming Language Rankings](https://redmonk.com/sogrady/2023/05/16/language-rankings-1-23/) (01/2023)
+    - ranks no. 2 (behind JavaScript) in the [GitHub octoverse report top languages](https://octoverse.github.com/2022/top-programming-languages) (2022)
 - huge uptake since around 2012-2014 in the scientific community and data
   science:
     - machine learning

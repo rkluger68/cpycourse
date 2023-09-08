@@ -41,6 +41,6 @@ If the implementation is easy to explain, it may be a good idea.
 Namespaces are one honking great idea -- let's do more of those!
 ```
 
-Take a look at [what this is all about first](python/python.md).
+Take a look at [what this is all about](python/python.md) first.
 
 Or, dive right into the [tutorial](training/tutorial.md).

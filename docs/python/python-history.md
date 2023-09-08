@@ -74,8 +74,36 @@ annotations (and many many more changes).
 ### Anaconda 0.8.0 (2012)
 Data science Python distribution, package & environment manager.
 
+### Python 3.3 (2012)
+Python 3.3 restores the u'unicode string' syntax which makes the Python 2 to
+Python 3 transition way easier than before.
+
+### Python 3.5 (2015)
+Greatly improved async programming, now with syntactic support. Also, [type
+hints](https://docs.python.org/3/whatsnew/3.5.html#pep-484-type-hints) and
+[matrix multiplication
+operator](https://docs.python.org/3/whatsnew/3.5.html#pep-465-a-dedicated-infix-operator-for-matrix-multiplication).
+
+### Guido steps down as Python BDFL (2018)
+After having the final Python design responsibility and say-so since 1991 Guido
+van Rossum decides to step down from his BDFL role.
+
+The Python core developer community decides to establish a steering council of
+annually elected core developers to take over the [language
+governance](https://peps.python.org/pep-0013/) powers and duties.
+
 ### Python 2.7.18 (2020)
 The last release of Python 2.
 
-### Python 3.8.3 (2020)
+### Faster CPython (2021)
+Python inventor and BDFL emeritus Guido van Rossum gets tired of retirement and
+joins Microsoft to push the ["Faster CPython"
+project](https://github.com/faster-cpython/ideas/blob/main/FasterCPythonDark.pdf),
+together with other expert contributors.
+
+### Python 3.11.5 (2023)
 The latest and greatest Python (at the time of writing).
+
+Python 3.11 can be [up to 10-60% faster than Python 3.10, with an average
+1.22x speedup in the standard benchmark
+suite()](https://www.python.org/downloads/release/python-3115/).
