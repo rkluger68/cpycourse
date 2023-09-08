@@ -33,7 +33,9 @@ theme:
       primary: teal
       accent: deep purple
   features:
-    - tabs
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - content.code.copy
   #logo: images/python-powered-w.svg
 
 nav:
@@ -58,17 +60,17 @@ nav:
       - "Chapter 13: Python Standard Library": training/main-course/stdlib-tour.md
       - Oddjob: training/oddjob.md
       #- Cheatsheet: training/cheatsheet.md
-  - Lessons:
-    - Command Line Calculation: lessons/cmdline-calc.md
-    - Hello World: lessons/hello-world.md
-    - List Modification: lessons/list-modify.md
-    - Generate (Un)Even Numbers: lessons/gen-even-odd.md
-    - Rewrite Dict Comprehension: lessons/rewrite-dict-comp.md
-    - Check User Input Evenness: lessons/check-user-input-even.md
-    - Reverse Word Order: lessons/reverse-words.md
-    - Check Palindromes: lessons/palindroms.md
-    - Customer Class: lessons/customer.md
-    - Iterate File: lessons/iter-file.md
+    - Lessons:
+      - Command Line Calculation: training/lessons/cmdline-calc.md
+      - Hello World: training/lessons/hello-world.md
+      - List Modification: training/lessons/list-modify.md
+      - Generate (Un)Even Numbers: training/lessons/gen-even-odd.md
+      - Rewrite Dict Comprehension: training/lessons/rewrite-dict-comp.md
+      - Check User Input Evenness: training/lessons/check-user-input-even.md
+      - Reverse Word Order: training/lessons/reverse-words.md
+      - Check Palindromes: training/lessons/palindroms.md
+      - Customer Class: training/lessons/customer.md
+      - Iterate File: training/lessons/iter-file.md
   - Python:
     - Python: python/python.md
     - Why Python?: python/why-python.md
@@ -98,17 +100,21 @@ markdown_extensions:
   - pymdownx.emoji:
       emoji_index: !!python/name:materialx.emoji.twemoji
       emoji_generator: !!python/name:materialx.emoji.to_svg
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
   - pymdownx.inlinehilite
   - pymdownx.magiclink
   - pymdownx.mark
   - pymdownx.smartsymbols
+  - pymdownx.snippets:
+      base_path: docs
   - pymdownx.superfences
   - pymdownx.tasklist:
       custom_checkbox: true
   - pymdownx.tabbed:
       alternate_style: true
   - pymdownx.tilde
-  - pymdownx.snippets:
-      base_path: docs
 
 copyright: Copyright &copy; 2020-2023 The <a href="/about/cpycourse-contributors.md">Cpycourse Contributors</a>.
