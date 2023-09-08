@@ -48,7 +48,7 @@ Also the order of the call-parameter must match the order of function-parameters
 Let's give it a try
 
 --8<--
-lessons/palindroms.md
+training/lessons/palindroms.md
 --8<--
 
 ## Function with optional parameters ##

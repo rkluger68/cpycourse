@@ -186,7 +186,7 @@ Present value for [-100, -2, 3, 6, 8, 110] and interest rate 0.03:
 This program exhibits the main *building blocks* of a Python program.
 
 --8<--
-lessons/cmdline-calc.md
+training/lessons/cmdline-calc.md
 --8<--
 
 ### Python Program Building Blocks
@@ -329,7 +329,7 @@ See https://pyformat.info/ for concise information on these topics.
 ```
 
 --8<--
-lessons/hello-world.md
+training/lessons/hello-world.md
 --8<--
 
 ### Numeric Data Types
@@ -456,7 +456,7 @@ Similar to `str` list supports many useful sequence operations:
 ```
 
 --8<--
-lessons/list-modify.md
+training/lessons/list-modify.md
 --8<--
 
 ### Tuples - `tuple`
@@ -941,7 +941,7 @@ For memory efficiency, these generated values are created on demand, in each
 iteration step, as opposed to pre-populating e.g. a large list.
 
 --8<--
-lessons/gen-even-odd.md
+training/lessons/gen-even-odd.md
 --8<--
 
 ## Comprehensions and Generator Expressions
@@ -991,5 +991,5 @@ A **dict comprehension** can be used to create a dictionary:
 ```
 
 --8<--
-lessons/rewrite-dict-comp.md
+training/lessons/rewrite-dict-comp.md
 --8<--
