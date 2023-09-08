@@ -6,96 +6,109 @@ repo_name: 'hjoukl/cpycourse'
 repo_url: 'https://github.com/hjoukl/cpycourse'
 
 theme:
-    # disable highlightjs code rendering to not interfere with material
-    # theme's use of pygments
-    highlightjs: false
-    #hljs_languages:
-    #    - yaml
-    name: material
-    # material theme customizations
-    # disable google fonts cdn to avoid potential google tracking
-    font: false
-    palette:
-        #scheme: preference
-        #scheme: slate # dark mode
-        primary: teal
-        accent: teal
-    features:
-        - tabs
-    #logo: images/python-powered-w.svg
+  # disable highlightjs code rendering to not interfere with material
+  # theme's use of pygments
+  highlightjs: false
+  #hljs_languages:
+  #    - yaml
+  name: material
+  # material theme customizations
+  # disable google fonts cdn to avoid potential google tracking
+  font: false
+  palette:
+    #scheme: preference
+    #scheme: slate # dark mode
+    # Palette toggle for dark mode
+    - scheme: slate
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+      primary: teal
+      accent: deep purple
+    # Palette toggle for light mode
+    - scheme: default
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+      primary: teal
+      accent: deep purple
+  features:
+    - tabs
+  #logo: images/python-powered-w.svg
 
 nav:
-    - Home: index.md
-    - Training:
-        - Tutorial: training/tutorial.md
-        - Main Course:
-            - "A Curious Python Main Course": training/main-course/main-course.md
-            - "Chapter 0: Installing Python":  training/main-course/installation.md
-            - "Chapter 1: Grasping Python":  training/main-course/grasping-python.md
-            - "Chapter 2: Python Objects": training/main-course/objects.md
-            - "Chapter 3: Built-in Types": training/main-course/builtin-types.md
-            - "Chapter 4: Functions": training/main-course/functions.md
-            - "Chapter 5: Classes & Instances": training/main-course/classes-instances.md
-            - "Chapter 6: Flow Control":  training/main-course/flow-control.md
-            - "Chapter 7: Exceptions": training/main-course/exceptions.md
-            - "Chapter 8: (File) Input & Output": training/main-course/io.md
-            - "Chapter 9: Context Managers": training/main-course/context-managers.md
-            - "Chapter 10: Decorators": training/main-course/decorators.md
-            - "Chapter 11: Modules & Packages": training/main-course/modules-packages.md
-            - "Chapter 12: Python Environments & Package Installation": training/main-course/venvs-packages-installation.md
-            - "Chapter 13: Python Standard Library": training/main-course/stdlib-tour.md
-        - Oddjob: training/oddjob.md
-        #- Cheatsheet: training/cheatsheet.md
-    - Lessons:
-        - Command Line Calculation: lessons/cmdline-calc.md
-        - Hello World: lessons/hello-world.md
-        - List Modification: lessons/list-modify.md
-        - Generate (Un)Even Numbers: lessons/gen-even-odd.md
-        - Rewrite Dict Comprehension: lessons/rewrite-dict-comp.md
-        - Check User Input Evenness: lessons/check-user-input-even.md
-        - Reverse Word Order: lessons/reverse-words.md
-        - Check Palindromes: lessons/palindroms.md
-        - Customer Class: lessons/customer.md
-        - Iterate File: lessons/iter-file.md
-    - Python:
-        - Python: python/python.md
-        - Why Python?: python/why-python.md
-        - A brief history of Python: python/python-history.md
-    - Excursions:
-        - Shells: excursions/shells.md
-    - About:
-        - Curious Python Course: about/curious-python-course.md
-        - License: about/license.md
-        - Legal: about/legal.md
-        - Contributors: about/cpycourse-contributors.md
+  - Home: index.md
+  - Training:
+    - Tutorial: training/tutorial.md
+    - Main Course:
+      - "A Curious Python Main Course": training/main-course/main-course.md
+      - "Chapter 0: Installing Python":  training/main-course/installation.md
+      - "Chapter 1: Grasping Python":  training/main-course/grasping-python.md
+      - "Chapter 2: Python Objects": training/main-course/objects.md
+      - "Chapter 3: Built-in Types": training/main-course/builtin-types.md
+      - "Chapter 4: Functions": training/main-course/functions.md
+      - "Chapter 5: Classes & Instances": training/main-course/classes-instances.md
+      - "Chapter 6: Flow Control":  training/main-course/flow-control.md
+      - "Chapter 7: Exceptions": training/main-course/exceptions.md
+      - "Chapter 8: (File) Input & Output": training/main-course/io.md
+      - "Chapter 9: Context Managers": training/main-course/context-managers.md
+      - "Chapter 10: Decorators": training/main-course/decorators.md
+      - "Chapter 11: Modules & Packages": training/main-course/modules-packages.md
+      - "Chapter 12: Python Environments & Package Installation": training/main-course/venvs-packages-installation.md
+      - "Chapter 13: Python Standard Library": training/main-course/stdlib-tour.md
+      - Oddjob: training/oddjob.md
+      #- Cheatsheet: training/cheatsheet.md
+  - Lessons:
+    - Command Line Calculation: lessons/cmdline-calc.md
+    - Hello World: lessons/hello-world.md
+    - List Modification: lessons/list-modify.md
+    - Generate (Un)Even Numbers: lessons/gen-even-odd.md
+    - Rewrite Dict Comprehension: lessons/rewrite-dict-comp.md
+    - Check User Input Evenness: lessons/check-user-input-even.md
+    - Reverse Word Order: lessons/reverse-words.md
+    - Check Palindromes: lessons/palindroms.md
+    - Customer Class: lessons/customer.md
+    - Iterate File: lessons/iter-file.md
+  - Python:
+    - Python: python/python.md
+    - Why Python?: python/why-python.md
+    - A brief history of Python: python/python-history.md
+  - Excursions:
+    - Shells: excursions/shells.md
+  - About:
+    - Curious Python Course: about/curious-python-course.md
+    - License: about/license.md
+    - Legal: about/legal.md
+    - Contributors: about/cpycourse-contributors.md
 
 markdown_extensions:
-    - toc:
-        permalink: "#"
-    - admonition
-    - def_list
-    - footnotes
-    - codehilite:
-        guess_lang: false
-    - pymdownx.arithmatex
-    - pymdownx.betterem:
-        smart_enable: none
-    - pymdownx.caret
-    - pymdownx.critic
-    - pymdownx.details
-    - pymdownx.emoji:
-        emoji_index: !!python/name:materialx.emoji.twemoji
-        emoji_generator: !!python/name:materialx.emoji.to_svg
-    - pymdownx.inlinehilite
-    - pymdownx.magiclink
-    - pymdownx.mark
-    - pymdownx.smartsymbols
-    - pymdownx.superfences
-    - pymdownx.tasklist:
-        custom_checkbox: true
-    - pymdownx.tabbed
-    - pymdownx.tilde
-    - pymdownx.snippets:
-        base_path: docs
+  - toc:
+      permalink: "#"
+  - admonition
+  - def_list
+  - footnotes
+  #- codehilite:
+  #    guess_lang: false
+  - pymdownx.arithmatex
+  - pymdownx.betterem:
+      smart_enable: none
+  - pymdownx.caret
+  - pymdownx.critic
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
+  - pymdownx.inlinehilite
+  - pymdownx.magiclink
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.superfences
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tilde
+  - pymdownx.snippets:
+      base_path: docs
 
-copyright: Copyright &copy; 2020 the <a href="/about/cpycourse-contributors.md">cpycourse contributors</a>.
+copyright: Copyright &copy; 2020-2023 The <a href="/about/cpycourse-contributors.md">Cpycourse Contributors</a>.
