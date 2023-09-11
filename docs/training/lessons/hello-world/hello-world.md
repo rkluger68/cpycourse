@@ -20,8 +20,10 @@
 
     === "Sample Solution"
 
-        ``` python title="hello_world.py"
-        --8<-- "training/lessons/hello-world/hello_world.py"
-        ```
+        ??? example
 
-        [Source](hello_world.py)
+            ``` python title="hello_world.py"
+            --8<-- "training/lessons/hello-world/hello_world.py"
+            ```
+
+            [Source](hello_world.py)
