@@ -12,18 +12,18 @@ environment to the user or other programs.
 | ----------------------------------------------- | ----------------------------- | ----------------------------    | --------- |
 | **Shell**                                       |                               |                                 |           |
 | shell version                                   | bash --version                | $PSVersionTable                 |           |
-| list available commands                         | compgen -c | sort | uniq      | get-command                     | 2)        |
-| command help                                    | <command> --help              | help <command>                  |           |
+| list available commands                         | compgen -c \| sort \| uniq    | get-command                     | 2)        |
+| command help                                    | \<command\> --help            | help \<command\                 |           |
 | shell command history                           | history                       | history                         |           |
-| search shell command history                    | <ctrl>-r                      | <ctrl>-r                        |           |
-| shell command navigation                        | <arrow-up> or <arrow-down>    |  <arrow-up> or <arrow-down>     |           |
+| search shell command history                    | \<ctrl\>-r                    | \<ctrl\>-r                      |           |
+| shell command navigation                        | \<arrow-up\> or \<arrow-down\>| \<arrow-up\> or \<arrow-down\>  |           |
 | **Directories**                                 |                               |                                 |           |
 | show current working directory                  | pwd                           | pwd                             |           |
 | change drive                                    | NOT-AVAILABLE                 | C:                              |           |
 | list directory content                          | ls                            | ls                              |           |
 | list directory content using wildcards          | ls foo*                       | ls foo*                         |           |
-| list directory tree                             | tree -L <level>               | tree                            |           |
-| change directory                                | cd <directory>                | cd <directory>                  |           |
+| list directory tree                             | tree -L \<level\>             | tree                            |           |
+| change directory                                | cd \<directory\>              | cd \<directory\>                |           |
 | create directory                                | mkdir FOO                     | mkdir FOO                       |           |
 | remove/delete directory                         | rmdir FOO                     | rmdir FOO                       |           |
 | move (and/or rename) directory                  | mv FOO BAR                    | mv FOO BAR                      |           |
@@ -38,10 +38,10 @@ environment to the user or other programs.
 | **Environment Variables**                       |                               |                                 |           |
 | list all environment variables                  | env                           | ls env:                         |           |
 | some predefined environment variables           | USER, HOME, PATH              | USERNAME, HOMEPATH, PATH        |           |
-| get/show environment variable                   | echo $<variable>              | $env:<variable>                 |           |
+| get/show environment variable                   | echo $\<variable\>            | $env:\<variable\>               |           |
 | set environment variable                        | FOO=foo                       | $env:FOO="foo"                  | 3)        |
 | extend value of environment variable            | FOO+=$USER                    | $env:FOO += $env:USERNAME       |           |
-| remove/delete environment variable              | unsaet FOO                    | remove-item env:FOO             |           |
+| remove/delete environment variable              | unset FOO                     | remove-item env:FOO             |           |
 | **Shell script example**                        |                               |                                 |           |
 | Using environment variable and calling Python   | see test-env.sh in 4)         | see test-env.ps1 5)             |           |
 
