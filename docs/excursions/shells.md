@@ -61,3 +61,6 @@ environment to the user or other programs.
     echo "USERNAME (Output from PowerShell): $env:USERNAME"
     & 'C:\Program Files\Python\3.6\python.exe' -c "import os; print('USERNAME (Output from Python provided from Powershell): $env:USERNAME'); print('USERNAME (Output from Python resolved from Python): {}'.format(os.environ['USERNAME']))"
 
+
+
+
