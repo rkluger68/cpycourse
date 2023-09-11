@@ -15,8 +15,8 @@
 
     === "Hints"
 
-        You can use `help("")` to find out about string methods and how to
-        convert text to uppercase text.
+        You can use `help("")` or `help(name)` to find out about string methods
+        and how to convert text to uppercase text.
 
     === "Solution"
 
