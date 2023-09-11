@@ -329,7 +329,7 @@ See https://pyformat.info/ for concise information on these topics.
 ```
 
 --8<--
-training/lessons/hello-world.md
+training/lessons/hello-world/hello-world.md
 --8<--
 
 ### Numeric Data Types
