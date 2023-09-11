@@ -26,14 +26,14 @@
             --8<-- "training/lessons/hello-world/hello_world.py"
             ```
 
-            ([Source](hello_world.py))
+            [:material-file-download:](hello_world.py)
 
             Such simple snippets typically also work well as shell one-liners:
 
-            ``` bash title="hello_world.sh"
+            ``` console title="hello_world.sh"
             --8<-- "training/lessons/hello-world/hello_world.sh"
             ```
             
-            ``` bash title="hello_world.ps1"
+            ``` ps1con title="hello_world.ps1"
             --8<-- "training/lessons/hello-world/hello_world.ps1"
             ```
