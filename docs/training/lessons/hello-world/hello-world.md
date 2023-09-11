@@ -11,7 +11,7 @@
         modify `print("Hello, world!")` so that it additionally writes out the
         name, in uppercase letters.
 
-        Expected result: `Hello, world ADA!'
+        Expected result: `Hello, world ADA!`
 
     === "Hints"
 
