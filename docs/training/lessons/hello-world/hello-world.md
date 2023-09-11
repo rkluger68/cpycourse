@@ -18,7 +18,7 @@
         You can use `help("")` to find out about string methods and how to
         convert text to uppercase text.
 
-    === "Sample Solution"
+    === "Solution"
 
         ??? example
 
