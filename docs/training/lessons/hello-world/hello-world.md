@@ -26,7 +26,7 @@
             --8<-- "training/lessons/hello-world/hello_world.py"
             ```
 
-            [Source](hello_world.py)
+            ([Source](hello_world.py))
 
             Such simple snippets typically also work well as shell one-liners:
 
