@@ -62,7 +62,7 @@ nav:
       #- Cheatsheet: training/cheatsheet.md
     - Lessons:
       - Command Line Calculation: training/lessons/cmdline-calc.md
-      - Hello World: training/lessons/hello-world.md
+      - Hello World: training/lessons/hello-world/hello-world.md
       - List Modification: training/lessons/list-modify.md
       - Generate (Un)Even Numbers: training/lessons/gen-even-odd.md
       - Rewrite Dict Comprehension: training/lessons/rewrite-dict-comp.md
