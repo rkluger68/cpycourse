@@ -110,6 +110,8 @@ markdown_extensions:
   - pymdownx.smartsymbols
   - pymdownx.snippets:
       base_path: docs
+      auto_append:
+        - includes/abbreviations.md
   - pymdownx.superfences
   - pymdownx.tasklist:
       custom_checkbox: true
