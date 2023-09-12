@@ -8,42 +8,42 @@ environment to the user or other programs.
 
 ## Shell Cheat Sheet
 
-| Subject                                         | Linux Bash command [^1]         | Windows Powershell command [^1] [^2] |
-| ----------------------------------------------- | ------------------------------- | ------------------------------------ |
-| **Shell**                                       |                                 |                                      |
-| shell version                                   | bash --version                  | $PSVersionTable                      |
-| list available commands                         | compgen -c \| sort \| uniq [^3] | get-command                          |
-| command help                                    | `<command> --help`              | help \<command>                      |
-| shell command history                           | history                         | history                              |
-| search shell command history                    | \<ctrl>-r                       | \<ctrl>-r                            |
-| shell command navigation                        | \<arrow-up> or \<arrow-down>    | \<arrow-up> or \<arrow-down>         |
-| **Directories**                                 |                                 |                                      |
-| show current working directory                  | pwd                             | pwd                                  |
-| change drive                                    | NOT-AVAILABLE                   | C:                                   |
-| list directory content                          | ls                              | ls                                   |
-| list directory content using wildcards          | ls foo*                         | ls foo*                              |
-| list directory tree                             | tree -L \<level>                | tree                                 |
-| change directory                                | cd \<directory>                 | cd \<directory>                      |
-| create directory                                | mkdir FOO                       | mkdir FOO                            |
-| remove/delete directory                         | rmdir FOO                       | rmdir FOO                            |
-| move (and/or rename) directory                  | mv FOO BAR                      | mv FOO BAR                           |
-| **Files**                                       |                                 |                                      |
-| create file                                     | touch foo.txt                   | new-item foo.txt -itemtype file      |
-| copy file                                       | cp foo.txt bar.txt              | cp foo.txt bar.txt                   |
-| remove/delete file                              | rm bar.txt                      | rm bar.txt                           |
-| move (and/or rename) file                       | mv foo.txt bar.txt              | mv foo.txt bar.txt                   |
-| append content to a text-file ('>>'-operator)   | echo "Hello World" >> bar.txt   | echo "Hello World" >> bar.txt        |
-| overwrite content of a text-file ('>'-operator) | echo "Hello World" > bar.txt    | echo "Hello World" > bar.txt         |
-| show text-file content                          | cat bar.txt                     | cat bar.txt                          |
-| **Environment Variables**                       |                                 |                                      |
-| list all environment variables                  | env                             | ls env:                              | 
-| some predefined environment variables           | USER, HOME, PATH                | USERNAME, HOMEPATH, PATH             |
-| get/show environment variable                   | echo $\<variable>               | $env:\<variable>                     |
-| set environment variable  [^4]                  | FOO=foo                         | $env:FOO="foo"                       |
-| extend value of environment variable            | FOO+=$USER                      | $env:FOO += $env:USERNAME            |
-| remove/delete environment variable              | unset FOO                       | remove-item env:FOO                  |
-| **Shell script example**                        |                                 |                                      |
-| Using environment variable and calling Python   | see test-env.sh in [^5]         | see test-env.ps1 [^6]                |
+| Subject                                         | Linux Bash command [^1]           | Windows Powershell command [^1] [^2] |
+|-------------------------------------------------|-----------------------------------|--------------------------------------|
+| **Shell**                                       |                                   |                                      |
+| shell version                                   | `bash --version`                  | `$PSVersionTable`                    |
+| list available commands                         | `compgen -c \| sort \| uniq` [^3] | `get-command`                        |
+| command help                                    | `<command> --help`                | `help <command>`                     |
+| shell command history                           | `history`                         | `history`                            |
+| search shell command history                    | `<ctrl>-r`                        | `<ctrl>-r`                           |
+| shell command navigation                        | `<arrow-up>` or `<arrow-down>`    | `<arrow-up>` or `<arrow-down>`       |
+| **Directories**                                 |                                   |                                      |
+| show current working directory                  | `pwd`                             | `pwd`                                |
+| change drive                                    | NOT-AVAILABLE                     | `C:`                                 |
+| list directory content                          | `ls`                              | `ls`                                 |
+| list directory content using wildcards          | `ls foo*`                         | `ls foo*`                            |
+| list directory tree                             | `tree -L <level>`                 | `tree`                               |
+| change directory                                | `cd <directory>`                  | `cd <directory>`                     |
+| create directory                                | `mkdir FOO`                       | `mkdir FOO`                          |
+| remove/delete directory                         | `rmdir FOO`                       | `rmdir FOO`                          |
+| move (and/or rename) directory                  | `mv FOO BAR`                      | `mv FOO BAR`                         |
+| **Files**                                       |                                   |                                      |
+| create file                                     | `touch foo.txt`                   | `new-item foo.txt -itemtype file`    |
+| copy file                                       | `cp foo.txt bar.txt`              | `cp foo.txt bar.txt`                 |
+| remove/delete file                              | `rm bar.txt`                      | `rm bar.txt`                         |
+| move (and/or rename) file                       | `mv foo.txt bar.txt`              | `mv foo.txt bar.txt`                 |
+| append content to a text-file ('>>'-operator)   | `echo "Hello World" >> bar.txt`   | `echo "Hello World" >> bar.txt`      |
+| overwrite content of a text-file ('>'-operator) | `echo "Hello World" > bar.txt`    | `echo "Hello World" > bar.txt`       |
+| show text-file content                          | `cat bar.txt`                     | `cat bar.txt`                        |
+| **Environment Variables**                       |                                   |                                      |
+| list all environment variables                  | `env`                             | `ls env:`                            | 
+| some predefined environment variables           | `USER, HOME, PATH`                | `USERNAME, HOMEPATH, PATH`           |
+| get/show environment variable                   | `echo $<variable>`                | `$env:<variable>`                    |
+| set environment variable  [^4]                  | `FOO=foo`                         | `$env:FOO="foo"`                     |
+| extend value of environment variable            | `FOO+=$USER`                      | `$env:FOO += $env:USERNAME`          |
+| remove/delete environment variable              | `unset FOO`                       | `remove-item env:FOO`                |
+| **Shell script example**                        |                                   |                                      |
+| Using environment variable and calling Python   | see `test-env.sh` in [^5]         | see `test-env.ps1` [^6]              |
 
 
 
