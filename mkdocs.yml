@@ -111,7 +111,9 @@ markdown_extensions:
   - pymdownx.snippets:
       base_path: docs
       auto_append:
-        - includes/abbreviations.md
+        # auto_append is relative to the base path but include file should not
+        # be in the docs folder according to material docs.
+        - ../includes/abbreviations.md
   - pymdownx.superfences
   - pymdownx.tasklist:
       custom_checkbox: true
