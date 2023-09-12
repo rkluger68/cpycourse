@@ -5,18 +5,22 @@ import sys
 
 
 def is_palindrome(text):
-    """Check if text is a palindrome.
+    """Check if text is a palindrome using the built-in reversed() function.
     """
     reversed_text = ''.join(reversed(text))
     return text == reversed_text
 
 
 def is_palindrome_ext_slicing(text):
+    """Check if text is a palindrome using extended slicing.
+    """
     reversed_text = text[::-1]
     return text == reversed_text
 
 
 def is_palindrome_loop(text):
+    """Check if text is a palindrome by looping through the string.
+    """
     reversed_order = []
     for idx, character in enumerate(text):
         idx_back = -(idx + 1)
