@@ -68,7 +68,7 @@ nav:
       - Rewrite Dict Comprehension: training/lessons/rewrite-dict-comp.md
       - Check User Input Evenness: training/lessons/check-user-input-even.md
       - Reverse Word Order: training/lessons/reverse-words.md
-      - Check Palindromes: training/lessons/palindroms.md
+      - Check Palindromes: training/lessons/check-palindromes/check-palindromes.md
       - Customer Class: training/lessons/customer.md
       - Iterate File: training/lessons/iter-file.md
   - Python:
