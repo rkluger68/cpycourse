@@ -86,6 +86,7 @@ nav:
 markdown_extensions:
   - toc:
       permalink: "#"
+  - abbr
   - admonition
   - def_list
   - footnotes
