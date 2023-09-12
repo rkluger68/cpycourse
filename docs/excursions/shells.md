@@ -12,7 +12,7 @@ environment to the user or other programs.
 |-------------------------------------------------|-----------------------------------|--------------------------------------|
 | **Shell**                                       |                                   |                                      |
 | shell version                                   | `bash --version`                  | `$PSVersionTable`                    |
-| list available commands                         | `compgen -c \| sort \| uniq` [^3] | `get-command`                        |
+| list available commands                         | `compgen -c | sort | uniq`   [^3] | `get-command`                        |
 | command help                                    | `<command> --help`                | `help <command>`                     |
 | shell command history                           | `history`                         | `history`                            |
 | search shell command history                    | `<ctrl>-r`                        | `<ctrl>-r`                           |
