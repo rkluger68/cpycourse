@@ -1,1 +1,1 @@
-*[palindrome]: A text that reads the same backwords as forwards.
+*[palindrome]: A text that reads the same backwards as forwards.
