@@ -945,7 +945,7 @@ For memory efficiency, these generated values are created on demand, in each
 iteration step, as opposed to pre-populating e.g. a large list.
 
 --8<--
-training/lessons/gen-even-odd.md
+training/lessons/generate-un-even-numbers/generate-un-even-numbers.md
 --8<--
 
 ## Comprehensions and Generator Expressions
