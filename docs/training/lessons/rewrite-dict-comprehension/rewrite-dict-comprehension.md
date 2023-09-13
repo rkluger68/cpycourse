@@ -23,8 +23,8 @@
 
         ??? example
 
-            ``` python title="rewrite_list_comprehension.py"
-            --8<-- "training/lessons/rewrite-dict-comprehension/rewrite_list_comprehension.py"
+            ``` python title="rewrite_dict_comprehension.py"
+            --8<-- "training/lessons/rewrite-dict-comprehension/rewrite_dict_comprehension.py"
             ```
 
-            [:material-file-download:](rewrite_list_comprehension.py)
+            [:material-file-download:](rewrite_dict_comprehension.py)
