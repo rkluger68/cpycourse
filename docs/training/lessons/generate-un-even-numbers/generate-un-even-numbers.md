@@ -1,9 +1,9 @@
 !!! question "Lesson: Generate even and odd numbers"
 
-    === "Task
+    === "Task"
     
-        Write a generator that yields even natural numbers (infinitely, i.e.
-        until interrupted with `<Ctrl>-C`).
+        Write a generator that yields even natural numbers [1, 2, 3, ...]
+        infinitely, i.e.  until interrupted with `Ctrl-c`.
 
         Optional: Write a generator that yields even or uneven numbers,
         depending on a parameter that switches even/uneven behaviour.

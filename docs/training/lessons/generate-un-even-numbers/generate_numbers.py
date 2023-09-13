@@ -63,20 +63,20 @@ def gen_numbers_lim(mode="even", upper_limit=-1):
 
 def main():
     # Run unlimited generator, but break out after a limit (checked outside of
-    # the generator). In the REPL you'd interrupt the generator using CTRL-C.
+    # the generator). In the REPL you'd interrupt the generator using Ctrl-c.
     generator = gen_even
     print()
     print(f"*** Generator: {generator.__name__}")
     print(f"({generator.__doc__.strip()})")
     for val in generator():
         if val > 10:
-            print("...interrupting (use CTRL-C when running in REPL)")
+            print("...interrupting (use Ctrl-c when running in REPL)")
             break
         print(f"even: {val}")
 
     # Run even/uneven-switchable unlimited generator in "even" mode, but break
     # out after a limit (checked outside of the generator). In the REPL you'd
-    # interrupt the generator using CTRL-C.
+    # interrupt the generator using Ctrl-c.
     generator = gen_numbers
     print()
     mode = "even"
@@ -84,7 +84,7 @@ def main():
     print(f"({generator.__doc__.strip()})")
     for val in generator(mode):
         if val > 10:
-            print("...interrupting (use CTRL-C when running in REPL)")
+            print("...interrupting (use Ctrl-c when running in REPL)")
             break
         print(f"even: {val}")
 
@@ -96,7 +96,7 @@ def main():
     print(f"({generator.__doc__.strip()})")
     for val in generator(mode):
         if val > 10:
-            print("...interrupting (use CTRL-C when running in REPL)")
+            print("...interrupting (use Ctrl-c when running in REPL)")
             break
         print(f"uneven: {val}")
 
