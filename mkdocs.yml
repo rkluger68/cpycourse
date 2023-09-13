@@ -41,7 +41,7 @@ theme:
 nav:
   - Home: index.md
   - Training:
-    - Tutorial: training/tutorial.md
+    - Tutorial: training/tutorial/tutorial.md
     - Main Course:
       - "A Curious Python Main Course": training/main-course/main-course.md
       - "Chapter 0: Installing Python":  training/main-course/installation.md
@@ -61,12 +61,13 @@ nav:
       - Oddjob: training/oddjob.md
       #- Cheatsheet: training/cheatsheet.md
     - Lessons:
-      - Command Line Calculation: training/lessons/command-line-calculation/command-line-calculation.md
-      - Hello World: training/lessons/hello-world/hello-world.md
-      - List Modification: training/lessons/list-modify.md
-      - Generate (Un)Even Numbers: training/lessons/gen-even-odd.md
-      - Rewrite Dict Comprehension: training/lessons/rewrite-dict-comp.md
-      - Check User Input Evenness: training/lessons/check-user-input-evenness/check-user-input-evenness.md
+      - Tutorial
+        - Command Line Calculation: training/lessons/command-line-calculation/command-line-calculation.md
+        - Hello World: training/lessons/hello-world/hello-world.md
+        - List Modification: training/lessons/list-modification/list-modification.md
+        - Generate (Un)Even Numbers: training/lessons/generate-un-even-numbers/generate-un-even-numbers.md
+        - Check User Input Evenness: training/lessons/check-user-input-evenness/check-user-input-evenness.md
+        - Rewrite Dict Comprehension: training/lessons/rewrite-dict-comprehension/rewrite-dict-comprehension.md
       - Reverse Word Order: training/lessons/reverse-words.md
       - Check Palindromes: training/lessons/check-palindromes/check-palindromes.md
       - Customer Class: training/lessons/customer.md
