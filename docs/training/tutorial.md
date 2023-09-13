@@ -186,7 +186,7 @@ Present value for [-100, -2, 3, 6, 8, 110] and interest rate 0.03:
 This program exhibits the main *building blocks* of a Python program.
 
 --8<--
-training/lessons/cmdline-calc.md
+training/lessons/command-line-calculation/command-line-calculation.md
 --8<--
 
 ### Python Program Building Blocks
