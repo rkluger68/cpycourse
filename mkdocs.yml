@@ -61,17 +61,18 @@ nav:
       - Oddjob: training/oddjob.md
       #- Cheatsheet: training/cheatsheet.md
     - Lessons:
-      - Tutorial
-        - Command Line Calculation: training/lessons/command-line-calculation/command-line-calculation.md
-        - Hello World: training/lessons/hello-world/hello-world.md
-        - List Modification: training/lessons/list-modification/list-modification.md
-        - Generate (Un)Even Numbers: training/lessons/generate-un-even-numbers/generate-un-even-numbers.md
-        - Check User Input Evenness: training/lessons/check-user-input-evenness/check-user-input-evenness.md
-        - Rewrite Dict Comprehension: training/lessons/rewrite-dict-comprehension/rewrite-dict-comprehension.md
-      - Reverse Word Order: training/lessons/reverse-words.md
-      - Check Palindromes: training/lessons/check-palindromes/check-palindromes.md
-      - Customer Class: training/lessons/customer.md
-      - Iterate File: training/lessons/iter-file.md
+      - Tutorial:
+        - "Command Line Calculation": training/lessons/command-line-calculation/command-line-calculation.md
+        - "Hello World": training/lessons/hello-world/hello-world.md
+        - "List Modification": training/lessons/list-modification/list-modification.md
+        - "Generate (Un)Even Numbers": training/lessons/generate-un-even-numbers/generate-un-even-numbers.md
+        - "Check User Input Evenness": training/lessons/check-user-input-evenness/check-user-input-evenness.md
+        - "Rewrite Dict Comprehension": training/lessons/rewrite-dict-comprehension/rewrite-dict-comprehension.md
+      - Main Course:
+        - "Reverse Word Order": training/lessons/reverse-words.md
+        - "Check Palindromes": training/lessons/check-palindromes/check-palindromes.md
+        - "Customer Class": training/lessons/customer.md
+        - "Iterate File": training/lessons/iter-file.md
   - Python:
     - Python: python/python.md
     - Why Python?: python/why-python.md
