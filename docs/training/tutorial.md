@@ -718,6 +718,10 @@ a is neither 1 nor 2
 >>>
 ```
 
+--8<--
+training/lessons/check-user-input-evenness/check-user-input-evenness.md
+--8<--
+
 #### Conditional Expressions
 Python also supports
 [Conditional expressions](https://docs.python.org/3/reference/expressions.html#conditional-expressions):
