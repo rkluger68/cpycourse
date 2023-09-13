@@ -1,76 +1,91 @@
 import os
 import pprint
 
-# NOTE:
-#   Windows: 'link' is always recognized as a 'file'
-#   Unix: 'islink()' is also true for regular files, so need to check for
-#         'islink()' before 'isfile()'
+# NOTES:
+# - isfile() and isdir() follow symbolic links so islink() condition
+#   must come first.
+# - Windows: no symlinks, a checked-out link from the test_dir is represented
+#   as a file and thus recognized as 'file'
+
+
+def dict_comp_filetypes_cwd():
+    dct = {
+        entry:
+            'link' if os.path.islink(entry) else
+            'dir' if os.path.isdir(entry) else
+            'file' if os.path.isfile(entry) else
+            'other'
+        for entry in os.listdir()
+        }
+    return dct
+
+
+def dict_comp_filetypes(path):
+    """Create a {<path entry>: <file type} dictionary using a dict
+    comprehension.
+    """
+    # To avoid joining path + entry to the full path both for the dict key and
+    # in the value's if-else expression, we (ab)use the walrus operator.
+    # This *must* sit in the if condition part of the dict comprehension.
+    # 
+    # Feels a tiny bit hacky, without walrus it looks like this:
+    # 
+    # dct = {
+    #   os.path.join(path, entry):
+    #       'link' if os.path.islink(os.path.join(path, entry)) else
+    #       'dir' if os.path.isdir(os.path.join(path, entry)) else
+    #       'file' if os.path.isfile(os.path.join(path, entry)) else
+    #       'other'
+    #   for entry in os.listdir(path)
+    #   }
+    dct = {
+        file_path:
+            'link' if os.path.islink(file_path) else
+            'dir' if os.path.isdir(file_path) else
+            'file' if os.path.isfile(file_path) else
+            'other'
+        for entry in os.listdir(path)
+        if (file_path := os.path.join(path, entry))
+        }
+    return dct
+
+
+def for_loop_filetypes(path='.'):
+    """Create a {<path entry>: <file type} dictionary using a traditional for 
+    loop.
+    """
+    dct = {}
+    for entry in os.listdir(path):
+        file_path = os.path.join(path, entry)
+
+        if os.path.isdir(file_path):
+            file_type = 'dir'
+        elif os.path.islink(file_path):
+            file_type = 'link'
+        elif os.path.isfile(file_path):
+            file_type = 'file'
+        else:
+            file_typ = 'other'
+        dct[file_path] = file_type
+    
+    return dct
 
 
 def main(path):
-    # NOTE: dict: <key=filename> <value=filetype>
-    d0 = {
-        entry: 'dir' if os.path.isdir(entry) else
-        'link' if os.path.islink(entry) else
-        'file' if os.path.isfile(entry) else
-        'other'
-    for entry in os.listdir(path)}
+    func = dict_comp_filetypes_cwd
+    print(f'\n*** dict comprehension using {func.__name__}')
+    dct = func()
+    pprint.pprint(dct)
 
-    print('>>> dict-comprehension dictionary (1) <<<')
-    pprint.pprint(d0)
+    func = dict_comp_filetypes
+    print(f'\n*** dict comprehension using {func.__name__}(path={path})')
+    dct = func(path)
+    pprint.pprint(dct)
 
-    d1 = {
-        entry: 'dir' if os.path.isdir(f'{os.path.join(path, entry)}') else
-        'link' if os.path.islink(f'{os.path.join(path, entry)}') else
-        'file' if os.path.isfile(f'{os.path.join(path, entry)}') else
-        'other'
-    for entry in os.listdir(path)}
-
-    print('>>> dict-comprehension dictionary (2) <<<')
-    pprint.pprint(d1)
-
-
-    # NOTE: dict: <key=filetype> <value=list-of-filenames> 
-    d2 = {} 
-    for _entry in os.listdir(path):
-        entry = f'{os.path.join(path, _entry)}'
-        if os.path.isdir(entry):
-            if 'dir' in d2.keys(): d2['dir'].append(_entry)
-            else: d2['dir'] = [_entry]
-        else:
-            if os.path.islink(entry):
-                if 'link' in d2.keys(): d2['link'].append(_entry)
-                else: d2['link'] = [_entry]
-            else:
-                if os.path.isfile(entry):
-                    if 'file' in d2.keys(): d2['file'].append(_entry)
-                    else: d2['file'] = [_entry]
-                else:
-                    if 'other' in d2.keys(): d2['other'].append(_entry)
-                    else: d2['other'] = [_entry]
-
-    print('>>> for-loop_if-else dictionary (1) <<<')
-    pprint.pprint(d2)
-
-    # NOTE: as dict 'd' dict: <key=filename> <value=filetype>
-    d3 = {}
-    for _entry in os.listdir(path):
-        entry = f'{os.path.join(path,_entry)}'
-        if os.path.isdir(entry): d3[_entry] = 'dir'
-        else:
-            if os.path.islink(entry): d3[_entry] = 'link'
-            else:
-                if os.path.isfile(entry): d3[_entry] = 'file'
-                else:
-                    d3[entry] = 'other'
-                    print(f'file-name: {entry} ==> "other"')
-                    #print(os.path.dirname(os.path.abspath(entry)))
-                    
-
-    print('>>> for-loop_if-else dictionary (2) <<<')
-    pprint.pprint(d3)
-    #print(os.name)
-
+    func = for_loop_filetypes
+    print(f'\n*** dict comprehension using {func.__name__}(path={path})')
+    dct = func(path)
+    pprint.pprint(dct)
 
 
 if __name__ == '__main__':
