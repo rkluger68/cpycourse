@@ -13,6 +13,17 @@
 
     === "Hints"
 
+        Remember the 
+        
+        - loop control flow constructs (for-loop, while-loop) that can be used
+          to do repeating things,
+        - conditionals (if-elif-else) to decide which "code paths" or
+          "branches" should be executed and
+        - (maybe) the modulo operator or the `divmod()` built-in function for a
+          possibility to check if a number is even or not.
+
+        There are many ways to solve this task... 
+
     === "Solution"
 
             ??? example
