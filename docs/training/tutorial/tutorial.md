@@ -456,7 +456,7 @@ Similar to `str` list supports many useful sequence operations:
 ```
 
 --8<--
-training/lessons/list-modify.md
+training/lessons/list-modification/list-modification.md
 --8<--
 
 ### Tuples - `tuple`

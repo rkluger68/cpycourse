@@ -23,10 +23,10 @@
 
     === "Solution"
 
-            ??? example
+        ??? example
 
             ``` python title="list_modification.py"
-            --8<-- "training/lessons/check-palindromes/list_modification.py"
+            --8<-- "training/lessons/list-modification/list_modification.py"
             ```
 
             [:material-file-download:](list_modification.py)
