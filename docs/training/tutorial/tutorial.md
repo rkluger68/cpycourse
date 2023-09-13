@@ -995,5 +995,5 @@ A **dict comprehension** can be used to create a dictionary:
 ```
 
 --8<--
-training/lessons/rewrite-dict-comp.md
+training/lessons/rewrite-dict-comprehension/rewrite-dict-comprehension.md
 --8<--
