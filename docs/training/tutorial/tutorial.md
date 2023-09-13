@@ -54,9 +54,10 @@ Hello, world!
 >>>
 ```
 
-After finishing the execution of the statement, the interpreter comes back to the prompt, awaiting the next input.
+After finishing the execution of the statement, the interpreter comes back to
+the prompt, awaiting the next input.
 
-If you enter a simple expression at the prompt (e.g. an integer or string 
+If you enter a simple expression at the prompt (e.g. an integer or string
 [literal](main-course/grasping-python.md/literals) and press `<Enter>` a
 *string representation* of the result gets printed:
 
@@ -68,15 +69,15 @@ If you enter a simple expression at the prompt (e.g. an integer or string
 >>> 
 ```
 
-
-An interactive session can be stopped by pressing `<Ctrl>-D` (Linux) or `<Ctrl>-Z` (Windows).
+An interactive session can be stopped by pressing `Ctrl-d` (Linux) or `Ctrl-z`
+(Windows).
 
 A **summary of the Python interpreter's commandline options** can be listed with its help option `-h`. This will display the **usage**, the available commandline options and **environment variables** controlling the interpreter. Here's
 the output of a Python 3 interpreter on Linux:
 
-``` 
-$python3 -h
-usage: python3 [option] ... [-c cmd | -m mod | file | -] [arg] ...
+```
+python3.8 -h
+usage: python3.8 [option] ... [-c cmd | -m mod | file | -] [arg] ...
 Options and arguments (and corresponding environment variables):
 -b     : issue warnings about str(bytes_instance), str(bytearray_instance)
          and comparing bytes/bytearray with str. (-bb: issue errors)
@@ -96,9 +97,8 @@ Options and arguments (and corresponding environment variables):
 -q     : don't print version and copyright messages on interactive startup
 -s     : don't add user site directory to sys.path; also PYTHONNOUSERSITE
 -S     : don't imply 'import site' on initialization
--u     : force the binary I/O layers of stdout and stderr to be unbuffered;
-         stdin is always buffered; text I/O layer will be line-buffered;
-         also PYTHONUNBUFFERED=x
+-u     : force the stdout and stderr streams to be unbuffered;
+         this option has no effect on stdin; also PYTHONUNBUFFERED=x
 -v     : verbose (trace import statements); also PYTHONVERBOSE=x
          can be supplied multiple times to increase verbosity
 -V     : print the Python version number and exit (also --version)
@@ -106,7 +106,43 @@ Options and arguments (and corresponding environment variables):
 -W arg : warning control; arg is action:message:category:module:lineno
          also PYTHONWARNINGS=arg
 -x     : skip first line of source, allowing use of non-Unix forms of #!cmd
--X opt : set implementation-specific option
+-X opt : set implementation-specific option. The following options are available:
+
+         -X faulthandler: enable faulthandler
+         -X showrefcount: output the total reference count and number of used
+             memory blocks when the program finishes or after each statement in the
+             interactive interpreter. This only works on debug builds
+         -X tracemalloc: start tracing Python memory allocations using the
+             tracemalloc module. By default, only the most recent frame is stored in a
+             traceback of a trace. Use -X tracemalloc=NFRAME to start tracing with a
+             traceback limit of NFRAME frames
+         -X showalloccount: output the total count of allocated objects for each
+             type when the program finishes. This only works when Python was built with
+             COUNT_ALLOCS defined
+         -X importtime: show how long each import takes. It shows module name,
+             cumulative time (including nested imports) and self time (excluding
+             nested imports). Note that its output may be broken in multi-threaded
+             application. Typical usage is python3 -X importtime -c 'import asyncio'
+         -X dev: enable CPython's "development mode", introducing additional runtime
+             checks which are too expensive to be enabled by default. Effect of the
+             developer mode:
+                * Add default warning filter, as -W default
+                * Install debug hooks on memory allocators: see the PyMem_SetupDebugHooks() C function
+                * Enable the faulthandler module to dump the Python traceback on a crash
+                * Enable asyncio debug mode
+                * Set the dev_mode attribute of sys.flags to True
+                * io.IOBase destructor logs close() exceptions
+         -X utf8: enable UTF-8 mode for operating system interfaces, overriding the default
+             locale-aware mode. -X utf8=0 explicitly disables UTF-8 mode (even when it would
+             otherwise activate automatically)
+         -X pycache_prefix=PATH: enable writing .pyc files to a parallel tree rooted at the
+             given directory instead of to the code tree
+         -X int_max_str_digits=number: limit the size of int<->str conversions.
+             This helps avoid denial of service attacks when parsing untrusted data.
+             The default is sys.int_info.default_max_str_digits.  0 disables.
+
+--check-hash-based-pycs always|default|never:
+    control how Python invalidates hash-based .pyc files
 file   : program read from script file
 -      : program read from stdin (default; interactive mode if a tty)
 arg ...: arguments passed to program in sys.argv[1:]
@@ -118,21 +154,33 @@ PYTHONPATH   : ':'-separated list of directories prefixed to the
 PYTHONHOME   : alternate <prefix> directory (or <prefix>:<exec_prefix>).
                The default module search path uses <prefix>/lib/pythonX.X.
 PYTHONCASEOK : ignore case in 'import' statements (Windows).
+PYTHONUTF8: if set to 1, enable the UTF-8 mode.
 PYTHONIOENCODING: Encoding[:errors] used for stdin/stdout/stderr.
 PYTHONFAULTHANDLER: dump the Python traceback on fatal errors.
 PYTHONHASHSEED: if this variable is set to 'random', a random value is used
-   to seed the hashes of str, bytes and datetime objects.  It can also be
-   set to an integer in the range [0,4294967295] to get hash values with a
+   to seed the hashes of str and bytes objects.  It can also be set to an
+   integer in the range [0,4294967295] to get hash values with a
    predictable seed.
+PYTHONINTMAXSTRDIGITS: limits the maximum digit characters in an int value
+   when converting from a string and when converting an int back to a str.
+   A value of 0 disables the limit.  Conversions to or from bases 2, 4, 8,
+   16, and 32 are never limited.
 PYTHONMALLOC: set the Python memory allocators and/or install debug hooks
    on Python memory allocators. Use PYTHONMALLOC=debug to install debug
    hooks.
+PYTHONCOERCECLOCALE: if this variable is set to 0, it disables the locale
+   coercion behavior. Use PYTHONCOERCECLOCALE=warn to request display of
+   locale coercion and locale compatibility warnings on stderr.
+PYTHONBREAKPOINT: if this variable is set to 0, it disables the default
+   debugger. It can be set to the callable of your debugger of choice.
+PYTHONDEVMODE: enable the development mode.
+PYTHONPYCACHEPREFIX: root directory for bytecode cache (pyc) files.
 ```
 
 ## Running a Python program
 
-A program is built up of a **sequence of python statements** (i.e. the "program
-code" or "code"). This code can be 
+A program is built up of a sequence of python statements (i.e. the "program
+code" or "code"). This code can be
 
  - entered at the Python prompt, in interactive mode,
  - provided as a command line argument or
@@ -146,7 +194,7 @@ $ python -c "print('Hello'); print('World')"
 Hello
 World
 $
-```    
+```
 
 As shown you can use the semicolon to separate multiple statements.
 
@@ -170,15 +218,36 @@ $
 
 This is a simple Python program that calculates the present value of
 a series of cashflows:
-``` python
---8<--
-src/present_value.py
---8<--
-```
+
+!!! example
+
+    === "Code"
+
+        ``` python
+        --8<--
+        src/present_value.py
+        --8<--
+        ```
+
+    === "Hints"
+
+        The present value (PV) of a series of cash flows represents the current
+        value of an expected future income stream.
+
+        Often, the net present value (NPV) of some initial investment
+        (principal, at time t=0) and then a series of discounted revenues over
+        time (t=1, t=2, ...) is calculated to support investment decisions: an
+        NPV > 0 promises an expected net gain or an investment with a higher
+        NPV would preferrable to one with a lower NPV.
+
+        The basic PV formula/model assumes a fixed interest rate over time.
+        The future cash flows and the fixed interest rates are usually
+        uncertain i.e. they are predictions or expectations.
 
 Running this program yields the following output:
+
 ```
-$ python3 src/present_value.py 
+$ python3 src/present_value.py
 Present value for [-100, -2, 3, 6, 8, 110] and interest rate 0.03:
     pv = 8.371752776288233
 ```
@@ -738,11 +807,14 @@ Python also supports
 Loops are repetitive controls, affecting the number of iterations a code
 block is executed.
 
-### for-statement
+#### for Statement
 
-The Python `for-statement` can be viewed as a representative of what Wikipedia calls a [count-controlled-loop](https://en.wikipedia.org/wiki/Control_flow#Count-controlled_loops). The number of repetitions in a `for`-loop is defined by the number elements of a (probably dynamically generated) sequence.
+The Python `for` statement is a representative of what Wikipedia calls a
+[count-controlled-loop](https://en.wikipedia.org/wiki/Control_flow#Count-controlled_loops).
+The number of repetitions in a `for` loop is defined by the number elements of
+a (probably dynamically generated) sequence.
 
-`for`-loop example:
+Example:
 
 ``` python
 >>> for elem in [1, 2, 3]:  # number of elements in the list defines the number of repetitions
@@ -754,19 +826,22 @@ The Python `for-statement` can be viewed as a representative of what Wikipedia c
 >>>
 ``` 
 
-`for`-loops operate on *iterables*.
+`for` loops operate on *iterables*.
 
-### while-statement
+#### while Statement
 
-The Python `while-statement` can be viewed as a representative of what Wikipedia calls a [condition-controlled-loop](https://en.wikipedia.org/wiki/Control_flow#Condition-controlled_loops). In a `while`-loop a condition-variable is set before and changed within the `while`-loop. 
+The Python `while` statement is a representative of what Wikipedia calls a
+[condition-controlled-loop](https://en.wikipedia.org/wiki/Control_flow#Condition-controlled_loops).
+In a `while` loop a condition variable is usually set before and changed within
+the `while` loop. 
 
-`while`-loop example
+Example:
 
 ``` python
 >>> a = 1
 >>> while a < 4:
 ...     print(a)
-...     a += 1   # change the condition-variable
+...     a += 1   # change the condition variable
 ... 
 1
 2
@@ -781,22 +856,21 @@ Functions are **named code blocks** providing a dedicated task (procedure) or
 "calculation" (function). Functions *can* have input parameters and return
 values, i.e. result values returned to the caller.
 
-A function is defined using the `def`-statement:
+A function is defined using the `def` statement:
 
 ``` python
 >>> # function definition
 >>> def echo(text):   # (1) function header
 ...    # (2) function body
 ...    print(text)    # 1.st statement
-...    return         # 2.nd statement
 ...
 >>>
 ```
 
-A function definition consists of a (1) function-header and a (2) function body.
-The function header beginning with the `def` keyword followed by the function
-name and a (potentially empty) list of comma-separated input parameters in
-parentheses, followed by a colon `:`.
+A function definition consists of (1) a function-header and (2) a function
+body. The function header begins with the `def` keyword followed by the
+function name and a (potentially empty) list of comma-separated input
+parameters in parentheses, followed by a colon `:`.
 
 The function body consists of an indented code-block of statements. In an
 interactive session the `...` ellipsis show that a (multi-line) code block is
@@ -806,21 +880,35 @@ A function is called simply using its function name followed by a list of
 comma-separated call parameters in parentheses:
 
 ``` python
->>> # function call
->>> echo("Hello World")
-Hello World
+>>> # function call (positional parameter)
+>>> echo("Hello, world!")
+Hello, world!
 >>>
 ```
 
 Functions can also be called using **name parameters**:
+
 ``` python
->>> # function call
->>> echo(text="Hello World")
-Hello World
+>>> # function call (named or keyword parameters)
+>>> echo(text="Hello, world!")
+Hello, world!
 >>>
 ```
 
-Functions can be called repeatedly and therefore are a major building block of reusable code in imperative programinmg languages.
+Functions can return values and function parameters can have default arguments:
+
+``` python
+>>> def greeting(name, greet="Hello"):
+...     return greet + " " + name
+... 
+>>> greeting("Mick")
+'Hello Mick'
+>>> greeting("Elvis", greet="Calling")
+'Calling Elvis'
+```
+
+Functions can be called repeatedly and therefore are an essential building
+block of reusable code in programming languages.
 
 
 ## Classes and Instances
