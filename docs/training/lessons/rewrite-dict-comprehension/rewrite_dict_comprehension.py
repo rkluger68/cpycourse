@@ -1,14 +1,20 @@
 import os
 import pprint
 
-# NOTES:
-# - isfile() and isdir() follow symbolic links so islink() condition
-#   must come first.
+# Notes:
+# - isfile() and isdir() follow symbolic links, so they will return their link
+#   target file type. Thus, the islink() condition must come first to actually
+#   detect a link file type.
 # - Windows: no symlinks, a checked-out link from the test_dir is represented
 #   as a file and thus recognized as 'file'
 
 
 def dict_comp_filetypes_cwd():
+    """Return a {<path entry>: <file type} dictionary of the current working
+    directory.
+
+    Uses a dict comprehension.
+    """
     dct = {
         entry:
             'link' if os.path.islink(entry) else
@@ -20,9 +26,10 @@ def dict_comp_filetypes_cwd():
     return dct
 
 
-def dict_comp_filetypes(path):
-    """Create a {<path entry>: <file type} dictionary using a dict
-    comprehension.
+def dict_comp_filetypes(path='.'):
+    """Return a {<path entry>: <file type} dictionary of the given path.
+
+    Uses a dict comprehension.
     """
     # To avoid joining path + entry to the full path both for the dict key and
     # in the value's if-else expression, we (ab)use the walrus operator.
@@ -51,8 +58,9 @@ def dict_comp_filetypes(path):
 
 
 def for_loop_filetypes(path='.'):
-    """Create a {<path entry>: <file type} dictionary using a traditional for 
-    loop.
+    """Return a {<path entry>: <file type} dictionary of the given path.
+    
+    Uses a traditional for loop.
     """
     dct = {}
     for entry in os.listdir(path):
@@ -67,7 +75,7 @@ def for_loop_filetypes(path='.'):
         else:
             file_typ = 'other'
         dct[file_path] = file_type
-    
+
     return dct
 
 

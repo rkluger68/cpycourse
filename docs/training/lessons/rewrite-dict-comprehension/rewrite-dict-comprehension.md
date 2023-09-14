@@ -22,6 +22,18 @@
         Use `help(os.listdir)` for more information about this standard library
         function.
 
+        This site's repo contains a test directory with some typical (unix)
+        file types (symbolic link, directory, file) in the
+        `/docs/training/lessons/rewrite-dict-comprehension/test_dir` folder.
+
+        Some notes:
+
+        - isfile() and isdir() follow symbolic links, so they will return their
+          link target file type. Thus, the islink() condition must come first
+          to actually detect a link file type.
+        - Windows: no symlinks, a checked-out link from the test_dir is
+          represented as a file and thus recognized as 'file'
+
     === "Solution"
 
         ??? example
