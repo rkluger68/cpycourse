@@ -1072,9 +1072,9 @@ A **dict comprehension** can be used to create a dictionary:
 
 ``` python
 >>> import os
->>> {entry: 'dir' if os.path.isdir(entry) else
-...         'file' if os.path.isfile(entry) else
-...         'link' if os.path.islink(entry) else
+>>> {entry: 'link' if os.path.isdir(entry) else
+...         'dir' if os.path.isfile(entry) else
+...         'file' if os.path.islink(entry) else
 ...         'other'
 ...  for entry in os.listdir()}
 {'README.md': 'file', '.git': 'dir', '.gitignore': 'file', 'LICENSE': 'file',
