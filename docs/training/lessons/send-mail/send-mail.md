@@ -51,6 +51,7 @@
             --8<-- "training/lessons/send-mail/sendmail-compact.ps1"
             ```
 
+
         ??? Example - Python Email client using 'MailServer'-class
 
             ``` python title="sendmail.py"
