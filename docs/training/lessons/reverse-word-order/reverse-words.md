@@ -29,7 +29,7 @@
          3. Use `help("")` or `help(str)` to learn useful string methods.
 
    
-   === "Solution"
+    === "Solution"
 
         ??? pied-piper "Example `reverse_order`-function"
 
