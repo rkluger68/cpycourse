@@ -11,10 +11,10 @@
 
     === "Solution"
 
-        ??? example
+        ??? example "*Really* take a peek now?"
 
             ``` python title="check_even.py"
             --8<-- "training/lessons/check-user-input-evenness/check_even.py"
             ```
 
-            [:material-file-download:](/training/lessons/check-user-input-evenness/check_even.py)
+            [:material-file-download:](check_even.py)
