@@ -4,8 +4,8 @@
 
         Create a function that
       
-            - takes a single string argument and
-            - returns a string with the words of the original argument in reversed order
+        - takes a single string argument and
+        - returns a string with the words of the original argument in reversed order
 
         E.g. when given `"Mary says hi"` the function returns `"hi says Mary"`.
 
@@ -28,6 +28,7 @@
 
          3. Use `help("")` or `help(str)` to learn useful string methods.
 
+   
    === "Solution"
 
         ??? pied-piper "Example `reverse_order`-function"
