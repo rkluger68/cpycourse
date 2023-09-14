@@ -56,6 +56,40 @@ Example usage:
 >>>
 ```
 
+!!! info
+
+    `float` is a binary floating point number representation. This has
+    consequences regarding exact number representation (not possible for most
+    base 10 decimal fractions, e.g. 1.1 or 2.2 are not representable *exactly*
+    as floats) and brings rounding issues, see the great [explanation in the
+    official Python
+    documentation](https://docs.python.org/3/tutorial/floatingpoint.html?highlight=float).
+
+    E.g.
+
+    ``` python
+    >>> 1.1  # The float string representation "hides" the inexactness(!) 
+    1.1
+    >>> '{:.51f}'.format(1.1)
+    '1.100000000000000088817841970012523233890533447265625'
+    ```
+
+    The standard library
+    [decimal](https://docs.python.org/3/library/decimal.html) module can be
+    used if this is of concern i.e. whenever the problem domain requires exact
+    base 10 decimal arithmetic and rounding, e.g. in finance.
+    
+    It features correct decimal rounding and user-configurable precision:
+
+    ``` python
+    >>> import decimal
+    >>> decimal.Decimal('1.1')
+    Decimal('1.1')
+    ```
+
+--8<--
+training/lessons/input-number-rounding/input-number-rounding.md
+--8<--
 
 ## Sequences
 
