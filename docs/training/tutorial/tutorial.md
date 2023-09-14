@@ -17,14 +17,25 @@ See here for hints on [Python installation](main-course/installation.md).
 
 ## Starting the Python interpreter
 
-For an **interactive session** simply type `python` or `python3` in a console/shell of your computer (`$`-shell prompt on \*nix-based systems):
+For an **interactive session** simply type `python` or `python3` in a
+console/shell of your computer (`$`-shell prompt on \*nix-based systems):
 
 ``` bash
-$ python
-Python 3.6.5 (default, Jun 28 2018, 16:00:48) 
-[GCC 4.8.5] on linux
+Python 3.6.8 (default, May 31 2023, 10:28:59)
+[GCC 8.5.0 20210514 (Red Hat 8.5.0-18)] on linux
 Type "help", "copyright", "credits" or "license" for more information.
 >>>
+```
+
+You can also use a qualified interpreter version, depending on what's available
+on your machine:
+
+``` bash
+$ python3.8
+Python 3.8.16 (default, May 31 2023, 12:44:21) 
+[GCC 8.5.0 20210514 (Red Hat 8.5.0-18)] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+>>> 
 ```
 
 The first lines show the interpreter version, some information about the build
@@ -877,19 +888,19 @@ interactive session the `...` ellipsis show that a (multi-line) code block is
 ongoing.
 
 A function is called simply using its function name followed by a list of
-comma-separated call parameters in parentheses:
+comma-separated call arguments in parentheses:
 
 ``` python
->>> # function call (positional parameter)
+>>> # function call (positional arguments)
 >>> echo("Hello, world!")
 Hello, world!
 >>>
 ```
 
-Functions can also be called using **name parameters**:
+Functions can also be called using named (or keyword) arguments:
 
 ``` python
->>> # function call (named or keyword parameters)
+>>> # function call (named or keyword arguments)
 >>> echo(text="Hello, world!")
 Hello, world!
 >>>
@@ -901,9 +912,9 @@ Functions can return values and function parameters can have default arguments:
 >>> def greeting(name, greet="Hello"):
 ...     return greet + " " + name
 ... 
->>> greeting("Mick")
+>>> greeting("Mick")  # Using the default greet text.
 'Hello Mick'
->>> greeting("Elvis", greet="Calling")
+>>> greeting("Elvis", greet="Calling")  # Prefer a custom greet text.
 'Calling Elvis'
 ```
 
@@ -919,7 +930,7 @@ functions that define the type-specific behaviour. **Instances** are objects
 created from classes.
 
 The following example demonstrates a simple `class`-definition,
-class-instantiations and common operations on class instances like attribute
+class instantiations and common operations on class instances like attribute
 access and method call using the `.`-dot operator.
 
 **class definition**:
@@ -1032,6 +1043,31 @@ of returning values:
 For memory efficiency, these generated values are created on demand, in each
 iteration step, as opposed to pre-populating e.g. a large list.
 
+Essentially, a generator's  processing gets suspended when `yield`ing (and
+resumed later, to get at next yield values).
+
+A generator function can delegate to other generators using the `yield from`
+expression:
+
+``` python
+>>> def gen_func():
+...     for value in range(5):
+...         yield value
+... 
+>>> def other_gen_func():
+...     yield from gen_func()
+... 
+>>> for i in other_gen_func():
+...     print(i)
+... 
+0
+1
+2
+3
+4
+>>> 
+```
+
 --8<--
 training/lessons/generate-un-even-numbers/generate-un-even-numbers.md
 --8<--
@@ -1039,7 +1075,7 @@ training/lessons/generate-un-even-numbers/generate-un-even-numbers.md
 ## Comprehensions and Generator Expressions
 
 ### List Comprehensions
-**List comprehensions** are an elegant and  powerful feature to populate lists
+**List comprehensions** are an elegant and powerful feature to populate lists
 using a syntax that very much feels like a mathematical set notation:
 
 
