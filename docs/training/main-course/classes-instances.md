@@ -527,7 +527,7 @@ name = foo
 Let's give it a try
 
 --8<--
-training/lessons/customer.md
+training/lessons/customer-class/customer.md
 --8<--
 
 

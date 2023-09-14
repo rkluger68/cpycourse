@@ -1,0 +1,1 @@
+../lessons/send-mail/sendmail_compact.py
