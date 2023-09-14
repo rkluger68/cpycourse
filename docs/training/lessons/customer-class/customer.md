@@ -1,6 +1,7 @@
 !!! question "Lesson: Customer Class"
     
     === "Task"
+
     1. Create the following class-hierarchy:
     
         1. ***Class Customer***
@@ -30,12 +31,7 @@
       
     2. Create a `list` of Customers of different customer-types ('Retail'- and 'Wholesale'-customers)
         
-    3. Iterate (use classic-loop or list-comprehension) the list and output the following attributes of each customer:
-    
-            - `name`
-            - `type`
-            - `id`
-            - `employees`
+    3. Output the attributes `name`, `type`, `id`, `employees` for all customers (use classic-loop or list-comprehension)    
       
     === "Hints" 
 
@@ -50,6 +46,3 @@
             ```
 
             [:material-file-download:](customer.py)
-
-  
-   
