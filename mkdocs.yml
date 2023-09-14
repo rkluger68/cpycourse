@@ -69,10 +69,11 @@ nav:
         - "Generate (Un)Even Numbers": training/lessons/generate-un-even-numbers/generate-un-even-numbers.md
         - "Check User Input Evenness": training/lessons/check-user-input-evenness/check-user-input-evenness.md
         - "Rewrite Dict Comprehension": training/lessons/rewrite-dict-comprehension/rewrite-dict-comprehension.md
+        - "Send Email": training/lessons/send-mail/send-mail.md
       - Main Course:
         - "Reverse Word Order": training/lessons/reverse-words.md
         - "Check Palindromes": training/lessons/check-palindromes/check-palindromes.md
-        - "Customer Class": training/lessons/customer.md
+        - "Customer Class": training/lessons/customer-class/customer.md
         - "Iterate File": training/lessons/iter-file.md
   - Python:
     - Python: python/python.md
