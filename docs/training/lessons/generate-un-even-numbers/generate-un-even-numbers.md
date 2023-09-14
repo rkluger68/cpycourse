@@ -26,7 +26,7 @@
 
     === "Solution"
 
-            ??? example
+            ??? example "*Really* take a peek now?"
 
                 ``` python title="generate_numbers.py"
                 --8<-- "training/lessons/generate-un-even-numbers/generate_numbers.py"

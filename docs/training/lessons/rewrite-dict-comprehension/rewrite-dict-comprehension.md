@@ -36,7 +36,7 @@
 
     === "Solution"
 
-        ??? example
+        ??? example "*Really* take a peek now?"
 
             ``` python title="rewrite_dict_comprehension.py"
             --8<-- "training/lessons/rewrite-dict-comprehension/rewrite_dict_comprehension.py"

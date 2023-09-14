@@ -23,7 +23,7 @@
 
     === "Solution"
 
-        ??? example
+        ??? example "*Really* take a peek now?"
 
             ``` python title="list_modification.py"
             --8<-- "training/lessons/list-modification/list_modification.py"

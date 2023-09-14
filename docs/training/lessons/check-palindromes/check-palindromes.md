@@ -47,7 +47,7 @@
 
     === "Solution"
 
-        ??? example
+        ??? example "*Really* take a peek now?"
 
             ``` python title="check_palindromes.py"
             --8<-- "training/lessons/check-palindromes/check_palindromes.py"

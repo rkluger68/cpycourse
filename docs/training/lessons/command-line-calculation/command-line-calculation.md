@@ -16,7 +16,7 @@
 
     === "Solution"
 
-        ??? example
+        ??? example "*Really* take a peek now?"
 
             ```
             >>> 91514.17 * 1.03**3
