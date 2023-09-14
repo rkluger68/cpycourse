@@ -33,7 +33,7 @@
 
     === "Solution"
 
-        ??? Example - Simple Python Email client
+        ??? pied-piper "Simple Python Email client"
 
             ``` python title="sendmail_compact.py"
             --8<-- "training/lessons/send-mail/sendmail_compact.py"
@@ -52,7 +52,7 @@
             ```
 
 
-        ??? Example - Python Email client using 'MailServer'-class
+        ??? pied-piper "Python Email client using 'MailServer'-class"
 
             ``` python title="sendmail.py"
             --8<-- "training/lessons/send-mail/sendmail.py"
@@ -71,7 +71,7 @@
             ```
 
 
-        ??? Example - Python Email client enabled for email-attachments
+        ??? pied-piper "Python Email client enabled for email-attachments"
 
             ``` python title="sendmail_with_attachment.py"
             --8<-- "training/lessons/send-mail/sendmail_with_attachment.py"
