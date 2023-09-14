@@ -1,5 +1,8 @@
 !!! question "Lesson: Iterate file"
-    Create a Python script that
+
+   === "Task"
+
+      Create a Python script that
 
       - takes a file name/path as a command line argument
       - opens a file using the built-in `open()` function
@@ -14,5 +17,18 @@
       write the processed lines to this output file, joining the split lines
       with another "target separator" (also set with a command line option).
 
+    === "Hints"
+
       Hint: Use the `argparse` stdlib library to parse the command line (see
       https://docs.python.org/3/howto/argparse.html).
+
+   
+   === "Solution"
+
+        ??? pied-piper "Example `iterate_file.py"
+
+            ``` python title="iterate_file.py"
+            --8<-- "training/lessons/file-iteration/iterate_file.py"
+            ```
+
+            [:material-file-download:](iterate_file.py)
