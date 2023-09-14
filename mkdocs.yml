@@ -71,6 +71,7 @@ nav:
       - Check Palindromes: training/lessons/check-palindromes/check-palindromes.md
       - Customer Class: training/lessons/customer.md
       - Iterate File: training/lessons/iter-file.md
+      - Send Email: training/lessons/send-mail/send-mail.md
   - Python:
     - Python: python/python.md
     - Why Python?: python/why-python.md

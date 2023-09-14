@@ -15,12 +15,10 @@
         - create a connection to the mail-host
         - send yourself an email with the subject "Hello from the Python-Course" and the content = "Currently working on ..." from a synthetic email sender-address e.g. "test.test@foo.de" 
 
+        Optional: Extend the program to allow email-attachments. For this ask the user to provide a filepath for the attachment.
 
-        ``` python
-        >>> name = 'Ada'
-        ```
 
-        Expected result: Check your email-account for the incoming email
+        Expected result: Check your email-account for the incoming email (opionally with attachment)
 
     === "Hints"
 
@@ -29,9 +27,13 @@
         - use `smtplib.SMTP`- class from the [smtplib](https://docs.python.org/3/library/smtplib.html) module of the Python Standard Library, to establish a connection to the mailserver
         - use f-string `msg = f'From: {sender}\nTo: {receiver}\nSubject: {subject}\n\n{payload}'`
 
+        Optional:
+
+        - this time use the `email.message.EmailMessage`-class from [email](https://docs.python.org/3/library/email.html)-package of the Python Standard Library to create an email message
+
     === "Solution"
 
-        ??? Example - Compact simple Python Email client
+        ??? Example - Simple Python Email client
 
             ``` python title="sendmail_compact.py"
             --8<-- "training/lessons/send-mail/sendmail_compact.py"
@@ -49,7 +51,7 @@
             --8<-- "training/lessons/send-mail/sendmail-compact.ps1"
             ```
 
-        ??? Example - Simple Python Email client using 'MailServer'-class
+        ??? Example - Python Email client using 'MailServer'-class
 
             ``` python title="sendmail.py"
             --8<-- "training/lessons/send-mail/sendmail.py"
@@ -68,7 +70,7 @@
             ```
 
 
-        ??? Example - Python Email client sending attachments
+        ??? Example - Python Email client enabled for email-attachments
 
             ``` python title="sendmail_with_attachment.py"
             --8<-- "training/lessons/send-mail/sendmail_with_attachment.py"
