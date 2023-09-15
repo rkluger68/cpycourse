@@ -37,30 +37,44 @@ will make an expression statement out of an expression.  Expressions are
 printable and assignable. Because expressions are assignable, they form the
 smallest unit of reusable code. 
 
-Example 1 - expression statement:
+Example - expression statement:
 
 ``` python
->>> 5 + 3 # expression-statement
+>>> 5 + 3 # expression statement
 8
 >>>
 ```
 
-#### Operands and Operators
+##### Operands and Operators
 
 Operands are literals, identifiers (variable names) or functions returning a single value. Operators are (meaningful) links between operands.
 
 
 #### Assignments
 
-Example 2 - assignment statement
+Assignements assign values (result of expressions) to names.
+
+Example - assignment statement:
 
 ``` python
->>> a = 5 + 3 # assignment-statement
->>> a         # expression-statement
+>>> a = 5 + 3 # assignment statement
+>>> a         # expression statement
 8
 >>>
 ```
- 
+
+#### Other Statements
+
+In simple terms, other statements are basically "everything else that can form
+a Python line or group of lines".
+
+There are both "simple" statements (like e.g. `del`, `import`, `return`,
+`yield`, ...) but also "compound" statements (e.g. `if-elif- else`, `for`,
+`while`, ...) that contain other statements.
+
+You can read up all the details on expressions and statements in the [Python
+reference documentation](https://docs.python.org/3/reference/).
+
 #### Indentation
 
 Grouping statements - i.e. building code blocks - is the basis for structuring
@@ -75,9 +89,9 @@ A sensible "program organization" is crucial for creating
 code.
 
 Python uses **indentation** to denote blocks of code (as opposed to e.g. {}
-braces in many other languages).[^braces-blocks] Many love it, some don't care all that much,
-a few hate it. We believe that this is one reason why Python is so inherently 
-readable.
+braces in many other languages).[^braces-blocks] Many love it, some don't care
+all that much, a few hate it. We believe that this is one reason why Python is
+so inherently readable.
 
 [^braces-blocks]:
     E.g in Java or C, the semicolon `;` is used as single-statement-delimiter,
@@ -419,13 +433,18 @@ interpreter does not do anything with them apart from
 
  - evaluating the expressions when the function definition is executed and thus
  - "associating" this information with the function properties (i.e. its
- parameters and return values)
+   parameters and return values)
 
-Function annotations can be used for several purposes, e.g.
+Function annotations can be used for several purposes at compile or run time,
+e.g.
 
-- in optional "compile time" type checkers
- - in editors or IDEs to 
+ - in optional "compile time" type checkers
+ - in editors or IDEs to provide rich code completion, type checking and
+   formatting & highlighting capabilities and refactoring support 
  - to implement "generic functions" that dispatch on parameter type
+ - to generate code (see e.g. the use of type annotations in the
+   [dataclasses](https://docs.python.org/3/library/dataclasses.html) standard
+   library module)
 
 and more.
 
