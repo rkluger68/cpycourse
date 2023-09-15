@@ -32,27 +32,28 @@ Often, Python objects are created and *named* immediately with an assignment.
 Assigments introduce a *name* to refer to the object but don't create the
 object:[^float-identity]
 
-    :::python
-    >>> a = 1.2  # new name a for new float object
-    >>> b = 1.2  # new name b for new float object
-    >>> c = a    # new name c for existing float object
-    >>> type(a)
-    <class 'float'>
-    >>> type(b)
-    <class 'float'>
-    >>> type(c)
-    <class 'float'>
-    >>> id(a)        # (1)
-    140026583519544  # (2) different identity than (1) ==> different object
-    >>> id(b)
-    140026583519592
-    >>> id(c)        # (3) same identity as (1) ==> same object
-    140026583519544
-    >>> a is b
-    False
-    >>> a is c
-    True
-    >>>
+``` python
+>>> a = 1.2  # new name a for new float object
+>>> b = 1.2  # new name b for new float object
+>>> c = a    # new name c for existing float object
+>>> type(a)
+<class 'float'>
+>>> type(b)
+<class 'float'>
+>>> type(c)
+<class 'float'>
+>>> id(a)        # (1)
+140026583519544  # (2) different identity than (1) ==> different object
+>>> id(b)
+140026583519592
+>>> id(c)        # (3) same identity as (1) ==> same object
+140026583519544
+>>> a is b
+False
+>>> a is c
+True
+>>>
+```
 
 [^float-identity]:
     Note though that `a = 1.2; b = 1.2; a is b` would actually yield `True`!
@@ -63,8 +64,9 @@ object:[^float-identity]
 
 But note that an object *needn't have* a name:
 
-    :::python
-    >>> l = [1, 2.0, lambda x: x]
+``` python
+>>> l = [1, 2.0, lambda x: x]
+```
 
 In this example while the `list` does have a name ("l") none of its items has
 one: Neither the 1st integer item nor the 2nd float item nor the 3rd anonymous
@@ -127,91 +129,93 @@ The mutability/immutability of object-values is defined by its type:
 
 Immutable type `int`:
 
-    :::python
-    >>> a = 1
-    >>> id(a)
-    140026581642624
-    >>> a = 2       # assign name 'a' to a new object
-    >>> id(a)
-    140026581642656
-    >>> a += 1
-    >>> a
-    3
-    >>> id(a)       # a is now a name for another new object: immutable object 2 hasn't changed in-place
-    140357021310400
+``` python
+>>> a = 1
+>>> id(a)
+140026581642624
+>>> a = 2       # assign name 'a' to a new object
+>>> id(a)
+140026581642656
+>>> a += 1
+>>> a
+3
+>>> id(a)       # a is now a name for another new object: immutable object 2 hasn't changed in-place
+140357021310400
+```
 
 Immutable type `float`:
 
-    :::python
-    >>> f1 = 1.2 
-    >>> f2 = 1.2
-    >>> f3 = f1     # (1) f3 is another name for the object named f1
-    >>> id(f1)
-    140026583519544
-    >>> id(f2)
-    140026583519592
-    >>> id(f3)
-    140026583519544
-    >>> f1 = 1.3    # (2) the name f1 is now given to another object
-    >>> f1
-    1.3
-    >>> f2
-    1.2
-    >>> f3          # (3) f3 is unaffected: it is still a name for the original object (1)
-    1.2
-    >>> id(f1)
-    140026583519352
-    >>> id(f2)
-    140026583519592
-    >>> id(f3)
-    140026583519544
-    >>> 
-
+``` python
+>>> f1 = 1.2 
+>>> f2 = 1.2
+>>> f3 = f1     # (1) f3 is another name for the object named f1
+>>> id(f1)
+140026583519544
+>>> id(f2)
+140026583519592
+>>> id(f3)
+140026583519544
+>>> f1 = 1.3    # (2) the name f1 is now given to another object
+>>> f1
+1.3
+>>> f2
+1.2
+>>> f3          # (3) f3 is unaffected: it is still a name for the original object (1)
+1.2
+>>> id(f1)
+140026583519352
+>>> id(f2)
+140026583519592
+>>> id(f3)
+140026583519544
+>>> 
+```
 
 ### Examples: mutable types
 
 Mutable type `list`:
 
-    :::python
-    >>> l1 = [1, 2, 3]
-    >>> l2 = l1      # (1) l2 is another name for the object named l1
-    >>> id(l1)
-    140026582652168
-    >>> id(l2)
-    140026582652168
-    >>> l1[0] = 9    # (2) change a value of of l1
-    >>> l1
-    [9, 2, 3]
-    >>> l2           # (3) the change (2) also effects the value of l2
-    [9, 2, 3]
-    >>> id(l1)
-    140026582652168
-    >>> id(l2)
-    140026582652168
-    >>> 
-    >>> l1 =  [1, 2, 3]
-    >>> l2 = l1
-    >>> l1 += [4]  # extend mutable object
-    >>> l1
-    [1, 2, 3, 4]
-    >>> l2
-    [1, 2, 3, 4]
-    >>> l1 is l2
-    True
-    >>> 
-
+``` python
+>>> l1 = [1, 2, 3]
+>>> l2 = l1      # (1) l2 is another name for the object named l1
+>>> id(l1)
+140026582652168
+>>> id(l2)
+140026582652168
+>>> l1[0] = 9    # (2) change a value of of l1
+>>> l1
+[9, 2, 3]
+>>> l2           # (3) the change (2) also effects the value of l2
+[9, 2, 3]
+>>> id(l1)
+140026582652168
+>>> id(l2)
+140026582652168
+>>> 
+>>> l1 =  [1, 2, 3]
+>>> l2 = l1
+>>> l1 += [4]  # extend mutable object
+>>> l1
+[1, 2, 3, 4]
+>>> l2
+[1, 2, 3, 4]
+>>> l1 is l2
+True
+>>> 
+```
 
 Mutable type `dict`:
 
-    :::python
-    >>> d1 = {1: 'one', 2: 'two'}
-    >>> d2 = d1
-    >>> d2[1] = 'three'  # create some confusion
-    >>> d2
-    {1: 'three', 2: 'two'}
-    >>> d1
-    {1: 'three', 2: 'two'}
-    >>> 
+``` python
+>>> d1 = {1: 'one', 2: 'two'}
+>>> d2 = d1
+>>> d2[1] = 'three'  # create some confusion
+>>> d2
+{1: 'three', 2: 'two'}
+>>> d1
+{1: 'three', 2: 'two'}
+>>> 
+```
 
 ## Object Lifetime and Object Reference
 
@@ -236,30 +240,31 @@ immediately, so don't rely on it!).
 You can watch these mechanisms using the `getrefcount()`-function of the Python
 standard library module `sys`:
 
-    :::python
-    >>> import sys
-    >>> l1 = ['cpython', 'does', 'refcounting']  # create named new list
-    >>> sys.getrefcount(l1)
-    2
-    >>> id(l1)
-    39141600
-    >>> l2 = l1             # new name for existing object
-    >>> id(l2)              # yes, it's the same object indeed
-    39141600
-    >>> sys.getrefcount(l1) # ==> refcount increased
-    3
-    >>> sys.getrefcount(l2)
-    3
-    >>> l3 = l1  # yet another new name for (=reference to) existing object
-    >>> sys.getrefcount(l1)
-    4
-    >>> del l3               # delete name l3
-    >>> sys.getrefcount(l1)  # ==> refcount of list object decreased
-    3
-    >>> l2 = object()        # assign name l2 to another object
-    >>> sys.getrefcount(l1)  # ==> refcount of list object decreased
-    2
-    >>> 
+``` python
+>>> import sys
+>>> l1 = ['cpython', 'does', 'refcounting']  # create named new list
+>>> sys.getrefcount(l1)
+2
+>>> id(l1)
+39141600
+>>> l2 = l1             # new name for existing object
+>>> id(l2)              # yes, it's the same object indeed
+39141600
+>>> sys.getrefcount(l1) # ==> refcount increased
+3
+>>> sys.getrefcount(l2)
+3
+>>> l3 = l1  # yet another new name for (=reference to) existing object
+>>> sys.getrefcount(l1)
+4
+>>> del l3               # delete name l3
+>>> sys.getrefcount(l1)  # ==> refcount of list object decreased
+3
+>>> l2 = object()        # assign name l2 to another object
+>>> sys.getrefcount(l1)  # ==> refcount of list object decreased
+2
+>>> 
+```
 
 **Remark:**
 As you may have noted the reference count is higher than you might expect.
