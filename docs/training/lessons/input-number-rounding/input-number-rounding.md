@@ -37,7 +37,7 @@
         ??? example "*Really* take a peek now?"
 
             ``` python title="input_number_rounding.py"
-            --8<-- "training/lessons/check-palindromes/input_number_rounding.py"
+            --8<-- "training/lessons/input-number-rounding/input_number_rounding.py"
             ```
 
             [:material-file-download:](input_number_rounding.py)
