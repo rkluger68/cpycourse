@@ -28,3 +28,9 @@
             ```
 
             [:material-file-download:](iterate_file.py)
+
+            The Python Script can be called as shown in the shell one-liners:
+
+            ``` console title="iterate_file.sh"
+            --8<-- "training/lessons/file-iteration/iterate_file.sh"
+            ```
