@@ -72,6 +72,7 @@ nav:
         - "Send Email": training/lessons/send-mail/send-mail.md
       - Main Course:
         - "Reverse Word Order": training/lessons/reverse-word-order/reverse-words.md
+        - "Input Number Rounding": training/lessons/input-number-rounding/input-number-rounding.md
         - "Check Palindromes": training/lessons/check-palindromes/check-palindromes.md
         - "Customer Class": training/lessons/customer-class/customer.md
         - "Iterate File": training/lessons/file-iteration/iter-file.md
