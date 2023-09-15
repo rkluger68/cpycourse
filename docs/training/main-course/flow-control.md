@@ -1,12 +1,13 @@
 # Everything will flow: Python control-flow constructs
 
-Control flow(-statements) controls the order of execution of statements within a program. Python offers a common set of 'control-flow'-statements.
+Control flow (-statements) controls the order of execution of statements within
+a program. Python offers a common set of 'control-flow' statements.
 
-## choices - the `if`-statement
+## choices - the `if` statement
 
-The `if`-statement provides condtional-execution of code-blocks, see also Python docs [`if`-statement](https://docs.python.org/3/tutorial/controlflow.html#if-statements).
+The `if` statement provides condtional-execution of code-blocks, see also Python docs [`if` statement](https://docs.python.org/3/tutorial/controlflow.html#if-statements).
 
-***`if`-statement example***
+***`if` statement example***
 
 ```python
 >>> a = 1
@@ -24,20 +25,28 @@ The `if`-statement provides condtional-execution of code-blocks, see also Python
 
 ## loops
 
-## `for`-statement
+## `for` statement
 
-The `for`-statement is a count-based loop-control, i.e. the number of repetitions is based upon the number of elements of a 'sequence'. All sequence-types provide a `len()`-method, returning the number of elements of the object.
+The `for` statement is a count-based loop-control, i.e. the number of
+repetitions is based upon the elements of an "iterable".
 
-A 'sequence' can be (class construction in paranthesis)
 
-1. `list`:  class/type-constructor `list()` e.g. `list([1,2,3])` or `list([(1,2,3))`
-2. `tuple`: class/type-constructor `tuple()` e.g. `tuple([1,2,3])` or  `tuple((1,2,3))`
-3. `str`:   class/type-constructor `str()` e.g `str("foo")` 
-4. `range` (`range()`: e.g. `range(0,3)` or  `range(2)` or `range(1,3)`
+An iterable can be e.g. a
+
+ - `list`,
+ - `tuple`,
+ -  `str`, 
+ - `range` (e.g. `range(0,3)` or  `range(2)` or `range(1,3)`
+ - ...
+
+### range() for loop examples
 
 ***Note:***
-The `range()`-builtin function creates object of type `range`, which produces a sequence of integers,
-see [Range](https://docs.python.org/3/library/stdtypes.html#ranges) or `help(range)`:
+The `range()` built-in function creates object of type `range`, which produces
+a sequence of integers, see
+[Range](https://docs.python.org/3/library/stdtypes.html#ranges) or
+`help(range)`:
+
 ```python
 >>> help(range)
 Help on class range in module builtins:
@@ -50,58 +59,20 @@ class range(object)
  
 ```
 
-***for-loop using a `list`-object (1)***
-
-In this example create a sequence as an implicit unnamed counter variable
-
-```python
->>> for elem in list([0,1,2]):
-...     print(elem)
-... 
-0
-1
-2
->>>
-```
-
-***for-loop using a `list`-object (1)***
-
-Normally you provide an explicit list-counter-variable to the for-loop-statement
-
-```python
->>> a
-[1, 2, 3]
->>> for elem in a:
-...     print(elem)
-...     del a[-1]    # (1) changing the counter-variable inside the loop will affect number of repetitions
-... 
-1
-2
->>> a                # (2) list-objects are mutable they will also effects the variable i the outer-block
-[1]
->>>
-```
-***Note:***
-Better use immutable 'tuple`-object to avoid side-effects
-
-
-***for-loop using a `range`-objects (1)***
-
-Example using 'start' and 'stop'-parameter
+#### range() with start and stop
 
 ``` python
->>> for elem in range(0,3):
+>>> for elem in range(2, 6):
 ...     print(elem)
-... 
-0
-1
+...
 2
+3
+4
+5
 >>>
 ```
 
-***for-loop using a `range`-objects (2)***
-
-Example using only 'stop'-parameter
+#### range() with stop
 
 ``` python
 >>> for elem in range(3):
@@ -113,9 +84,7 @@ Example using only 'stop'-parameter
 >>>
 ```
 
-***for-loop using a `range`-objects (3)***
-
-Example using only 'start'-, stop'- and 'step'-parameter
+#### range() with start, stop and step
 
 ``` python
 >>> for elem in range(0,9,3):
@@ -127,13 +96,44 @@ Example using only 'start'-, stop'- and 'step'-parameter
 >>>
 ```
 
-## `while`-statement
+### Looping over objects
 
-The `while`-statement is a condition-based loop-control, i.e the number of repetitions is controlled by a boolean-expression evaluating to `True`.
+Example: `for` loop using a `list` object:
 
-In a while-loop a 'condition-variable' is set *before* and changed *within* the while-loop. 
+```python
+>>> for elem in [0, 1, 2]:
+...     print(elem)
+... 
+0
+1
+2
+>>>
+```
 
-### simple `while`-statement
+You *are* able to modify a looped-over mutable object:
+
+```python
+>>> for elem in my_list:
+...     print(elem)
+...     del my_list[0]
+... 
+1
+3
+>>>
+```
+
+But: ***Don't do that!*** You'll create hard to understand code and unexpected
+behaviour.
+
+## `while` statement
+
+The `while` statement is a condition-based loop-control, i.e the number of
+repetitions is controlled by a boolean-expression evaluating to `True`.
+
+In a `while` loop a 'condition variable' is evaluated *before* running the loop
+body (and usually changed *within* the body). 
+
+### simple `while` statement
 
 ```python
 >>> a = 0
@@ -147,13 +147,13 @@ In a while-loop a 'condition-variable' is set *before* and changed *within* the 
 >>
 ```
 
-## `break`-statement
+## `break` statement
 
-With `break`-statement loops can quit prematurely
+With the `break` statement loops can be terminated prematurely.
 
-Usage: Stop iteration at '1.st-occurence-of'
+Usage: Stop iteration at occurence of a condition.
 
-***Using `break`-statement in a `for`-loop***
+***Using `break` statement in a `for` loop***
 
 ```python
 >>> s = "text"
@@ -167,29 +167,29 @@ e
 >>>
 ```
 
-***Using `break`-statement in a `while`-loop***
+***Using `break` statement in a `while` loop***
 
 ```python
 >>> s = "text"
->>> a = 0
->>> while a < len(s):
-...     if s[a] == 'x':
+>>> idx = 0
+>>> while idx < len(s):
+...     if s[idx] == 'x':
 ...         break
-...     print(s[a])
-...     a += 1
+...     print(s[idx])
+...     idx += 1
 ... 
 t
 e
 >>>
 ```
 
-## `continue`-statement
+## `continue` statement
 
-With a `continue`-statement loops skip the current iteration
+With a `continue` statement loops can skip the rest of the current iteration.
 
 Usage: 'skip-on-condition'
 
-***Using `continue`-statement in a `for`-loop***
+***Using `continue` statement in a `for` loop***
 
 ```python
 >>> for elem in s:
@@ -203,16 +203,16 @@ t
 >>>
 ```
 
-***Using `continue`-statement in a `while`-loop***
+***Using `continue` statement in a `while` loop***
 
 ```python
->> a = 0
->>> while a < len(s):
-...     if s[a] == 'x':
-...         a += 1
+>> idx = 0
+>>> while idx < len(s):
+...     if s[idx] == 'x':
+...         idx += 1
 ...         continue
-...     print(s[a])
-...     a += 1
+...     print(s[idx])
+...     idx += 1
 ... 
 t
 e
@@ -220,22 +220,30 @@ t
 >>>
 ```
 
-## `else`-clause
+## `else` clause of loops
 
-As from the Python docs about the purpose of `else`-clause and when it is executed (see [`else`-clause](https://docs.python.org/3/tutorial/controlflow.html#break-and-continue-statements-and-else-clauses-on-loops)):
+In Python loops can have an optional `else` clause.
+
+See the Python docs for the purpose of a[loop `else` clause](https://docs.python.org/3/tutorial/controlflow.html#break-and-continue-statements-and-else-clauses-on-loops)) and when it is executed. Quote: 
 
 "Loop statements may have an else clause; it is executed when the loop terminates through exhaustion of the iterable (with for) or when the condition becomes false (with while), but not when the loop is terminated by a break statement"
 
-So the `else`-clause can be seen as 'finalizer'-block of statements which are processed ath the end of a loop during normal operations.
+So the `else` clause can be seen as 'finalizer' block of statements which are
+processed ath the end of a loop during normal operations.
 
-***Using `else`-clause in a `for`-loop***
+The exact workings of the `else` clause is a bit hard to remember.[^1] Still,
+sometimes it comes in handy.
+
+[^1]: For one of the authors, at least. :wink:
+
+***Using `else` clause in a `for` loop***
 
 ``` python
 >>> s = "text"
 >>> for elem in s:
 ...     print(elem)
 ... else:
-...     print('End of normal processing')
+...     print("End of normal processing")
 ... 
 t
 e
@@ -245,18 +253,34 @@ End of normal processing
 >>> 
 ```
 
-
-
-***Using `else`-clause in a `while`-loop***
+whereas:
 
 ``` python
 >>> s = "text"
->>> a = 0
->>> while a < len(s):
-...     print(s[a])
-...     a = a+1
+>>> for elem in s:
+...     print(elem)
+...     if elem == "x":
+...         break
 ... else:
-...     print('End of normal processing')
+...     print("End of normal processing")
+...
+t
+e
+x
+>>>
+```
+
+
+***Using `else` clause in a `while` loop***
+
+``` python
+>>> s = "text"
+>>> idx = 0
+>>> while idx < len(s):
+...     print(s[idx])
+...     idx += 1
+... else:
+...     print("End of normal processing")
 ... 
 t
 e
@@ -266,17 +290,36 @@ End of normal processing
 >>>
 ```
 
+whereas:
+
+``` python
+>>> s = "text"
+>>> idx = 0
+>>> while idx < len(s):
+...     print(s[idx])
+...     if s[idx] == "x":
+...         break
+...     idx += 1
+... else:
+...     print("End of normal processing")
+...
+t
+e
+>>>
+```
+
 ***Note:***
-Don't mix up with the `else`-clause of the `if`-statement which is part of a choice-control
+Don't mix up with the `else` clause of the `if` statement which is part of a choice-control
 
-## `pass`-statement
+## `pass` statement
 
-The `pass`- statement is a `noop`´-statement , meaning no-operation, as it does nothing:
+The `pass`- statement is a `noop` statement, meaning no-operation, as it does
+nothing.
 
-Usage: As from the Python Docs[`pass`-statement](https://docs.python.org/3/tutorial/controlflow.html#pass-statements) 
-"It can be used when a statement is required syntactically but the program requires no action"
+Use it where you need a statement syntactically but there is no needed/sensible
+program action, see the [Python Docs on `pass` statement](https://docs.python.org/3/tutorial/controlflow.html#pass-statements).
 
-*** Example `pass`-statement*- demonstrating a class-definition**
+*** Example - `pass` statement in a class definition***
 
 ```python
 >>> class A: pass
@@ -285,5 +328,3 @@ Usage: As from the Python Docs[`pass`-statement](https://docs.python.org/3/tutor
 <class 'type'>
 >>>
 ```
-
-
