@@ -7,7 +7,7 @@ a program. Python offers a common set of 'control-flow' statements.
 
 The `if` statement provides condtional-execution of code-blocks, see also Python docs [`if` statement](https://docs.python.org/3/tutorial/controlflow.html#if-statements).
 
-***`if` statement example***
+**`if` statement example**:
 
 ```python
 >>> a = 1
@@ -41,7 +41,7 @@ An iterable can be e.g. a
 
 ### range() for loop examples
 
-***Note:***
+**Note:**
 The `range()` built-in function creates object of type `range`, which produces
 a sequence of integers, see
 [Range](https://docs.python.org/3/library/stdtypes.html#ranges) or
@@ -122,7 +122,7 @@ You *are* able to modify a looped-over mutable object:
 >>>
 ```
 
-But: ***Don't do that!*** You'll create hard to understand code and unexpected
+But: **Don't do that!** You'll create hard to understand code and unexpected
 behaviour.
 
 ## `while` statement
@@ -153,7 +153,7 @@ With the `break` statement loops can be terminated prematurely.
 
 Usage: Stop iteration at occurence of a condition.
 
-***Using `break` statement in a `for` loop***
+### Using a `break` statement in a `for` loop
 
 ```python
 >>> s = "text"
@@ -167,7 +167,7 @@ e
 >>>
 ```
 
-***Using `break` statement in a `while` loop***
+### Using a `break` statement in a `while` loop
 
 ```python
 >>> s = "text"
@@ -189,7 +189,7 @@ With a `continue` statement loops can skip the rest of the current iteration.
 
 Usage: 'skip-on-condition'
 
-***Using `continue` statement in a `for` loop***
+### Using a `continue` statement in a `for` loop
 
 ```python
 >>> for elem in s:
@@ -203,7 +203,7 @@ t
 >>>
 ```
 
-***Using `continue` statement in a `while` loop***
+### Using a `continue` statement in a `while` loop
 
 ```python
 >> idx = 0
@@ -236,7 +236,7 @@ sometimes it comes in handy.
 
 [^1]: For one of the authors, at least. :wink:
 
-***Using `else` clause in a `for` loop***
+### Using `else` clause in a `for` loop
 
 ``` python
 >>> s = "text"
@@ -270,8 +270,7 @@ x
 >>>
 ```
 
-
-***Using `else` clause in a `while` loop***
+### Using `else` clause in a `while` loop
 
 ``` python
 >>> s = "text"
@@ -316,7 +315,7 @@ nothing.
 Use it where you need a statement syntactically but there is no needed/sensible
 program action, see the [Python Docs on `pass` statement](https://docs.python.org/3/tutorial/controlflow.html#pass-statements).
 
-*** Example - `pass` statement in a class definition***
+**Example - `pass` statement in a class definition:**
 
 ```python
 >>> class A: pass
