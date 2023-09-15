@@ -5,8 +5,21 @@
 In Python everything is an object:
 
 Functions are objects, classes are objects, instances are objects, types are
-objects, modules are objects, you name it: everything's an object. Even code
-is an object:
+objects, modules are objects, you name it: everything's an object.
+
+
+The type of an object can be identified using the built-in `type()` function:
+
+``` python
+>>> type("I'm curious about her")
+<class 'str'>
+>>> number = 42
+>>> type(number)
+<class 'int'>
+>>> 
+```
+
+Even code is an object:
 
 ``` python
 >>> source = "lambda: 'Hello!'"
@@ -95,7 +108,7 @@ a dictionary key), ...
 
 This allows for writing powerful constructs:
 ``` python
->> data = [42, 5.0, "some examples are more intelligent than others"]
+>> data = [42, 5.0, "   some examples are more intelligent than others  "]
 >>> dispatcher = {                                
 ...     str: lambda x: x.strip(),  # we want strings stripped
 ...     int: lambda x: str(x**2),  # we want ints squared 
@@ -272,3 +285,75 @@ This is due to the fact that the `sys.getrefcount()`-function call also
 increases the object's reference count, as it needs to hold a reference to the 
 object, too, while it is running.
 
+## Introspection
+
+Python objects are highly introspectable. That means that you can find out
+pretty much anything about their properties and capabailities (names, types,
+attributes, methods, annotations, ...) at runtime.
+
+A method to list an object's attribute is the `dir()` built-in:
+
+``` python
+>>> dir(3)
+['__abs__', '__add__', '__and__', '__bool__', '__ceil__', '__class__',
+'__delattr__', '__dir__', '__divmod__', '__doc__', '__eq__', '__float__',
+'__floor__', '__floordiv__', '__format__', '__ge__', '__getattribute__',
+'__getnewargs__', '__gt__', '__hash__', '__index__', '__init__',
+'__init_subclass__', '__int__', '__invert__', '__le__', '__lshift__', '__lt__',
+'__mod__', '__mul__', '__ne__', '__neg__', '__new__', '__or__', '__pos__',
+'__pow__', '__radd__', '__rand__', '__rdivmod__', '__reduce__',
+'__reduce_ex__', '__repr__', '__rfloordiv__', '__rlshift__', '__rmod__',
+'__rmul__', '__ror__', '__round__', '__rpow__', '__rrshift__', '__rshift__',
+'__rsub__', '__rtruediv__', '__rxor__', '__setattr__', '__sizeof__', '__str__',
+'__sub__', '__subclasshook__', '__truediv__', '__trunc__', '__xor__',
+'as_integer_ratio', 'bit_length', 'conjugate', 'denominator', 'from_bytes',
+'imag', 'numerator', 'real', 'to_bytes']
+>>>
+>>> class IntervalDefaults:
+...     min_val = -10
+...     max_val = 10
+... 
+>>> dir(IntervalDefaults)
+['__class__', '__delattr__', '__dict__', '__dir__', '__doc__', '__eq__',
+'__format__', '__ge__', '__getattribute__', '__gt__', '__hash__', '__init__',
+'__init_subclass__', '__le__', '__lt__', '__module__', '__ne__', '__new__',
+'__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__sizeof__',
+'__str__', '__subclasshook__', '__weakref__', 'max_val', 'min_val']
+>>> 
+```
+
+Or you can peek into an object's `__dict__`, since Python objects' inner
+workings are predominantly implemented with the help of dictionaries:
+
+``` python
+>>> IntervalDefaults.__dict__  # nowadays, a read-only dict on classes
+mappingproxy({'__module__': '__main__', 'min_val': -10, 'max_val': 10, '__dict__': <attribute '__dict__' of 'IntervalDefaults' objects>, '__weakref__': <attribute '__weakref__' of 'IntervalDefaults' objects>, '__doc__': None})
+>>>
+```
+
+To check if an object is callable there's the `callable` built-in:
+
+``` python
+>>> def noop(): pass
+... 
+>>> callable(noop)
+True
+>>> 
+```
+
+The standard library [inspect](https://docs.python.org/3/library/inspect.html) module offers extensive introspection support:
+
+``` python
+>>> def accelerate(car, target_speed, thrust=100):
+...     ...
+...
+>>> import inspect
+>>> inspect.getargspec(accelerate)
+<stdin>:1: DeprecationWarning: inspect.getargspec() is deprecated since Python 3.0, use inspect.signature() or inspect.getfullargspec()
+ArgSpec(args=['car', 'target_speed', 'thrust'], varargs=None, keywords=None, defaults=(100,))
+>>> 
+```
+
+--8<--
+training/lessons/object-introspection/object-introspection.md
+--8<--

@@ -81,11 +81,13 @@ Grouping statements - i.e. building code blocks - is the basis for structuring
 a program. Organized in "higher-level" building blocks like functions, classes,
 modules and packages, they provide reusable code fragments. 
 
-A sensible "program organization" is crucial for creating  
-  - understandable  
-  - maintainable  
-  - extendible  
-  - testable  
+A sensible "program organization" is crucial for creating
+
+  - understandable
+  - maintainable
+  - extendible
+  - testable
+
 code.
 
 Python uses **indentation** to denote blocks of code (as opposed to e.g. {}
@@ -450,7 +452,7 @@ and more.
 
 #### Variable Annotations
 
-In the same way function parameters and return types may b annotated you can
+In the same way function parameters and return types may be annotated you can
 annotate (module, class or instance) variables:
 
 An annotated variable:
@@ -470,6 +472,7 @@ Again, the annotations can be accessed through the `__annoations__` dict:
 ```
 
 An annotated class:
+
 ``` python
 >>> class Knight:
 ...     knows: str = 'ni'
@@ -490,7 +493,7 @@ ni
 my words
 ```
 
-Annotations are now available at class or instance level:
+Thesee nnotations are then available at class or instance level:
 ``` python
 >>> Knight.__annotations__  # class level
 {'knows': <class 'str'>}
@@ -508,6 +511,43 @@ itself but libraries and tools.
 See the [typing stdlib module
 documentation](https://docs.python.org/3/library/typing.html) for
 infrastructure with regard to (type hint) annotation.
+
+Annotations and typing have evolved pretty much in the past few Python 3 years
+and are still in flux. Modern Pythons support e.g. more convenient language
+sugar than their predecessors, like support for "generics" syntax for standard
+collections:
+
+Python >= 3.9:
+
+``` python
+>>> word_list: list[str]
+>>> __annotations__
+{'word_list': list[str]}
+
+```
+
+Python 3.8:
+
+``` python
+>>> word_list: list[str]
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: 'type' object is not subscriptable
+>>> from typing import List
+>>> word_list: List[str]
+>>> __annotations__
+{'word_list': typing.List[str]}
+>>>
+```
+
+In some cases older Python's might already provide this feature by means of
+a `__future__` import.
+
+``` python
+>>> from __future__ import annotations
+>>> word_list: list[str]
+>>> vector_3d: tuple[float]
+```
 
 ### Decorators
 

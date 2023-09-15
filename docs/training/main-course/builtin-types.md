@@ -6,25 +6,38 @@ Python provides a bunch of popular data types. **Simple types** (also called
 primitive data types) as well as **compound types**, which are collections or
 containers of data of equal or different type.
 
-Each of the Python data types provide a data type-specific set of *methods*
-and *operators* that determine the data type's behaviour. This ensemble of __data__ and __behaviour__ defines the properties of all Python objects.
-For the complete list please refer to <https://docs.python.org/3/library/stdtypes.html>.
+Each of the Python data types provide a data type-specific set of *methods* and
+*operators* that determine the data type's behaviour. This ensemble of __data__
+and __behaviour__ defines the properties of all Python objects.  For the
+complete list please refer to [Python Built-in
+Types](https://docs.python.org/3/library/stdtypes.html).
 
-Python builtin data types are Python classes themselves. Instances of nearly all Python builtin data-types can be created in two different ways:
+Python built-in data types are Python classes themselves. Instances of nearly
+all Python builtin data-types can be created in two different ways:
 
- - using a type-specific notation: literals in the case of **simple data types** or different kind of brackets `(`,  `)`, `[`, `]`, `{`, `}` in the case of **compound data-types** 
+ - using a type-specific literal notation: literals in the case of **simple
+   data types** or "literals in brackets" `(`,  `)`, `[`, `]`, `{`, `}` in
+   the case of **compound data-types** 
  - using the data type's class constructor
 
+The type of a literal or a variable (referencing or naming an object) can be
+identified using the built-in `type()`-function:
 
-The type of a data-literal (or a variable referencing a data type holding that data-literal value) can be identified using the builtin `type()`-function. 
-
-A type-test of a Python variable is done using buitlins `isinstance()` function
+``` python
+>>> type("I'm curious about her")
+<class 'str'>
+>>> number = 42
+>>> type(number)
+<class 'int'>
+>>> 
+```
 
 ## Numeric datatypes
 
 ### Integers - `int`
 
 Example usage:
+
 ``` python
 >>> 1
 1
