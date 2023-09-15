@@ -227,43 +227,85 @@ The `dir(<object>`)- builtin function lists all names in the namespace of the gi
 
 ## Composition ("has-a"-relation)
 
-Python also support composition, i.e. a class 'B' has an instance-attribute pointing to an instance-attribute of class 'A'
+Python also support composition, i.e. a class 'Car' has an instance-attribute pointing to an instance-attribute of class 'Engine'
 
-***class definitions***  
+### 'Owned-By' Composition
 
-``` python
->>> class A:
+***class definitions***
+
+```python
+>>> class Engine:
 ...     def __init__(self, name):
 ...         self.name = name
 ...     def getName(self):
 ...         return self.name
 ... 
->>> class B:
-...     def __init__(self, name, number):
-...         self.a = A(name)               # create a class 'A' (calling the constructor of class 'A') instance and old a reference to it (class 'B' "has-a" an instance-attribute of class 'A'
-...         self.number = number
-...     def getNumber(self):
-...         return self.number
+>>> class Car:
+...     def __init__(self, name, engine_name):
+...         # 'class Engine' instance is owned (it's created)
+...         self.engine = Engine(engine_name)
+...         self.name = name
 ...     def getName(self):
-...         return self.a.getName()
+...         return self.name
 ... 
->>>
+>>> 
 ```
 
 ***class instantiation***
 
 ``` python
->>> b = B('Composition', 100)
->>> b.getName()     # (1): indirect access to instance-variable 'a'
-'Composition'
->>> b.a.getName()   # (2): direct access to instance-variable 'a'
-'Composition'
->>> b.a.name        # (3): direct access to instance-variable 'a'
-'Composition'
->>> b.getNumber()
-100
+>>> car = Car('Porsche', 'V6-Engine')
+>>> car.getName()
+'Porsche'
+>>> car.engine.getName()
+'V6-Engine'
 >>> 
 ```
+
+### 'Used-By' Composition
+
+***class definitions***
+
+``` python
+>>> class Engine:
+...     def __init__(self, name):
+...         self.name = name
+...     def getName(self):
+...         return self.name
+... 
+>>> class Car:
+...     def __init__(self, name, engine):
+...         # 'class Engine' instance is used (it's injected)
+...         self.engine = engine
+...         self.name = name
+...     def getName(self):
+...         return self.name
+... 
+>>> 
+```
+
+***class instantiation***
+
+```python
+>>> engine = Engine('V6-Engine')
+>>> car = Car('Porsche', engine)
+>>> engine.getName()
+'V6-Engine'
+>>> car.getName()
+'Porsche'
+>>> car.engine.getName()
+'V6-Engine'
+>>>
+```
+
+## A note on 'Inheritance vs Composition'
+
+Key principle of both concepts is code reusabilty:
+
+- Inheritance: Base class methods are inherited by derived classes and can be extended or overwritten
+- Composition: Combines existing classes to build more complex classes
+
+Interest reading in [The Composition Over Inheritance Principle](https://python-patterns.guide/gang-of-four/composition-over-inheritance/) first described in the [Gang of Four Book](https://python-patterns.guide/gang-of-four/)
 
 ## Class Attributes
 
