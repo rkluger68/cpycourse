@@ -17,7 +17,8 @@
 
         Use the `input()` built-in function to read user input interactively.
 
-        Use `help(round)` to find out about the built-in `round()` function.
+        Remember how whole numbers can be represented in Python. Use
+        `help(round)` to find out about the built-in `round()` function.
 
         The program output could look something like this:
 
