@@ -17,7 +17,8 @@
 
         Use the `input()` built-in function to read user input interactively.
 
-        Use `help(round)` to find out about the built-in `round()` function.
+        Remember how whole numbers can be represented in Python. Use
+        `help(round)` to find out about the built-in `round()` function.
 
         The program output could look something like this:
 
@@ -37,7 +38,7 @@
         ??? example "*Really* take a peek now?"
 
             ``` python title="input_number_rounding.py"
-            --8<-- "training/lessons/check-palindromes/input_number_rounding.py"
+            --8<-- "training/lessons/input-number-rounding/input_number_rounding.py"
             ```
 
             [:material-file-download:](input_number_rounding.py)
