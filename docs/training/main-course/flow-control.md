@@ -308,9 +308,6 @@ e
 >>>
 ```
 
-***Note:***
-Don't mix up with the `else` clause of the `if` statement which is part of a choice-control
-
 ## `pass` statement
 
 The `pass`- statement is a `noop` statement, meaning no-operation, as it does
@@ -328,3 +325,41 @@ program action, see the [Python Docs on `pass` statement](https://docs.python.or
 <class 'type'>
 >>>
 ```
+
+## `match` statement
+
+The match statement is a relatively young addition at the time of writing, and
+we won't cover it in any depth here.
+
+Dubbed 'structural pattern matching' it's new in Python version 3.10 and allows
+you to match a value ('subject') against one ore more patterns.
+
+When the match subject matches a pattern (a 'match success' or 'pattern
+success') then the matched values may be bound to names.
+
+In it's simplest form it looks s.th. like this:
+
+```python
+>>> def match_traffic_light_status(status):
+...     match status:
+...         case 'green':
+...             print('Go!')
+...         case 'red':
+...             print('Stop!')
+...         case _:
+...             print(f'traffic light {status}?!')
+... 
+>>> match_traffic_light_status('red')
+Stop!
+>>> match_traffic_light_status('blue')
+traffic light blue?!
+>>>
+```
+
+In this basic form it bears some similarity to switch-case constructs found in
+e.g. the C language, but it is way more powerful.
+
+See the [Python
+tutorial](https://docs.python.org/3/tutorial/controlflow.html#match-statements)
+and [Reference](https://docs.python.org/3/reference/compound_stmts.html#match)
+for in-depth knowledge on `match`.
