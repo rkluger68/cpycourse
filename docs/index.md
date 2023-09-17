@@ -1,6 +1,6 @@
 # A Curious Python Course
 
-=== abstract "Training material for your quest to become a [snake charmer](python/python.md)"
+!!! abstract "Training material for your quest to become a [snake charmer](python/python.md)"
 
     This course intends to get you acquainted with Python's essentials. You should
     be able to read & understand a good part of Python code & write your own with
