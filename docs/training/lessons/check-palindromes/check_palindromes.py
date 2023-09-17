@@ -25,7 +25,7 @@ def is_palindrome_loop(text):
     for idx, character in enumerate(text):
         idx_back = -(idx + 1)
         if text[idx] != text[idx_back]:
-            return False 
+            return False
     return True
 
 
@@ -45,9 +45,9 @@ def parse_args(args=None):
 
 def main(args=None):
     """Main module function.
-    
+
     Exposes this module's executable functionality for use as a module
-    function. 
+    function.
     Parses arguments from sys.argv if args is None (the default) or from args
     sequence otherwise.
     """
