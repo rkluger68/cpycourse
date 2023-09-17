@@ -1,16 +1,13 @@
 # A Curious Python Course
 
-!!! warning
-    Work in progress - this site is under construction and unfinished business.
+=== abstract "Training material for your quest to become a [snake charmer](python/python.md)"
 
-Training material for your quest to become a [snake charmer](python/python.md).
+    This course intends to get you acquainted with Python's essentials. You should
+    be able to read & understand a good part of Python code & write your own with
+    the information provided here.
 
-This course intends to get you acquainted with Python's essentials. You should
-be able to read & understand a good part of Python code & write your own with
-the information provided here.
-
-Deals with the 3.x generation of the species
-[only](https://pythonclock.org/).[^py3-only]
+    Deals with the 3.x generation of the species
+    [only](https://pythonclock.org/).[^py3-only]
 
 [^py3-only]:
     Well, apart from the occasional nostalgic comment or reference, that is.
