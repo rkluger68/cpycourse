@@ -71,6 +71,7 @@ nav:
         - "Rewrite Dict Comprehension": training/lessons/rewrite-dict-comprehension/rewrite-dict-comprehension.md
         - "Send Email": training/lessons/send-mail/send-mail.md
       - Main Course:
+        - "Object Introspection": training/lessons/object-introspection/object-introspection.md
         - "Reverse Word Order": training/lessons/reverse-word-order/reverse-words.md
         - "Input Number Rounding": training/lessons/input-number-rounding/input-number-rounding.md
         - "Check Palindromes": training/lessons/check-palindromes/check-palindromes.md

@@ -23,6 +23,11 @@
         introspection step and sort those out for the selection menu
         generation.
 
+        Optional 2: Experiment with additional type converters for the input 
+        data, e.g. also accept `list` and `tuple`. Can you simple use
+        the `list` or `tuple` constructors for type conversion here?
+        Try to execute the `sort` method of a list object.
+
     === "Hints"
 
         Use the `input()` built-in function to read user input interactively.
@@ -30,33 +35,40 @@
         Remember you can `try` an operation and catch a resulting exception if
         it fails.
 
+        Optional: `inspect.signature` can provide you with information about
+        a callable's parameters.
+
+        Optional 2: An easy way to parse text input to lists or tuples is by
+        using `json.loads`.
+
         The program output could look something like this:
 
         ```
         python3 object_introspection.py
         Your input please: 42
-        value = 42 [type: int]
+        value = 42 [<class 'int'>]
         ==========================================
         Please select the method you want to call:
-          1 - as_integer_ratio
-          2 - bit_length
-          3 - conjugate
-          4 - from_bytes
-          5 - to_bytes
+        1 - as_integer_ratio
+        2 - bit_count
+        3 - bit_length
+        4 - conjugate
+        5 - from_bytes
+        6 - to_bytes
         ==========================================
-        Please enter your choice: 
+        Please enter your choice: 1
         You selected 'as_integer_ratio'
         Result:
-            42.as_integer_ratio() --> (42, 1)
-            value: 42
+          (42).as_integer_ratio() --> (42, 1) [<class 'tuple'>]
+          value = 42
         ```
 
     === "Solution"
 
         ??? example "*Really* take a peek now?"
 
-            ``` python title=""
-            --8<-- "training/lessons/"
+            ``` python title="object_introspection.py"
+            --8<-- "training/lessons/object-introspection/object_introspection.py"
             ```
 
-            [:material-file-download:](.py)
+            [:material-file-download:](object_introspection.py)

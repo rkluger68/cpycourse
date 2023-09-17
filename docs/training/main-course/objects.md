@@ -39,7 +39,10 @@ An object is an entity encompassing the "data" and its acceptable operations.
 The Python data model documentation
 (<https://docs.python.org/dev/reference/datamodel.html>) describes:
 
-"Every object has an ***identity***, a ***type*** and a ***value***. An object’s identity never changes once it has been created; you may think of it as the object’s address in memory. The ‘is’ operator compares the identity of two objects; the id() function returns an integer representing its identity."
+"Every object has an ***identity***, a ***type*** and a ***value***. An
+object’s identity never changes once it has been created; you may think of it
+as the object’s address in memory. The ‘is’ operator compares the identity of
+two objects; the id() function returns an integer representing its identity."
 
 Often, Python objects are created and *named* immediately with an assignment.
 Assigments introduce a *name* to refer to the object but don't create the
@@ -133,7 +136,7 @@ otherwise.
 
 ## Immutable and Mutable Objects
 
-The mutability/immutability of object-values is defined by its type:
+The mutability/immutability of objects is determined by their types:
 
  1. immutable types: `str`, `int`, `float`, `complex`, `tuple`, `frozenset`
  2. mutable types: `list`, `dict`, `set`, user-defined objects (classes)
@@ -152,7 +155,9 @@ Immutable type `int`:
 >>> a += 1
 >>> a
 3
->>> id(a)       # a is now a name for another new object: immutable object 2 hasn't changed in-place
+>>> # a is now a name for another new object: immutable object 2 hasn't
+>>> # changed in-place
+>>> id(a)
 140357021310400
 ```
 
@@ -247,7 +252,8 @@ Conversely the object's reference count is decreased when the variable is
 deleted (explicit using `del` or implicit by running out of scope) or
 re-assigned to another object.
 
-If the reference count of an objects is `0` the object is automatically destroyed by the garbage collector of the Python interpreter (not necessarily
+If the reference count of an objects is `0` the object is automatically
+destroyed by the garbage collector of the Python interpreter (not necessarily
 immediately, so don't rely on it!).
 
 You can watch these mechanisms using the `getrefcount()`-function of the Python
@@ -327,7 +333,10 @@ workings are predominantly implemented with the help of dictionaries:
 
 ``` python
 >>> IntervalDefaults.__dict__  # nowadays, a read-only dict on classes
-mappingproxy({'__module__': '__main__', 'min_val': -10, 'max_val': 10, '__dict__': <attribute '__dict__' of 'IntervalDefaults' objects>, '__weakref__': <attribute '__weakref__' of 'IntervalDefaults' objects>, '__doc__': None})
+mappingproxy({'__module__': '__main__', 'min_val': -10, 'max_val': 10,
+'__dict__': <attribute '__dict__' of 'IntervalDefaults' objects>,
+'__weakref__': <attribute '__weakref__' of 'IntervalDefaults' objects>,
+'__doc__': None})
 >>>
 ```
 
@@ -341,16 +350,21 @@ True
 >>> 
 ```
 
-The standard library [inspect](https://docs.python.org/3/library/inspect.html) module offers extensive introspection support:
+The standard library [inspect](https://docs.python.org/3/library/inspect.html)
+module offers extensive introspection support:
 
 ``` python
 >>> def accelerate(car, target_speed, thrust=100):
 ...     ...
 ...
 >>> import inspect
->>> inspect.getargspec(accelerate)
-<stdin>:1: DeprecationWarning: inspect.getargspec() is deprecated since Python 3.0, use inspect.signature() or inspect.getfullargspec()
-ArgSpec(args=['car', 'target_speed', 'thrust'], varargs=None, keywords=None, defaults=(100,))
+>>> inspect.signature(accelerate)
+<Signature (car, target_speed, thrust=100)>
+>>> inspect.signature(accelerate).parameters
+mappingproxy(OrderedDict([('car', <Parameter "car">), ('target_speed',
+<Parameter "target_speed">), ('thrust', <Parameter "thrust=100">)]))
+>>> inspect.signature(accelerate).parameters['car'].default
+<class 'inspect._empty'>
 >>> 
 ```
 
