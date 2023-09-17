@@ -1,0 +1,1 @@
+../lessons/check-palindromes/check_palindromes.py
