@@ -326,6 +326,7 @@ and types of value. This makes Python a dynamically typed language.
 [Python provides a bunch of popular data types.](../main-course/builtin-types.md)
 
 All data is represented as an object and has a type:
+
 ``` python
 >>> 'foo'
 'foo'
@@ -334,6 +335,22 @@ All data is represented as an object and has a type:
 >>> isinstance('foo', str)  # isinstance tests if an object is of a certain type
 True
 >>>
+```
+
+You can access an object's attributes with the `.`-operator:
+
+``` python
+>>> "foo".upper
+<built-in method upper of str object at 0x7f2342e6f8f0>
+>>> 
+```
+
+If such an attribute is *callable* (a "method") then you can invoke it:
+
+``` python
+>>> "foo".upper()  # call a method like <method_name>()
+'FOO'
+>>> 
 ```
 
 ### Strings - `str`
