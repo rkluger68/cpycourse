@@ -1,4 +1,4 @@
-!!! question "Lesson: Check User Input Evenness"
+!!! question "Lesson: Add Function"
    
     === "Task"
         
