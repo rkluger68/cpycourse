@@ -935,6 +935,17 @@ Functions can return values and function parameters can have default arguments:
 'Calling Elvis'
 ```
 
+A function without an explicit return statements implicitly returns `None`:
+
+``` python
+>>> echo_return_value = echo("Hello, world!")
+Hello, world!
+>>> echo_return_value
+None
+>>>
+```
+
+
 Functions can be called repeatedly and therefore are an essential building
 block of reusable code in programming languages.
 
@@ -956,25 +967,30 @@ access and method call using the `.`-dot operator.
 **class definition**:
 
 ``` python
->>> class MyDog:
-...     def __init__(self, name):    # class constructor
-...         self.name = name         # instance-attribute
-...     def bark(self):              # instance-method returning nothing
-...         print("wuff")
-...
 >>>
+>>> class MyDog:
+...     def __init__(self, name):   # class constructor
+...         self.name = name        # instance attribute
+...     def bark(self):             # instance method
+...         print(f"{self.name} says wuff")
+... 
+>>> 
 ```
     
 **class instances and attribute/method access**:
 
 ``` python
->>> mydog = MyDog("Django")         # create class instance
->>> mydog.name                      # access instance-attribute using '.'-dot operator
+>>> my_dog = MyDog("Django")  # create class instance
+>>> my_dog.name               # access instance attribute with '.'-dot operator
 'Django'
->>> mydog.bark()                    # call instance-method using '.'-dot operator
-wuff
+>>> my_dog.bark()             # call instance method using '.'-dot operator
+Django says wuff
 >>>
 ```
+
+--8<--
+training/lessons/classy-animals/classy-animals.md
+--8<--
 
 ## Exceptions
 
