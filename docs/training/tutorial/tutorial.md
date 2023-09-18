@@ -938,6 +938,9 @@ Functions can return values and function parameters can have default arguments:
 Functions can be called repeatedly and therefore are an essential building
 block of reusable code in programming languages.
 
+--8<--
+training/lessons/add-function/add-function.md
+--8<--
 
 ## Classes and Instances
 

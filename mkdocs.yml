@@ -68,6 +68,7 @@ nav:
         - "List Modification": training/lessons/list-modification/list-modification.md
         - "Generate (Un)Even Numbers": training/lessons/generate-un-even-numbers/generate-un-even-numbers.md
         - "Check User Input Evenness": training/lessons/check-user-input-evenness/check-user-input-evenness.md
+        - "Add Function": training/lessons/add-function/add-function.md
         - "Rewrite Dict Comprehension": training/lessons/rewrite-dict-comprehension/rewrite-dict-comprehension.md
         - "Send Email": training/lessons/send-mail/send-mail.md
       - Main Course:
