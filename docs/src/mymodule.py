@@ -1,3 +1,5 @@
+# mymodule.py
+
 def myfunc(arg):
     """Return the answer to all questions.
     """
