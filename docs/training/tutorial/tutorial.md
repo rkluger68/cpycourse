@@ -340,7 +340,7 @@ True
 You can access an object's attributes with the `.`-operator:
 
 ``` python
->>> "foo".upper
+>>> "foo".upper  # Attribute access: give me the "upper" attribute of str "foo"
 <built-in method upper of str object at 0x7f2342e6f8f0>
 >>> 
 ```
