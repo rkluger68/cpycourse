@@ -7,7 +7,12 @@
 
     === "Hints"
         
-        Find out about the modulo operator or the `divmod(...)` built-in function.
+        Find out about the modulo operator or the `divmod(...)` built-in
+        function.
+
+        Remember that the `input()` function returns text - to use number
+        operations you will need to convert the resulting user input to an
+        `int`.
 
     === "Solution"
 
