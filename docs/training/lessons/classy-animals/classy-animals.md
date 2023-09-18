@@ -21,8 +21,8 @@
         also expects a `name` argument in its `__init__` method, with those 2
         additional methods:
 
-        - a method `meow` that prints the string "<MyCat name> says miau" where
-          <MyCat name> is the name attribute of the instance object
+        - a method `meow` that prints the string "\<MyCat name\> says miau" where
+          \<MyCat name\> is the `name` attribute of the instance object
         - a method `speak` that calls the `meow` method.
 
         Create an `animals` list containing a `MyDog` and a `MyCat` instance.

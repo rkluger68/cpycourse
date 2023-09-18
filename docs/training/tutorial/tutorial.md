@@ -928,11 +928,14 @@ Functions can return values and function parameters can have default arguments:
 ``` python
 >>> def greeting(name, greet="Hello"):
 ...     return greet + " " + name
-... 
->>> greeting("Mick")  # Using the default greet text.
+...
+>>> greets = greeting("Mick")  # Using the default greet text.
+>>> greets  # the returned value
 'Hello Mick'
->>> greeting("Elvis", greet="Calling")  # Prefer a custom greet text.
+>>> greets = greeting("Elvis", greet="Calling")  # Prefer a custom greet text.
+>>> greets  # the returned value
 'Calling Elvis'
+>>>
 ```
 
 A function without an explicit return statements implicitly returns `None`:
@@ -940,7 +943,7 @@ A function without an explicit return statements implicitly returns `None`:
 ``` python
 >>> echo_return_value = echo("Hello, world!")
 Hello, world!
->>> echo_return_value
+>>> print(echo_return_value)
 None
 >>>
 ```
