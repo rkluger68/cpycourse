@@ -1125,6 +1125,20 @@ using a syntax that very much feels like a mathematical set notation:
 >>> 
 ```
 
+Compare this to a "traditional" `for` loop solution:
+
+``` python
+>>> import os
+>>> dirs = []
+>>> for entry in os.listdir():
+...     if os.path.isdir(entry):
+...         dirs.append(entry)
+...
+>>> dirs
+['includes', 'docs', '.git', '.github']
+>>> 
+```
+
 ### Generator Expressions
 
 Similarly, one can use **generator expressions** that do not pre-populate a
