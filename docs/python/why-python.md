@@ -64,13 +64,21 @@ Python is
  - extensible, i.e. in the need for speed you can write performance critical
    code as e.g. a C extension (but more often than not Python is just fast 
    enough, anyway)
-  
+
+Moreover, Python comes with "batteries included": its rich [standard
+library](https://docs.python.org/3/library/index.html)
+provides a wide variety of tooling, out-of-the-box. This can be essential in
+restricted environments e.g. when you're not able to install additional
+packages. 
  
 ## It has excellent documentation & a great community
 
 Simply take at look at https://docs.python.org/ and
 https://www.python.org/community/.
 
+The wider Python open source community delivers many world class 3rd party
+packages, usually available through the Python Package Index
+([PyPI](https://pypi.org/)).
 
 ## It is widely used & usage is growing rapidly
 
