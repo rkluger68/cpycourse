@@ -13,7 +13,7 @@ https://docs.python.org/3/index.html
 
 ## Getting a Python
 
-See here for hints on [Python installation](main-course/installation.md).
+See here for hints on [Python installation](../main-course/installation.md).
 
 ## Starting the Python interpreter
 
@@ -69,7 +69,7 @@ After finishing the execution of the statement, the interpreter comes back to
 the prompt, awaiting the next input.
 
 If you enter a simple expression at the prompt (e.g. an integer or string
-[literal](main-course/grasping-python.md/literals) and press `<Enter>` a
+[literal](../main-course/grasping-python.md/literals) and press `<Enter>` a
 *string representation* of the result gets printed:
 
 ``` python
@@ -210,7 +210,7 @@ $
 As shown you can use the semicolon to separate multiple statements.
 
 But typically, code is placed into Python source files named `<module name>.py`
-, in our case [helloworld.py](../src/helloworld.py):
+, in our case [helloworld.py](../../src/helloworld.py):
 
 ``` python
 --8<--
@@ -274,10 +274,10 @@ training/lessons/command-line-calculation/command-line-calculation.md
 A program is built as a sequence of instructions. The basic building blocks of 
 a Python program are:
 
-1. [Expressions](main-course/grasping-python.md#expressions)
-1. [Operands and Operators](main-course/grasping-python.md#operands-and-operators)
-1. [Statements](main-course/grasping-python.md#statements)
-1. [Comments](main-course/grasping-python.md#comments)
+1. [Expressions](../main-course/grasping-python.md#expressions)
+1. [Operands and Operators](../main-course/grasping-python.md#operands-and-operators)
+1. [Statements](../main-course/grasping-python.md#statements)
+1. [Comments](../main-course/grasping-python.md#comments)
 
 So
 
@@ -323,7 +323,7 @@ and types of value. This makes Python a dynamically typed language.
 
 ## It's all about data: Python Data Types and Python Objects
 
-[Python provides a bunch of popular data types.](main-course/builtin-types.md)
+[Python provides a bunch of popular data types.](../main-course/builtin-types.md)
 
 All data is represented as an object and has a type:
 ``` python
