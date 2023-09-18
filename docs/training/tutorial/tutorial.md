@@ -970,7 +970,6 @@ access and method call using the `.`-dot operator.
 **class definition**:
 
 ``` python
->>>
 >>> class MyDog:
 ...     def __init__(self, name):   # class constructor
 ...         self.name = name        # instance attribute
