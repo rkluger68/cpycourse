@@ -26,10 +26,10 @@
 
     === "Solution"
 
-            ??? example "*Really* take a peek now?"
+        ??? example "*Really* take a peek now?"
 
-                ``` python title="generate_numbers.py"
-                --8<-- "training/lessons/generate-un-even-numbers/generate_numbers.py"
-                ```
+            ``` python title="generate_numbers.py"
+            --8<-- "training/lessons/generate-un-even-numbers/generate_numbers.py"
+            ```
 
-                [:material-file-download:](generate_numbers.py)
+            [:material-file-download:](generate_numbers.py)
