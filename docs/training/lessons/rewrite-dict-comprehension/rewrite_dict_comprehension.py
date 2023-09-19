@@ -66,10 +66,10 @@ def for_loop_filetypes(path='.'):
     for entry in os.listdir(path):
         file_path = os.path.join(path, entry)
 
-        if os.path.isdir(file_path):
-            file_type = 'dir'
-        elif os.path.islink(file_path):
+        if os.path.islink(file_path):
             file_type = 'link'
+        elif os.path.isdir(file_path):
+            file_type = 'dir'
         elif os.path.isfile(file_path):
             file_type = 'file'
         else:
