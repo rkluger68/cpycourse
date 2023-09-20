@@ -1,49 +1,91 @@
 # Functions
 
-Providing repeating tasks or calculation in functions is an effective way of code-reuse ("write-once-use-many").
-This is a brief introduction of Python functions, not covering all possible variations of function-definitions. More on this can be found in the official Python docs <https://docs.python.org/3/tutorial/controlflow.html#more-on-defining-functions>.
-Function itself are Python objects, as such they can e.g be assigned, passed as parameters to or returned from functions, more on that later.
+Providing repeating tasks or calculations in functions is an effective way of
+code reuse ("write oncy, use many times"). This is a brief introduction of
+Python functions, not covering all possible variations of function definitions.
+More on this can be found in the official [Python docs on
+functions](https://docs.python.org/3/tutorial/controlflow.html#more-on-defining-functions).
 
-## Function Definition ##
-
-In Python user-defined functions are defined using the `def`-statement. A function definition is made up
-a function-header (defining the function-name and the call-signature)  and a function-body (the implementation of the task/calculation as a sequence of code statements ending up with an optional return-statement).
-
-
-Python allows different ways of function-definitions as described in the following subsections.
-
-***Note:***
-Often the term "argument" and "parameter" are used interchangeable, but this is a little bit diffuse. More precise are the terms "actual parameter" for "argument" for variables or values in function-calls and "formal parameter" for parameter-names in function-definitions. Here the term "argument" is used for the variable/values in function-calls, the term "parameter is used for parameter-names in function-definitions. 
+Functions - as basically everything in Python - are themselves first class
+Python objects. Once defined, they can of course get executed (by "calling"
+them). But like any other object they can just as well be assigned to a
+variable, passed as arguments to another callable or used as a return value.
 
 
-## Function with simple parameters ##
+## Function Definition
 
-***function-definition example***
+In Python user defined functions are defined using the `def` statement. A
+function definition is made up of a function header (defining the function name
+and the call signature) and a function body (the implementation of the
+task/calculation as a sequence of statements with an optional return
+statement).
+
+
+**Note:**
+The terms "parameter" and "argument" are often used interchangeably, but this
+is a little bit diffuse. The terms "formal parameters" for their use in
+function definitions and "actual parameter" or "argument" for the use in
+function calls may be a bit more precise. Here we'll use "parameter" for the
+parameter variable names in function definitions and "argument" for the actual
+values provided by the function caller.
+
+## Function without Parameters
+
+Function definition:
 
 ``` python
->>> def increment(a,stride):  # function-header
-...    ''' Purpose: Increment a with stride '''   # optional doc-string
-...    # function-body
-...    c = a + stride
-...    return c
+>>> def get_greeting():                    # function header
+...     """Return a friendly greeting."""   # optional doc string
+...     # function body
+...     greet_text = "Hello!"
+...     return greet_text
 ...
 >>>
 ```
 
-A function-call is done simply writing the function-name following a `tuple` of positional call-arguments
+Such a function is *called* simply by using the function name followed by
+parentheses:
 
-***function-call example***
+Function call:
 
 ``` python
->>> result = increment(1,2)
+>>> get_greeting()
+'Hello!'
+>>>
+```
+
+## Function with Parameters
+
+Function definition:
+
+``` python
+>>> def increment(a, stride):                    # function header
+...     """Return a incremented with stride."""   # optional doc string
+...     # function body
+...     c = a + stride
+...     return c
+...
+>>>
+```
+
+For calling the function we now add the arguments in the parentheses when calling the function:
+
+Function call:
+
+``` python
+>>> result = increment(1, 2)
 >>> print(result)
 3
 >>>
 ```
 
-***Note:***
-The number of parameters equal the number of call-arguments. 
-Also the order of the call-parameter must match the order of function-parameters: During the function-call the 1.st call-argument is mapped to the 1.st function-parameter, the 2.nd call-argument is mapped to the 2.nd function-parameter, i.e a position-based mapping from the call-arguments to the function-parameters (call-arguments here are ***positional arguments***)
+**Note:**
+The number of call arguments equals the number of defined parameters.  The
+order of the arguments must match the order of function parameters: During the
+function call the 1.st call argument is mapped to the 1st function parameter,
+the 2.nd call argument is mapped to the 2nd function parameter, etc. I.e. a
+positional mapping from call arguments to parameters takes place - the
+arguments are *positional arguments* here.
 
 Let's give it a try!
 
@@ -51,23 +93,24 @@ Let's give it a try!
 training/lessons/check-palindromes/check-palindromes.md
 --8<--
 
-## Function with optional parameters ##
+## Function with Optional Parameters
 
-Optional parameters are parameters with assigned default values in the function-definition. Those optional parameters may be omitted during the function-call.
+Optional parameters are parameters with default values in the function
+definition. Such optional parameters may be omitted during the function call.
 
-***function-definition example - utilizing default-paramater value***
+Function definition with default paramater value:
 
 ``` python
->>> def increment(a,stride=1):  # function-header with default-argument
-...    ''' Purpose: Increment a with stride '''   # optional doc-string
-...    # function-body
-...    c = a + stride
-...    return c
+>>> def increment(a, stride=1):  # function-header with default-argument
+...     """Return a incremented with stride."""   # optional doc string
+...     # function-body
+...     c = a + stride
+...     return c
 ...
 >>>
 ```
 
-***function-call example (1) - omitting optional parameter***
+Function call omitting the optional parameter:
   
 ``` python  
 >>> result = increment(1)
@@ -76,50 +119,57 @@ Optional parameters are parameters with assigned default values in the function-
 >>> 
 ```
   
-***function-call example (2) - overwriting default-value of optional-parameter***
+Function call overwriting the default value of the optional parameter:
  
 ``` python
->>> result = increment(1,5)
+>>> result = increment(1, 5)
 >>> print(result)
 6
 >>> 
 ```
   
-***Note 1:***
-Function-call can be made using only with arguments for parameters, where no default-agument are defined
-  
-***Note 2:***
-Optional-parameters must be defined at the end of the function-parameter-list. Otherhwise a SyntaxError is raised, e.g.
+**Notes:**
+
+- any parameters without default values must be provided by the caller when
+  calling a function
+- optional parameters must be defined at the end of the parameter list,
+  otherwise a SyntaxError is raised
+
+E.g.
 
 ``` python
->>> def a(a,b=1,c):
-...     return (a+b+c)
+>>> def add(a, b=1, c):
+...     return a + b + c
 ... 
   File "<stdin>", line 1
 SyntaxError: non-default argument follows default argument
 ```
   
   
-## Function with variable parameter list (variadic parameter) ##
+## Function with Variable Parameter List (Variadic Parameter)
 
-A function can be defined having a variable-parameter-list. This is specified in preceding the last parameter with an asterisk-character `*` in the function definition.
+A function can be defined having a variable args parameter. This is specified
+in preceding the last positional parameter with an asterisk-character `*` in
+the function definition.
 
-***function-definition***
+Function definition:
 
 ```python
->>> def print_info(header,footer,*args):    # 2 normal parameter & variable-length-parameter
+>>> # 2 normal parameter & variable args parameter
+>>> def print_info(header, footer, *args):
 ...     print(header)
-...     for elem in args: print(elem)
+...     for elem in args: print(elem)  # args is a list
 ...     print(footer)
 ... 
 >>>
 ```
 
 
-***varargs-function-call (1)***
+Varargs function call:
 
 ```python
->>> print_info('-->', '<--', 'Hello', 'World')  # last 2 arguments are mapped as a tuple into the *-parameter
+>>> # last 2 arguments are mapped as a list into the *-parameter
+>>> print_info('-->', '<--', 'Hello', 'World')
 -->
 Hello
 World
@@ -127,10 +177,11 @@ World
 >>>
 ```
     
-***varargs-function-call (2)***
+Varargs function call with more args:
 
 ``` python
->>> print_info('-->', '<--', 'Tic', 'Tac', 'Toe')  # last 3 arguments are mapped as a tuple into the *-parameter
+# last 3 arguments are mapped as a list into the *-parameter
+>>> print_info('-->', '<--', 'Tic', 'Tac', 'Toe')
 -->
 Tic
 Tac
@@ -139,27 +190,27 @@ Toe
 >>>
 ```
 
+## Keyword Arguments
 
-## Keyword Arguments ##
-
-In the above sections the functions are called with ***positional arguments***, see ***Note*** above.
-In addition function can also be called using named arguments (keyword arguments).
+In the above sections the functions are called with **positional arguments**.
+In addition functions can also be called using named arguments (keyword
+arguments).
 
 To demonstrate this, we use the `increment`-function-definition from above.
 
-***function-definition ***
+Function definition:
   
 ``` python
->>> def increment(a,stride=1):  # function-header
-...    ''' Purpose: Increment a with stride '''   # optional doc-string
-...    # function-body
-...    c = a + stride
-...    return c
+>>> def increment(a, stride=1):  # function-header
+...     """Return a incremented with stride."""   # optional doc string
+...     # function-body
+...     c = a + stride
+...     return c
 ...
 >>>
 ```
 
-***function-call using keyword parameter (1)***
+Function call using keyword parameter:
 
 ``` python
 >>> increment(a=1)
@@ -167,55 +218,60 @@ To demonstrate this, we use the `increment`-function-definition from above.
 >>>
 ```
 
-***function-call using keyword parameter (2)***
+Function call using multiple keyword parameters:
 
 ``` python
->>> increment(stride=3, a=1)
+>>> increment(stride=3, a=1)  # Note the order!
 4
 >>>
 ```
 
-***Note***
-Using keyword-arguments the position of the call-argument doesn't matter
+**Note:**
+When (only) using keyword arguments the positions of the call arguments don't
+matter.
 
 
-## Function with additional keyword parameter ##
+## Functions with Variable Args and Variable Keyword Args
 
-Additionally Python allows function-definitions with arbitray additional keyword-paramaters. This is specified in preceeding the last parmeter with double-asterisk character `**`. Additional kewyword-arguments are mapped during the function-call into a dictionary for the keyword-parameter of the function definition
+Python allows function definitions with arbitray additional keyword parameters.
+This is specified in preceeding the last parameter with double-asterisk
+characters `**`. Additional keyword arguments are mapped into the keyword parameter as a dictionary during the function call.
 
-***function-definition with keyword-parameters***
+Function definition with variable keyword parameters:
   
 ``` python  
->>> def print_info(header,footer,*args, **kwargs):
+>>> def print_info(header, footer, *args, **kwargs):
 ...     print(header)
-...     for elem in args: print(elem)
-...     for elem in kwargs.keys(): print('%s: %s' % (elem, kwargs[elem]))
+...     for elem in args:
+...         print(elem)
+...     for elem in kwargs.keys():
+...         print('%s: %s' % (elem, kwargs[elem]))
 ...     print(footer)
 ... 
 >>> 
 ``` 
 
-***function-call***
+Function call:
 
 ``` python
->>> print_info('-->', '<--', 'Madrid', 'Berlin', 'Paris', capitols_of='European Countries', belonging_to='EU')
+>>> print_info('-->', '<--', 'Madrid', 'Berlin', 'Paris', capitals_of='European Countries', belonging_to='EU')
 -->
 Madrid
 Berlin
 Paris
-capitols_of: European Countries
+capitals_of: European Countries
 belonging_to: EU
 <--
 >>>
 ```
 
-## Function Return Value ##
+## Function Return Value
 
 Python allows the return of mutiple values.
 
 ``` python
 >>> def divide(number,div):
-...     '''Division returning truncated division and modulo'''
+...     """Division returning truncated division and modulo"""
 ...     d = number // div
 ...     m = number % div
 ...     return d,m
@@ -236,7 +292,7 @@ Functions can be defined at every place, at module-level, inside classes (method
 
 ``` python
 >>> def outer_func(inner_func):
-...     ''' function which defines inner functions'''
+...     """ function which defines inner functions"""
 ...     def x():
 ...         print(x.__name__)
 ...     def y():
@@ -250,7 +306,7 @@ Functions can be defined at every place, at module-level, inside classes (method
 >>>
 ```
 
-***function-call***
+***function call***
 
 ``` python
 >>> a_func = outer_func(1)    # assign a function
@@ -262,7 +318,7 @@ y
 >>>
 ```
 
-***Note:***
+**Note:**
 As can be seen, functions are like ordinary Python objects that can be returned and assigned.
 
 ## Functions Annotations
@@ -296,7 +352,7 @@ Function annotations are optional, they are just informations. They are neither 
 PEP - Python Enhancement Proposal - is the official process of suggesting enhancements to the Python language, please read [PEP 001 -- PEP Purpose and Guidelines](https://www.python.org/dev/peps/pep-0001/).
 
 
-## Pythons Function Call Semantics ##
+## Pythons Function Call Semantics
 
 Function-call arguments are suggested in PEP variables in the scope of the caller.
 
@@ -310,12 +366,12 @@ Traditional function call semantics are:
   - as a consequence, changes to variable inside the function will affect the callers variable (side-effect from callee back to the caller) 
   - alongside the function return value, this provides additional communication-channels between caller and callee
 
-Python function call semantics instead are controlled by the mutability/immutability of the Python objects of the caller's function-call arguments.
+Python function call semantics instead are controlled by the mutability/immutability of the Python objects of the caller's function call arguments.
 
 1. argument variable refering an immutable object: Will work without side-effects to the callee even, when the functions is changing the value, this is due to the copy-on-write behaviour 
 2. argument variable refering a mutable object may have side-effects to the callee, when the variable is changed inside the function
 
-***function-call with immutable call-argument***
+***function call with immutable call-argument***
 
 ``` python
 >>> a = 1
@@ -337,10 +393,10 @@ Python function call semantics instead are controlled by the mutability/immutabi
 >>>
 ```
 
-***Note:***
+**Note:**
 Immutable objects of the caller are not effected by changes in the callee
   
-***function-call with mmutable call-argument***
+***function call with mmutable call-argument***
 
 ``` python
 >>> d1 = {'a':1, 'b':2}
@@ -355,7 +411,7 @@ Immutable objects of the caller are not effected by changes in the callee
 >>> d2 = change_callee_object(d1)
 139752035393824
 139752035393824
->>> d1 # site-effect caused by function-call with mutable argument
+>>> d1 # site-effect caused by function call with mutable argument
 {'a': 2, 'b': 3}
 >>> id(d1)
 139752035393824
@@ -366,7 +422,7 @@ Immutable objects of the caller are not effected by changes in the callee
 >>> 
 ```
 
-***Note:***
+**Note:**
 Function-calls with mutable objects may have site-effect to the callee
   
 
