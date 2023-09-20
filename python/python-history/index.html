@@ -1,0 +1,1650 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Practical Python training material">
+      
+      
+        <meta name="author" content="Holger Joukl">
+      
+      
+      
+        <link rel="prev" href="../why-python/">
+      
+      
+        <link rel="next" href="../../excursions/shells/">
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.6">
+    
+    
+      
+        <title>A brief history of Python - Curious Python Course</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.558e4712.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.2505c338.min.css">
+      
+      
+
+    
+    
+    
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="deep-purple">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#a-very-brief-selective-history-of-python" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Curious Python Course" class="md-header__button md-logo" aria-label="Curious Python Course" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Curious Python Course
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              A brief history of Python
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="deep-purple"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+            </label>
+          
+        
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="deep-purple"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/hjoukl/cpycourse" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    hjoukl/cpycourse
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../.." class="md-tabs__link">
+      Home
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../training/tutorial/tutorial/" class="md-tabs__link">
+        Training
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../python/" class="md-tabs__link md-tabs__link--active">
+        Python
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../excursions/shells/" class="md-tabs__link">
+        Excursions
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../about/curious-python-course/" class="md-tabs__link">
+        About
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Curious Python Course" class="md-nav__button md-logo" aria-label="Curious Python Course" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Curious Python Course
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/hjoukl/cpycourse" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    hjoukl/cpycourse
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2" tabindex="0" aria-expanded="false">
+          Training
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Training" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Training
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../training/tutorial/tutorial/" class="md-nav__link">
+        Tutorial
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_2_2" type="checkbox" id="__nav_2_2" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_2" tabindex="0" aria-expanded="false">
+          Main Course
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Main Course" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_2">
+          <span class="md-nav__icon md-icon"></span>
+          Main Course
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../training/main-course/main-course/" class="md-nav__link">
+        A Curious Python Main Course
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../training/main-course/installation/" class="md-nav__link">
+        Chapter 0: Installing Python
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../training/main-course/grasping-python/" class="md-nav__link">
+        Chapter 1: Grasping Python
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../training/main-course/objects/" class="md-nav__link">
+        Chapter 2: Python Objects
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../training/main-course/builtin-types/" class="md-nav__link">
+        Chapter 3: Built-in Types
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../training/main-course/functions/" class="md-nav__link">
+        Chapter 4: Functions
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../training/main-course/classes-instances/" class="md-nav__link">
+        Chapter 5: Classes & Instances
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../training/main-course/flow-control/" class="md-nav__link">
+        Chapter 6: Flow Control
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../training/main-course/exceptions/" class="md-nav__link">
+        Chapter 7: Exceptions
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../training/main-course/io/" class="md-nav__link">
+        Chapter 8: (File) Input & Output
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../training/main-course/context-managers/" class="md-nav__link">
+        Chapter 9: Context Managers
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../training/main-course/decorators/" class="md-nav__link">
+        Chapter 10: Decorators
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../training/main-course/modules-packages/" class="md-nav__link">
+        Chapter 11: Modules & Packages
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../training/main-course/venvs-packages-installation/" class="md-nav__link">
+        Chapter 12: Python Environments & Package Installation
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../training/main-course/stdlib-tour/" class="md-nav__link">
+        Chapter 13: Python Standard Library
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../training/oddjob/" class="md-nav__link">
+        Oddjob
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_2_3" type="checkbox" id="__nav_2_3" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_3" tabindex="0" aria-expanded="false">
+          Lessons
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Lessons" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_3">
+          <span class="md-nav__icon md-icon"></span>
+          Lessons
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_2_3_1" type="checkbox" id="__nav_2_3_1" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_3_1" tabindex="0" aria-expanded="false">
+          Tutorial
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Tutorial" data-md-level="3">
+        <label class="md-nav__title" for="__nav_2_3_1">
+          <span class="md-nav__icon md-icon"></span>
+          Tutorial
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../training/lessons/command-line-calculation/command-line-calculation/" class="md-nav__link">
+        Command Line Calculation
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../training/lessons/hello-world/hello-world/" class="md-nav__link">
+        Hello World
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../training/lessons/list-modification/list-modification/" class="md-nav__link">
+        List Modification
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../training/lessons/generate-un-even-numbers/generate-un-even-numbers/" class="md-nav__link">
+        Generate (Un)Even Numbers
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../training/lessons/check-user-input-evenness/check-user-input-evenness/" class="md-nav__link">
+        Check User Input Evenness
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../training/lessons/add-function/add-function/" class="md-nav__link">
+        Add Function
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../training/lessons/classy-animals/classy-animals/" class="md-nav__link">
+        Classy Animals
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../training/lessons/rewrite-dict-comprehension/rewrite-dict-comprehension/" class="md-nav__link">
+        Rewrite Dict Comprehension
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../training/lessons/send-mail/send-mail/" class="md-nav__link">
+        Send Email
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_2_3_2" type="checkbox" id="__nav_2_3_2" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_3_2" tabindex="0" aria-expanded="false">
+          Main Course
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Main Course" data-md-level="3">
+        <label class="md-nav__title" for="__nav_2_3_2">
+          <span class="md-nav__icon md-icon"></span>
+          Main Course
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../training/lessons/object-introspection/object-introspection/" class="md-nav__link">
+        Object Introspection
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../training/lessons/reverse-word-order/reverse-words/" class="md-nav__link">
+        Reverse Word Order
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../training/lessons/input-number-rounding/input-number-rounding/" class="md-nav__link">
+        Input Number Rounding
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../training/lessons/check-palindromes/check-palindromes/" class="md-nav__link">
+        Check Palindromes
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../training/lessons/customer-class/customer/" class="md-nav__link">
+        Customer Class
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../training/lessons/file-iteration/iter-file/" class="md-nav__link">
+        Iterate File
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_3" type="checkbox" id="__nav_3" checked>
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3" tabindex="0" aria-expanded="true">
+          Python
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Python" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Python
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python/" class="md-nav__link">
+        Python
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../why-python/" class="md-nav__link">
+        Why Python?
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          A brief history of Python
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        A brief history of Python
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#some-subjectively-selected-python-milestones" class="md-nav__link">
+    Some subjectively selected Python milestones
+  </a>
+  
+    <nav class="md-nav" aria-label="Some subjectively selected Python milestones">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#python-090-1991" class="md-nav__link">
+    Python 0.9.0 (1991)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#python-100-1994" class="md-nav__link">
+    Python 1.0.0 (1994)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#zope-1998" class="md-nav__link">
+    Zope (1998)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#python-152-1999" class="md-nav__link">
+    Python 1.5.2 (1999)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#python-16-2000" class="md-nav__link">
+    Python 1.6 (2000)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#python-20-2000" class="md-nav__link">
+    Python 2.0 (2000)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#python-22-2001" class="md-nav__link">
+    Python 2.2 (2001)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#numpy-10-2006" class="md-nav__link">
+    NumPy 1.0 (2006)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#python-27-2010" class="md-nav__link">
+    Python 2.7 (2010)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#python-30-2008" class="md-nav__link">
+    Python 3.0 (2008)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#anaconda-080-2012" class="md-nav__link">
+    Anaconda 0.8.0 (2012)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#python-33-2012" class="md-nav__link">
+    Python 3.3 (2012)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#python-35-2015" class="md-nav__link">
+    Python 3.5 (2015)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#guido-steps-down-as-python-bdfl-2018" class="md-nav__link">
+    Guido steps down as Python BDFL (2018)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#python-2718-2020" class="md-nav__link">
+    Python 2.7.18 (2020)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#faster-cpython-2021" class="md-nav__link">
+    Faster CPython (2021)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#python-3115-2023" class="md-nav__link">
+    Python 3.11.5 (2023)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4" tabindex="0" aria-expanded="false">
+          Excursions
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Excursions" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          Excursions
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../excursions/shells/" class="md-nav__link">
+        Shells
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_5" type="checkbox" id="__nav_5" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5" tabindex="0" aria-expanded="false">
+          About
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="About" data-md-level="1">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          About
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/curious-python-course/" class="md-nav__link">
+        Curious Python Course
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/license/" class="md-nav__link">
+        License
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/legal/" class="md-nav__link">
+        Legal
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/cpycourse-contributors/" class="md-nav__link">
+        Contributors
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#some-subjectively-selected-python-milestones" class="md-nav__link">
+    Some subjectively selected Python milestones
+  </a>
+  
+    <nav class="md-nav" aria-label="Some subjectively selected Python milestones">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#python-090-1991" class="md-nav__link">
+    Python 0.9.0 (1991)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#python-100-1994" class="md-nav__link">
+    Python 1.0.0 (1994)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#zope-1998" class="md-nav__link">
+    Zope (1998)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#python-152-1999" class="md-nav__link">
+    Python 1.5.2 (1999)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#python-16-2000" class="md-nav__link">
+    Python 1.6 (2000)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#python-20-2000" class="md-nav__link">
+    Python 2.0 (2000)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#python-22-2001" class="md-nav__link">
+    Python 2.2 (2001)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#numpy-10-2006" class="md-nav__link">
+    NumPy 1.0 (2006)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#python-27-2010" class="md-nav__link">
+    Python 2.7 (2010)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#python-30-2008" class="md-nav__link">
+    Python 3.0 (2008)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#anaconda-080-2012" class="md-nav__link">
+    Anaconda 0.8.0 (2012)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#python-33-2012" class="md-nav__link">
+    Python 3.3 (2012)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#python-35-2015" class="md-nav__link">
+    Python 3.5 (2015)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#guido-steps-down-as-python-bdfl-2018" class="md-nav__link">
+    Guido steps down as Python BDFL (2018)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#python-2718-2020" class="md-nav__link">
+    Python 2.7.18 (2020)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#faster-cpython-2021" class="md-nav__link">
+    Faster CPython (2021)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#python-3115-2023" class="md-nav__link">
+    Python 3.11.5 (2023)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+
+<h1 id="a-very-brief-selective-history-of-python">A (very) brief selective history of Python<a class="headerlink" href="#a-very-brief-selective-history-of-python" title="Permanent link">#</a></h1>
+<p>Python was <a href="https://raw.githubusercontent.com/python/cpython/master/Misc/HISTORY">first published in February 1991</a> by Dutch programmer <a href="https://en.wikipedia.org/wiki/Guido_van_Rossum">Guido van Rossum</a>.</p>
+<p>From the get-go Python</p>
+<ul>
+<li>had a focus on clean syntax,</li>
+<li>emphasized readability and</li>
+<li>was designed to be extensible.</li>
+</ul>
+<p>Early versions already show many of the core Python capabilities available in
+modern Python. In fact, looking at code <a href="http://www.dalkescientific.com/writings/diary/archive/2009/03/27/python_0_9_1p1.html">running on really ancient Python
+doesn't actually feel very different</a> <img alt="😃" class="twemoji" src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f603.svg" title=":smiley:" />.</p>
+<p>With its permissive F(L)OSS license and Guido turning out to be a highly
+competent Python community lead - lovingly and jokingly dubbed the
+<a href="https://en.wikipedia.org/wiki/Benevolent_dictator_for_life">"Benevolent dictator for life" (BDFL)</a>, a role from which he stepped down in 2018 - Python found
+evolutionary language development, steady growth and application in very many
+domains.</p>
+<p>Since around 2012-2014 Python gained massive adoption in the scientific and 
+data analytics world, boosting its popularity to <a href="../why-python/#it-is-widely-used-usage-is-growing-rapidly">unprecedented heights</a>.</p>
+<p>For some historical perspective, here's the first public releases of other popular programming languages:</p>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/C_(programming_language)">C</a>: 1972</li>
+<li><a href="https://en.wikipedia.org/wiki/The_C%2B%2B_Programming_Language">C++</a>: 1985</li>
+<li><a href="https://en.wikipedia.org/wiki/JavaScript">JavaScript</a>: 1995</li>
+<li><a href="https://web.archive.org/web/20070310235103/http://www.sun.com/smi/Press/sunflash/1996-01/sunflash.960123.10561.xml">Java</a>: 1996</li>
+<li><a href="https://en.wikipedia.org/wiki/Go_(programming_language)">Go</a>: 2009</li>
+<li><a href="https://en.wikipedia.org/wiki/Rust_(programming_language)">Rust</a>: 2010</li>
+</ul>
+<h2 id="some-subjectively-selected-python-milestones">Some subjectively selected Python milestones<a class="headerlink" href="#some-subjectively-selected-python-milestones" title="Permanent link">#</a></h2>
+<h3 id="python-090-1991">Python 0.9.0 (1991)<a class="headerlink" href="#python-090-1991" title="Permanent link">#</a></h3>
+<p>1<sup>st</sup> public release ever, already with classes, exception handling, functions,
+basic types, modules.</p>
+<h3 id="python-100-1994">Python 1.0.0 (1994)<a class="headerlink" href="#python-100-1994" title="Permanent link">#</a></h3>
+<p>Python reaches 1.0! Selected highlights: double quotes allowed for strings as well as single quotes, <code>lambda</code> anonymous functions, <code>map()</code>, <code>filter()</code>, <code>reduce()</code> functions for functional programming support, range objects.</p>
+<h3 id="zope-1998">Zope (1998)<a class="headerlink" href="#zope-1998" title="Permanent link">#</a></h3>
+<p>Open source web application and content manager framework. Pioneers web object
+publishing and object database.</p>
+<h3 id="python-152-1999">Python 1.5.2 (1999)<a class="headerlink" href="#python-152-1999" title="Permanent link">#</a></h3>
+<p>Fondly remembered by some author(s) as their 1<sup>st</sup> ever personally used Python version. Extremely stable run in production for many years. <img alt="😃" class="twemoji" src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f603.svg" title=":smiley:" /></p>
+<h3 id="python-16-2000">Python 1.6 (2000)<a class="headerlink" href="#python-16-2000" title="Permanent link">#</a></h3>
+<p>Unicode support: new unicode datatype.</p>
+<h3 id="python-20-2000">Python 2.0 (2000)<a class="headerlink" href="#python-20-2000" title="Permanent link">#</a></h3>
+<p><a href="https://www.python.org/dev/peps/pep-0001/">"Python Enhancements Proposal" (PEP)</a>
+process established, list comprehensions. </p>
+<h3 id="python-22-2001">Python 2.2 (2001)<a class="headerlink" href="#python-22-2001" title="Permanent link">#</a></h3>
+<p>Unification of types (written in C) and classes (written in Python), "new style
+classes", generators.</p>
+<h3 id="numpy-10-2006">NumPy 1.0 (2006)<a class="headerlink" href="#numpy-10-2006" title="Permanent link">#</a></h3>
+<p>Python library for multi-dimensional array and matrix calculations. Previously
+Numeric, part/basis of <a href="https://en.wikipedia.org/wiki/SciPy">SciPy</a>.</p>
+<h3 id="python-27-2010">Python 2.7 (2010)<a class="headerlink" href="#python-27-2010" title="Permanent link">#</a></h3>
+<p>The last Python 2 minor release line.</p>
+<h3 id="python-30-2008">Python 3.0 (2008)<a class="headerlink" href="#python-30-2008" title="Permanent link">#</a></h3>
+<p>Aka "Python 3000" or "Py3k": Backward compatibility-breaking new major version:
+<code>print</code> is now a function, all text strings are unicode objects, function
+annotations (and many many more changes).</p>
+<h3 id="anaconda-080-2012">Anaconda 0.8.0 (2012)<a class="headerlink" href="#anaconda-080-2012" title="Permanent link">#</a></h3>
+<p>Data science Python distribution, package &amp; environment manager.</p>
+<h3 id="python-33-2012">Python 3.3 (2012)<a class="headerlink" href="#python-33-2012" title="Permanent link">#</a></h3>
+<p>Python 3.3 restores the u'unicode string' syntax which makes the Python 2 to
+Python 3 transition way easier than before.</p>
+<h3 id="python-35-2015">Python 3.5 (2015)<a class="headerlink" href="#python-35-2015" title="Permanent link">#</a></h3>
+<p>Greatly improved async programming, now with syntactic support. Also, <a href="https://docs.python.org/3/whatsnew/3.5.html#pep-484-type-hints">type
+hints</a> and
+<a href="https://docs.python.org/3/whatsnew/3.5.html#pep-465-a-dedicated-infix-operator-for-matrix-multiplication">matrix multiplication
+operator</a>.</p>
+<h3 id="guido-steps-down-as-python-bdfl-2018">Guido steps down as Python BDFL (2018)<a class="headerlink" href="#guido-steps-down-as-python-bdfl-2018" title="Permanent link">#</a></h3>
+<p>After having the final Python design responsibility and say-so since 1991 Guido
+van Rossum decides to step down from his BDFL role.</p>
+<p>The Python core developer community decides to establish a steering council of
+annually elected core developers to take over the <a href="https://peps.python.org/pep-0013/">language
+governance</a> powers and duties.</p>
+<h3 id="python-2718-2020">Python 2.7.18 (2020)<a class="headerlink" href="#python-2718-2020" title="Permanent link">#</a></h3>
+<p>The last release of Python 2.</p>
+<h3 id="faster-cpython-2021">Faster CPython (2021)<a class="headerlink" href="#faster-cpython-2021" title="Permanent link">#</a></h3>
+<p>Python inventor and BDFL emeritus Guido van Rossum gets tired of retirement and
+joins Microsoft to push the <a href="https://github.com/faster-cpython/ideas/blob/main/FasterCPythonDark.pdf">"Faster CPython"
+project</a>,
+together with other expert contributors.</p>
+<h3 id="python-3115-2023">Python 3.11.5 (2023)<a class="headerlink" href="#python-3115-2023" title="Permanent link">#</a></h3>
+<p>The latest and greatest Python (at the time of writing).</p>
+<p>Python 3.11 can be <a href="https://www.python.org/downloads/release/python-3115/">up to 10-60% faster than Python 3.10, with an average
+1.22x speedup in the standard benchmark
+suite()</a>.</p>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+          <a href="#" class="md-top md-icon" data-md-component="top" hidden>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+            Back to top
+          </a>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2020-2023 The <a href="/about/cpycourse-contributors.md">Cpycourse Contributors</a>.
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.top", "content.code.copy"], "search": "../../assets/javascripts/workers/search.e5c33ebb.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.51d95adb.min.js"></script>
+      
+    
+  </body>
+</html>
