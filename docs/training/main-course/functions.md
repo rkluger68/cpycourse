@@ -159,7 +159,7 @@ Function definition:
 >>> # 2 normal parameter & variable args parameter
 >>> def print_info(header, footer, *args):
 ...     print(header)
-...     for elem in args: print(elem)  # args is a list
+...     for elem in args: print(elem)  # args is a tuple
 ...     print(footer)
 ... 
 >>>
@@ -169,7 +169,7 @@ Function definition:
 Varargs function call:
 
 ```python
->>> # last 2 arguments are mapped as a list into the *-parameter
+>>> # last 2 arguments are mapped as a tuple into the *-parameter
 >>> print_info('-->', '<--', 'Hello', 'World')
 -->
 Hello
@@ -181,7 +181,7 @@ World
 Varargs function call with more args:
 
 ``` python
-# last 3 arguments are mapped as a list into the *-parameter
+# last 3 arguments are mapped as a tuple into the *-parameter
 >>> print_info('-->', '<--', 'Tic', 'Tac', 'Toe')
 -->
 Tic
@@ -383,35 +383,48 @@ Function annotations are optional, they are just informations. They are neither 
 PEP - Python Enhancement Proposal - is the official process of suggesting enhancements to the Python language, please read [PEP 001 -- PEP Purpose and Guidelines](https://www.python.org/dev/peps/pep-0001/).
 
 
-## Pythons Function Call Semantics
-
-Function-call arguments are suggested in PEP variables in the scope of the caller.
+## Python Function Call Semantics
 
 Traditional function call semantics are:
 
 1. call-by-value: 
-  - the value of the argument-variable is copied to the call-parameter of the function
+  - the value of the argument variable is copied to the call parameter of the function
   - changing the value inside the function doesn't effect the caller
 2. call-by-reference: 
-  - a reference of the caller's variable is passed to the call-parameter of the function
-  - as a consequence, changes to variable inside the function will affect the callers variable (side-effect from callee back to the caller) 
-  - alongside the function return value, this provides additional communication-channels between caller and callee
+  - a reference of the caller's variable is passed to the call parameter of the
+    function
+  - as a consequence, changes to the variable inside the function will affect
+    the callers variable (side effect from callee back to the caller) 
+  - alongside the function return value, this provides additional
+    communication channels between caller and callee (since the changes made
+    inside the function can be seen on the outside)
 
-Python function call semantics instead are controlled by the mutability/immutability of the Python objects of the caller's function call arguments.
+**Python does not have such a distinction.** Every variable is a name
+for an object / constitutes a reference to an object. In that sense everything
+is passed around by reference, which is also the case for function calls.
 
-1. argument variable refering an immutable object: Will work without side-effects to the callee even, when the functions is changing the value, this is due to the copy-on-write behaviour 
-2. argument variable refering a mutable object may have side-effects to the callee, when the variable is changed inside the function
+Instead, the Python function call semantics are solely influenced by the
+mutability or immutability of the caller's function call arguments:
 
-***function call with immutable call-argument***
+1. Argument variables referring to an immutable object will not produce side
+   effects on the caller side, since the function (the callee) can not change
+   the immutable object.
+2. Argument variables referring to a mutable object may have side effects on
+   the caller side. If the mutable object is changed inside the function
+   (callee), these changes will be visible to whatever reference/name for it on
+   the outside.
+
+**Function call with immutable argument:**
 
 ``` python
 >>> a = 1
->>> id(1)             # (1)
+>>> id(1)             # object id of the 1 integer object 
 139752035048832
->>> def increment(a): 
-...     print(id(a))  # (2) refers to the same object as the callers variable (1)
-...     a += 1        # (3) copy-on-write creates new object
-...     print(id(a))  # (4) new object dur to (3)
+>>> def increment(number):
+...     # number refers to the same object as the callers variable (1)
+...     print(id(number))
+...     number += 1       # assignment (number = number + 1) creates new object
+...     print(id(number)) # id of the new object
 ...     return a
 ... 
 >>> b = increment(a)
@@ -419,41 +432,39 @@ Python function call semantics instead are controlled by the mutability/immutabi
 139752035048864
 >>> a
 1    
->>> id(a)            # (4) refers to the same object as in (1)
+>>> id(a)            # a still refers to the unchanged same object 1
 139752035048832
 >>>
 ```
 
 **Note:**
-Immutable objects of the caller are not effected by changes in the callee
-  
-***function call with mmutable call-argument***
+Immutable objects of the caller are not affected by changes made by the callee
+(the called function).
+ 
+**Function call with mutable call argument:**
 
 ``` python
->>> d1 = {'a':1, 'b':2}
->>> id(d1)           # (1)
+>>> caller_dict = {'a': 1, 'b': 2}
+>>> id(caller_dict)     #  id of the object referred to by name caller_dict
 139752035393824
->>> def change_callee_object(d):
-...     print(id(d))  # (2) refers to the same object as the callers variable (1)
-...     for elem in d.keys(): d[elem] += 1  # (3) no copy is made, changes apply to origin object
-...     print(id(d))  # (4) refers to the origin object (1), (2)
-...     return d
+>>> def change_mutable_arg(dct):
+...     print(id(dct))  # dct refers to the same object as the callers variable (1)
+...     for elem in dct.keys(): dct[elem] += 1  # changes the mutable object
+...     print(id(dct))  # dct still refers to (changed)  origin object
+...     return dct
 ... 
->>> d2 = change_callee_object(d1)
+>>> result_dict = change_mutable_arg(caller_dict)
 139752035393824
 139752035393824
->>> d1 # site-effect caused by function call with mutable argument
+>>> caller_dict      # reflects the changes, side effect of the function call 
 {'a': 2, 'b': 3}
->>> id(d1)
+>>> id(result_dict)  # same object, same id
 139752035393824
->>> d2
+>>> result_dict
 {'a': 2, 'b': 3}
->>> id(d2)
-139752035393824
 >>> 
 ```
 
 **Note:**
-Function-calls with mutable objects may have site-effect to the callee
-  
-
+Function calls with mutable object arguments may have side effects to the
+caller - if the called function modifies a mutable object. 
