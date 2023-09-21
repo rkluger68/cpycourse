@@ -284,7 +284,8 @@ None
 ```
 
 Functions can contain `return` at multiple places in the function body. Every
-return statement leads to immediately leaving the function.
+return statement leads to immediately leaving the function, the return value
+being the function's result.
 
 While Python functions always return a *single* object you can easily return
 multiple values by packing them into a collection (`tuple`, `list`, ...).
@@ -304,6 +305,7 @@ multiple values by packing them into a collection (`tuple`, `list`, ...).
 You can "destructure" a tuple to its elements very conveniently:
 
 ``` python
+>>> # divide(...) returns a 2-element tuple, which we destructure 
 >>> res_quotient, res_remainder = divide(9, 4)
 >>> print(res_quotient) 
 2
