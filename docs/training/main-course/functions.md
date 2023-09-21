@@ -196,7 +196,7 @@ In the above sections the functions are called with **positional arguments**.
 In addition functions can also be called using named arguments (keyword
 arguments).
 
-To demonstrate this, we use the `increment`-function-definition from above.
+To demonstrate this, we use the `increment`-function definition from above.
 
 Function definition:
   
