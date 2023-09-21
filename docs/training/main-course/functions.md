@@ -267,19 +267,47 @@ belonging_to: EU
 
 ## Function Return Value
 
-Python allows the return of mutiple values.
+Functions always return a single value. If a function body doesn't contain any
+explicit return statement the function implicitly returns `None`. I.e. the
+return statement is optional, still the function returns a value (the `None`
+object).
 
 ``` python
->>> def divide(number,div):
-...     """Division returning truncated division and modulo"""
-...     d = number // div
-...     m = number % div
-...     return d,m
+>>> def say_hello():
+...     print("Hello!")  # Look Ma, no explicit return statement!
 ... 
->>> d, m = divide(9,4)
->>> d
+>>> function_result = say_hello()
+Hello!
+>>> print(function_result)  # We still get a None return value
+None
+>>> 
+```
+
+Functions can contain `return` at multiple places in the function body. Every
+return statement leads to immediately leaving the function.
+
+While Python functions always return a *single* object you can easily return
+multiple values by packing them into a collection (`tuple`, `list`, ...).
+
+``` python
+>>> def divide(number, divisor):
+...     """Divmod implementation, returns a (quotient, remainder) tuple. """
+...     quotient = number // divisor
+...     remainder = number % divisor
+...     return (quotient, remainder)
+... 
+>>> result = divide(9, 4)
+>>> print(result)
+(2, 1)
+```
+
+You can "destructure" a tuple to its elements very conveniently:
+
+``` python
+>>> res_quotient, res_remainder = divide(9, 4)
+>>> print(res_quotient) 
 2
->>> m
+>>> print(res_remainder) 
 1
 >>>
 ```
