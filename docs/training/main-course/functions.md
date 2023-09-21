@@ -388,16 +388,19 @@ PEP - Python Enhancement Proposal - is the official process of suggesting enhanc
 Traditional function call semantics are:
 
 1. call-by-value: 
-  - the value of the argument variable is copied to the call parameter of the function
-  - changing the value inside the function doesn't effect the caller
+
+ - the value of the argument variable is copied to the call parameter of the function
+ - changing the value inside the function doesn't effect the caller
+
 2. call-by-reference: 
-  - a reference of the caller's variable is passed to the call parameter of the
-    function
-  - as a consequence, changes to the variable inside the function will affect
-    the callers variable (side effect from callee back to the caller) 
-  - alongside the function return value, this provides additional
-    communication channels between caller and callee (since the changes made
-    inside the function can be seen on the outside)
+
+ - a reference of the caller's variable is passed to the call parameter of the
+   function
+ - as a consequence, changes to the variable inside the function will affect
+   the callers variable (side effect from callee back to the caller) 
+ - alongside the function return value, this provides additional communication
+   channels between caller and callee (since the changes made inside the
+   function can be seen on the outside)
 
 **Python does not have such a distinction.** Every variable is a name
 for an object / constitutes a reference to an object. In that sense everything
