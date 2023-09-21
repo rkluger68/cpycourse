@@ -49,8 +49,9 @@ parentheses:
 Function call:
 
 ``` python
->>> get_greeting()
-'Hello!'
+>>> my_greeting = get_greeting()
+>>> print(my_greeting)
+Hello!
 >>>
 ```
 
