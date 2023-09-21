@@ -133,6 +133,57 @@ operations.
 4. An objects is **mutable** if its *value* can be changed, **immutable**
 otherwise.
 
+### Object Attribute Access
+
+You can access an object's attributes with the '.'-operator:
+
+``` python
+>>> text = "I'm a string!"
+>>> # Object attribute access - in this case, access a method attribute.
+>>> text.upper
+<built-in method upper of str object at 0x7f141886e730>
+>>> # Objects have an internal __class__ attribute.
+>>> text.__class__
+<class 'str'>
+>>> # A class object has an internal __name__ attribute.
+>>> text.__class__.__name__
+'str'
+>>> 
+```
+
+You can "query" an object if it has a certain attribute using `hasattr(obj,
+"attribute name")`, at runtime:
+
+``` python
+>>> text = "I'm also string!"
+>>> hasattr(text, 'upper')
+True
+>>> hasattr(text, '__class__')
+True
+>>> hasattr(text.__class__, '__name__')
+True
+>>> hasattr(text, 'something_else')
+False
+```
+
+In the same vein, you can dynamically access object attributes at runtime with
+the `getattr` built-in function:
+
+``` python
+>>> getattr(text, 'upper')
+<built-in method upper of str object at 0x7f1416b0cb20>
+>>> getattr(text, '__class__')
+<class 'str'>
+>>> getattr(text, 'something_else')
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+AttributeError: 'str' object has no attribute 'something_else'
+>>> getattr(text, 'something_else', "default value")
+'default value'
+>>> 
+```
+
+This is *very* powerful.
 
 ## Immutable and Mutable Objects
 
