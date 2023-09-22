@@ -14,7 +14,7 @@ variable, passed as arguments to another callable or used as a return value.
 
 ## Function Definition
 
-In Python user defined functions are defined using the `def` statement. A
+In Python user-defined functions are created using the `def` statement. A
 function definition is made up of a function header (defining the function name
 and the call signature) and a function body (the implementation of the
 task/calculation as a sequence of statements with an optional return
@@ -60,16 +60,16 @@ Hello!
 Function definition:
 
 ``` python
->>> def increment(a, stride):                    # function header
-...     """Return a incremented with stride."""   # optional doc string
+>>> def increment(number, stride):                    # function header
+...     """Return number incremented with stride."""  # optional doc string
 ...     # function body
-...     c = a + stride
-...     return c
+...     result = number + stride
+...     return result
 ...
 >>>
 ```
 
-For calling the function we now add the arguments in the parentheses when calling the function:
+To call the function we now add the arguments in parentheses.
 
 Function call:
 
@@ -102,11 +102,11 @@ definition. Such optional parameters may be omitted during the function call.
 Function definition with default paramater value:
 
 ``` python
->>> def increment(a, stride=1):  # function-header with default-argument
-...     """Return a incremented with stride."""   # optional doc string
+>>> def increment(number, stride=1):  # function-header with default-argument
+...     """Return number incremented with stride."""   # optional doc string
 ...     # function-body
-...     c = a + stride
-...     return c
+...     result = number + stride
+...     return result
 ...
 >>>
 ```
@@ -202,11 +202,11 @@ To demonstrate this, we use the `increment`-function definition from above.
 Function definition:
   
 ``` python
->>> def increment(a, stride=1):  # function-header
-...     """Return a incremented with stride."""   # optional doc string
+>>> def increment(number, stride=1):  # function-header
+...     """Return number incremented with stride."""   # optional doc string
 ...     # function-body
-...     c = a + stride
-...     return c
+...     result = number + stride
+...     return result
 ...
 >>>
 ```
@@ -265,6 +265,11 @@ belonging_to: EU
 <--
 >>>
 ```
+
+A note on naming: By convention, the variable positional and keyword arg
+parameters are usually called `*args` and `**kwargs`. But this is not strictly 
+necessary and you can (and should) name them differently when it's more 
+appropriate, to best communicate/document your function's behaviour.
 
 ## Function Return Value
 
@@ -352,11 +357,16 @@ y
 **Note:**
 As can be seen, functions are like ordinary Python objects that can be returned and assigned.
 
-## Functions Annotations
+## Function Annotations
 
-[Function Annotations](https://docs.python.org/3/tutorial/controlflow.html#function-annotations) allow programmers to associate meta-information to a function-header. One kind of interesting mata-information are so called 'type-hints', which can provide 'type-information' about the function-paramertes and return-value.
+[Function
+Annotations](https://docs.python.org/3/tutorial/controlflow.html#function-annotations)
+allow programmers to associate meta information to a function header. One kind
+of interesting meta information are so called 'type hints', which can provide
+type information about the function parameters and return value.
 
-Function annotations are stored in the `__annotations__` attribute of a function object.
+Function annotations are stored in the `__annotations__` attribute of a
+function object.
 
 ***Function Annotation example***
 
@@ -364,35 +374,37 @@ Function annotations are stored in the `__annotations__` attribute of a function
 >>> def concatenate(string_1: str, string_2: str) -> str:
 ...     return string_1 + string_2
 ... 
->>> concate('foo', 'bar')
-'foobar'
->>> concate.__annotations__
+>>> concatenate.__annotations__
 {'string_1': <class 'str'>, 'string_2': <class 'str'>, 'return': <class 'str'>}
+>>> concatenate('foo', 'bar')
+'foobar'
 >>> 
 ```
 
-For a more detailed inforamtions please refer to [PEP 3107 -- Function Annotations](https://www.python.org/dev/peps/pep-3107/) and [PEP 484 -- Type Hints ](https://www.python.org/dev/peps/pep-0484/)
+For a more detailed inforamtions please refer to [PEP 3107 -- Function
+Annotations](https://www.python.org/dev/peps/pep-3107/) and [PEP 484 -- Type
+Hints ](https://www.python.org/dev/peps/pep-0484/).
 
-***Note 1:***
-Function annotations are optional, they are just informations. They are neither evaluated nor their compliance is enforced by the interpreter itself. It's provided in the language, helping other libraries do some type-checking.
+**Notes:**
 
-***Note 2:***
-'Type Hints'-support is implemented in the Python standard library [`typing`](https://docs.python.org/3/library/typing.html).
-
-***Note 3:***
-PEP - Python Enhancement Proposal - is the official process of suggesting enhancements to the Python language, please read [PEP 001 -- PEP Purpose and Guidelines](https://www.python.org/dev/peps/pep-0001/).
+ - Function annotations are optional, they are just informations. They are
+   neither evaluated nor enforced by the interpreter itself. The language
+   feature exists to help other tools, e.g. to do type checking as static code
+   analysis.
+ - The Python standard library provides "type hinting support" in the
+   [`typing`](https://docs.python.org/3/library/typing.html) module.
 
 
 ## Python Function Call Semantics
 
 Traditional function call semantics are:
 
-1. call-by-value: 
+1. Call-by-value: 
 
  - the value of the argument variable is copied to the call parameter of the function
  - changing the value inside the function doesn't effect the caller
 
-2. call-by-reference: 
+2. Call-by-reference: 
 
  - a reference of the caller's variable is passed to the call parameter of the
    function
@@ -400,14 +412,15 @@ Traditional function call semantics are:
    the callers variable (side effect from callee back to the caller) 
  - alongside the function return value, this provides additional communication
    channels between caller and callee (since the changes made inside the
-   function can be seen on the outside)
+   function can be seen on/provided to the outside)
 
 **Python does not have such a distinction.** Every variable is a name
 for an object / constitutes a reference to an object. In that sense everything
 is passed around by reference, which is also the case for function calls.
 
-Instead, the Python function call semantics are solely influenced by the
-mutability or immutability of the caller's function call arguments:
+Instead, the Python function call behaviour with regard to modification of
+parameters are solely influenced by the mutability or immutability of the
+caller's function call arguments:
 
 1. Argument variables referring to an immutable object will not produce side
    effects on the caller side, since the function (the callee) can not change
@@ -471,3 +484,86 @@ Immutable objects of the caller are not affected by changes made by the callee
 **Note:**
 Function calls with mutable object arguments may have side effects to the
 caller - if the called function modifies a mutable object. 
+
+## Anonymous Functions
+
+Instead of creating a *named* function using `def` the `lambda` keyword allows
+for the creation of (simple) anonymous functions:
+
+``` python
+>>> # lambda creates an anonymous function.
+>>> lambda x: x**2
+<function <lambda> at 0x7fd54160c670>
+>>> # You can call a lambda function right away.
+>>> (lambda x: x**2)(4)
+16
+>>> # Of course everything's an object so you can assign to a variable name.
+>>> square = lambda x: x**2
+>>> square(4)
+16
+>>> 
+```
+
+These function definitions are equivalent, apart from `func.__name__`: 
+
+``` python
+>>> square = lambda x: x**2
+>>> square(3)
+9
+>>> square.__name__
+'<lambda>'
+>>> def square(x):
+...     return x**2
+... 
+>>> square(3)
+9
+>>> square.__name__
+'square'
+>>> 
+```
+
+An anonymous function of lambda function can not contain multiple statements
+like a normal function, just a single result expression.
+
+So everything that you can do with a lambda function (and more) can be
+done with a regular function.
+
+Still, lambda functions can be handy for on-the-fly generation of very short
+functions "inline" or as arguments, e.g.:
+
+``` python
+>>> calculate = {
+...     'plus': lambda x, y: x + y,
+...     'minus': lambda x, y: x - y,
+...     'multiply': lambda x, y: x * y,
+...     'divide': lambda x, y: x / y,
+...     }
+>>> calculate['plus'](8, 2)
+10
+>>> calculate['divide'](8, 2)
+4.0
+>>>
+```
+
+## Functional Programming
+
+[Functional programming](https://en.wikipedia.org/wiki/Functional_programming)
+usually builds upon some of these characteristics:
+
+ - (pure) functions do not hold internal state (nor are they able to modify
+   external state and produce side effects)
+ - usage of recursion
+ - higher order functions (basically: functions taking other functions as
+   arguments to apply/combine/compose them and/or produce new functions)
+
+Python has several features in support of this:
+
+ - functions are 1st class objects
+ - lambda functions
+ - the `map` and `filter` built-ins and `functools.reduce`
+ - the `functools` and `itertools` modules
+ - iterators
+
+Find more information on Python's approach to functional programming in the
+[Functional Programming
+HOWTO](https://docs.python.org/3/howto/functional.html).
