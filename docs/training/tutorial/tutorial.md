@@ -17,10 +17,13 @@ See here for hints on [Python installation](../main-course/installation.md).
 
 ## Starting the Python interpreter
 
-For an **interactive session** simply type `python` or `python3` in a
-console/shell of your computer (`$`-shell prompt on \*nix-based systems):
+For an **interactive interpreter session** simply type `python` or `python3` in
+a console/shell of your computer (`$`-shell prompt on \*nix-based systems). 
+
+This is how this could look like on a Linux system:
 
 ``` bash
+$ python
 Python 3.6.8 (default, May 31 2023, 10:28:59)
 [GCC 8.5.0 20210514 (Red Hat 8.5.0-18)] on linux
 Type "help", "copyright", "credits" or "license" for more information.
@@ -38,14 +41,33 @@ Type "help", "copyright", "credits" or "license" for more information.
 >>> 
 ```
 
-The first lines show the interpreter version, some information about the build
-environment of the interpreter (compiler version and platform) and the
-copyright information.
+Depending on where Python is installed on your system (and if it is found in
+the places your OS searches for executables) you may want or need the fully
+qualified path to the Python interpreter:
+
+=== "Linux"
+
+    ``` bash
+    $ /usr/bin/python3.8
+    ```
+
+=== "Windows"
+
+    ```
+    # & "C:/Program Files/Python/3.8/python.exe"
+    ```
+
+On interpreter startup, the first lines show the interpreter version, some
+information about the build environment of the interpreter (compiler version
+and platform) and the copyright information.
 
 The Python *prompt* `>>>` is signaling that the interpreter awaits user input.
 
+Such an interactive mode is sometimes called "Read-Eval-Print-Loop" ("REPL")
+and a great way to explore Python and try out code snippets..
+
 The version and copyright information on startup can be suppressed using the
-quiet-option `-q`.
+"quiet" option `-q`.
 
 ``` bash    
 $ python -q
@@ -83,8 +105,10 @@ If you enter a simple expression at the prompt (e.g. an integer or string
 An interactive session can be stopped by pressing `Ctrl-d` (Linux) or `Ctrl-z`
 (Windows).
 
-A **summary of the Python interpreter's commandline options** can be listed with its help option `-h`. This will display the **usage**, the available commandline options and **environment variables** controlling the interpreter. Here's
-the output of a Python 3 interpreter on Linux:
+A **summary of the Python interpreter's commandline options** can be listed
+with its help option `-h`. This will display the **usage**, the available
+commandline options and **environment variables** controlling the interpreter.
+Here's the output of a Python 3 interpreter on Linux:
 
 ```
 python3.8 -h
@@ -186,6 +210,33 @@ PYTHONBREAKPOINT: if this variable is set to 0, it disables the default
    debugger. It can be set to the callable of your debugger of choice.
 PYTHONDEVMODE: enable the development mode.
 PYTHONPYCACHEPREFIX: root directory for bytecode cache (pyc) files.
+```
+
+## Getting Help
+
+In an interactive session/REPL you can access Python's built-in help using
+`help()`:
+
+
+``` python
+>>> help()
+
+Welcome to Python 3.8's help utility!
+
+If this is your first time using Python, you should definitely check out
+the tutorial on the Internet at https://docs.python.org/3.8/tutorial/.
+
+Enter the name of any module, keyword, or topic to get help on writing
+Python programs and using Python modules.  To quit this help utility and
+return to the interpreter, just type "quit".
+
+To get a list of available modules, keywords, symbols, or topics, type
+"modules", "keywords", "symbols", or "topics".  Each module also comes
+with a one-line summary of what it does; to list the modules whose name
+or summary contain a given string such as "spam", type "modules spam".
+
+help>
+
 ```
 
 ## Running a Python program
@@ -384,7 +435,7 @@ Strings conveniently support many useful operations:
 ```
 
 ``` python
-Strings are sequences of characters indexed by integer values. You can use the
+Strings are *sequences* of characters indexed by integer values. You can use
 indexes to access the individual characters:
 
 >>> 'foo bar'[0]  # 1st character
@@ -395,6 +446,9 @@ indexes to access the individual characters:
 'o b'
 >>> 
 ```
+
+Like for any other sequence types in Python indexing is zero-based i.e. the
+first character in a string is indexed with `0`.
 
 Strings have powerful formatting support:
 
@@ -820,13 +874,25 @@ training/lessons/check-user-input-evenness/check-user-input-evenness.md
 --8<--
 
 #### Conditional Expressions
+
 Python also supports
 [Conditional expressions](https://docs.python.org/3/reference/expressions.html#conditional-expressions):
 
 ``` python
->>> 1 if True else 0
+>>> 1 if True else 0  # Read: <result expr> if <condition> else <else expr>
 1
 >>> 
+```
+
+Being an expression a conditional expression can be written on the right hand
+side of an assignment: 
+
+``` python
+>>> a = 3
+>>> result = 'a is 1' if a == 1 else 'a is not 1'
+>>> print(result)
+a is not 1
+>>>
 ```
 
 
@@ -1155,7 +1221,7 @@ data structure but yield elements on demand:
 []
 ```
 
-### Dict comprehensions
+### Dict Comprehensions
 A **dict comprehension** can be used to create a dictionary:
 
 ``` python
@@ -1173,3 +1239,20 @@ A **dict comprehension** can be used to create a dictionary:
 --8<--
 training/lessons/rewrite-dict-comprehension/rewrite-dict-comprehension.md
 --8<--
+
+### Set Comprehensions
+A **set comprehension** can be used to create a set from an iterable:
+
+``` python
+>>> {elem for elem in [1, 2, 3, 1, 2]}
+{1, 2, 3}
+>>> 
+```
+
+## Conclusion
+
+This concludes the tutorial material! While not having touched on each and
+every language feature and detail the essential Python building blocks have
+been introduced.
+
+Find more material in the [Main Course...](../main-course/main-course.md)
