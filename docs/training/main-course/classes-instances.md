@@ -26,13 +26,18 @@ Classes typically have (optional) class & instance attributes and (optional)
 methods.
 
 1. Instance attributes:
+
  - each class instance has its own copy of its instance attributes
  - instance attributes are accessed with the `.`-dot operator: `<class
    instance>.<instance attribute>`
+
 2. Class attributes:
+
  - Attributes defined on the class, not the instance. These are shared by all
    instances of a class.
+
 3. Methods:
+
  - must be called through a class instance
  - methods are accessed using the `.`-dot operator: `<class
    instance>.<instance-method>(<parameters>)`
@@ -181,9 +186,38 @@ The explicit `self`-parameter is similar to the implicit
 The name `self` is just a convention. Use it to keep the code understandable.
 
 
+## Class Attributes
+
+As opposed to instance attributes class attributes are common to all class
+instances:
+
+``` python
+>>> class A:
+...     count = 0
+...     def __init__(self, name):
+...         self.name = name
+...         A.count += 1
+...
+>>> a1 = A('A1')    # 1st instance increments class attribute
+>>> a1.count
+1
+>>> a2 = A('A2')    # 2nd instance increments class attribute
+>>> a2.count
+2
+>>> a1.count        # Both instances share the same attribute
+2
+>>>
+>>> id(a1.count)
+140201179340160
+>>> id(a2.count)
+140201179340160
+>>>
+```
+
+
 ## Class Privacy - Private Attributes
 
-Python doesen't provide 'access-modifiers' like e.g. C++ (`public`, `private`,
+Python doesen't provide 'access modifiers' like e.g. C++ (`public`, `private`,
 `protected`) to control access to attributes or methods. I.e.  attributes and
 methods are 'public'.
 
@@ -191,12 +225,17 @@ Python relies upon sane usage of a class and 2 forms of data "hiding" (but no
 real protection by access control):
 
 1. 'private-by-convention': Attributes prefixed with a single underscore `_`
-   should be regarded as a private attributes, not part of the 'public API' of
-   clas
-2. 'private-by-lexical-substitition': Attributes prefixed with double
-   underscores `__` like e.g. `__foo` will be implicitly renamed to
+   should be regarded as private attributes, not part of the 'public API' of
+   the class.
+2. 'private-by-lexical-substitition': Attributes starting with double
+   underscores `__`[^leading-dunder] like e.g. `__foo` will be implicitly renamed to
    `_classname__foo` by the interpreter. This textual substitution is called
    'name mangling'.
+
+[^leading-dunder]:
+    But not also *ending* with double underscores - leading plus trailing
+    double underscores ('dunder') denote 'special methods' that implement
+    object protocols, e.g. for operator overloading.
 
 In action:
 
@@ -234,8 +273,263 @@ AttributeError: 'Person' object has no attribute '__log_access'
 >>>
 ```
 
-The name mangling mechanism also applies to access from subclasses to a base
-class double-underscore attribute:
+For more details please refer to [Private Variables](https://docs.python.org/3/tutorial/classes.html#private-variables).
+
+
+## Class Properties
+
+Ordinary Python instance attributes are readable, writable and deletable by
+default. Using *properties* attribute access can be *managed* to allow for
+control with regard to read, write and delete access.
+
+Python properties represent managed attributes. This is achieved through
+Python's [descriptor
+protocol](https://docs.python.org/3/howto/descriptor.html), by providing 
+`getter`, `setter` and `deleter` methods which enable intercepting regular
+attribute access with accessor functions.
+
+**Usecase:** Properties are a way of data encapsulation. Hiding ordinary
+attributes behind a property interface/facade introduces a level of
+indirection to the original attribute: the original attribute may change behind
+the scenes while keeping the class' public interface/API stable for its users.
+
+This can be a powerful mechanism to evolve a class interface without affecting
+existing client code. When public access to an attribute has already been
+established but later improvements need internal implementation changes, these
+can be wrapped using `property`.
+
+The most convenient way to define properties is by using a decorator:
+
+``` python
+class C:
+    def __init__(self):
+        self._x = None
+
+    # Provide read access to self._x.
+    # The decorated method is used as read accessor function.
+    @property
+    def x(self):
+        """The 'x' property."""
+        return self._x
+
+    # Provide write access to self._x.
+    # The decorated method is used as write accessor function.
+    @x.setter
+    def x(self, value):
+        self._x = value
+
+    # Allow for deleting self._x.
+    # The decorated method is used as delete accessor function.
+    @x.deleter
+    def x(self):
+        del self._x
+```
+
+Note: The setter and deleter methods shall have the same name as the getter
+method.
+
+In use:
+
+``` python
+>>> obj = C()
+>>> obj.x = 9       # set property value
+>>> obj.x           # get property value
+9
+>>> del obj.x       # delete property
+>>> obj.x = 99      # re-create property
+>>> obj.x
+99
+>>>
+```
+
+Alternatively, the `property` built-in can also be used like this to create
+managed attributes:
+
+``` python
+class C:
+    def __init__(self):
+        self._x = None
+
+    def get_x(self):
+        return self._x
+
+    def set_x(self, value):
+        self._x = value
+
+    def del_x(self):
+        del self._x
+
+    x = property(get_x, set_x, del_x, "The 'x' property.")
+```
+
+This is equivalent to the decorarator variant.
+
+A read-only property simply doesn't define setter and deleter methods:
+
+``` python
+>>> class C:
+...     def __init__(self, x):
+...         self._x = x
+...     @property
+...     def x(self):
+...         return self._x
+...
+>>>
+>>> obj = C('foo')
+>>> obj.x                                  # read access
+'foo'
+>>> obj.x = 'bar'                          # attempt write access
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+AttributeError: can't set attribute
+>>> del obj.x                              # attempt delete access
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+AttributeError: can't delete attribute
+>>>
+```
+
+Similarly, read/write access without delete can be achieved by leaving out the
+deleter method.
+
+## Relationships between Classes
+
+Python supports 'inheritance' ("is-a" relation) and 'composition' ("has-a" relation) of classes/instances.
+
+(Multiple) inheritance and the mechanism of 'method overriding' provide for
+the usual notion of 'polymorphism' found in many object-oriented languages.
+
+In addition, Python allows for the so-called **Duck-Typing**, a kind of
+polymorphism that does not build upon an object being of a certain single type
+but implementing certain features (implementing a 'protocol').
+
+### Inheritance ("is-a" relation)
+
+When a class is defined as the 'subclass' of another class it *inherits* all
+its *properties* and *behaviour* - in other words, its attributes and methods:
+
+``` python
+>>> class SomeClass:
+...     def __init__(self, name):
+...         self.name = name
+...     def greet(self):
+...         print(f'Hello, my name is {self.name}.')
+...
+>>> class SomeSubClass(SomeClass):  # SomeSubClass inherits from SomeClass
+...     pass
+...
+```
+
+We can then reuse the inherited functionality (properties and behaviour) with
+the subclass:
+
+``` python
+>>> sub_instance = SomeSubClass('Fredrik')
+>>> sub_instance.name     # access inherited instance attribute
+'Fredrik'
+>>> sub_instance.greet()  # invoke inherited method
+Hello, my name is Fredrik.
+>>>
+```
+
+The class which a subclass (aka derived class) inherits from is called a
+'superclass' or 'base class'.[^baseclass-superclass]
+
+[^baseclass-superclass]:
+    Sometimes, for multiple levels of inheritance only the "root" of the
+    inheritance tree is called base class, i.e. only a superclass which is
+    not a subclass. Strictly speaking, this would always be `object` in Python
+    but it's also loosely used for only the user defined "base class".
+
+A subclass can *specialize* the behaviour of a superclass by means of
+overriding methods:
+
+``` python
+>>> class SomeFriendlySubClass(SomeClass):
+...     def greet(self):  # override superclass greet() method
+...         print(f"Hello, I'm especially friendly and my name is {self.name}.")
+...
+>>> sub_instance = SomeFriendlySubClass('Pat')
+>>> sub_instance.greet()
+Hello, I'm especially friendly and my name is Pat.
+>>>
+```
+
+A subclass can also add behaviour:
+
+``` python
+>>> class SomeSocialFriendlyClass(SomeFriendlySubClass):
+...     def meet(self, other):  # additional method
+...         print(f"Hello {other}, nice to meet you!")
+... 
+>>> social_obj = SomeSocialFriendlyClass('Taylor')
+>>> social_obj.meet('Ed')
+Hello Ed, nice to meet you!
+>>> 
+```
+
+Note how `SomeSocialFriendlyClass` inherits from `SomeFriendlySubClass` which
+in turn inherits from `SomeClass`. This results in a *hierarchy*  of
+superclasses and subclasses.
+
+Inheritance allows for several things:
+
+ - Sharing code: A subclass can use the attributes and methods of its
+   superclasses (i.e. re-using or sharing their implementation).
+ - Setting up 'interface contracts' through types and subtypes (superclasses
+   and subclasses): If a subclass provides all the relevant properties and
+   behaviour (attributes and methods) of a superclass than it can be used
+   wherever the superclass is expected.
+ - Specialising behaviour: A subclass can modify behaviour by overriding
+   methods of a superclass.
+
+#### A Small Inheritance Example
+
+A very basic example illustrating some of Python's inheritance specifics:
+
+``` python
+-8<--
+src/inherit.py
+--8<--
+```
+
+Note that a subclass that implements `__init__` must explicitly call the
+superclass constructor. While you can do this manually by calling
+`SuperClass.__init__(self, ...)` in `SubClass.__init__` it's usually better to
+use `super().__init__(...)` for this, see [python super()
+docs](https://docs.python.org/3/library/functions.html#super) and the [guide to
+using
+super()](https://rhettinger.wordpress.com/2011/05/26/super-considered-super/).
+
+
+When run this will output:
+
+``` console
+$ python3 inherit.py
+
+Advanced Python Wizardry product_id=Product-1
+Advanced Python Wizardry (Peter Y. Thonista):
+All of Python's secrets
+
+The Very Best of product_id=Product-2
+The Pythonics: The Very Best of
+Best or 1991-2023
+ 1. Python Shuffle
+ 2. Snake Boogie
+ 3. Green is the New Black
+ 4. Hisses & Kisses
+
+Currently available products in inventory: 2
+```
+
+**A note on class privacy:**
+As mentioned above, Python doesn't provide any strict mechanism for class
+privacy, neither 'data protection' nor 'data hiding'. This also applies to
+class inheritance. Inheritance is public by default, as a consequence all of
+a base class' attributes and methods are inherited by a derived class.
+
+The name mangling mechanism for attribute names with leading double underscores
+also applies to access from subclasses to a base class attribute:
 
 ``` python
 >>> class Base:
@@ -256,348 +550,171 @@ AttributeError: 'Derived' object has no attribute '_Derived__x'
 >>> 
 ```
 
-For more details please refer to [Private Variables](https://docs.python.org/3/tutorial/classes.html#private-variables)
+#### Multiple Inheritance
 
-## Relationships between Classes
+In Python a class can inherit from more than one superclass. This is called
+*multiple inheritance*.
 
-Python supports 'inheritance' ("is-a"-relation) and 'composition' ("has-a"-relations) of classes/instances.
+Suppose we'd like to implement a very basic data processing pipeline that
+pushes data messages through interconnected nodes, akin to a "directed graph".
 
-(Multiple) inheritance and the mechanism of 'method overriding' provide for
-the usual notion of 'poymorphism' found in many object-oriented languages.
-
-In addition, Python allows for the so-called **Duck-Typing**, kind of a
-polymorphism not relying on being of a certain type but implementing certain
-features (implementing a 'protocol').
-
-### Inheritance ("is-a"-relation)
-
-**Note on class privacy:**
-As mentioned above, Python doesn't provide any strict mechanism for class
-privacy, neither 'data protection' nor 'data hiding'. This also applies to
-class inheritance. Inheritance is public by default, as a consequence all of
-the base -class attributes and methods are inherited by a derived class.
-
-
-**class definition**
+Some nodes act as data-producing nodes only, some as data-consuming nodes
+only. But there's also nodes that both consume data ("receive messages") and
+produce data ("send messages"). This could be modeled with multiple
+inheritance:
 
 ``` python
->>> class B(A):                            # class 'B' inherhits from class 'A'
-...     def __init__(self, name, number):  # class constructor
-...         A.__init__(self, name)         # call base-class initialisation-method
-...         self.number = number           # instance variable
-...     def getNumber(self):               # instance methode
-...         return self.number
-...
->>>
+-8<--
+src/multiple_inheritance.py
+--8<--
 ```
 
-***class instantiation***
+This outputs:
 
-``` python
->>> b = B('Inheritance', 100)
->>> b.name                                # attribute-access
-'Inheritance'
->>> b.get_name()                           # method-access
-'Inheritance'
->>> b.number                              # attribute-access
-100
->>> b.getNumber()                         # attribute-access
-100
->>>
+``` console
+$ python3.8 multiple_inheritance.py
+PrinterSink "Sink": msg=0 trail=('Source', 'A', 'B', 'Sink')
+PrinterSink "Sink": msg=0 trail=('Source', 'A', 'C', 'Sink')
+PrinterSink "Sink": msg=1 trail=('Source', 'A', 'B', 'Sink')
+PrinterSink "Sink": msg=1 trail=('Source', 'A', 'C', 'Sink')
+PrinterSink "Sink": msg=2 trail=('Source', 'A', 'B', 'Sink')
+PrinterSink "Sink": msg=2 trail=('Source', 'A', 'C', 'Sink')
+['__class__', '__delattr__', '__dict__', '__dir__', '__doc__', '__eq__',
+'__format__', '__ge__', '__getattribute__', '__gt__', '__hash__', '__init__',
+'__init_subclass__', '__le__', '__lt__', '__module__', '__ne__', '__new__',
+'__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__sizeof__',
+'__str__', '__subclasshook__', '__weakref__', 'add_out_nodes', 'name',
+'out_nodes', 'send'] ``` console
 ```
 
-## Multiple Inheritance
+Note: The `dir(<object>)` built-in function lists all names in the namespace of
+the given object. With inheritance, this encompasses the names defined in the
+object's superclasses.
 
-Python also supports multiple inheritance
+Multiple inheritance can get pretty tricky. Must of the time it's sensible to
+avoid it and stick to single inheritance - or use other concepts to model the
+domain, like composition or duck typing.
 
-***class definition***
 
-``` python
->>> class A:
-...     def __init__(self, name):
-...         self.name = name
-...     def get_name(self):
-...         return self.name
-...
->>>
->>> class Z:
-...     def __init__(self, another_name):
-...         self.another_name = another_name
-...     def getAnotherName(self):
-...         return self.another_name
-...
->>>
->>> class B(A,Z):   # multiple inheritance
-...     def __init__(self, name, another_name, number):
-...         A.__init__(self, name)           # call base-class initialisation-method of class 'A'
-...         Z.__init__(self, another_name)   # call base-class initialisation-method of class 'Z'
-...         self.number = number
-...     def getNumber(self):
-...         return self.number
-...
->>>
-```
+### Composition ("has-a" relation)
 
-***class instantiation***
+Python also supports composition, i.e. a class has or uses an instance of
+another class to provide certain behaviour.
+
+
+#### 'Owned-By' Composition
+
+E.g. `Car` creates and has an instance attribute which is an `Engine` object:
 
 ```python
->>> b = B('BaseClass_A', 'BaseClass_Z', 100)
->>> b.getNumber()
-100
->>> b.get_name()
-'BaseClass_A'
->>> b.getAnotherName()
-'BaseClass_Z'
->>> dir(b)
-['__class__', '__delattr__', '__dict__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__gt__', '__hash__', '__init__', '__init_subclass__', '__le__', '__lt__', '__module__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__sizeof__', '__str__', '__subclasshook__', '__weakref__', 'another_name', 'getAnotherName', 'get_name', 'getNumber', 'name', 'number']
->>>
+>>> class Engine:                             
+...     pass
+... 
+>>> class CombustionEngine(Engine):           
+...     def __init__(self, cylinders, layout):
+...         self.cylinders = cylinders        
+...         self.layout = layout              
+...     @property                             
+...     def name(self):                       
+...         return f'{self.cylinders}-cylinders-{self.layout}'
+... 
+>>> class Car:                     
+...     def __init__(self, brand, model):
+...         self.brand = brand     
+...         self.model = model     
+...         self.engine = CombustionEngine(cylinders=6, layout='boxer')
+...     @property                  
+...     def name(self):            
+...         return f'{self.brand} {self.model}'
+...     # Since using the Engine class is an internal detail here (and could       
+...     # change) we should provide for a method to get the engine name.
+...     @property      
+...     def engine_name(self):     
+...         return self.engine.name
+... 
+>>> car = Car('Racemaker', '9110')
+>>> car.name
+'Racemaker 9110'
+>>> car.engine_name
+'6-cylinders-boxer'
+>>> 
 ```
 
-***Note:***
-The `dir(<object>`)- builtin function lists all names in the namespace of the given object. As can be seen above all defined names of all base-class are in the namespace of the derived class.
+#### 'Used-By' Composition
 
-## Composition ("has-a"-relation)
-
-Python also support composition, i.e. a class 'Car' has an instance attribute pointing to an instance attribute of class 'Engine'
-
-### 'Owned-By' Composition
-
-***class definitions***
-
-```python
->>> class Engine:
-...     def __init__(self, name):
-...         self.name = name
-...     def get_name(self):
-...         return self.name
-...
->>> class Car:
-...     def __init__(self, name, engine_name):
-...         # 'class Engine' instance is owned (it's created)
-...         self.engine = Engine(engine_name)
-...         self.name = name
-...     def get_name(self):
-...         return self.name
-...
->>>
-```
-
-***class instantiation***
+It's usually better to not couple the classes so tightly and instead *inject*
+an object to the using class:
 
 ``` python
->>> car = Car('Porsche', 'V6-Engine')
->>> car.get_name()
-'Porsche'
->>> car.engine.get_name()
-'V6-Engine'
->>>
+>>> class Engine:                  
+...     pass
+... 
+>>> class CombustionEngine(Engine):
+...     def __init__(self, cylinders, layout):
+...         self.cylinders = cylinders
+...         self.layout = layout   
+...     @property                  
+...     def name(self):            
+...         return f'{self.cylinders}-cylinders-{self.layout}'
+... 
+>>> class Car:                     
+...     def __init__(self, brand, model, engine):
+...         self.brand = brand     
+...         self.model = model     
+...         self.engine = engine   
+...     @property                                                              ...     def name(self):
+...         return f'{self.brand} {self.model}'
+... 
+>>> engine = CombustionEngine(cylinders=6, layout='boxer')
+>>> car = Car('Racemaker', '9110', engine=engine)
+>>> car.name
+'Racemaker 9110'
+>>> engine.name
+'6-cylinders-boxer'
+>>> car.engine.name
+'6-cylinders-boxer'
+>>> 
 ```
 
-### 'Used-By' Composition
+This gains flexibility e.g. for testing since it's now easy to inject a mock or
+fake object instead of "the real thing".
 
-***class definitions***
+Instead of injecting a class instance a variation and middle ground may be to
+inject a class object instead, leaving instantiation to the using class.
 
-``` python
->>> class Engine:
-...     def __init__(self, name):
-...         self.name = name
-...     def get_name(self):
-...         return self.name
-...
->>> class Car:
-...     def __init__(self, name, engine):
-...         # 'class Engine' instance is used (it's injected)
-...         self.engine = engine
-...         self.name = name
-...     def get_name(self):
-...         return self.name
-...
->>>
-```
 
-***class instantiation***
-
-```python
->>> engine = Engine('V6-Engine')
->>> car = Car('Porsche', engine)
->>> engine.get_name()
-'V6-Engine'
->>> car.get_name()
-'Porsche'
->>> car.engine.get_name()
-'V6-Engine'
->>>
-```
-
-## A note on 'Inheritance vs Composition'
+### A note on 'Inheritance vs Composition'
 
 Key principle of both concepts is code reusabilty:
 
-- Inheritance: Base class methods are inherited by derived classes and can be extended or overwritten
+- Inheritance: Base class methods are inherited by derived classes and can be
+  extended or overwritten
 - Composition: Combines existing classes to build more complex classes
 
-Interest reading in [The Composition Over Inheritance Principle](https://python-patterns.guide/gang-of-four/composition-over-inheritance/) first described in the [Gang of Four Book](https://python-patterns.guide/gang-of-four/)
+Interesting reading: [The Composition Over Inheritance Principle](https://python-patterns.guide/gang-of-four/composition-over-inheritance/) first described in the [Gang of Four Book](https://python-patterns.guide/gang-of-four/).
 
-## Class Attributes
+### Duck Typing
 
-As opposed to 'instance'-attributes 'class'-attributes are common to all class instances.
+Statically typed languages like C++ use virtual function dispatch for runtime
+polymorphism. Derived classes override base class member functions (methods)
+retaining their signature.
 
-***class definition***
+When variables of the base class type which hold a derived class
+instance reference call a member function the runtime will virtually
+dispatch to the derived class' overridden member function. 
 
-``` python
->>> class A:
-...     count = 0
-...     def __init__(self, name):
-...         self.name = name
-...         A.count += 1
-...
->>>
-```
+While this does allow for runtime polymorphis it is restricted to a (sub-) type
+relationship through inheritance: only subclasses of the superclass/base class
+are appropriate where the superclass is expected.
 
-***class instantiation***
+In contrast, Pythons provides 'duck typing' where the polymorphism is not based
+on common types but on common behaviour (methods and attributes of an object).
+See [Wikipedia article on Duck
+typing](https://en.wikipedia.org/wiki/Duck_typing): "If it walks like a duck
+and it quacks like a duck, then it must be a duck"
 
-``` python
->>> a1 = A('A1')    # 1.st instance increments class-attribute
->>> a1.count
-1
->>> a2 = A('A2')    # 2.nd instance increments class-attribute
->>> a2.count
-2
->>> a1.count        # Note: both instances share the same attribute
-2
->>>
->>> id(a1.count)
-140201179340160
->>> id(a2.count)
-140201179340160
->>>
-```
-
-
-## Class Properties
-
-Ordinary Python instance attributes are by default 'readable', 'writable' and 'deletable'. Python class properties ('property-attributes') are attributes with 'access-control', i.e. they can be designed to be 'readable', 'writeable' and 'deletable'. Python properties therefore are managed attributes. This is done with special `getter`-, `setter`- and `deleter`- methods which enables the properties to be accessed as ordinary atttributes (instead of a method-call).
-
-***Usecase:***
-Properties are a way of data encapusulation. Hiding ordinary attributes behind a 'property-interface/facade' introduces a level of indirection to the origin attribute. The origin attribute may change behind the scenes in keeping the user interface with the property-facade. The property can be seen as the user-interface, while the origin attribute is an implementation detail which is a subject to change.
-
-Python support two different ways of implementing properties:
-
-1. 'lower-level' using `property()` builtin function
-2. 'higher-level' using  `@propery`-decorator
-
-The Python docs provide a good [property-example](https://docs.python.org/3/library/functions.html#property), with read-, write- and delete-access. For convenience this is simply copied here.
-
-***example using `property()`-builtin function***
-
-``` python
-class C:
-    def __init__(self):
-        self._x = None
-
-    def getx(self):
-        return self._x
-
-    def setx(self, value):
-        self._x = value
-
-    def delx(self):
-        del self._x
-
-    x = property(getx, setx, delx, "I'm the 'x' property.")
-```
-
-usage
-
-``` python
->>> p1 = C()
->>> p1.x = 1       # (1) set property value
->>> p1.x           # (2) get property value
-1
->>> del p1.x       # (3) delete property
->>> p1.x = 11      # (4) re-create property
->>> p1.x
-11
-```
-
-***example using the `@propery`-builtin decorator***
-``` python
-class C:
-    def __init__(self):
-        self._x = None
-
-    @property
-    def x(self):
-        """I'm the 'x' property."""
-        return self._x
-
-    @x.setter
-    def x(self, value):
-        self._x = value
-
-    @x.deleter
-    def x(self):
-        del self._x
-```
-
-usage
-
-``` python
->>> p1 = C()
->>> p1.x = 9       # (1) set property value
->>> p1.x           # (2) get property value
-9
->>> del p1.x       # (3) delete property
->>> p1.x = 99      # (4) re-create property
->>> p1.x
-99
->>>
-```
-
-***'readonly property example ***
-
-The above example stripped-down to be read-only:
-
-``` python
->>> class C:
-...     def __init__(self, x):
-...         self._x = x
-...     @property
-...     def x(self):
-...         return self._x
-...
->>>
-```
-
-usage
-
-```python
->>> a = C('foo')
->>> a.x                                   # (1) read access
-'foo'
->>> a.x = 'bar'                           # (2) write access
-Traceback (most recent call last):
-  File "<stdin>", line 1, in <module>
-AttributeError: can't set attribute
->>> del a.x                              # (3) delete access
-Traceback (most recent call last):
-  File "<stdin>", line 1, in <module>
-AttributeError: can't delete attribute
->>>
-```
-
-***Note:***
-Property 'x' is read-only, write- and delete-access fail.
-
-
-## Duck Typing
-
-Statically typed languages like C++ use virtual function for runtime polymorphism. Derived classes therefore override base-class functions retaining their signature. When base-class objects, which hold a derived class reference, call their base-class function, the runtime will virtual dispatch the derived-class function.
-This allows programing on a abstract base-class level. But this is restricted to class-objects having an inheritance relationship.
-
-Pythons polymorphism is based on 'duck typing', where the polymorphism is not based on common types, instead it is based on common behaviour (methods) and attributes of the objects itself. See Wikipedia article on [Duck typing](https://en.wikipedia.org/wiki/Duck_typing): "If it walks like a duck and it quacks like a duck, then it must be a duck"
-
-This enable more architecural freedom on the program/class-design, because class-hierarchies can be breaked down and allow more loosely coupled program-design, as David M. Beazley writes in his Book "Python Essential Reference (Fourth Edition)".
+This enables more freedom for the program and class design, because rigid class
+hierarchies may be avoided and a more loosely coupled design becomes possible.
 
 
 ## Special Methods
