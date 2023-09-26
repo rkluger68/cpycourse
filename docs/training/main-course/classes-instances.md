@@ -488,7 +488,7 @@ Inheritance allows for several things:
 A very basic example illustrating some of Python's inheritance specifics:
 
 ``` python
--8<--
+--8<--
 src/inherit.py
 --8<--
 ```
@@ -604,13 +604,16 @@ another class to provide certain behaviour.
 
 #### 'Owned-By' Composition
 
-E.g. `Car` creates and has an instance attribute which is an `Engine` object:
+E.g. `Car` creates and has an instance attribute which is an `Engine`-like
+object:
 
 ```python
 >>> class Engine:                             
-...     pass
+...     @property                             
+...     def name(self):                       
+...         ... 
 ... 
->>> class CombustionEngine(Engine):           
+>>> class CombustionEngine:           
 ...     def __init__(self, cylinders, layout):
 ...         self.cylinders = cylinders        
 ...         self.layout = layout              
@@ -646,9 +649,11 @@ It's usually better to not couple the classes so tightly and instead *inject*
 an object to the using class:
 
 ``` python
->>> class Engine:                  
-...     pass
-... 
+>>> class Engine:                             
+...     @property                             
+...     def name(self):
+...         ...
+...
 >>> class CombustionEngine(Engine):
 ...     def __init__(self, cylinders, layout):
 ...         self.cylinders = cylinders
@@ -669,6 +674,8 @@ an object to the using class:
 >>> car = Car('Racemaker', '9110', engine=engine)
 >>> car.name
 'Racemaker 9110'
+>>> # Directly accessing Engine attributes is unproblematic now, since it's
+>>> # not an internal implementation detail of Car.
 >>> engine.name
 '6-cylinders-boxer'
 >>> car.engine.name
@@ -677,19 +684,35 @@ an object to the using class:
 ```
 
 This gains flexibility e.g. for testing since it's now easy to inject a mock or
-fake object instead of "the real thing".
+fake object instead of "the real thing". Moreover, we could now easily fit a
+modern age `ElectricMotor` into our dinosaur sports car. 
 
-Instead of injecting a class instance a variation and middle ground may be to
-inject a class object instead, leaving instantiation to the using class.
+Instead of injecting a class instance there's room for variation:  a middle
+ground may be to inject a class object instead, leaving instantiation to the
+using class.
 
 
 ### A note on 'Inheritance vs Composition'
 
-Key principle of both concepts is code reusabilty:
+The overaching goal of both concepts is code reusability:
 
-- Inheritance: Base class methods are inherited by derived classes and can be
-  extended or overwritten
-- Composition: Combines existing classes to build more complex classes
+- Inheritance: base class methods and attributes are inherited by derived
+  classes and can be extended or overwritten
+- Composition: combine existing classes (not in an inheritance relationship) as
+  building blocks to build more complex functionality
+
+They aren't mutually exclusive. It can well make sense to combine the two
+approaches to model your domain.
+
+The material presented here doesn't aim to properly discuss the advantages and
+disadvantages of using inheritance vs composition or even object orientation at
+all. There is plenty of good reading material on this subject out there. As
+always:
+
+ - Use the model that fits best for the problem at hand.
+ - Prefer simplicity - if possible.
+ - Be skeptical about advice that tells you something should *never* be used
+   or done.
 
 Interesting reading: [The Composition Over Inheritance Principle](https://python-patterns.guide/gang-of-four/composition-over-inheritance/) first described in the [Gang of Four Book](https://python-patterns.guide/gang-of-four/).
 
@@ -699,23 +722,58 @@ Statically typed languages like C++ use virtual function dispatch for runtime
 polymorphism. Derived classes override base class member functions (methods)
 retaining their signature.
 
-When variables of the base class type which hold a derived class
-instance reference call a member function the runtime will virtually
-dispatch to the derived class' overridden member function. 
+When variables of the base class type holding a reference to a derived class
+instance call a member function, the runtime will 'virtually dispatch' to the
+derived class' overridden member function. 
 
-While this does allow for runtime polymorphis it is restricted to a (sub-) type
-relationship through inheritance: only subclasses of the superclass/base class
-are appropriate where the superclass is expected.
+While this does allow for runtime polymorphism it is restricted to a (sub-)
+type relationship through inheritance: only subclasses of the superclass/base
+class are appropriate where the superclass is expected.
 
 In contrast, Pythons provides 'duck typing' where the polymorphism is not based
 on common types but on common behaviour (methods and attributes of an object).
-See [Wikipedia article on Duck
+See the [Wikipedia article on Duck
 typing](https://en.wikipedia.org/wiki/Duck_typing): "If it walks like a duck
-and it quacks like a duck, then it must be a duck"
+and it quacks like a duck, then it must be a duck."
 
 This enables more freedom for the program and class design, because rigid class
-hierarchies may be avoided and a more loosely coupled design becomes possible.
+hierarchies may be avoided and a more loosely coupled architecture becomes
+possible.
 
+Here's a contrived example:
+
+``` python
+>>> class Animal:
+...     def speak(self):
+...         print('Animals speak')
+... 
+>>> class Cat(Animal):
+...     def speak(self):
+...         print('Meow')
+... 
+>>> class Dog(Animal):
+...     def speak(self):
+...         print('Wuff')
+... 
+>>> def make_animals_talk(animal):
+...     animal.speak()
+... 
+>>> make_animals_talk(Cat())
+Meow
+>>> make_animals_talk(Dog())
+Wuff
+>>> class RoboDuck:       # Robot duck with A.I., not a live animal
+...     def speak(self):  # RoboDuck implements the 'speak protocol'
+...         print('Beep beep beep')
+... 
+>>> # This will work: RoboDuck is not a subclass of Animal, but it implements
+>>> # the 'speak protocol'
+>>> make_animals_talk(RoboDuck())
+Beep beep beep
+>>>
+```
+
+Duck typing works well with composition, too.
 
 ## Special Methods
 
