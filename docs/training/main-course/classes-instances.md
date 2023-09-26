@@ -564,7 +564,7 @@ produce data ("send messages"). This could be modeled with multiple
 inheritance:
 
 ``` python
--8<--
+--8<--
 src/multiple_inheritance.py
 --8<--
 ```
