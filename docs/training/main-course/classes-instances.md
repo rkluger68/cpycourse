@@ -20,28 +20,23 @@ suffer the potential consequences (of functional misbehaviour).
 
 Let's start with a simple class.
 
-## Simple Class
+## A Simple Class
 
 Classes typically have (optional) class & instance attributes and (optional)
 methods.
 
 1. Instance attributes:
-
- - each class instance has its own copy of its instance attributes
- - instance attributes are accessed with the `.`-dot operator: `<class
-   instance>.<instance attribute>`
-
+   - each class instance has its own copy of its instance attributes
+   - instance attributes are accessed with the `.`-dot operator: `<class
+     instance>.<instance attribute>`
 2. Class attributes:
-
- - Attributes defined on the class, not the instance. These are shared by all
-   instances of a class.
-
+   - Attributes defined on the class, not the instance. These are shared by all
+     instances of a class.
 3. Methods:
-
- - must be called through a class instance
- - methods are accessed using the `.`-dot operator: `<class
-   instance>.<instance-method>(<parameters>)`
- - every instance method needs an explicit *1.st* parameter named `self`
+   - must be called through a class instance
+   - methods are accessed using the `.`-dot operator: `<class
+     instance>.<instance-method>(<parameters>)`
+   - every instance method needs an explicit *1.st* parameter named `self`
 
 The simplest class could look like this:
 
@@ -775,32 +770,32 @@ Beep beep beep
 
 Duck typing works well with composition, too.
 
-## Special Methods
+## Class & Static Methods
 
-### class methods
+### Class Methods
 
-As opposed to instance-methods, class-methods operate on the class-object.
+As opposed to instance methods, class methods operate on the class object.
 
-***Usecase:***
-Python doesn't support method overloading like C++ or Java. Therefore multiple methods with the same name within a single class is not supported. As a consequence only a single class constructor (`__init__()`-method) can be defined. With 'class-method's it's possible to overcome this.
+**Usecase:**
+Python doesn't support method overloading like C++ or Java. Therefore multiple
+methods with the same name (and different signatures) are not possible
+within a single class. As a consequence, only a single class constructor can be
+defined. Class methods can be a good way to provide alternative constructor
+methods.
 
-Python 'classc-methods' are defined using the `@sclassmethod`-decorator preceeding to the method-definition
-
-*`@classmethod`-example*
+Class methods are defined by applying the `@classmethod` decorator to a method:
 
 ``` python
 >>> class ByteStringStore:
-...     encoding = 'utf-8'
-...     def __init__(self, bytestring):
+...     def __init__(self, bytestring, encoding='utf-8'):
 ...         self.bytestring = bytestring
+...         self.encoding = encoding
 ...     @classmethod
-...     def from_unicode(cls, unicodestring):
-...         return cls(unicodestring.encode(cls.encoding)
-...
-... )
+...     def from_unicode(cls, unicodestring, encoding='utf-8'):
+...         return cls(unicodestring.encode(encoding))
 ...
 >>> a = ByteStringStore(b'abc')
->>> b= ByteStringStore.from_unicode('äöü')
+>>> b = ByteStringStore.from_unicode('äöü')
 >>> type(a)
 <class '__main__.ByteStringStore'>
 >>> type(b)
@@ -809,115 +804,111 @@ Python 'classc-methods' are defined using the `@sclassmethod`-decorator preceedi
 
 ```
 
+The decorated method must take the class object as its 1st argument
+(usually called `cls` by convention).
+
 ### Static Methods
 
-Python static-methods neither work on class instance-objects nor on class-objects (that's the task of 'instance-method' and 'class-methods'). Python 'static-methods' can best be compared to module-functions, defined in the namespace of a class, instead of a modules-namespace.
+Like e.g. C++ static member functions Python's static methods neither work on
+class instances nor on classes. Rather, the class acts as an additional
+namespace for these methods, much like a module acts as a namespace for 
+functions.
 
-***Usecase:*** Python 'static-methods' can be used for (utility-)functions that logical link to a class, but do not work on the class or their instaances itself
+Static methods could be used for (utility) functions that belong to a class
+conceptually but do not work on the class or their instances themselves.
 
-Python 'static-methods' are defined using the `@staticmethod`-decorator preceeding to the method-definition
+Static methods are defined by prepending the `@staticmethod` decorator
+to a method definition:
 
-*`@staticmethod`-example*
 
 ```python
->>> class A:
+>>> class Namespace:
 ...     @staticmethod
 ...     def mystaticmethod():
 ...         print('this is a staticmethod')
 ...
->>> A.mystaticmethod()
+>>> Namespace.mystaticmethod()
 this is a staticmethod
 >>>
 ```
 
-Python `@staticmethods` are the correspondents to C++ and Java staticmethods, see the Python docs for [`classmethod`](https://docs.python.org/3/library/functions.html#classmethod)
+Python static methods correspond to C++ and Java static methods, see the Python
+docs for
+[`staticmethod`](https://docs.python.org/3/library/functions.html#staticmethod).
 
-## Callable Classes
+## Callable Class Instances
 
-Callable classes are classes where the class instances can simply be called as a function. Giving the class a callable-interface, their instances are callable. A class is made callable by defining a the special instance-method named `__call__()`).
+Callable class instances are instances that can be *called* like a function.
 
- ***Usecase:***
- If different classes provide different instance-method names for the same functionality (e.g. `A.get_name()` and `B.getMyName()`), the usage for the programmers is cumbersome. If they want to get the name from the objects on the one hand they have to call `a.get_name()`and on the other hand `b.getMyName()`. Making the classes callable, gives them a uniform interface, the name for both class instance can be fetched in the same manner, simply using the object-name following parenthesis: `a()` and `b()`.
+Since a class instance regularly holds state (in its instance attributes),
+making it callable is a way to implement a "stateful
+function".[^stateful-inner-functions]
 
- ***Definition of a callable class***
+[^stateful-inner-functions]:
+    There are others, like e.g. inner functions accessing names (or "cells")
+    from outer scopes.
+
+The equivalent in C++ is called a function object.
+
+Class instances can made callable by defining the special method `__call__()`
+on the class:
 
 ``` python
->>> class CallableClass:
-...     name = None
-...     def __init__(self, name):
-...         CallableClass.name = name
-...     def get_name(self):
-...         print('>>> calling normal instance-method: %s() <<<' % self.get_name.__name__)
-...         return CallableClass.name
+>>> class Counter:
+...     def __init__(self, start=0):
+...         self.count = start
 ...     def __call__(self):
-...         print('>>> calling special instance-method: %s() <<<' % self.__call__.__name__)
-...         return CallableClass.name
-...
->>>
+...         self.count += 1
+...         return self.count
+... 
+>>> count = Counter()
+>>> count()
+1
+>>> count()
+2
+>>> count()
+3
+>>> 
 ```
 
-
-
-***Usage of a callable instance***
-
-``` python
->>> foo = CallableClass('foo')                        # (1) Create an instance of the callable class
->>> print('name = %s' % foo.get_name())                # (2) use the 'standard'-class-interface instance-method 'get_name()'
->>> calling normal instance-method: get_name() <<<
-name = foo
->>> print('name = %s' % foo())                        # (3) use the 'callable'-class-interface instance-method '__call__()'
->>> calling special instance-method: __call__() <<<
-name = foo
->>>
-```
-
-
-Let's give it a try
+## Lesson: Customer Class
 
 --8<--
 training/lessons/customer-class/customer.md
 --8<--
 
 
-## Class Decorators
+## Class Decoration
 
-Decorators are explained in detail [here](decorators.md). Here we just give a brief overview concerning decorating in the context of classes.
+We'll just give a brief overview on decorator in the context of classes.
+Decorators are explained in detail [here](decorators.md).
 
-***Usecase***
-Generally speaking a decorator is a 'wrappers' around functions or classes with the purpose of adding some functionality.
-Wrappers are callable object, see [callable-class](#callable-classes).
+In principal a decorator 'wraps' functions or classes with the
+purpose of adding some functionality. A decorator is callable (it must be able
+to retrieve the function/class to wrap) and returns the wrapped argument -
+usually a (modified) function or class.
 
-So there are two parties in the decorating process:
+### Using a Class as a Decorator
 
-1. the decorator
-2. the object to be decorated
-
-### Using a class as a decorator
-
-In the following example we define a ***class*** as a decorator and define a ***function*** which is decorated with this 'class-decorator'.
-
-***Class Decorator definition and function decoration***
+We can define a callable class instance (see above) and use its class as a
+decorator for a function:
 
 ``` python
 >>> class MyDecorator:
 ...     def __init__(self, func):
 ...         self.func = func
 ...     def __call__(self, *args):
-...         # put the additional functionalty here around the function
-...         print('==> START calling %s()' % self.func.__name__)  # some output before the wrapped function is called
-...         self.func(*args)                                      # call the wrapped-function
-...         print('<== END calling %s()' % self.func.__name__)    # some output after the wrapped function is called
+...         # Additional functionality around the function:
+...         # Some output before the wrapped function is called...
+...         print('==> START calling %s()' % self.func.__name__)
+...         self.func(*args)   # call the wrapped function
+...         # ...some output after the wrapped function has returned.
+...         print('<== END calling %s()' % self.func.__name__)
 ...
 >>> @MyDecorator
 ... def myfunc(x):
 ...     print('>>> INSIDE decorated function: %s<<<' % x)
 ...
->>>
-```
-
-***function call***
-
-``` python
 >>> myfunc('decorator-example')
 ==> START calling myfunc()
 >>> INSIDE decorated function: decorator-example<<<
@@ -925,34 +916,46 @@ In the following example we define a ***class*** as a decorator and define a ***
 >>>
 ```
 
-***Note:***
-Here the class-decorator was used to provide some additional output, when the 'decorated' function is called.
-
 ### Decorating a class
 
-In the following example we define a ***function*** as a decorator and define a ***class*** which is decorated with this 'function-decorator'.
+A decorator can also be used to wrap a class instead of a function, providing
+some additional functionality to the class definition.
 
-***Note:***
-Here the decorator works on class-definition level, providing some additional funtionality around the class-definition. For sure a rather infrequent usecase which can be classified in some sense as meta-programming.
+We can e.g. add custom methods to a class:
 
 ``` python
->>> def mydecoratorfunc(cls):
-...     print('>>> A new class was born: %s' % cls)
+>>> def make_friendly(cls):
+...     def greet(self):
+...         print("Hello, I'm a friendly class.")
+...     setattr(cls, "greet", greet)
 ...     return cls
-...
->>> @mydecoratorfunc
-... class A: pass
-...
->>> A new class was born: <class '__main__.A'>
->>>
+... 
+>>> @make_friendly
+... class MyClass:
+...     pass
+... 
+>>> MyClass().greet()
+Hello, I'm a friendly class.
+>>> 
 ```
 
-## Class Testing
+In a more realistic scenario we might use a decorator that traces/logs entering
+and exiting all the methods of a class, maybe switchable through environment
+variables or configuration.
 
-Python provides 2 builtin-function to identify/test the membership on class instance-types.
+Since decorators can modify classes they can be used for things that are
+otherwise achievable with meta-programming, i.e. using [custom
+metaclasses](https://docs.python.org/3/reference/datamodel.html#metaclasses).
 
-1. `types()`: Identifies the concrete class of the class instance
-2. `isinstance()`: Testing the belonging to a certain type (along the class-hierarchy!)
+
+## Class Instance Testing
+
+Python provides 2 built-in functions to identify/test the types of class
+instances:
+
+1. `type()`: Returns the type of on object, e.g. the class of a class instance
+2. `isinstance(...)`: Tests if an object is an instance of a certain type (
+   along the class inheritance hierarchy)
 
 ```python
 >>> class A(): pass
@@ -972,20 +975,25 @@ Python provides 2 builtin-function to identify/test the membership on class inst
 <class '__main__.C'>
 >>> isinstance(a, A)
 True
->>> isinstance(b, A)          # check along the inheritance-hierarchy
+>>> isinstance(b, A)          # check along the inheritance hierarchy
 True
 >>> isinstance(c, B)
 False
 
 ```
 
-## MetaClasses
+## Metaclasses
 
-It should be mentioned that Python also supports techniques for meta-programming, for example to create metaclasses. But this is subject to advanced courses.
+As mentioned before, Python also supports techniques for meta-programming, for
+example to create metaclasses. But this is subject to advanced courses, see
+[custom
+metaclasses](https://docs.python.org/3/reference/datamodel.html#metaclasses)
+for more.
 
-## Further readings on classes
+## Further Readings on Classes
 
- Please refer to the Python docs about [Classes](https://docs.python.org/3/tutorial/classes.html).
+Please refer to the Python docs about
+[Classes](https://docs.python.org/3/tutorial/classes.html).
 
 
 
