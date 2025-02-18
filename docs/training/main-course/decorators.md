@@ -17,11 +17,9 @@ A very basic decorator to trace function entry and exit could look like this:
 ...     def _wrapper(*args, **kwargs):
 ...         # ...that prints entry to and exit from the wrapped function,
 ...         # with function name, arguments and result...
-...         print('--> {func}(args={args}, kwargs={kwargs})'.format(
-...             func=func.__name__, args=args, kwargs=kwargs))
+...         print(f'--> {func.__name__}(args={args}, kwargs={kwargs})')
 ...         result = func(*args, **kwargs)
-...         print('<-- {func} -> {result}'.format(
-...             func=func.__name__, result=result))
+...         print(f'<-- {func.__name__} -> {result}')
 ...     # ...and return the wrapper for use instead of the original function
 ...     return _wrapper
 ... 
@@ -73,11 +71,9 @@ Let's take a look at how our decorated function behaves, now using
 ...     def _wrapper(*args, **kwargs):
 ...         # ...that prints entry to and exit from the wrapped function,
 ...         # with function name, arguments and result...
-...         print('--> {func}(args={args}, kwargs={kwargs})'.format(
-...             func=func.__name__, args=args, kwargs=kwargs))
+...         print(f'--> {func.__name__}(args={args}, kwargs={kwargs})')
 ...         result = func(*args, **kwargs)
-...         print('<-- {func} -> {result}'.format(
-...             func=func.__name__, result=result))
+...         print(f'<-- {func.__name__} -> {result}')
 ...     # ...and return the wrapper for use instead of the original function
 ...     return _wrapper
 ... 
@@ -89,6 +85,7 @@ Let's take a look at how our decorated function behaves, now using
 ... 
 >>> print(inc.__doc__)
 None
+>>> import inspect
 >>> inspect.signature(inc)
 <Signature (*args, **kwargs)>
 >>>  
@@ -96,6 +93,7 @@ None
 ```
 
 Hm, this doesn't look too good a citizen:
+
  - the original function documentation has been lost
  - there's no information about the original function argument signature
 
@@ -104,17 +102,16 @@ wrapper, not the wrapped function. Luckily, there's a convenient way for us to
 retain this information using the `functools` library:
 
 ``` python
+>>> import functools, inspect
 >>> def trace(func):
 ...     # create a wrapper function...
 ...     @functools.wraps(func)
 ...     def _wrapper(*args, **kwargs):
 ...         # ...that prints entry to and exit from the wrapped function,
 ...         # with function name, arguments and result...
-...         print('--> {func}(args={args}, kwargs={kwargs})'.format(
-...             func=func.__name__, args=args, kwargs=kwargs))
+...         print(f'--> {func.__name__}(args={args}, kwargs={kwargs})')
 ...         result = func(*args, **kwargs)
-...         print('<-- {func} -> {result}'.format(
-...             func=func.__name__, result=result))
+...         print(f'<-- {func.__name__} -> {result}')
 ...     # ...and return the wrapper for use instead of the original function
 ...     return _wrapper
 ... 
@@ -203,25 +200,23 @@ Let's modify the tracing functionality to allow for selective entry and/or exit
 tracing:
 
 ``` python
+>>> import functools, inspect
 >>> def traced(entry=True, exit=True):
 ...     # create tracing wrappers depending on the entry & exit args
 ...     if entry and exit:
 ...         def trace(func):
 ...             @functools.wraps(func)
 ...             def _wrapper(*args, **kwargs):
-...                 print('--> {func}(args={args}, kwargs={kwargs})'.format(
-...                     func=func.__name__, args=args, kwargs=kwargs))
+...                 print(f'--> {func.__name__}(args={args}, kwargs={kwargs})')
 ...                 result = func(*args, **kwargs)
-...                 print('<-- {func} -> {result}'.format(
-...                    func=func.__name__, result=result))
+...                 print(f'<-- {func.__name__} -> {result}')
 ...             return _wrapper
 ...     
 ...     elif entry:
 ...         def trace(func):
 ...             @functools.wraps(func)
 ...             def _wrapper(*args, **kwargs):
-...                 print('--> {func}(args={args}, kwargs={kwargs})'.format(
-...                     func=func.__name__, args=args, kwargs=kwargs))
+...                 print(f'--> {func.__name__}(args={args}, kwargs={kwargs})')
 ...                 result = func(*args, **kwargs)
 ...             return _wrapper
 ...     
@@ -230,8 +225,7 @@ tracing:
 ...             @functools.wraps(func)
 ...             def _wrapper(*args, **kwargs):
 ...                 result = func(*args, **kwargs)
-...                 print('<-- {func} -> {result}'.format(
-...                    func=func.__name__, result=result))
+...                 print(f'<-- {func.__name__} -> {result}')
 ...             return _wrapper
 ...     else:
 ...         trace = None
@@ -341,19 +335,16 @@ Let's make use of Python's [keyword-only] syntax to work around this:
 ...         def trace(func):
 ...             @functools.wraps(func)
 ...             def _wrapper(*args, **kwargs):
-...                 print('--> {func}(args={args}, kwargs={kwargs})'.format(
-...                     func=func.__name__, args=args, kwargs=kwargs))
+...                 print(f'--> {func.__name__}(args={args}, kwargs={kwargs})')
 ...                 result = func(*args, **kwargs)
-...                 print('<-- {func} -> {result}'.format(
-...                    func=func.__name__, result=result))
+...                 print(f'<-- {func.__name__} -> {result}')
 ...             return _wrapper
 ...     
 ...     elif entry:
 ...         def trace(func):
 ...             @functools.wraps(func)
 ...             def _wrapper(*args, **kwargs):
-...                 print('--> {func}(args={args}, kwargs={kwargs})'.format(
-...                     func=func.__name__, args=args, kwargs=kwargs))
+...                 print(f'--> {func.__name__}(args={args}, kwargs={kwargs})')
 ...                 result = func(*args, **kwargs)
 ...             return _wrapper
 ...     
@@ -362,8 +353,7 @@ Let's make use of Python's [keyword-only] syntax to work around this:
 ...             @functools.wraps(func)
 ...             def _wrapper(*args, **kwargs):
 ...                 result = func(*args, **kwargs)
-...                 print('<-- {func} -> {result}'.format(
-...                    func=func.__name__, result=result))
+...                 print(f'<-- {func.__name__} -> {result}')
 ...             return _wrapper
 ...     else:
 ...         trace = None

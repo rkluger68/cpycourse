@@ -60,17 +60,17 @@ Python is
  - a great rapid prototyping language:
      - succinct
      - no lengthy compilation
-     - a lot of "batteries included" (i.e. extensive standard library)
+     - a lot of "batteries included": its extensive [standard
+       library](https://docs.python.org/3/library/index.html) provides a wide
+       variety of tooling, out-of-the-box[^stdlib-restricted-env]
  - extensible, i.e. in the need for speed you can write performance critical
    code as e.g. a C extension (but more often than not Python is just fast 
    enough, anyway)
 
-Moreover, Python comes with "batteries included": its rich [standard
-library](https://docs.python.org/3/library/index.html)
-provides a wide variety of tooling, out-of-the-box. This can be essential in
-restricted environments e.g. when you're not able to install additional
-packages. 
- 
+[^stdlib-restricted-env]:
+    This can be essential in e.g. restricted environments when you're not able
+    to install additional packages.
+
 ## It has excellent documentation & a great community
 
 Simply take at look at https://docs.python.org/ and
